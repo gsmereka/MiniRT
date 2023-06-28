@@ -6,15 +6,18 @@
 #    By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/20 18:26:17 by gde-mora          #+#    #+#              #
-#    Updated: 2023/06/28 15:43:07 by gsmereka         ###   ########.fr        #
+#    Updated: 2023/06/28 15:58:59 by gsmereka         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME 	=	miniRT
 
+RT_FILE =	rato.rt
+
 SRC 	=	src/main.c \
 			src/validate.c \
 			src/init_mlx.c \
+			src/error_msg.c \
 
 OBJ 	=	$(addprefix $(OBJ_DIR)/, $(SRC:.c=.o))
 
@@ -75,9 +78,9 @@ git: fclean
 	git add . && clear && git status
 
 rt: $(NAME)
-	./miniRT
+	./miniRT $(RT_FILE)
 
 valgrind: $(NAME)
-	valgrind  --leak-check=full --show-leak-kinds=all ./miniRT
+	valgrind  --leak-check=full --show-leak-kinds=all ./miniRT $(RT_FILE)
 
 .PHONY: all clean fclean re create_obj_dir git ascii_draw valgrind rt
