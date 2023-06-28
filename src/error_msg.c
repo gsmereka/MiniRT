@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 15:47:18 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/06/28 16:00:28 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/06/28 16:03:53 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 int	error_msg(int error)
 {
-	if (error == 1)
+	if (error == COUNT_ERROR)
 	{
 		ft_printf("Error\nOnly one file allowed\n");
 	}
-	if (error == 2)
+	if (error == FILE_EXTENSION_ERROR)
 	{
 		ft_printf("Error\nOnly files with the '.rt' extension allowed\n");
 	}
