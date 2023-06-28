@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+         #
+#    By: gde-mora <gde-mora@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/20 18:26:17 by gde-mora          #+#    #+#              #
-#    Updated: 2023/06/28 15:43:07 by gsmereka         ###   ########.fr        #
+#    Updated: 2023/06/28 21:29:38 by gde-mora         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME 	=	miniRT
 
 SRC 	=	src/main.c \
 			src/validate.c \
-			src/init_mlx.c \
+			src/render.c \
 
 OBJ 	=	$(addprefix $(OBJ_DIR)/, $(SRC:.c=.o))
 
@@ -26,6 +26,8 @@ LIBFT_A =	./libft/libft.a
 HEADERS =	./headers/miniRT.h
 
 CCFLAGS =	-Wall -Wextra -Werror
+
+MLX_FLAGS = -lX11 -lXext -lmlx
 
 RM		=	rm -f
 
@@ -51,7 +53,7 @@ $(LIBFT_A):
 
 # MANDATORY COMPILE
 $(NAME): $(OBJ) $(HEADERS) $(LIBFT_A)
-	cc $(CCFLAGS) -o $(NAME) $(OBJ) $(LIBFT_A) 
+	cc $(CCFLAGS) -o $(NAME) $(OBJ) $(MLX_FLAGS) $(LIBFT_A) 
 
 # RULES CLEAN FCLEAN AND RE
 clean:
