@@ -6,7 +6,7 @@
 #    By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/20 18:26:17 by gde-mora          #+#    #+#              #
-#    Updated: 2023/06/28 16:50:53 by gsmereka         ###   ########.fr        #
+#    Updated: 2023/06/28 17:07:28 by gsmereka         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,7 @@ HEADERS =	./headers/miniRT.h
 
 CCFLAGS =	-Wall -Wextra -Werror
 
-MLX_FLAGS = -lX11 -lXext -lmlx
+MLX_FLAGS = -lmlx -lXext -lX11
 
 RM		=	rm -f
 
