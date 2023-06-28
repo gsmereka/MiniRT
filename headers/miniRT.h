@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 20:17:31 by gde-mora          #+#    #+#             */
-/*   Updated: 2023/06/28 16:49:48 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/06/28 17:04:05 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,9 @@
 
 # include "./error_msg.h"
 # include <mlx.h>
+# include <X11/X.h>
+# include <X11/keysym.h>
+# include <sys/stat.h>
 # include "../libft/libft.h"
 
 # define KEY_ESCAPE (0xff1b)
