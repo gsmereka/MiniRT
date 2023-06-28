@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   miniRT.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gde-mora <gde-mora@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 20:17:31 by gde-mora          #+#    #+#             */
-/*   Updated: 2023/06/28 21:31:00 by gde-mora         ###   ########.fr       */
+/*   Updated: 2023/06/28 16:49:48 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINIRT_H
 # define MINIRT_H
 
+# include "./error_msg.h"
 # include <mlx.h>
 # include "../libft/libft.h"
 
@@ -32,5 +33,7 @@ typedef struct s_data
 
 void	render(t_data *data);
 int		validate_scene_file(int argc, char *argv[]);
+int		exit_error(int error, int status, t_data *data);
+int		error_msg(int error);
 
 #endif

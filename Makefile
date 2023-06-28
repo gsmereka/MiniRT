@@ -3,17 +3,21 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: gde-mora <gde-mora@student.42sp.org.br>    +#+  +:+       +#+         #
+#    By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/20 18:26:17 by gde-mora          #+#    #+#              #
-#    Updated: 2023/06/28 21:29:38 by gde-mora         ###   ########.fr        #
+#    Updated: 2023/06/28 16:50:53 by gsmereka         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME 	=	miniRT
 
+RT_FILE =	rato.rt
+
 SRC 	=	src/main.c \
 			src/validate.c \
+			src/error_msg.c \
+			src/exit_error.c \
 			src/render.c \
 
 OBJ 	=	$(addprefix $(OBJ_DIR)/, $(SRC:.c=.o))
@@ -77,9 +81,9 @@ git: fclean
 	git add . && clear && git status
 
 rt: $(NAME)
-	./miniRT
+	./miniRT $(RT_FILE)
 
 valgrind: $(NAME)
-	valgrind  --leak-check=full --show-leak-kinds=all ./miniRT
+	valgrind  --leak-check=full --show-leak-kinds=all ./miniRT $(RT_FILE)
 
 .PHONY: all clean fclean re create_obj_dir git ascii_draw valgrind rt

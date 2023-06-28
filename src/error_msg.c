@@ -1,23 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   validate.c                                         :+:      :+:    :+:   */
+/*   error_msg.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/28 15:36:42 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/06/28 16:52:02 by gsmereka         ###   ########.fr       */
+/*   Created: 2023/06/28 15:47:18 by gsmereka          #+#    #+#             */
+/*   Updated: 2023/06/28 16:03:53 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/miniRT.h"
 
-int	validate_scene_file(int argc, char *argv[])
+int	error_msg(int error)
 {
-	if (argc != 2)
-		exit_error(COUNT_ERROR, 2, NULL);
-	if (ft_strncmp(argv[1] + ft_strlen(argv[1]) - 3, ".rt", 3) != 0)
-		exit_error(FILE_EXTENSION_ERROR, 2, NULL);
-	ft_printf("Validando\n");
+	if (error == COUNT_ERROR)
+	{
+		ft_printf("Error\nOnly one file allowed\n");
+	}
+	if (error == FILE_EXTENSION_ERROR)
+	{
+		ft_printf("Error\nOnly files with the '.rt' extension allowed\n");
+	}
 	return (0);
 }
