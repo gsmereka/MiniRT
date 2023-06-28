@@ -3,16 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gde-mora <gde-mora@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 20:16:42 by gde-mora          #+#    #+#             */
-/*   Updated: 2023/06/28 20:20:33 by gde-mora         ###   ########.fr       */
+/*   Updated: 2023/06/28 15:37:35 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../headers/miniRT.h"
+
 int	main(int argc, char **argv)
 {
-	validate();
-	init_mlx();
+	(void)argc;
+	(void)argv;
+	validate_scene_file(argc, argv);
+	// init_mlx();
 	return (0);
 }
