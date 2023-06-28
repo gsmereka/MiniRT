@@ -6,13 +6,18 @@
 /*   By: gde-mora <gde-mora@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 20:16:42 by gde-mora          #+#    #+#             */
-/*   Updated: 2023/06/28 20:20:33 by gde-mora         ###   ########.fr       */
+/*   Updated: 2023/06/28 21:06:40 by gde-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../headers/miniRT.h"
+
 int	main(int argc, char **argv)
 {
-	validate();
-	init_mlx();
+	t_data data;
+
+	ft_bzero(&data, sizeof(data));
+	validate_scene_file(argc, argv);
+	render(&data);
 	return (0);
 }
