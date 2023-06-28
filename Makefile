@@ -6,7 +6,7 @@
 #    By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/20 18:26:17 by gde-mora          #+#    #+#              #
-#    Updated: 2023/06/28 16:08:01 by gsmereka         ###   ########.fr        #
+#    Updated: 2023/06/28 16:50:53 by gsmereka         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,9 +16,9 @@ RT_FILE =	rato.rt
 
 SRC 	=	src/main.c \
 			src/validate.c \
-			src/init_mlx.c \
 			src/error_msg.c \
 			src/exit_error.c \
+			src/render.c \
 
 OBJ 	=	$(addprefix $(OBJ_DIR)/, $(SRC:.c=.o))
 
@@ -30,6 +30,8 @@ LIBFT_A =	./libft/libft.a
 HEADERS =	./headers/miniRT.h
 
 CCFLAGS =	-Wall -Wextra -Werror
+
+MLX_FLAGS = -lX11 -lXext -lmlx
 
 RM		=	rm -f
 
@@ -55,7 +57,7 @@ $(LIBFT_A):
 
 # MANDATORY COMPILE
 $(NAME): $(OBJ) $(HEADERS) $(LIBFT_A)
-	cc $(CCFLAGS) -o $(NAME) $(OBJ) $(LIBFT_A) 
+	cc $(CCFLAGS) -o $(NAME) $(OBJ) $(MLX_FLAGS) $(LIBFT_A) 
 
 # RULES CLEAN FCLEAN AND RE
 clean:
