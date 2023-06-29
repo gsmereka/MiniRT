@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 20:17:31 by gde-mora          #+#    #+#             */
-/*   Updated: 2023/06/29 03:17:34 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/06/29 13:11:35 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define MINIRT_H
 
 # include "./error_msg.h"
+# include "./structs.h"
 # include <mlx.h>
 # include <X11/X.h>
 # include <X11/keysym.h>
@@ -27,12 +28,6 @@
 	void	*mlx_ptr;
 	void	*win_ptr;
 }	t_mlx_render;*/
-
-typedef struct s_data
-{
-	void	*mlx_ptr;
-	void	*win_ptr;
-}	t_data;
 
 void	render(t_data *data);
 int		validate_scene_file(int argc, char *argv[], t_data *data);
