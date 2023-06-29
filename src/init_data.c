@@ -1,24 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   init_data.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/28 20:16:42 by gde-mora          #+#    #+#             */
-/*   Updated: 2023/06/29 03:13:52 by gsmereka         ###   ########.fr       */
+/*   Created: 2023/06/29 03:14:18 by gsmereka          #+#    #+#             */
+/*   Updated: 2023/06/29 03:16:45 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/miniRT.h"
 
-int	main(int argc, char **argv)
+int	init_data(t_data *data)
 {
-	t_data data;
-
-	ft_bzero(&data, sizeof(data));
-	init_data(&data);
-	validate_scene_file(argc, argv);
-	render(&data);
+	(void)data;
+	ft_printf("Iniciando\n");
 	return (0);
 }

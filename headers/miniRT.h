@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 20:17:31 by gde-mora          #+#    #+#             */
-/*   Updated: 2023/06/28 17:04:05 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/06/29 03:17:34 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,9 @@ typedef struct s_data
 }	t_data;
 
 void	render(t_data *data);
-int		validate_scene_file(int argc, char *argv[]);
+int		validate_scene_file(int argc, char *argv[], t_data *data);
 int		exit_error(int error, int status, t_data *data);
 int		error_msg(int error);
+int		init_data(t_data *data);
 
 #endif
