@@ -1,24 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/28 20:16:42 by gde-mora          #+#    #+#             */
-/*   Updated: 2023/06/29 13:12:02 by gsmereka         ###   ########.fr       */
+/*   Created: 2023/06/29 13:09:51 by gsmereka          #+#    #+#             */
+/*   Updated: 2023/06/29 13:11:02 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../headers/miniRT.h"
+#ifndef STRUCTS_H
+# define STRUCTS_H
 
-int	main(int argc, char **argv)
+typedef struct s_data
 {
-	t_data	data;
+	void	*mlx_ptr;
+	void	*win_ptr;
+}	t_data;
 
-	ft_bzero(&data, sizeof(data));
-	init_data(&data);
-	validate_scene_file(argc, argv, &data);
-	render(&data);
-	return (0);
-}
+#endif

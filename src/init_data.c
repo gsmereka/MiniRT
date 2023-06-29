@@ -1,23 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   validate.c                                         :+:      :+:    :+:   */
+/*   init_data.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/28 15:36:42 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/06/28 16:52:02 by gsmereka         ###   ########.fr       */
+/*   Created: 2023/06/29 03:14:18 by gsmereka          #+#    #+#             */
+/*   Updated: 2023/06/29 03:16:45 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/miniRT.h"
 
-int	validate_scene_file(int argc, char *argv[])
+int	init_data(t_data *data)
 {
-	if (argc != 2)
-		exit_error(COUNT_ERROR, 2, NULL);
-	if (ft_strncmp(argv[1] + ft_strlen(argv[1]) - 3, ".rt", 3) != 0)
-		exit_error(FILE_EXTENSION_ERROR, 2, NULL);
-	ft_printf("Validando\n");
+	(void)data;
+	ft_printf("Iniciando\n");
 	return (0);
 }

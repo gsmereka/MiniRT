@@ -6,7 +6,7 @@
 #    By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/20 18:26:17 by gde-mora          #+#    #+#              #
-#    Updated: 2023/06/28 17:07:28 by gsmereka         ###   ########.fr        #
+#    Updated: 2023/06/29 13:43:51 by gsmereka         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,10 +15,11 @@ NAME 	=	miniRT
 RT_FILE =	rato.rt
 
 SRC 	=	src/main.c \
-			src/validate.c \
 			src/error_msg.c \
 			src/exit_error.c \
 			src/render.c \
+			src/init_data.c \
+			src/parsing/validate.c \
 
 OBJ 	=	$(addprefix $(OBJ_DIR)/, $(SRC:.c=.o))
 
@@ -38,7 +39,7 @@ RM		=	rm -f
 # RULES
 all: $(NAME) ascii_draw
 
-ascii_draw:
+ascii_draw2:
 	@echo "\033[1;35m"
 	@echo "░░┌──┐░░░░░░░░░░┌──┐░░░░░░┌──┐░░░░░░░░░░┌──┐░░░░░░┌──┐░░░░░░░░░░┌──┐░░"
 	@echo "░╔╡▐▐╞╝░░┌──┐░░╔╡▐▐╞╝░░░░╔╡▐▐╞╝░░┌──┐░░╔╡▐▐╞╝░░░░╔╡▐▐╞╝░░┌──┐░░╔╡▐▐╞╝░"
@@ -46,6 +47,25 @@ ascii_draw:
 	@echo "░░░╚╚░░░░└╥╥┘░░░░╚╚░░░░░░░░╚╚░░░░└╥╥┘░░░░╚╚░░░░░░░░╚╚░░░░└╥╥┘░░░░╚╚░░░"
 	@echo "░░░░░░░░░░╝╝░░░░░░░░░░░░░░░░░░░░░░╝╝░░░░░░░░░░░░░░░░░░░░░░╝╝░░░░░░░░░░"
 	@echo "\033[0m"
+
+ascii_draw:
+	@echo "\033[1;33m"
+	@echo "                    _______________________________________________"
+	@echo "                   /   __          o                               \\"
+	@echo "                  /   (__)     .            _       o      .       (\\"
+	@echo "                 |         .         o     (_)   o     ____    ()    |"
+	@echo "                 |)     .     .   .                   /    \         |"
+	@echo "                 |                     o       .    . |    |         |"
+	@echo "                 |   o   ()     .        .    .       \____/    . o  |"
+	@echo "                 |                              ()                   |"
+	@echo "           ?     |    .    o        ()    .         .       o       (|"
+	@echo "                 |     _   .   ()        _               .     ()  . |"
+	@echo "          o_o    |    (_)          .    (_)  .  .    ()              |"
+	@echo "          (\")    |)                                         __       |"
+	@echo "         \/'\/    \    ()   .   o    .    ()     .     o   (__)     /"
+	@echo "  ___(___(,_,)_____\_______________________________________________/________"
+	@echo "\033[0m"
+
 
 $(OBJ_DIR)/%.o: %.c
 	make create_obj_dir
@@ -75,6 +95,7 @@ re: fclean all
 create_obj_dir:
 	@mkdir -p $(OBJ_DIR)
 	@mkdir -p $(OBJ_DIR)/src
+	@mkdir -p $(OBJ_DIR)/src/parsing
 
 ## FULL CLEAN ALL OBJECTS
 git: fclean
