@@ -12,13 +12,14 @@
 
 NAME 	=	miniRT
 
-RT_FILE =	scene_files/rato.rt
+RT_FILE =	rato.rt
 
 SRC 	=	src/main.c \
 			src/exit.c \
 			src/render.c \
 			src/init_data.c \
 			src/parsing/validate.c \
+			src/parsing/token_utils.c \
 
 OBJ 	=	$(addprefix $(OBJ_DIR)/, $(SRC:.c=.o))
 
