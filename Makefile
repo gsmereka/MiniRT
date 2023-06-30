@@ -6,13 +6,13 @@
 #    By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/20 18:26:17 by gde-mora          #+#    #+#              #
-#    Updated: 2023/06/30 01:54:14 by gsmereka         ###   ########.fr        #
+#    Updated: 2023/06/30 02:10:20 by gsmereka         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME 	=	miniRT
 
-RT_FILE =	scene_files/rato.rt
+RT_FILE =	rato.rt
 
 SRC 	=	src/main.c \
 			src/exit.c \
