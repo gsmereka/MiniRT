@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   miniRT.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gde-mora <gde-mora@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 20:17:31 by gde-mora          #+#    #+#             */
-/*   Updated: 2023/06/29 13:11:35 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/06/30 01:57:18 by gde-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@
 
 void	render(t_data *data);
 int		validate_scene_file(int argc, char *argv[], t_data *data);
-int		exit_error(int error, int status, t_data *data);
-int		error_msg(int error);
+int		exit_error(char *msg, int status, t_data *data);
+int		exit_successful(t_data *data);
 int		init_data(t_data *data);
 
 #endif

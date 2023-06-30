@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+         #
+#    By: gde-mora <gde-mora@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/20 18:26:17 by gde-mora          #+#    #+#              #
-#    Updated: 2023/06/29 13:43:51 by gsmereka         ###   ########.fr        #
+#    Updated: 2023/06/30 01:55:32 by gde-mora         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,8 +15,7 @@ NAME 	=	miniRT
 RT_FILE =	rato.rt
 
 SRC 	=	src/main.c \
-			src/error_msg.c \
-			src/exit_error.c \
+			src/exit.c \
 			src/render.c \
 			src/init_data.c \
 			src/parsing/validate.c \
