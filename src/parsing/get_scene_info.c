@@ -1,24 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   get_scene_info.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/28 20:16:42 by gde-mora          #+#    #+#             */
-/*   Updated: 2023/06/30 15:20:47 by gsmereka         ###   ########.fr       */
+/*   Created: 2023/06/30 15:13:32 by gsmereka          #+#    #+#             */
+/*   Updated: 2023/06/30 15:14:38 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../headers/miniRT.h"
+#include "../../headers/miniRT.h"
 
-int	main(int argc, char **argv)
+int	add_config_and_shapes(t_data *data);
+
+int	get_scene_info(t_data *data)
 {
-	t_data	data;
+	add_config_and_shapes(data);
+	return (0);
+}
 
-	ft_bzero(&data, sizeof(data));
-	init_data(&data);
-	read_scene_file(argc, argv, &data);
-	render(&data);
+int	add_config_and_shapes(t_data *data)
+{
+	t_token	*token;
+
+	token = data->tokens;
+	while (token)
+	{
+		add_config(token);
+		add_shape(token);
+		token = token->next;
+	}
 	return (0);
 }

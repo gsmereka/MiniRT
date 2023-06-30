@@ -6,7 +6,7 @@
 #    By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/20 18:26:17 by gde-mora          #+#    #+#              #
-#    Updated: 2023/06/30 03:02:47 by gsmereka         ###   ########.fr        #
+#    Updated: 2023/06/30 15:19:36 by gsmereka         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,12 @@ SRC 	=	src/main.c \
 			src/exit.c \
 			src/render.c \
 			src/init_data.c \
-			src/parsing/validate.c \
+			src/parsing/read_scene_file.c \
+			src/parsing/add_config.c \
+			src/parsing/add_shape.c \
+			src/parsing/check_configs.c \
+			src/parsing/check_shapes.c \
+			src/parsing/get_scene_info.c \
 			src/parsing/token_utils.c \
 
 OBJ 	=	$(addprefix $(OBJ_DIR)/, $(SRC:.c=.o))

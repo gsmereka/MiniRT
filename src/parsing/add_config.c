@@ -1,24 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   add_config.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/28 20:16:42 by gde-mora          #+#    #+#             */
-/*   Updated: 2023/06/30 15:20:47 by gsmereka         ###   ########.fr       */
+/*   Created: 2023/06/30 12:41:28 by gsmereka          #+#    #+#             */
+/*   Updated: 2023/06/30 15:18:13 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../headers/miniRT.h"
+#include "../../headers/miniRT.h"
 
-int	main(int argc, char **argv)
+int	add_config(t_token *token)
 {
-	t_data	data;
-
-	ft_bzero(&data, sizeof(data));
-	init_data(&data);
-	read_scene_file(argc, argv, &data);
-	render(&data);
+	if (is_camera(token->args))
+	{
+		ft_printf("is_camera\n");
+	}
+	if (is_ambient_lighting(token->args))
+	{
+		ft_printf("is_ambient_lighting\n");
+	}
+	if (is_light(token->args))
+	{
+		ft_printf("is_light\n");
+	}
+	if (is_resolution(token->args))
+	{
+		ft_printf("is_resolution\n");
+	}
 	return (0);
 }

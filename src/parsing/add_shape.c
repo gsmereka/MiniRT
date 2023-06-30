@@ -1,24 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   add_shape.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/28 20:16:42 by gde-mora          #+#    #+#             */
-/*   Updated: 2023/06/30 15:20:47 by gsmereka         ###   ########.fr       */
+/*   Created: 2023/06/30 12:42:10 by gsmereka          #+#    #+#             */
+/*   Updated: 2023/06/30 15:18:54 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../headers/miniRT.h"
+#include "../../headers/miniRT.h"
 
-int	main(int argc, char **argv)
+int	add_shape(t_token *token)
 {
-	t_data	data;
-
-	ft_bzero(&data, sizeof(data));
-	init_data(&data);
-	read_scene_file(argc, argv, &data);
-	render(&data);
+	if (is_cylinder(token->args))
+	{
+		ft_printf("is_cylinder\n");
+	}
+	if (is_sphere(token->args))
+	{
+		ft_printf("is_sphere\n");
+	}
+	if (is_plane(token->args))
+	{
+		ft_printf("is_plane\n");
+	}
 	return (0);
 }

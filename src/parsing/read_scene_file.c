@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   validate.c                                         :+:      :+:    :+:   */
+/*   read_scene_file.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 15:36:42 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/06/30 02:22:25 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/06/30 15:16:46 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	check_file_extension(char *file, t_data *data);
 int	read_file(t_data *data);
 
-int	validate_scene_file(int argc, char *argv[], t_data *data)
+int	read_scene_file(int argc, char *argv[], t_data *data)
 {
 	if (argc != 2)
 		exit_error(COUNT_ERROR, 2, data);
