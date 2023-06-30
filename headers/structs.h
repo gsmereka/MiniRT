@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 13:09:51 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/06/29 22:26:37 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/06/30 01:56:13 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 typedef struct s_token
 {
-	char			*line;
 	char			**args;
 	struct s_token	*next;
 }	t_token;
