@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 15:36:42 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/06/30 02:20:27 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/06/30 02:22:25 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	validate_scene_file(int argc, char *argv[], t_data *data)
 	data->scene_fd = open(argv[1], O_RDWR);
 	if (data->scene_fd < 0)
 		exit_error(OPEN_FILE_ERROR, 2, data);
-	read_file(data); // ler todo o arquivo com a gnl, dessa forma não vai vazar memoria.
+	read_file(data);
 	ft_printf("Validando\n");
 	return (0);
 }

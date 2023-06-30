@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 01:53:31 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/06/30 02:20:45 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/06/30 03:01:16 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,6 @@ void	add_token(t_token **tokens, char **args)
 
 void	token_clear(t_token **tokens)
 {
-	int	i;
-
-	i = 0;
 	if (*tokens)
 	{
 		token_clear(&(*tokens)->next);
