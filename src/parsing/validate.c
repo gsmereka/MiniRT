@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 15:36:42 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/06/30 02:11:31 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/06/30 02:20:27 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,10 +53,7 @@ int	read_file(t_data *data)
 		args = ft_split(line, ' ');
 		free(line);
 		if (args)
-		{
 			add_token(&data->tokens, args);
-			free_array((void *)args);
-		}
 		line = get_next_line(data->scene_fd);
 	}
 	token_clear(&data->tokens);

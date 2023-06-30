@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 16:06:05 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/06/30 02:09:15 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/06/30 02:17:26 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ int	free_array(void **array)
 {
 	int	i;
 
+	i = 0;
 	if (!array)
 		return (0);
 	while (array[i])

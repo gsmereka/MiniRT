@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 01:53:31 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/06/30 01:58:16 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/06/30 02:20:45 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,14 +64,7 @@ void	token_clear(t_token **tokens)
 	{
 		token_clear(&(*tokens)->next);
 		if ((*tokens)->args)
-		{
-			while ((*tokens)->args[i])
-			{
-				free((*tokens)->args[i]);
-				i++;
-			}
-			free((*tokens)->args);
-		}
+			free_array((void **)(*tokens)->args);
 		free(*tokens);
 		*tokens = NULL;
 	}
