@@ -6,7 +6,7 @@
 /*   By: gde-mora <gde-mora@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 16:06:05 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/06/30 02:38:33 by gde-mora         ###   ########.fr       */
+/*   Updated: 2023/06/30 02:50:05 by gde-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,7 @@ static void	free_data(t_data *data)
 	if (data->mlx_ptr && data->img)
 		mlx_destroy_image(data->mlx_ptr, data->img);
 	if (data->mlx_ptr && data->win_ptr)
-	{
-		//mlx_clear_window(data->mlx_ptr, data->win_ptr);
 		mlx_destroy_window(data->mlx_ptr, data->win_ptr);
-	}
 	if (data->mlx_ptr)
 	{
 		mlx_destroy_display(data->mlx_ptr);
