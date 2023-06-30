@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 16:01:29 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/06/29 22:19:53 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/06/30 19:06:15 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,5 +17,6 @@
 # define FILE_EXTENSION_ERROR "Error\nOnly files with the '.rt' \
 extension allowed\n"
 # define INTERFACE_ERROR "Error\nNo graphical interface.\n"
+# define INVALID_LINE "Error\nYour '.rt' file have an invalid line.\n"
 
 #endif

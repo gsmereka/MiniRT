@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 20:17:31 by gde-mora          #+#    #+#             */
-/*   Updated: 2023/06/30 18:53:19 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/06/30 19:15:35 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,16 @@ int		is_ambient_lighting(char **args);
 int		is_light(char **args);
 int		is_camera(char **args);
 int		is_resolution(char **args);
+
+// add config
+int	add_ambient_lighting(char **args, t_data *data);
+int	add_light(char **args, t_data *data);
+int	add_camera(char **args, t_data *data);
+
+// add shape
+int	add_plane(char **args, t_data *data);
+int	add_sphere(char **args, t_data *data);
+int	add_cylinder(char **args, t_data *data);
 
 // get_scene_info
 int		get_scene_info(t_data *data);

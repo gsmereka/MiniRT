@@ -6,29 +6,41 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 12:41:28 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/06/30 15:18:13 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/06/30 19:16:32 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/miniRT.h"
 
-int	add_config(t_token *token)
+int	add_ambient_lighting(char **args, t_data *data)
 {
-	if (is_camera(token->args))
+	(void)data;
+	if (args && ft_strcmp(args[0], "A") == 0)
 	{
-		ft_printf("is_camera\n");
+		ft_printf("positive\n");
+		return (1);
 	}
-	if (is_ambient_lighting(token->args))
+	return (0);
+}
+
+int	add_light(char **args, t_data *data)
+{
+	(void)data;
+	if (args && ft_strcmp(args[0], "L") == 0)
 	{
-		ft_printf("is_ambient_lighting\n");
+		ft_printf("positive\n");
+		return (1);
 	}
-	if (is_light(token->args))
+	return (0);
+}
+
+int	add_camera(char **args, t_data *data)
+{
+	(void)data;
+	if (args && ft_strcmp(args[0], "C") == 0)
 	{
-		ft_printf("is_light\n");
-	}
-	if (is_resolution(token->args))
-	{
-		ft_printf("is_resolution\n");
+		ft_printf("positive\n");
+		return (1);
 	}
 	return (0);
 }
