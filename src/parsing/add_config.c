@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 12:41:28 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/06/30 19:16:32 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/07/03 15:10:02 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,5 +42,12 @@ int	add_camera(char **args, t_data *data)
 		ft_printf("positive\n");
 		return (1);
 	}
+	return (0);
+}
+
+int	add_resolution(char	**args, t_data *data)
+{
+	data->win_height = ft_atoi(args[2]);
+	data->win_width = ft_atoi(args[1]);
 	return (0);
 }
