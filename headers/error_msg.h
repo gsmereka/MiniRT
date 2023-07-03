@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 16:01:29 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/07/03 17:12:08 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/07/03 18:58:38 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@ extension allowed\n"
 # define INTERFACE_ERROR "Error\nNo graphical interface.\n"
 # define WRONG_RESOLUTION "Error\nThe Resolution parameter should be \
 in the following format: 'R WIDTH HEIGHT'.\n"
+# define REPEATED "Error\nThe parameters R (Resolution), A \
+(Ambient Lighting), and C (Camera) cannot be repeated.\n"
 # define MAX_RESOLUTION "Error\nThe Resolution parameter must adhere to the MAX_HEIGHT \
 and MAX_WIDTH macros. You can redefine these macros during \
 compilation using the '-D' flag.\n"
-# define REPEATED "Error\nThe parameters R (Resolution), A \
-(Ambient Lighting), and C (Camera) cannot be repeated.\n"
 
 #endif

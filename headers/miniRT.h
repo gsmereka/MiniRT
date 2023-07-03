@@ -6,20 +6,20 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 20:17:31 by gde-mora          #+#    #+#             */
-/*   Updated: 2023/07/03 15:23:55 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/07/03 18:59:19 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINIRT_H
 # define MINIRT_H
 
-#ifndef MAX_WIDTH
-# define MAX_WIDTH 3840
-#endif
+# ifndef MAX_WIDTH
+#  define MAX_WIDTH 3840
+# endif
 
-#ifndef MAX_HEIGHT
-# define MAX_HEIGHT 2160
-#endif
+# ifndef MAX_HEIGHT
+#  define MAX_HEIGHT 2160
+# endif
 
 # include "./error_msg.h"
 # include "./structs.h"
@@ -32,19 +32,14 @@
 
 # define KEY_ESCAPE (0xff1b)
 
-/*typedef struct s_mlx_render
-{
-	void	*mlx_ptr;
-	void	*win_ptr;
-}	t_mlx_render;*/
-
+// general functions
 void	render(t_data *data);
 int		validate_scene_file(int argc, char *argv[], t_data *data);
 int		read_scene_file(char *file, t_data *data);
 int		exit_error(char *msg, int status, t_data *data);
 int		exit_successful(t_data *data);
 int		init_data(t_data *data);
-
+double	atod(const char *str);
 int		free_array(void **array);
 
 // check_shape
@@ -62,7 +57,7 @@ int		is_resolution(char **args, t_data *data);
 int		add_ambient_lighting(char **args, t_data *data);
 int		add_light(char **args, t_data *data);
 int		add_camera(char **args, t_data *data);
-int		add_resolution(char **args, t_data *data);
+int		add_resolution(char	**args, t_data *data);
 
 // add shape
 int		add_plane(char **args, t_data *data);

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+         #
+#    By: gde-mora <gde-mora@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/20 18:26:17 by gde-mora          #+#    #+#              #
-#    Updated: 2023/06/30 18:52:02 by gsmereka         ###   ########.fr        #
+#    Updated: 2023/07/03 23:50:22 by gde-mora         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,7 @@ SRC 	=	src/main.c \
 			src/exit.c \
 			src/render.c \
 			src/init_data.c \
+			src/atod.c \
 			src/parsing/validate_scene_file.c \
 			src/parsing/read_scene_file.c \
 			src/parsing/add_config.c \
@@ -58,7 +59,7 @@ ascii_draw:
 	@echo "           ?     |    .    o        ()    .         .       o       (|"
 	@echo "                 |     _   .   ()        _               .     ()  . |"
 	@echo "          o_o    |    (_)          .    (_)  .  .    ()              |"
-	@echo "          (\")   |)                                         __       |"
+	@echo "          (\")    |)                                         __       |"
 	@echo "         \/'\/    \    ()   .   o    .    ()     .     o   (__)     /"
 	@echo "  ___(___(,_,)_____\_______________________________________________/________"
 	@echo "\033[0m"
