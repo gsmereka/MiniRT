@@ -6,12 +6,19 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 13:09:51 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/07/03 10:34:57 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/07/03 17:28:14 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCTS_H
 # define STRUCTS_H
+
+typedef struct s_color
+{
+	int	r;
+	int	g;
+	int	b;
+}	t_color;
 
 typedef struct s_tuple
 {
@@ -57,8 +64,8 @@ typedef struct s_plane
 
 typedef struct s_ambient_lighting
 {
-	int							size;
-	char						**args;
+	t_color						color;
+	double						ratio;
 	struct s_ambient_lighting	*next;
 }	t_ambient_lighting;
 
