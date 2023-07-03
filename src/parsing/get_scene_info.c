@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 15:13:32 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/06/30 19:16:43 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/07/03 10:43:55 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,21 @@ int	get_scene_info(t_data *data)
 
 int	add_resolution(char	**args, t_data *data)
 {
-	(void)args;
+	int	i;
+
+	i = 0;
 	(void)data;
-	ft_printf("is resolution\n");
+	while(args[i])
+		i++;
+	if (i < 3)
+	{
+		ft_printf("error\n");
+		return (0);
+	}
+	data->win_height = ft_atoi(args[1]);
+	data->win_width = ft_atoi(args[2]);
+	ft_printf("altura: %d\n", data->win_height);
+	ft_printf("largura: %d\n", data->win_width);
 	return (0);
 }
 

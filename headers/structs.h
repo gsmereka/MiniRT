@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 13:09:51 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/06/30 10:23:26 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/07/03 10:34:57 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,8 @@ typedef struct s_data
 	int					scene_fd;
 	void				*mlx_ptr;
 	void				*win_ptr;
+	int					win_height;
+	int					win_width;
 	void				*img;
 	char				*address_img;
 	int					bits_per_pixel;
