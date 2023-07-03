@@ -6,11 +6,29 @@
 /*   By: gde-mora <gde-mora@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 23:00:06 by gde-mora          #+#    #+#             */
-/*   Updated: 2023/07/03 23:42:57 by gde-mora         ###   ########.fr       */
+/*   Updated: 2023/07/03 23:52:08 by gde-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/miniRT.h"
+
+double	aux_fractional_part(double result, const char *str, int i)
+{
+	double	fractional;
+
+	fractional = 0.1;
+	if (result && str[i] == '.')
+	{
+		i++;
+		while (str[i] >= '0' && str[i] <= '9')
+		{
+			result += fractional * (str[i] - '0');
+			fractional *= 0.1;
+			i++;
+		}
+	}
+	return (result);
+}
 
 double	atod(const char *str)
 {
@@ -36,22 +54,4 @@ double	atod(const char *str)
 	}
 	result = aux_fractional_part(result, str, i);
 	return (result * signal);
-}
-
-double	aux_fractional_part(double result, char **str, int i)
-{
-	double	fractional;
-
-	fractional = 0.1;
-	if (result && str[i] == '.')
-	{
-		i++;
-		while (str[i] >= '0' && str[i] <= '9')
-		{
-			result += fractional * (str[i] - '0');
-			fractional *= 0.1;
-			i++;
-		}
-	}
-	return (result);
 }
