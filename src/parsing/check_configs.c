@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 11:57:27 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/07/03 15:09:35 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/07/03 15:18:47 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int	is_resolution(char **args, t_data *data)
 	{
 		while(args[i])
 			i++;
-		if (i < 3)
+		if (i != 3)
 			exit_error(WRONG_RESOLUTION, 2, data);
 		win_height = ft_atoi(args[2]);
 		win_width = ft_atoi(args[1]);

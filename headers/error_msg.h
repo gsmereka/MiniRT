@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 16:01:29 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/07/03 15:05:33 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/07/03 15:23:10 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@
 extension allowed\n"
 # define INVALID_LINE "Error\nYour file have an invalid line.\n"
 # define INTERFACE_ERROR "Error\nNo graphical interface.\n"
-# define WRONG_RESOLUTION "Error\n The Resolution parameter should be \
-in the following format: 'R HEIGHT WIDTH'."
-# define MAX_RESOLUTION "Error\n The Resolution parameter must adhere to the MAX_HEIGHT \
+# define WRONG_RESOLUTION "Error\nThe Resolution parameter should be \
+in the following format: 'R WIDTH HEIGHT'.\n"
+# define MAX_RESOLUTION "Error\nThe Resolution parameter must adhere to the MAX_HEIGHT \
 and MAX_WIDTH macros. You can redefine these macros during \
-compilation using the '-D' flag."
+compilation using the '-D' flag.\n"
 
 #endif
