@@ -6,12 +6,20 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 20:17:31 by gde-mora          #+#    #+#             */
-/*   Updated: 2023/06/30 19:15:35 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/07/03 15:10:31 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINIRT_H
 # define MINIRT_H
+
+#ifndef MAX_WIDTH
+# define MAX_WIDTH 3840
+#endif
+
+#ifndef MAX_HEIGHT
+# define MAX_HEIGHT 2160
+#endif
 
 # include "./error_msg.h"
 # include "./structs.h"
@@ -40,20 +48,21 @@ int		init_data(t_data *data);
 int		free_array(void **array);
 
 // check_shape
-int		is_plane(char **args);
-int		is_sphere(char **args);
-int		is_cylinder(char **args);
+int		is_plane(char **args, t_data *data);
+int		is_sphere(char **args, t_data *data);
+int		is_cylinder(char **args, t_data *data);
 
 // check_config
-int		is_ambient_lighting(char **args);
-int		is_light(char **args);
-int		is_camera(char **args);
-int		is_resolution(char **args);
+int		is_ambient_lighting(char **args, t_data *data);
+int		is_light(char **args, t_data *data);
+int		is_camera(char **args, t_data *data);
+int		is_resolution(char **args, t_data *data);
 
 // add config
 int	add_ambient_lighting(char **args, t_data *data);
 int	add_light(char **args, t_data *data);
 int	add_camera(char **args, t_data *data);
+int	add_resolution(char	**args, t_data *data);
 
 // add shape
 int	add_plane(char **args, t_data *data);
