@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_configs.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gde-mora <gde-mora@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 11:57:27 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/07/03 15:09:35 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/07/03 23:47:35 by gde-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int	is_resolution(char **args, t_data *data)
 	i = 0;
 	if (args && ft_strcmp(args[0], "R") == 0)
 	{
-		while(args[i])
+		while (args[i])
 			i++;
 		if (i < 3)
 			exit_error(WRONG_RESOLUTION, 2, data);
