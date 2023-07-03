@@ -1,26 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   read_scene_file.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/28 20:16:42 by gde-mora          #+#    #+#             */
-/*   Updated: 2023/06/30 18:52:35 by gsmereka         ###   ########.fr       */
+/*   Created: 2023/06/28 15:36:42 by gsmereka          #+#    #+#             */
+/*   Updated: 2023/06/30 18:52:16 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../headers/miniRT.h"
+#include "../../headers/miniRT.h"
 
-int	main(int argc, char **argv)
+int	read_scene_file(char *file, t_data *data)
 {
-	t_data	data;
+	char	*line;
+	char	**args;
 
-	ft_bzero(&data, sizeof(data));
-	init_data(&data);
-	validate_scene_file(argc, argv, &data);
-	read_scene_file(argv[1], &data);
-	get_scene_info(&data);
-	render(&data);
+	data->scene_fd = open(file, O_RDWR);
+	if (data->scene_fd < 0)
+		exit_error(OPEN_FILE_ERROR, 2, data);
+	line = get_next_line(data->scene_fd);
+	while (line)
+	{
+		args = ft_split(line, ' ');
+		free(line);
+		if (args)
+			add_token(&data->tokens, args);
+		line = get_next_line(data->scene_fd);
+	}
+	close(data->scene_fd);
 	return (0);
 }
