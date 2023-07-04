@@ -6,7 +6,7 @@
 /*   By: gde-mora <gde-mora@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 15:36:42 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/07/03 19:44:37 by gde-mora         ###   ########.fr       */
+/*   Updated: 2023/07/05 00:56:13 by gde-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,8 @@
 
 int	check_if_is_just_one_file(int argc, t_data *data);
 int	check_file_extension(char *file, t_data *data);
-int	read_file(char *file, t_data *data);
 
-int	validate_scene_file(int argc, char *argv[], t_data *data)//? tem uma declracação de read file ali
+int	validate_scene_file(int argc, char *argv[], t_data *data)
 {
 	check_if_is_just_one_file(argc, data);
 	check_file_extension(argv[1], data);

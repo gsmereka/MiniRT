@@ -6,7 +6,7 @@
 #    By: gde-mora <gde-mora@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/20 18:26:17 by gde-mora          #+#    #+#              #
-#    Updated: 2023/07/05 00:34:03 by gde-mora         ###   ########.fr        #
+#    Updated: 2023/07/05 01:12:54 by gde-mora         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,23 +15,21 @@ NAME 	=	miniRT
 RT_FILE =	rato.rt
 
 SRC 	=	src/main.c \
+			src/init_data.c \
 			src/exit.c \
 			src/render.c \
-			src/init_data.c \
 			src/atod.c \
 			src/free_shapes.c \
 			src/free_configs.c \
 			src/parsing/validate_scene_file.c \
 			src/parsing/read_scene_file.c \
-			src/parsing/add_config.c \
-			src/parsing/add_shape.c \
+			src/parsing/gnl_token_utils.c \
+			src/parsing/get_scene_info.c \
 			src/parsing/check_configs.c \
 			src/parsing/check_shapes.c \
-			src/parsing/get_scene_info.c \
-			src/parsing/gnl_token_utils.c \
-			src/parsing/is_color.c \
-			src/parsing/is_coordinate.c \
-			src/parsing/is_normalized_vector.c \
+			src/parsing/check_utils.c \
+			src/parsing/add_config.c \
+			src/parsing/add_shape.c 
 
 OBJ 	=	$(addprefix $(OBJ_DIR)/, $(SRC:.c=.o))
 
