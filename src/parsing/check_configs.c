@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 11:57:27 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/07/03 23:32:21 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/07/03 23:46:57 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ int	is_camera(char **args, t_data *data)
 int	is_light(char **args, t_data *data)
 {
 	int		i;
-	double	brightnes;
+	double	brightness;
 
 	if (args && ft_strcmp(args[0], "L") == 0)
 	{
@@ -78,9 +78,9 @@ int	is_light(char **args, t_data *data)
 			exit_error(LIGHT_ERROR, 2, data);
 		if (!is_coordinate(args[1]))
 			exit_error(LIGHT_COORDINATE_ERROR, 2, data);
-		brightnes = atod(args[2]);
-		if (brightnes < 0 || brightnes > 1)
-			exit_error(LIGHT_BRIGHTNES_ERROR, 2, data);
+		brightness = atod(args[2]);
+		if (brightness < 0 || brightness > 1)
+			exit_error(LIGHT_BRIGHTNESS_ERROR, 2, data);
 		return (1);
 	}
 	return (0);

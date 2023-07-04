@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 16:01:29 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/07/03 23:33:15 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/07/03 23:47:23 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,12 @@ in range [0-180].\n"
 
 // Is Light
 # define LIGHT_ERROR "Error\nThe 'L' (Light) parameter, should be \
-in the following format: 'L COORDINATE 3D_NORMALIZED_VECTOR BRIGHTNES COLOR(BONUS ONLY)'.\n"
+in the following format: 'L COORDINATE 3D_NORMALIZED_VECTOR BRIGHTNESS COLOR(BONUS ONLY)'.\n"
 # define LIGHT_COORDINATE_ERROR "Error\nThe 'L' (Light) coordinate parameter should be \
 in the following format: '0.0,0.0,0.0'.\n"
 # define LIGHT_3D_NORMALIZED_VECTOR_ERROR "Error\nThe 'L' (Light) 3d normalized normal vector \
 parameter, should be in the following format: '0.0,0.0,0.0' in range [0-1].\n"
-# define LIGHT_BRIGHTNES_ERROR "Error\nThe 'L' (Light) brightnes \
+# define LIGHT_BRIGHTNESS_ERROR "Error\nThe 'L' (Light) brightness \
 parameter, should be in in range [0-1].\n"
 # define LIGHT_COLOR_ERROR "Error\nThe 'L' (Light) color parameter should be \
 in the following format: '0,0,0' in range [0-255].\n"
