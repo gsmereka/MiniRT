@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 20:17:31 by gde-mora          #+#    #+#             */
-/*   Updated: 2023/07/04 00:05:42 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/07/04 00:10:29 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ int		add_config(t_token *token);
 
 // free configs
 int		free_camera(t_camera *camera);
+int		free_light(t_light *light);
 
 // free shapes
 

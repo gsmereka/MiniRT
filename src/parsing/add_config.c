@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 12:41:28 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/07/04 00:01:21 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/07/04 00:10:44 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,26 @@ int	add_ambient_lighting(char **args, t_data *data)
 
 int	add_light(char **args, t_data *data)
 {
-	(void)data;
-	if (args && ft_strcmp(args[0], "L") == 0)
-	{
-		ft_printf("positive\n");
-		return (1);
-	}
+	char	**coordinates;
+	char	**normalized_vector;
+
+	data->light = ft_calloc(1, sizeof(t_light));
+	data->light = (t_light *){0};
+	coordinates = ft_split(args[1], ',');
+	if (!coordinates)
+		exit_error("fail coordinate\n", 2, data);
+	data->light->coordinate.x = atod(coordinates[0]);
+	data->light->coordinate.y = atod(coordinates[1]);
+	data->light->coordinate.z = atod(coordinates[2]);
+	free_array((void **)coordinates);
+	normalized_vector = ft_split(args[2], ',');
+	if (!normalized_vector)
+		exit_error("fail_normalized_vector\n", 2, data);
+	data->light->normalized_vector.x = atod(normalized_vector[0]);
+	data->light->normalized_vector.y = atod(normalized_vector[1]);
+	data->light->normalized_vector.z = atod(normalized_vector[2]);
+	free_array((void **)normalized_vector);
+	data->light->brightness = atod(args[3]);
 	return (0);
 }
 
