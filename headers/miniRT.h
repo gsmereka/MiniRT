@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 20:17:31 by gde-mora          #+#    #+#             */
-/*   Updated: 2023/07/03 22:20:28 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/07/04 00:05:42 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,11 @@ int		add_cylinder(char **args, t_data *data);
 int		get_scene_info(t_data *data);
 int		add_shape(t_token *token);
 int		add_config(t_token *token);
+
+// free configs
+int		free_camera(t_camera *camera);
+
+// free shapes
 
 // token utils
 t_token	*create_token(char **args);

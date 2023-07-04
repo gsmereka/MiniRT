@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 16:06:05 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/07/03 17:01:00 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/07/04 00:06:14 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ static void	free_data(t_data *data)
 	}
 	if (data->tokens)
 		token_clear(&data->tokens);
+	if (data->camera)
+		free_camera(data->camera);
 }
 
 int	exit_error(char *msg, int status, t_data *data)
