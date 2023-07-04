@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 12:41:28 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/07/04 00:10:44 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/07/04 00:14:27 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,16 @@
 
 int	add_ambient_lighting(char **args, t_data *data)
 {
-	(void)data;
-	if (args && ft_strcmp(args[0], "A") == 0)
-	{
-		ft_printf("positive\n");
-		return (1);
-	}
+	char	**color;
+
+	data->ambient_lighting->ratio = atod(args[1]);
+	color = ft_split(args[2], ',');
+	if (!color)
+		exit_error("fail color\n", 2, data);
+	data->ambient_lighting->color.r = atod(color[0]);
+	data->ambient_lighting->color.g = atod(color[1]);
+	data->ambient_lighting->color.b = atod(color[2]);
+	free_array((void **)color);
 	return (0);
 }
 

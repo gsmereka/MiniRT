@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 13:09:51 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/07/03 23:45:54 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/07/04 10:44:51 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ typedef struct s_sphere
 	struct s_tuple		coordinate;
 	double				diameter;
 	struct s_color		color;
-	struct s_sphere	*next;
+	struct s_sphere		*next;
 }	t_sphere;
 
 typedef struct s_plane
