@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 20:17:31 by gde-mora          #+#    #+#             */
-/*   Updated: 2023/07/03 18:59:19 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/07/03 22:20:28 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,11 @@ int		exit_successful(t_data *data);
 int		init_data(t_data *data);
 double	atod(const char *str);
 int		free_array(void **array);
+
+//parse
+int		is_coordinate(char *arg);
+int		is_color(char *arg);
+int		is_normalized_vector(char *arg);
 
 // check_shape
 int		is_plane(char **args, t_data *data);

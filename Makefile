@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: gde-mora <gde-mora@student.42sp.org.br>    +#+  +:+       +#+         #
+#    By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/20 18:26:17 by gde-mora          #+#    #+#              #
-#    Updated: 2023/07/03 23:50:22 by gde-mora         ###   ########.fr        #
+#    Updated: 2023/07/03 22:20:42 by gsmereka         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,6 +27,9 @@ SRC 	=	src/main.c \
 			src/parsing/check_shapes.c \
 			src/parsing/get_scene_info.c \
 			src/parsing/token_utils.c \
+			src/parsing/is_color.c \
+			src/parsing/is_coordinate.c \
+			src/parsing/is_normalized_vector.c \
 
 OBJ 	=	$(addprefix $(OBJ_DIR)/, $(SRC:.c=.o))
 
