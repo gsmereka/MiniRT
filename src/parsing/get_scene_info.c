@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 15:13:32 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/07/03 15:10:47 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/07/04 10:54:17 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ int	get_scene_info(t_data *data)
 			exit_error(INVALID_LINE, 2, data);
 		token = token->next;
 	}
+	if (!data->camera || !data->light || !data->ambient_lighting)
+		exit_error("Error\né preciso de luz, camera e luz ambiente!\n", 2, data);
 	return (0);
 }
 

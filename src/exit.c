@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 16:06:05 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/07/04 00:15:47 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/07/04 10:51:37 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,17 @@ static void	free_data(t_data *data)
 	if (data->tokens)
 		token_clear(&data->tokens);
 	if (data->camera)
-		free_camera(data->camera);
+		free(data->camera);
 	if (data->light)
 		free_light(data->light);
 	if (data->ambient_lighting)
 		free(data->ambient_lighting);
+	if (data->cylinder)
+		free_cylinder(data->cylinder);
+	if (data->sphere)
+		free_sphere(data->sphere);
+	if (data->plane)
+		free_plane(data->plane);
 }
 
 int	exit_error(char *msg, int status, t_data *data)
