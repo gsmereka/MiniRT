@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 11:57:27 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/07/03 22:29:21 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/07/03 23:27:31 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,12 @@ int	is_ambient_lighting(char **args, t_data *data)
 		while(args[i])
 			i++;
 		if (i != 3)
-			exit_error(WRONG_RESOLUTION, 2, data);
+			exit_error(AMBIENT_ERROR, 2, data);
 		ratio = atod(args[1]);
 		if (ratio < 0 || ratio > 1)
-			exit_error(REPEATED, 2, data);
+			exit_error(AMBIENT_RATIO_ERROR, 2, data);
 		if (!is_color(args[2]))
-			exit_error(REPEATED, 2, data);
+			exit_error(AMBIENT_COLOR_ERROR, 2, data);
 		return (1);
 	}
 	return (0);
@@ -52,14 +52,14 @@ int	is_camera(char **args, t_data *data)
 		while(args[i])
 			i++;
 		if (i != 4)
-			exit_error(WRONG_RESOLUTION, 2, data);
+			exit_error(CAMERA_ERROR, 2, data);
 		if (!is_coordinate(args[1]))
-			exit_error(REPEATED, 2, data);
+			exit_error(CAMERA_COORDINATE_ERROR, 2, data);
 		if (!is_normalized_vector(args[2]))
-			exit_error(REPEATED, 2, data);
+			exit_error(CAMERA_3D_NORMALIZED_VECTOR_ERROR, 2, data);
 		fov = atod(args[3]);
 		if (fov < 0 || fov > 180)
-			exit_error(REPEATED, 2, data);
+			exit_error(CAMERA_FOV_ERROR, 2, data);
 		return (1);
 	}
 	return (0);
