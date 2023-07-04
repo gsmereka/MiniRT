@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 16:01:29 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/07/03 23:28:02 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/07/03 23:33:15 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ extension allowed\n"
 
 // Is Ambient Lighting
 # define AMBIENT_ERROR "Error\nThe 'A' (Ambient Lighting) parameter, should be \
-in the following format: 'A COORDINATE 3D_NORMALIZED_VECTOR COLOR'.\n"
+in the following format: 'A RATIO COLOR'.\n"
 # define AMBIENT_RATIO_ERROR "Error\nThe 'A' (Ambient Lighting) ratio parameter should be \
 in range [0,1],\n"
 # define AMBIENT_COLOR_ERROR "Error\nThe 'A' (Ambient Lighting) color parameter should be \
@@ -31,7 +31,7 @@ in the following format: '0,0,0' in range [0-255].\n"
 
 // Is Camera
 # define CAMERA_ERROR "Error\nThe 'C' (Camera) parameter, should be \
-in the following format: 'C COORDINATE 3D_NORMALIZED_VECTOR COLOR'.\n"
+in the following format: 'C COORDINATE 3D_NORMALIZED_VECTOR FOV'.\n"
 # define CAMERA_COORDINATE_ERROR "Error\nThe 'C' (Camera) coordinate parameter should be \
 in the following format: '0.0,0.0,0.0'.\n"
 # define CAMERA_3D_NORMALIZED_VECTOR_ERROR "Error\nThe 'C' (Camera) 3d normalized normal vector \
@@ -41,11 +41,13 @@ in range [0-180].\n"
 
 // Is Light
 # define LIGHT_ERROR "Error\nThe 'L' (Light) parameter, should be \
-in the following format: 'L COORDINATE 3D_NORMALIZED_VECTOR COLOR'.\n"
+in the following format: 'L COORDINATE 3D_NORMALIZED_VECTOR BRIGHTNES COLOR(BONUS ONLY)'.\n"
 # define LIGHT_COORDINATE_ERROR "Error\nThe 'L' (Light) coordinate parameter should be \
 in the following format: '0.0,0.0,0.0'.\n"
 # define LIGHT_3D_NORMALIZED_VECTOR_ERROR "Error\nThe 'L' (Light) 3d normalized normal vector \
 parameter, should be in the following format: '0.0,0.0,0.0' in range [0-1].\n"
+# define LIGHT_BRIGHTNES_ERROR "Error\nThe 'L' (Light) brightnes \
+parameter, should be in in range [0-1].\n"
 # define LIGHT_COLOR_ERROR "Error\nThe 'L' (Light) color parameter should be \
 in the following format: '0,0,0' in range [0-255].\n"
 
@@ -78,7 +80,7 @@ in the following format: '0,0,0' in range [0-255].\n"
 
 // Is Cylinder
 # define CYLINDER_ERROR "Error\nThe 'cy' (Cylinder) parameter, should be \
-in the following format: 'cy COORDINATE DIAMETER COLOR'.\n"
+in the following format: 'cy COORDINATE 3D_NORMALIZED_VECTOR DIAMETER HEIGHT COLOR'.\n"
 # define CYLINDER_COORDINATE_ERROR "Error\nThe 'cy' (Cylinder) coordinate parameter should be \
 in the following format: '0.0,0.0,0.0'.\n"
 # define CYLINDER_3D_NORMALIZED_VECTOR_ERROR "Error\nThe 'cy' (Cylinder) 3d normalized normal vector \
