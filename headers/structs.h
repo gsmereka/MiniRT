@@ -3,15 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gde-mora <gde-mora@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 13:09:51 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/07/03 21:04:10 by gde-mora         ###   ########.fr       */
+/*   Updated: 2023/07/04 10:44:51 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCTS_H
 # define STRUCTS_H
+
+// ## RGB
+typedef struct s_color
+{
+	int	r;
+	int	g;
+	int	b;
+}	t_color;
 
 typedef struct s_tuple
 {
@@ -21,55 +29,53 @@ typedef struct s_tuple
 	int				c;
 }	t_tuple;
 
+typedef struct s_ambient_lighting
+{
+	double						ratio;
+	t_color						color;
+}	t_ambient_lighting;
+
 typedef struct s_camera
 {
-	int				size;
-	char			**args;
-	struct s_tuple	tuple;
-	struct s_camera	*next;
-}	t_camera;
-
-//typedef struct s_color                RGB
+	struct s_tuple	coordinate;
+	struct s_tuple	normalized_vector;
+	int				fov;
+}	t_camera;             
 
 typedef struct s_light
 {
-	int				size;
-	char			**args;
-	struct s_tuple	tuple;
+	struct s_tuple	coordinate;
+	struct s_tuple	normalized_vector;
+	struct s_color	color;
+	double			brightness;
 	struct s_light	*next;
 }	t_light;
 
 typedef struct s_cylinder
 {
-	int					size;
-	char				**args;
-	struct s_tuple		tuple;
+	struct s_tuple		coordinate;
+	struct s_tuple		normalized_vector;
+	double				diameter;
+	double				height;
+	struct s_color		color;
 	struct s_cylinder	*next;
 }	t_cylinder;
 
 typedef struct s_sphere
 {
-	int				size;
-	char			**args;
-	struct s_tuple	tuple;
-	struct s_sphere	*next;
+	struct s_tuple		coordinate;
+	double				diameter;
+	struct s_color		color;
+	struct s_sphere		*next;
 }	t_sphere;
 
 typedef struct s_plane
 {
-	int				size;
-	char			**args;
-	struct s_tuple	tuple;
-	struct s_plane	*next;
+	struct s_tuple		coordinate;
+	struct s_tuple		normalized_vector;
+	struct s_color		color;
+	struct s_plane		*next;
 }	t_plane;
-
-typedef struct s_ambient_lighting
-{
-	int							size;
-	char						**args;
-	struct s_tuple				tuple;
-	struct s_ambient_lighting	*next;
-}	t_ambient_lighting;
 
 typedef struct s_token
 {

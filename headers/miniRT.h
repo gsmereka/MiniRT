@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   miniRT.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gde-mora <gde-mora@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 20:17:31 by gde-mora          #+#    #+#             */
-/*   Updated: 2023/07/03 23:46:26 by gde-mora         ###   ########.fr       */
+/*   Updated: 2023/07/04 10:51:04 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,11 @@ int		init_data(t_data *data);
 double	atod(const char *str);
 int		free_array(void **array);
 
+//parse
+int		is_coordinate(char *arg);
+int		is_color(char *arg);
+int		is_normalized_vector(char *arg);
+
 // check_shape
 int		is_plane(char **args, t_data *data);
 int		is_sphere(char **args, t_data *data);
@@ -68,6 +73,14 @@ int		add_cylinder(char **args, t_data *data);
 int		get_scene_info(t_data *data);
 int		add_shape(t_token *token);
 int		add_config(t_token *token);
+
+// free configs
+int		free_light(t_light *light);
+
+// free shapes
+int		free_cylinder(t_cylinder *cylinder);
+int		free_sphere(t_sphere *sphere);
+int		free_plane(t_plane *plane);
 
 // token utils
 t_token	*create_token(char **args);
