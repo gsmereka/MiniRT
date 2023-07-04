@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   miniRT.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gde-mora <gde-mora@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 20:17:31 by gde-mora          #+#    #+#             */
-/*   Updated: 2023/07/04 10:51:04 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/07/05 00:48:27 by gde-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,21 +71,21 @@ int		add_cylinder(char **args, t_data *data);
 
 // get_scene_info
 int		get_scene_info(t_data *data);
-int		add_shape(t_token *token);
-int		add_config(t_token *token);
+int		add_shape(t_gnl_token *gnl_token);
+int		add_config(t_gnl_token *gnl_token);
 
 // free configs
-int		free_light(t_light *light);
+int		free_light(t_object *light);
 
 // free shapes
-int		free_cylinder(t_cylinder *cylinder);
-int		free_sphere(t_sphere *sphere);
-int		free_plane(t_plane *plane);
+int		free_cylinder(t_object *cylinder);
+int		free_sphere(t_object *sphere);
+int		free_plane(t_object *plane);
 
-// token utils
-t_token	*create_token(char **args);
-t_token	*token_last(t_token *token);
-void	add_token(t_token **tokens, char **args);
-void	token_clear(t_token **tokens);
+// gnl_token utils
+t_gnl_token	*create_gnl_token(char **args);
+t_gnl_token	*gnl_token_last(t_gnl_token *gnl_token);
+void	add_gnl_token(t_gnl_token **gnl_tokens, char **args);
+void	gnl_token_clear(t_gnl_token **gnl_tokens);
 
 #endif

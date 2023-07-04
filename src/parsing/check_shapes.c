@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_shapes.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gde-mora <gde-mora@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 11:57:21 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/07/03 23:17:46 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/07/04 23:53:18 by gde-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ int	is_cylinder(char **args, t_data *data)
 		i = 0;
 		while(args[i])
 			i++;
-		if (i != 5)
+		if (i != 6)
 			exit_error(CYLINDER_ERROR, 2, data);
 		if (!is_coordinate(args[1]))
 			exit_error(CYLINDER_COORDINATE_ERROR, 2, data);

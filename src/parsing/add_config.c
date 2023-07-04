@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   add_config.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gde-mora <gde-mora@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 12:41:28 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/07/04 00:14:27 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/07/05 00:47:26 by gde-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ int	add_ambient_lighting(char **args, t_data *data)
 {
 	char	**color;
 
+	data->ambient_lighting = ft_calloc(1, sizeof(t_object));
 	data->ambient_lighting->ratio = atod(args[1]);
 	color = ft_split(args[2], ',');
 	if (!color)
@@ -30,10 +31,8 @@ int	add_ambient_lighting(char **args, t_data *data)
 int	add_light(char **args, t_data *data)
 {
 	char	**coordinates;
-	char	**normalized_vector;
 
-	data->light = ft_calloc(1, sizeof(t_light));
-	data->light = (t_light *){0};
+	data->light = ft_calloc(1, sizeof(t_object));
 	coordinates = ft_split(args[1], ',');
 	if (!coordinates)
 		exit_error("fail coordinate\n", 2, data);
@@ -41,14 +40,8 @@ int	add_light(char **args, t_data *data)
 	data->light->coordinate.y = atod(coordinates[1]);
 	data->light->coordinate.z = atod(coordinates[2]);
 	free_array((void **)coordinates);
-	normalized_vector = ft_split(args[2], ',');
-	if (!normalized_vector)
-		exit_error("fail_normalized_vector\n", 2, data);
-	data->light->normalized_vector.x = atod(normalized_vector[0]);
-	data->light->normalized_vector.y = atod(normalized_vector[1]);
-	data->light->normalized_vector.z = atod(normalized_vector[2]);
-	free_array((void **)normalized_vector);
-	data->light->brightness = atod(args[3]);
+	//data->light->normalized_vector.x = normalize(coordinates[0]);
+	data->light->brightness = atod(args[2]);
 	return (0);
 }
 
@@ -57,8 +50,7 @@ int	add_camera(char **args, t_data *data)
 	char	**coordinates;
 	char	**normalized_vector;
 
-	data->camera = ft_calloc(1, sizeof(t_camera));
-	data->camera = (t_camera *){0};
+	data->camera = ft_calloc(1, sizeof(t_object));
 	coordinates = ft_split(args[1], ',');
 	if (!coordinates)
 		exit_error("fail coordinate\n", 2, data);

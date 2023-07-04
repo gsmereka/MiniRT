@@ -3,25 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   free_shapes.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gde-mora <gde-mora@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 00:03:04 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/07/04 10:52:17 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/07/05 00:48:27 by gde-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/miniRT.h"
 
-int	free_cylinder(t_cylinder *cylinder)
+int	free_cylinder(t_object *cylinder)
 {
 	if (cylinder->next)
 		free_cylinder(cylinder->next);
 	free(cylinder);
+	ft_printf("oi");
 	cylinder = NULL;
 	return (0);
 }
 
-int	free_sphere(t_sphere *sphere)
+int	free_sphere(t_object *sphere)
 {
 	if (sphere->next)
 		free_sphere(sphere->next);
@@ -30,7 +31,7 @@ int	free_sphere(t_sphere *sphere)
 	return (0);
 }
 
-int	free_plane(t_plane *plane)
+int	free_plane(t_object *plane)
 {
 	if (plane->next)
 		free_plane(plane->next);

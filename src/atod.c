@@ -6,7 +6,7 @@
 /*   By: gde-mora <gde-mora@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 23:00:06 by gde-mora          #+#    #+#             */
-/*   Updated: 2023/07/03 23:52:08 by gde-mora         ###   ########.fr       */
+/*   Updated: 2023/07/04 23:00:35 by gde-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ double	aux_fractional_part(double result, const char *str, int i)
 	double	fractional;
 
 	fractional = 0.1;
-	if (result && str[i] == '.')
+	if (result && str[i] == '.') //checar o limite do double dps
 	{
 		i++;
 		while (str[i] >= '0' && str[i] <= '9')

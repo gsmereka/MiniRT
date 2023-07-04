@@ -6,7 +6,7 @@
 /*   By: gde-mora <gde-mora@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 20:20:54 by gde-mora          #+#    #+#             */
-/*   Updated: 2023/07/03 23:46:50 by gde-mora         ###   ########.fr       */
+/*   Updated: 2023/07/04 23:59:41 by gde-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,11 @@ void	render(t_data *data)
 	data->mlx_ptr = mlx_init();
 	if (!(data->mlx_ptr))
 		exit_error(INTERFACE_ERROR, 2, data);
+	if (!data->win_width && !data->win_height)
+	{
+		data->win_width = 500;
+		data->win_height = 500;
+	}
 	data->win_ptr = mlx_new_window(data->mlx_ptr, \
 		data->win_width, data->win_height, "miniRT");
 	data->img = mlx_new_image(data->mlx_ptr, data->win_width, data->win_height);

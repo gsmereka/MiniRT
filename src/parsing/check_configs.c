@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_configs.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gde-mora <gde-mora@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 11:57:27 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/07/03 23:46:57 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/07/05 00:46:38 by gde-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,12 @@ int	is_ambient_lighting(char **args, t_data *data)
 	int			i;
 	float		ratio;
 
-	if (paramenter_count != 0)
+	if (paramenter_count != 0 && ft_strcmp(args[0], "A") == 0)
 		exit_error(REPEATED, 2, data);
 	if (args && ft_strcmp(args[0], "A") == 0)
 	{
 		paramenter_count++;
+		i = 0;
 		while(args[i])
 			i++;
 		if (i != 3)
@@ -43,7 +44,7 @@ int	is_camera(char **args, t_data *data)
 	int			fov;
 	int			i;
 
-	if (paramenter_count != 0)
+	if (paramenter_count != 0 && ft_strcmp(args[0], "C") == 0)
 		exit_error(REPEATED, 2, data);
 	if (args && ft_strcmp(args[0], "C") == 0)
 	{
@@ -70,6 +71,7 @@ int	is_light(char **args, t_data *data)
 	int		i;
 	double	brightness;
 
+	i = 0;
 	if (args && ft_strcmp(args[0], "L") == 0)
 	{
 		while(args[i])
@@ -94,7 +96,7 @@ int	is_resolution(char **args, t_data *data)
 	int			win_height;
 
 	i = 0;
-	if (paramenter_count != 0)
+	if (paramenter_count != 0 && ft_strcmp(args[0], "R") == 0)
 		exit_error(REPEATED, 2, data);
 	if (args && ft_strcmp(args[0], "R") == 0)
 	{

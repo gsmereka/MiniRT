@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+         #
+#    By: gde-mora <gde-mora@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/20 18:26:17 by gde-mora          #+#    #+#              #
-#    Updated: 2023/07/04 00:02:52 by gsmereka         ###   ########.fr        #
+#    Updated: 2023/07/05 00:34:03 by gde-mora         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,7 @@ SRC 	=	src/main.c \
 			src/parsing/check_configs.c \
 			src/parsing/check_shapes.c \
 			src/parsing/get_scene_info.c \
-			src/parsing/token_utils.c \
+			src/parsing/gnl_token_utils.c \
 			src/parsing/is_color.c \
 			src/parsing/is_coordinate.c \
 			src/parsing/is_normalized_vector.c \

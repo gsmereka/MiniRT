@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gde-mora <gde-mora@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 16:06:05 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/07/04 10:51:37 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/07/05 00:46:38 by gde-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ static void	free_data(t_data *data)
 		mlx_destroy_display(data->mlx_ptr);
 		free(data->mlx_ptr);
 	}
-	if (data->tokens)
-		token_clear(&data->tokens);
+	if (data->gnl_tokens)
+		gnl_token_clear(&data->gnl_tokens);
 	if (data->camera)
 		free(data->camera);
 	if (data->light)
@@ -32,7 +32,10 @@ static void	free_data(t_data *data)
 	if (data->ambient_lighting)
 		free(data->ambient_lighting);
 	if (data->cylinder)
+	{
+		ft_printf("oi 1 nivel");
 		free_cylinder(data->cylinder);
+	}
 	if (data->sphere)
 		free_sphere(data->sphere);
 	if (data->plane)

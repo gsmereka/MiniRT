@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   free_configs.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gde-mora <gde-mora@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 00:03:01 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/07/04 10:52:25 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/07/05 00:42:22 by gde-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/miniRT.h"
 
-int	free_light(t_light *light)
+int	free_light(t_object *light)
 {
 	if (light->next)
 		free_light(light->next);
