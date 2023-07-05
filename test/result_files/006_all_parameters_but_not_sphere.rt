@@ -1,0 +1,16 @@
+==18391== Memcheck, a memory error detector
+==18391== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==18391== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==18391== Command: ../miniRT ./test_files/006_all_parameters_but_not_sphere.rt
+==18391== 
+Error
+You need light, camera and ambient lighting!
+==18391== 
+==18391== HEAP SUMMARY:
+==18391==     in use at exit: 0 bytes in 0 blocks
+==18391==   total heap usage: 3 allocs, 3 frees, 18 bytes allocated
+==18391== 
+==18391== All heap blocks were freed -- no leaks are possible
+==18391== 
+==18391== For lists of detected and suppressed errors, rerun with: -s
+==18391== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
