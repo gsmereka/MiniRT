@@ -52,7 +52,9 @@ for file in "$TESTS_FOLDER"/*; do
 
 
     # Compara o conteudo salvo no arquivo em RESULTS_FOLDER, com seu respectivo arquivo na pasta EXPECTED_FOLDER.
-    if diff "$RESULTS_FOLDER/$(basename "$file")" "$EXPECTED_FOLDER/$(basename "$file")" >/dev/null ; then
+    if [ $exit_code -eq 139 ]; then
+      echo "Segmentation fault occurred!"
+    elif diff "$RESULTS_FOLDER/$(basename "$file")" "$EXPECTED_FOLDER/$(basename "$file")" >/dev/null ; then
       echo -e "$GREEN_COLOR" "OK" "$white_color"
     else
       echo -e "$red_color" "KO" "$white_color"
