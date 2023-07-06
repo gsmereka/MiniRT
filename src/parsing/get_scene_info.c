@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_scene_info.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gde-mora <gde-mora@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 15:13:32 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/07/06 21:34:49 by gde-mora         ###   ########.fr       */
+/*   Updated: 2023/07/06 18:38:00 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	get_scene_info(t_token *token, t_data *data)
 {
 	while (token)
 	{
+		// ft_printf("%s\n", token->args[0]);
 		if (is_camera(token->args, data))
 			add_camera(token, data);
 		else if (is_ambient_lighting(token->args, data))
@@ -33,7 +34,9 @@ void	get_scene_info(t_token *token, t_data *data)
 		else if (is_plane(token->args, data))
 			add_plane(token, data);
 		else if (!is_new_line(token->args))
+		{
 			exit_error(INVALID_LINE, 2, data);
+		}
 		token = token->next;
 	}
 	if (!data->has_camera || !data->has_light || !data->has_ambient_lighting)
