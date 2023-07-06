@@ -20,7 +20,7 @@ PROGRAM="../miniRT"
 FREE_LEAKS_IDENTIFY_MSG="All heap blocks were freed -- no leaks are possible"
 
 # Limite de tempo pro timeout.
-TIME_LIMIT=2
+TIME_LIMIT=1.2
 
 
 
