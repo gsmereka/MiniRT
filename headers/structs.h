@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gde-mora <gde-mora@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 13:09:51 by gsmereka          #+#    #+#             */
 /*   Updated: 2023/07/06 20:55:05 by gde-mora         ###   ########.fr       */
@@ -61,6 +61,7 @@ typedef struct s_data
 	int		has_camera;
 	int		has_light;
 	int		has_ambient_lighting;
+	int										debug_exit; //Enqunto fazemos os testes
 }	t_data;
 
 #endif

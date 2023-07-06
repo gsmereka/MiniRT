@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gde-mora <gde-mora@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 16:06:05 by gsmereka          #+#    #+#             */
 /*   Updated: 2023/07/06 20:41:14 by gde-mora         ###   ########.fr       */
@@ -29,7 +29,7 @@ static void	free_data(t_data *data)
 
 int	exit_error(char *msg, int status, t_data *data)
 {
-	ft_printf(msg);
+	ft_putstr_fd(msg, 2);
 	free_data(data);
 	exit(status);
 }

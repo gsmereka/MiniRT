@@ -3,7 +3,7 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: gde-mora <gde-mora@student.42sp.org.br>    +#+  +:+       +#+         #
+#    By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/20 18:26:17 by gde-mora          #+#    #+#              #
 #    Updated: 2023/07/06 20:39:45 by gde-mora         ###   ########.fr        #
@@ -102,6 +102,10 @@ fclean: clean ascii_draw_fclean
 	$(RM) $(NAME)
 	$(RM) $(LIBFT_A)
 
+# 	Limpa o tester.
+	cd test && ./test.sh clean
+
+
 re: fclean all
 
 # CREATE OBJECTS DIR
@@ -117,4 +121,8 @@ git: fclean
 valgrind: $(NAME)
 	valgrind  --leak-check=full --show-leak-kinds=all ./miniRT $(RT_FILE)
 
-.PHONY: all clean fclean re create_obj_dir git ascii_draw valgrind
+# Executa o tester.
+test: $(NAME)
+	clear && cd test && ./test.sh
+
+.PHONY: all clean fclean re create_obj_dir git ascii_draw ascii_draw_fclean valgrind test
