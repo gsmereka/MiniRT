@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 16:06:05 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/07/04 23:04:20 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/07/05 20:53:48 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ static void	free_data(t_data *data)
 		free(data->ambient_lighting);
 	if (data->cylinder)
 	{
-		ft_printf("oi 1 nivel");
 		free_cylinder(data->cylinder);
 	}
 	if (data->sphere)
