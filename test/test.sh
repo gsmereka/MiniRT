@@ -27,9 +27,9 @@ TIME_LIMIT=2
 # Text Colors.
 GREEN_COLOR="\033[0;32m"
 
-red_color="\033[0;31m"
+RED_COLOR="\033[0;31m"
 
-white_color="\033[0m"
+WHITE_COLOR="\033[0m"
 
 
 
@@ -52,12 +52,10 @@ for file in "$TESTS_FOLDER"/*; do
 
 
     # Compara o conteudo salvo no arquivo em RESULTS_FOLDER, com seu respectivo arquivo na pasta EXPECTED_FOLDER.
-    if [ $exit_code -eq 139 ]; then
-      echo "Segmentation fault occurred!"
-    elif diff "$RESULTS_FOLDER/$(basename "$file")" "$EXPECTED_FOLDER/$(basename "$file")" >/dev/null ; then
-      echo -e "$GREEN_COLOR" "OK" "$white_color"
+    if diff "$RESULTS_FOLDER/$(basename "$file")" "$EXPECTED_FOLDER/$(basename "$file")" >/dev/null ; then
+      echo -e  "EXPECTED RESULT: " "$GREEN_COLOR" "OK" "$WHITE_COLOR"
     else
-      echo -e "$red_color" "KO" "$white_color"
+      echo -e  "EXPECTED RESULT: " "$RED_COLOR" "KO" "$WHITE_COLOR"
     fi
 
 
@@ -67,9 +65,9 @@ for file in "$TESTS_FOLDER"/*; do
 
     # Verifica no arquivo de resultados do valgrind se existe a frase FREE_LEAKS_IDENTIFY_MSG, que demonstra que não houveram vazamentos.
     if grep -q "$FREE_LEAKS_IDENTIFY_MSG" "$VALGRIND_FOLDER/$(basename "$file")"; then
-      echo -e "$GREEN_COLOR" "NO LEAKS" "$white_color"
+      echo -e "$GREEN_COLOR" "NO LEAKS" "$WHITE_COLOR"
     else
-      echo -e "$red_color" "LEAKS" "$white_color"
+      echo -e "$RED_COLOR" "LEAKS" "$WHITE_COLOR"
 
     fi
   fi
