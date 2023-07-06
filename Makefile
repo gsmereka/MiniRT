@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: gde-mora <gde-mora@student.42sp.org.br>    +#+  +:+       +#+         #
+#    By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/20 18:26:17 by gde-mora          #+#    #+#              #
-#    Updated: 2023/07/05 01:12:54 by gde-mora         ###   ########.fr        #
+#    Updated: 2023/07/05 22:55:05 by gsmereka         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -106,6 +106,7 @@ clean:
 fclean: clean ascii_draw_fclean
 	$(RM) $(NAME)
 	$(RM) $(LIBFT_A)
+	cd test && ./test.sh clean
 
 re: fclean all
 

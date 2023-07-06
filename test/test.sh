@@ -1,42 +1,74 @@
 #!/bin/bash
 
-test_folder="./test_files"
+# Pasta onde estão os arquivos de teste.
+TESTS_FOLDER="./test_files"
 
-result_folder="./result_files"
+# Pasta onde vai a saida de erro do programa.
+RESULTS_FOLDER="./result_files"
 
-valgrind_folder="./valgrind_result"
+# Pasta onde ficam os resultados do valgrind.
+VALGRIND_FOLDER="./valgrind_result"
 
-program="../miniRT"
+# Pasta onde estão os resultados esperados.
+EXPECTED_FOLDER="./expected"
 
-free_leaks_msg="All heap blocks were freed -- no leaks are possible"
+PROGRAM="../miniRT"
 
-time_limit=2
 
-green_color="\033[0;32m"
+
+# Mensagem utilizada pra verificar se não houve vazamentos.
+FREE_LEAKS_IDENTIFY_MSG="All heap blocks were freed -- no leaks are possible"
+
+# Limite de tempo pro timeout.
+TIME_LIMIT=2
+
+
+
+# Text Colors.
+GREEN_COLOR="\033[0;32m"
 
 red_color="\033[0;31m"
 
 white_color="\033[0m"
 
+
+
 # Verify if needs clean
 if [ "$1" == "clean" ]; then
-  echo "Cleaning result folder: $result_folder"
-  rm -rf "$result_folder"/*
+  echo "Cleaning result folder: $RESULTS_FOLDER"
+  rm -rf "$RESULTS_FOLDER"/*
+  rm -rf "$VALGRIND_FOLDER"/*
   exit 0
 fi
 
-for file in "$test_folder"/*; do
+
+# Loop de testes.
+for file in "$TESTS_FOLDER"/*; do
   if [ -f "$file" ]; then
     echo "Executing miniRT with the file: $file"
 
-    "timeout" "$time_limit" "$program" "$file" 2> "$result_folder/$(basename "$file")" 1> "log.txt"
-  
-    "timeout" "$time_limit" "valgrind" "$program" "$file" 2> "$valgrind_folder/$(basename "$file")" 1> "log.txt"
+    # Executa o programa normalmente e salva os resultados na pasta RESULTS_FOLDER.
+    "timeout" "$TIME_LIMIT" "$PROGRAM" "$file" 2> "$RESULTS_FOLDER/$(basename "$file")" >/dev/null
 
-    if grep -q "$free_leaks_msg" "$valgrind_folder/$(basename "$file")"; then
-      echo -e "$green_color" "NO LEAKS" "$white_color"
+
+    # Compara o conteudo salvo no arquivo em RESULTS_FOLDER, com seu respectivo arquivo na pasta EXPECTED_FOLDER.
+    if diff "$RESULTS_FOLDER/$(basename "$file")" "$EXPECTED_FOLDER/$(basename "$file")" >/dev/null ; then
+      echo -e "$GREEN_COLOR" "OK" "$white_color"
+    else
+      echo -e "$red_color" "KO" "$white_color"
+    fi
+
+
+    # Executa o programa dessa vez com valgrind e salva em um arquivo na pasta VALGRIND_FOLDER.
+    "timeout" "$TIME_LIMIT" "valgrind" "$PROGRAM" "$file" 2> "$VALGRIND_FOLDER/$(basename "$file")" >/dev/null
+
+
+    # Verifica no arquivo de resultados do valgrind se existe a frase FREE_LEAKS_IDENTIFY_MSG, que demonstra que não houveram vazamentos.
+    if grep -q "$FREE_LEAKS_IDENTIFY_MSG" "$VALGRIND_FOLDER/$(basename "$file")"; then
+      echo -e "$GREEN_COLOR" "NO LEAKS" "$white_color"
     else
       echo -e "$red_color" "LEAKS" "$white_color"
+
     fi
   fi
 done
