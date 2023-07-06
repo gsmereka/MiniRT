@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 20:16:42 by gde-mora          #+#    #+#             */
-/*   Updated: 2023/07/05 22:39:01 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/07/06 21:00:45 by gde-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,11 @@ int	main(int argc, char **argv)
 	t_data	data;
 
 	ft_bzero(&data, sizeof(data)); //
+	ft_printf("Iniciando\n"); //
 	signals_handling(&data); // //Enqunto fazemos os testes
-	init_data(&data); //
 	validate_scene_file(argc, argv, &data); //
 	read_scene_file(argv[1], &data); //
-	get_scene_info(&data);
+	get_scene_info(data.tokens, &data);
 	render(&data);
 	return (0);
 }

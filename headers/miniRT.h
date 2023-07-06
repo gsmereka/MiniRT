@@ -6,7 +6,7 @@
 /*   By: gde-mora <gde-mora@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 20:17:31 by gde-mora          #+#    #+#             */
-/*   Updated: 2023/07/05 01:14:28 by gde-mora         ###   ########.fr       */
+/*   Updated: 2023/07/06 21:03:39 by gde-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,17 @@
 # include "../libft/libft.h"
 
 # define KEY_ESCAPE (0xff1b)
+# define CYLINDER 1
+# define PLANE 2
+# define SPHERE 3
+# define CAMERA 4
+# define LIGHT 5
+# define AMBIENT_LIGHTING 6
 
 // main functions
-int		init_data(t_data *data);
 int		validate_scene_file(int argc, char *argv[], t_data *data);
 int		read_scene_file(char *file, t_data *data);
-int		get_scene_info(t_data *data);
+void	get_scene_info(t_token *tokens, t_data *data);
 void	render(t_data *data);
 
 // exit and utils
@@ -62,28 +67,20 @@ int		is_normalized_vector(char *arg);
 int		is_color(char *arg);
 
 // add shape
-int		add_plane(char **args, t_data *data);
-int		add_sphere(char **args, t_data *data);
-int		add_cylinder(char **args, t_data *data);
+int		add_plane(t_token *token, t_data *data);
+int		add_sphere(t_token *token, t_data *data);
+int		add_cylinder(t_token *token, t_data *data);
 
 // add config
-int		add_ambient_lighting(char **args, t_data *data);
-int		add_light(char **args, t_data *data);
-int		add_camera(char **args, t_data *data);
+int		add_ambient_lighting(t_token *token, t_data *data);
+int		add_light(t_token *token, t_data *data);
+int		add_camera(t_token *token, t_data *data);
 int		add_resolution(char	**args, t_data *data);
 
-// free configs
-int		free_light(t_object *light);
-
-// free shapes
-int		free_cylinder(t_object *cylinder);
-int		free_sphere(t_object *sphere);
-int		free_plane(t_object *plane);
-
-// gnl_token utils
-t_gnl_token	*create_gnl_token(char **args);
-t_gnl_token	*gnl_token_last(t_gnl_token *gnl_token);
-void	add_gnl_token(t_gnl_token **gnl_tokens, char **args);
-void	gnl_token_clear(t_gnl_token **gnl_tokens);
+// token utils
+t_token	*create_token(char **args);
+t_token	*token_last(t_token *token);
+void	add_token(t_token **tokens, char **args);
+void	token_clear(t_token **tokens);
 
 #endif

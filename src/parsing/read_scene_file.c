@@ -6,7 +6,7 @@
 /*   By: gde-mora <gde-mora@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 15:36:42 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/07/05 00:34:03 by gde-mora         ###   ########.fr       */
+/*   Updated: 2023/07/06 20:22:55 by gde-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	read_scene_file(char *file, t_data *data)
 		args = ft_split(line, ' ');
 		free(line);
 		if (args)
-			add_gnl_token(&data->gnl_tokens, args);
+			add_token(&data->tokens, args);
 		line = get_next_line(data->scene_fd);
 	}
 	close(data->scene_fd);

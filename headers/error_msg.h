@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error_msg.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gde-mora <gde-mora@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 16:01:29 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/07/03 23:47:23 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/07/06 21:36:05 by gde-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ extension allowed\n"
 # define INTERFACE_ERROR "Error\nNo graphical interface.\n"
 # define REPEATED "Error\nThe parameters R (Resolution), A \
 (Ambient Lighting), and C (Camera) cannot be repeated.\n"
+# define NEED_ALL_COMPONENTS "Error\nYou need light, camera and \
+ambient lighting!\n"
 
 // Is Ambient Lighting
 # define AMBIENT_ERROR "Error\nThe 'A' (Ambient Lighting) parameter, should be \
@@ -41,7 +43,8 @@ in range [0-180].\n"
 
 // Is Light
 # define LIGHT_ERROR "Error\nThe 'L' (Light) parameter, should be \
-in the following format: 'L COORDINATE 3D_NORMALIZED_VECTOR BRIGHTNESS COLOR(BONUS ONLY)'.\n"
+in the following format: 'L COORDINATE 3D_NORMALIZED_VECTOR BRIGHTNESS \
+COLOR(BONUS ONLY)'.\n"
 # define LIGHT_COORDINATE_ERROR "Error\nThe 'L' (Light) coordinate parameter should be \
 in the following format: '0.0,0.0,0.0'.\n"
 # define LIGHT_3D_NORMALIZED_VECTOR_ERROR "Error\nThe 'L' (Light) 3d normalized normal vector \
@@ -80,7 +83,8 @@ in the following format: '0,0,0' in range [0-255].\n"
 
 // Is Cylinder
 # define CYLINDER_ERROR "Error\nThe 'cy' (Cylinder) parameter, should be \
-in the following format: 'cy COORDINATE 3D_NORMALIZED_VECTOR DIAMETER HEIGHT COLOR'.\n"
+in the following format: 'cy COORDINATE 3D_NORMALIZED_VECTOR DIAMETER \
+HEIGHT COLOR'.\n"
 # define CYLINDER_COORDINATE_ERROR "Error\nThe 'cy' (Cylinder) coordinate parameter should be \
 in the following format: '0.0,0.0,0.0'.\n"
 # define CYLINDER_3D_NORMALIZED_VECTOR_ERROR "Error\nThe 'cy' (Cylinder) 3d normalized normal vector \
