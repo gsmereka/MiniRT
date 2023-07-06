@@ -70,5 +70,7 @@ for file in "$TESTS_FOLDER"/*; do
       echo -e "$RED_COLOR" "LEAKS" "$WHITE_COLOR"
 
     fi
+  
+    echo
   fi
 done

@@ -6,7 +6,7 @@
 #    By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/20 18:26:17 by gde-mora          #+#    #+#              #
-#    Updated: 2023/07/05 22:55:05 by gsmereka         ###   ########.fr        #
+#    Updated: 2023/07/05 23:56:26 by gsmereka         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -126,4 +126,6 @@ rt: $(NAME)
 valgrind: $(NAME)
 	valgrind  --leak-check=full --show-leak-kinds=all ./miniRT $(RT_FILE)
 
-.PHONY: all clean fclean re create_obj_dir git ascii_draw valgrind rt
+test: $(NAME)
+	clear && cd test && ./test.sh
+.PHONY: all clean fclean re create_obj_dir git ascii_draw valgrind rt test
