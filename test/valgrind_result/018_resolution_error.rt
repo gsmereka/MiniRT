@@ -1,16 +1,16 @@
-==617== Memcheck, a memory error detector
-==617== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==617== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
-==617== Command: ../miniRT ./test_files/018_resolution_error.rt
-==617== 
+==3496== Memcheck, a memory error detector
+==3496== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==3496== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==3496== Command: ../miniRT ./test_files/018_resolution_error.rt
+==3496== 
 Error
 The Resolution parameter should be in the following format: 'R WIDTH HEIGHT'.
-==617== 
-==617== HEAP SUMMARY:
-==617==     in use at exit: 0 bytes in 0 blocks
-==617==   total heap usage: 24 allocs, 24 frees, 304 bytes allocated
-==617== 
-==617== All heap blocks were freed -- no leaks are possible
-==617== 
-==617== For lists of detected and suppressed errors, rerun with: -s
-==617== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==3496== 
+==3496== HEAP SUMMARY:
+==3496==     in use at exit: 0 bytes in 0 blocks
+==3496==   total heap usage: 24 allocs, 24 frees, 304 bytes allocated
+==3496== 
+==3496== All heap blocks were freed -- no leaks are possible
+==3496== 
+==3496== For lists of detected and suppressed errors, rerun with: -s
+==3496== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)

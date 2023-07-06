@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 13:09:51 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/07/05 20:54:05 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/07/05 22:37:23 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ typedef struct s_data
 	int			bits_per_pixel;
 	int			size_line;
 	int			endian;
-	int			debug_exit;
+	int										debug_exit; //Enqunto fazemos os testes
 }	t_data;
 
 #endif

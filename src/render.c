@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 20:20:54 by gde-mora          #+#    #+#             */
-/*   Updated: 2023/07/05 21:40:51 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/07/05 22:36:35 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static int	handle_render(t_data *data)
 }
 
 // Função que verifica se o tester ja enviou o sinal SIGTERM
-int	debug(void *data_ptr)
+int	debug(void *data_ptr) //Enqunto fazemos os testes
 {
 	t_data	*data;
 
