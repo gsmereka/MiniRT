@@ -1,0 +1,2 @@
+Error
+Only files with the '.rt' extension allowed

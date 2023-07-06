@@ -1,0 +1,2 @@
+Error
+The Resolution parameter must adhere to the MAX_HEIGHT and MAX_WIDTH macros. You can redefine these macros during compilation using the '-D' flag.
