@@ -31,6 +31,28 @@ RED_COLOR="\033[0;31m"
 
 WHITE_COLOR="\033[0m"
 
+# Função para criar uma pasta se ela não existir.
+create_folder_if_not_exists() {
+  if [ ! -d "$1" ]; then
+    echo "Creating folder: $1"
+    mkdir -p "$1"
+  fi
+}
+
+# Verifica e cria as pastas necessárias.
+create_folder_if_not_exists "$RESULTS_FOLDER"
+create_folder_if_not_exists "$VALGRIND_FOLDER"
+
+# Verifica se a pasta de resultados esperados existe.
+if [ ! -d "$EXPECTED_FOLDER" ]; then
+  echo "Error: Expected folder not found: $EXPECTED_FOLDER"
+  exit 1
+fi
+
+if [ ! -d "$TESTS_FOLDER" ]; then
+  echo "Error: rests folder not found: $TESTS_FOLDER"
+  exit 1
+fi
 
 
 # Verify if needs clean
