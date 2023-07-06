@@ -6,7 +6,7 @@
 /*   By: gde-mora <gde-mora@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 11:57:21 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/07/04 23:53:18 by gde-mora         ###   ########.fr       */
+/*   Updated: 2023/07/06 21:31:53 by gde-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	is_plane(char **args, t_data *data)
 	if (args && ft_strcmp(args[0], "pl") == 0)
 	{
 		i = 0;
-		while(args[i])
+		while (args[i])
 			i++;
 		if (i != 4)
 			exit_error(PLANE_ERROR, 2, data);
@@ -42,7 +42,7 @@ int	is_sphere(char **args, t_data *data)
 	if (args && ft_strcmp(args[0], "sp") == 0)
 	{
 		i = 0;
-		while(args[i])
+		while (args[i])
 			i++;
 		if (i != 4)
 			exit_error(SPHERE_ERROR, 2, data);
@@ -60,30 +60,26 @@ int	is_sphere(char **args, t_data *data)
 
 int	is_cylinder(char **args, t_data *data)
 {
-	double	diameter;
 	double	height;
 	int		i;
 
-	if (args && ft_strcmp(args[0], "cy") == 0)
-	{
-		i = 0;
-		while(args[i])
-			i++;
-		if (i != 6)
-			exit_error(CYLINDER_ERROR, 2, data);
-		if (!is_coordinate(args[1]))
-			exit_error(CYLINDER_COORDINATE_ERROR, 2, data);
-		if (!is_normalized_vector(args[2]))
-			exit_error(CYLINDER_3D_NORMALIZED_VECTOR_ERROR, 2, data);
-		diameter = atod(args[3]);
-		if (diameter <= 0)
-			exit_error(CYLINDER_DIAMETER_ERROR, 2, data);
-		height = atod(args[4]);
-		if (height <= 0)
-			exit_error(CYLINDER_HEIGHT_ERROR, 2, data);
-		if (!is_color(args[5]))
-			exit_error(CYLINDER_COLOR_ERROR, 2, data);
-		return (1);
-	}
-	return (0);
+	if (!args || ft_strcmp(args[0], "cy") != 0)
+		return (0);
+	i = 0;
+	while (args[i])
+		i++;
+	if (i != 6)
+		exit_error(CYLINDER_ERROR, 2, data);
+	if (!is_coordinate(args[1]))
+		exit_error(CYLINDER_COORDINATE_ERROR, 2, data);
+	if (!is_normalized_vector(args[2]))
+		exit_error(CYLINDER_3D_NORMALIZED_VECTOR_ERROR, 2, data);
+	if (atod(args[3]) <= 0)
+		exit_error(CYLINDER_DIAMETER_ERROR, 2, data);
+	height = atod(args[4]);
+	if (height <= 0)
+		exit_error(CYLINDER_HEIGHT_ERROR, 2, data);
+	if (!is_color(args[5]))
+		exit_error(CYLINDER_COLOR_ERROR, 2, data);
+	return (1);
 }

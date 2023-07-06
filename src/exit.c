@@ -6,7 +6,7 @@
 /*   By: gde-mora <gde-mora@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 16:06:05 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/07/05 00:46:38 by gde-mora         ###   ########.fr       */
+/*   Updated: 2023/07/06 20:41:14 by gde-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,23 +23,8 @@ static void	free_data(t_data *data)
 		mlx_destroy_display(data->mlx_ptr);
 		free(data->mlx_ptr);
 	}
-	if (data->gnl_tokens)
-		gnl_token_clear(&data->gnl_tokens);
-	if (data->camera)
-		free(data->camera);
-	if (data->light)
-		free_light(data->light);
-	if (data->ambient_lighting)
-		free(data->ambient_lighting);
-	if (data->cylinder)
-	{
-		ft_printf("oi 1 nivel");
-		free_cylinder(data->cylinder);
-	}
-	if (data->sphere)
-		free_sphere(data->sphere);
-	if (data->plane)
-		free_plane(data->plane);
+	if (data->tokens)
+		token_clear(&data->tokens);
 }
 
 int	exit_error(char *msg, int status, t_data *data)
