@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 13:09:51 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/07/06 20:55:05 by gde-mora         ###   ########.fr       */
+/*   Updated: 2023/07/06 22:04:49 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@
 // ## RGB
 typedef struct s_color
 {
-	double	r;
-	double	g;
-	double	b;
+	int	r;
+	int	g;
+	int	b;
 }	t_color;
 
 typedef struct s_tuple
