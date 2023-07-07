@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   add_shape.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gde-mora <gde-mora@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 12:42:10 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/07/06 21:12:30 by gde-mora         ###   ########.fr       */
+/*   Updated: 2023/07/06 22:14:59 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,10 +50,10 @@ int	set_color(char *arg, t_color *color, t_data *data)
 
 	color_splited = ft_split(arg, ',');
 	if (!color_splited)
-		exit_error("fail color\n", 2, data);
-	color->r = atod(color_splited[0]);
-	color->g = atod(color_splited[1]);
-	color->b = atod(color_splited[2]);
+		exit_error("Error\nFail at split on set_color()\n", 2, data);
+	color->r = ft_atoi(color_splited[0]);
+	color->g = ft_atoi(color_splited[1]);
+	color->b = ft_atoi(color_splited[2]);
 	free_array((void **)color_splited);
 	return (0);
 }
@@ -64,7 +64,7 @@ int	set_tuple(char *arg, t_tuple *tuple, t_data *data)
 
 	tuple_splited = ft_split(arg, ',');
 	if (!tuple_splited)
-		exit_error("fail color\n", 2, data);
+		exit_error("Error\nFail at split on set_tuple()\n", 2, data);
 	tuple->x = atod(tuple_splited[0]);
 	tuple->y = atod(tuple_splited[1]);
 	tuple->z = atod(tuple_splited[2]);

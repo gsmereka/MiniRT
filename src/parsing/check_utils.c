@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gde-mora <gde-mora@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 01:07:45 by gde-mora          #+#    #+#             */
-/*   Updated: 2023/07/05 01:10:46 by gde-mora         ###   ########.fr       */
+/*   Updated: 2023/07/06 22:04:25 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,64 +38,52 @@ int	is_coordinate(char *arg)
 
 int	is_normalized_vector(char *arg)
 {
-	char	**rgb;
-	int		count;
-	double	axis;
+	char	**vector;
+	int		index;
+	double	value;
 
-	rgb = ft_split(arg, ',');
-	if (!rgb)
+	vector = ft_split(arg, ',');
+	if (!vector)
 		return (0);
-	count = 0;
-	while (rgb[count])
-		count++;
-	if (count != 3)
+	index = 0;
+	while (vector[index])
 	{
-		free_array((void **)rgb);
-		return (0);
-	}
-	count = 0;
-	while (rgb[count])
-	{
-		axis = atod(rgb[count]);
-		if (axis < 0 || axis > 1)
+		value = atod(vector[index]);
+		if (value < 0 || value > 1)
 		{
-			free_array((void **)rgb);
+			free_array((void **)vector);
 			return (0);
 		}
-		count++;
+		index++;
 	}
-	free_array((void **)rgb);
+	free_array((void **)vector);
+	if (index != 3)
+		return (0);
 	return (1);
 }
 
 int	is_color(char *arg)
 {
 	char	**rgb;
-	double	color;
-	int		count;
+	int		index;
+	int		value;
 
 	rgb = ft_split(arg, ',');
 	if (!rgb)
 		return (0);
-	count = 0;
-	while (rgb[count])
-		count++;
-	if (count != 3)
+	index = 0;
+	while (rgb[index])
 	{
-		free_array((void **)rgb);
-		return (0);
-	}
-	count = 0;
-	while (rgb[count])
-	{
-		color = atod(rgb[count]);
-		if (color < 0 || color > 255)
+		value = ft_atoi(rgb[index]);
+		if (value < 0 || value > 255)
 		{
 			free_array((void **)rgb);
 			return (0);
 		}
-		count++;
+		index++;
 	}
 	free_array((void **)rgb);
+	if (index != 3)
+		return (0);
 	return (1);
 }
