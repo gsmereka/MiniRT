@@ -78,30 +78,25 @@ for file in "$TESTS_FOLDER"/*; do
 
     TEST_COUNT=$((TEST_COUNT + 1))
   
-    # Executa o programa normalmente e salva os resultados na pasta RESULTS_FOLDER.
-    "timeout" "$TIME_LIMIT" "$PROGRAM" "$file" 2> "$RESULTS_FOLDER/$(basename "$file")" >/dev/null
+    # Executa o programa com valgrind e salva em um arquivo na pasta VALGRIND_FOLDER.
+    "timeout" "$TIME_LIMIT" "valgrind" "$PROGRAM" "$file" 2> "$VALGRIND_FOLDER/$(basename "$file")" >/dev/null
 
+    # Retira as linhas do valgrind e as transfere para a pasta RESULTS_FOLDER
+    grep -v -e "^==" "$VALGRIND_FOLDER/$(basename "$file")" > "$RESULTS_FOLDER/$(basename "$file")"
 
     # Compara o conteudo salvo no arquivo em RESULTS_FOLDER, com seu respectivo arquivo na pasta EXPECTED_FOLDER.
     if diff "$RESULTS_FOLDER/$(basename "$file")" "$EXPECTED_FOLDER/$(basename "$file")" >/dev/null ; then
-      echo -e  "EXPECTED RESULT: " "$GREEN_COLOR" "OK" "$WHITE_COLOR"
-
+      echo -e "$YELLOW_COLOR" "EXPECTED RESULT: " "$GREEN_COLOR" "OK" "$WHITE_COLOR"
       PASSED_TESTS_COUNT=$((PASSED_TESTS_COUNT + 1))
-
     else
-      echo -e  "EXPECTED RESULT: " "$RED_COLOR" "KO" "$WHITE_COLOR"
+      echo -e "$YELLOW_COLOR" "EXPECTED RESULT: " "$RED_COLOR" "KO" "$WHITE_COLOR"
     fi
-
-
-    # Executa o programa dessa vez com valgrind e salva em um arquivo na pasta VALGRIND_FOLDER.
-    "timeout" "$TIME_LIMIT" "valgrind" "$PROGRAM" "$file" 2> "$VALGRIND_FOLDER/$(basename "$file")" >/dev/null
-
 
     # Verifica no arquivo de resultados do valgrind se existe a frase FREE_LEAKS_IDENTIFY_MSG, que demonstra que não houveram vazamentos.
     if grep -q "$FREE_LEAKS_IDENTIFY_MSG" "$VALGRIND_FOLDER/$(basename "$file")"; then
-      echo -e "$GREEN_COLOR" "NO LEAKS" "$WHITE_COLOR"
+      echo -e "$YELLOW_COLOR" "EXECUTION LEAKS: " "$GREEN_COLOR" "NO LEAKS" "$WHITE_COLOR"
     else
-      echo -e "$RED_COLOR" "LEAKS" "$WHITE_COLOR"
+      echo -e "$YELLOW_COLOR" "EXECUTION LEAKS: " "$RED_COLOR" "LEAKS" "$WHITE_COLOR"
       LEAKS=$((LEAKS + 1))
     fi
   fi
@@ -109,8 +104,8 @@ for file in "$TESTS_FOLDER"/*; do
 done
 
 # Mensagens
-TESTS_COUNT_MSG="Resultado dos Testes: $PASSED_TESTS_COUNT/$TEST_COUNT" 
-LEAKS_COUNT_MSG="Testes com Vazamentos: $LEAKS/$TEST_COUNT"
+TESTS_COUNT_MSG="Testes Aprovados: $PASSED_TESTS_COUNT/$TEST_COUNT" 
+LEAKS_COUNT_MSG="Testes SEM Vazamentos: $(($TEST_COUNT - $LEAKS))/$TEST_COUNT"
 
 OK_MSG="Tudo Perfeito e sem Vazamentos :D"
 STILL_MSG="Quase lá :D"
