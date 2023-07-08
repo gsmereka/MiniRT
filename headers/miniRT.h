@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   miniRT.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gde-mora <gde-mora@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 20:17:31 by gde-mora          #+#    #+#             */
-/*   Updated: 2023/07/06 21:03:39 by gde-mora         ###   ########.fr       */
+/*   Updated: 2023/07/07 23:37:53 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,6 @@ void	render(t_data *data);
 // exit and utils
 int		exit_error(char *msg, int status, t_data *data);
 int		exit_successful(t_data *data);
-double	atod(const char *str);
-int		free_array(void **array);
 
 // check_shape
 int		is_plane(char **args, t_data *data);
@@ -76,6 +74,11 @@ int		add_ambient_lighting(t_token *token, t_data *data);
 int		add_light(t_token *token, t_data *data);
 int		add_camera(t_token *token, t_data *data);
 int		add_resolution(char	**args, t_data *data);
+
+// tools
+int		compare_floating_points(t_tuple *one, t_tuple *two);
+int		free_array(void **array);
+double	atod(const char *str);
 
 // token utils
 t_token	*create_token(char **args);
