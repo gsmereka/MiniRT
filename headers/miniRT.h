@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 20:17:31 by gde-mora          #+#    #+#             */
-/*   Updated: 2023/07/07 23:37:53 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/07/08 00:13:19 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,9 +76,15 @@ int		add_camera(t_token *token, t_data *data);
 int		add_resolution(char	**args, t_data *data);
 
 // tools
-int		compare_floating_points(t_tuple *one, t_tuple *two);
+int		are_floats_equal(double one, double two);
+int		are_tuples_equal(t_tuple *one, t_tuple *two);
 int		free_array(void **array);
 double	atod(const char *str);
+
+// tuples operations
+t_tuple	*sum_tuples(t_tuple *one, t_tuple *two);
+t_tuple	*subtract_tuples(t_tuple *one, t_tuple *two);
+t_tuple	*reverse_tuple(t_tuple *tuple);
 
 // token utils
 t_token	*create_token(char **args);
