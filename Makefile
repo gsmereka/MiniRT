@@ -6,7 +6,7 @@
 #    By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/20 18:26:17 by gde-mora          #+#    #+#              #
-#    Updated: 2023/07/06 20:39:45 by gde-mora         ###   ########.fr        #
+#    Updated: 2023/07/08 00:06:51 by gsmereka         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,10 @@ NAME 	=	miniRT
 SRC 	=	src/main.c \
 			src/exit.c \
 			src/render.c \
-			src/atod.c \
+			src/tools/atod.c \
+			src/tools/free_array.c \
+			src/tools/compare_floating_points.c \
+			src/tools/tuples_operations.c \
 			src/parsing/validate_scene_file.c \
 			src/parsing/read_scene_file.c \
 			src/parsing/token_utils.c \
@@ -113,6 +116,7 @@ create_obj_dir:
 	@mkdir -p $(OBJ_DIR)
 	@mkdir -p $(OBJ_DIR)/src
 	@mkdir -p $(OBJ_DIR)/src/parsing
+	@mkdir -p $(OBJ_DIR)/src/tools
 
 ## FULL CLEAN ALL OBJECTS
 git: fclean
