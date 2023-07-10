@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 20:17:31 by gde-mora          #+#    #+#             */
-/*   Updated: 2023/07/08 00:13:19 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/07/08 22:08:40 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ double	atod(const char *str);
 t_tuple	*sum_tuples(t_tuple *one, t_tuple *two);
 t_tuple	*subtract_tuples(t_tuple *one, t_tuple *two);
 t_tuple	*reverse_tuple(t_tuple *tuple);
+t_tuple	*multiply_tuple(t_tuple *tuple, double factor);
 
 // token utils
 t_token	*create_token(char **args);
