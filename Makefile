@@ -6,7 +6,7 @@
 #    By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/20 18:26:17 by gde-mora          #+#    #+#              #
-#    Updated: 2023/07/10 15:39:56 by gsmereka         ###   ########.fr        #
+#    Updated: 2023/07/10 15:54:58 by gsmereka         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,7 @@ SRC 	=	src/main.c \
 			src/tools/tuples_operations.c \
 			src/tools/normalize_tuple.c \
 			src/tools/tuple_magnitude.c \
+			src/tools/dot_product.c \
 			src/parsing/validate_scene_file.c \
 			src/parsing/read_scene_file.c \
 			src/parsing/token_utils.c \

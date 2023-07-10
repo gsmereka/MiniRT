@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 20:17:31 by gde-mora          #+#    #+#             */
-/*   Updated: 2023/07/10 15:42:07 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/07/10 15:59:07 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ int		free_array(void **array);
 double	atod(const char *str);
 void	normalize_tuple(t_tuple *tuple);
 double	tuple_magnitude(t_tuple *tuple);
+double	dot_product(t_tuple *one, t_tuple *two);
 
 // tuples operations
 t_tuple	*sum_tuples(t_tuple *one, t_tuple *two);

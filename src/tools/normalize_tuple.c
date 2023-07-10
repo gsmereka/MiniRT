@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 23:46:18 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/07/10 15:39:22 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/07/10 15:58:23 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,5 +20,5 @@ void	normalize_tuple(t_tuple *tuple) // Criar ou não nova tupla ?
 	tuple->x = tuple->x / magnitude;
 	tuple->y = tuple->y / magnitude;
 	tuple->z = tuple->z / magnitude;
-	tuple->c = tuple->c / magnitude;
+	tuple->w = tuple->w / magnitude;
 }

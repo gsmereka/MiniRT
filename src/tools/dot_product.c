@@ -1,29 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tuple_magnitude.c                                  :+:      :+:    :+:   */
+/*   dot_product.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 23:46:18 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/07/10 15:58:30 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/07/10 15:58:13 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/miniRT.h"
 
-double	tuple_magnitude(t_tuple *tuple) // Qual é a diferença entre W e C ?
-{
-	double	x;
-	double	y;
-	double	z;
-	double	w;
-	double	magnitude;
+// função ponto (a, b)
+// Retorna ax * bx +
+// ay * por +
+// az * bz +
+// aw * bw
+// função final
 
-	x = pow(tuple->x, 2);
-	y = pow(tuple->y, 2);
-	z = pow(tuple->z, 2);
-	w = pow(tuple->w, 2);
-	magnitude = sqrt(x + y + z + w);
-	return (magnitude);
+double	dot_product(t_tuple *one, t_tuple *two)
+{
+	double	dot_product;
+
+	dot_product = 0;
+	dot_product += one->x * two->x;
+	dot_product += one->y * two->y;
+	dot_product += one->z * two->z;
+	dot_product += one->w * two->w;
+	return (dot_product);
 }
