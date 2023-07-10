@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 12:42:10 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/07/06 22:14:59 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/07/10 16:49:18 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ int	set_tuple(char *arg, t_tuple *tuple, t_data *data)
 	tuple->y = atod(tuple_splited[1]);
 	tuple->z = atod(tuple_splited[2]);
 	if (tuple_splited[3])
-		tuple->c = atod(tuple_splited[3]);
+		tuple->w = atod(tuple_splited[3]);
 	free_array((void **)tuple_splited);
 	return (0);
 }
