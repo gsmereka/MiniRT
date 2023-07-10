@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 23:35:10 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/07/08 22:06:18 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/07/10 16:48:00 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	are_tuples_equal(t_tuple *one, t_tuple *two)
 		result++;
 	if (are_floats_equal(one->z, two->z))
 		result++;
-	if (are_floats_equal(one->c, two->c))
+	if (are_floats_equal(one->w, two->w))
 		result++;
 	if (result == 3)
 		return (1);
