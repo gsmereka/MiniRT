@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 20:17:31 by gde-mora          #+#    #+#             */
-/*   Updated: 2023/07/10 15:20:55 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/07/10 15:42:07 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,8 @@ int		are_floats_equal(double one, double two);
 int		are_tuples_equal(t_tuple *one, t_tuple *two);
 int		free_array(void **array);
 double	atod(const char *str);
+void	normalize_tuple(t_tuple *tuple);
+double	tuple_magnitude(t_tuple *tuple);
 
 // tuples operations
 t_tuple	*sum_tuples(t_tuple *one, t_tuple *two);
