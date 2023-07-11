@@ -12,14 +12,16 @@
 
 #include "../../headers/miniRT.h"
 
-void	paint_pixel(int x, int y, unsigned int color, t_data *data)
+void	paint_pixel(int x, int y, unsigned int color, t_data *data) //recebe as posições como int
 {
 	char	*pointer;
 	int		pixel;
 
-	(void)color; //
+	y = data->win_height - y;
+	//x = data->win_width - x;
+
 	// Verifica se o X ou Y ultrapassa a tela.
-	if (x > data->win_width || y > data->win_height)
+	if (x > data->win_width || y > data->win_height || x < 0 || y < 0)
 		return ;
 
 	// Seleciona a posição do pixel a ser pintado.
@@ -28,5 +30,5 @@ void	paint_pixel(int x, int y, unsigned int color, t_data *data)
 
 	// Seleciona o ponteiro do pixel escolhido e altera sua cor.
 	pointer = data->address_img + pixel;
-	*(unsigned int *)pointer = 0xE900FF;
+	*(unsigned int *)pointer = color;
 }

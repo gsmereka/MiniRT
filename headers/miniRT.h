@@ -94,6 +94,9 @@ int		free_array(void **array);
 double	atod(const char *str);
 
 // tuples operations
+void	create_tuplas(t_data *data);
+
+
 t_tuple	*sum_tuples(t_tuple *one, t_tuple *two);
 t_tuple	*subtract_tuples(t_tuple *one, t_tuple *two);
 t_tuple	*reverse_tuple(t_tuple *tuple);
