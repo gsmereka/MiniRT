@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 23:46:18 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/07/10 16:48:17 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/07/10 21:28:03 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ t_tuple	*subtract_tuples(t_tuple *one, t_tuple *two) // É melhor que essas oper
 	return (new_tuple);
 }
 
-t_tuple	*reverse_tuple(t_tuple *tuple)  // É melhor que essas operações criem uma tupla nova ou substituam uma das tuplas anteriores ?
+t_tuple	*reverse_tuple(t_tuple *tuple) // É melhor que essas operações criem uma tupla nova ou substituam uma das tuplas anteriores ?
 {
 	t_tuple	*new_tuple;
 

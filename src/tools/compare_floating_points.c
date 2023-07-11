@@ -6,21 +6,12 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 23:35:10 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/07/10 16:48:00 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/07/10 21:25:48 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/miniRT.h"
 #define EPSILON 0.00001
-
-// constante EPSILON ← 0,00001
-// função igual (a, b)
-// 	E se abdômen (a - b) <EPSILON
-// 		Retorna verdade
-// 	outro
-// 		Retorna falso
-// 	fim se
-// função final
 
 int	are_floats_equal(double one, double two)
 {
