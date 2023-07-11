@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 22:02:13 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/07/10 22:02:28 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/07/11 15:11:49 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,21 +15,16 @@
 void	paint_pixel(int x, int y, unsigned int color, t_data *data)
 {
 	char	*pointer;
-	int		max_size;
 	int		pixel;
+
+	// Verifica se o X ou Y ultrapassa a tela.
+	if (x > data->win_width || y > data->win_height)
+		return ;
 
 	// Seleciona a posição do pixel a ser pintado.
 	pixel = x * data->size_line + y * \
 	(data->bits_per_pixel / 8);
 
-	// Seleciona a ultima posição possivel.
-	max_size = data->win_width * data->size_line + data->win_height * \
-	(data->bits_per_pixel / 8);
-
-	// Verifica se o pixel escolhido não ultrapassa o limite.
-	if (pixel > max_size)
-		return ;
-	
 	// Seleciona o ponteiro do pixel escolhido e altera sua cor.
 	pointer = data->address_img + pixel;
 	*(unsigned int *)pointer = color;
