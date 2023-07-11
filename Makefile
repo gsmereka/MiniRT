@@ -6,7 +6,7 @@
 #    By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/20 18:26:17 by gde-mora          #+#    #+#              #
-#    Updated: 2023/07/10 16:18:29 by gsmereka         ###   ########.fr        #
+#    Updated: 2023/07/10 22:06:23 by gsmereka         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,9 @@ NAME 	=	miniRT
 
 SRC 	=	src/main.c \
 			src/exit.c \
-			src/render.c \
+			src/render/render.c \
+			src/render/paint_pixel.c \
+			src/render/minilibx_handlers.c \
 			src/tools/atod.c \
 			src/tools/free_array.c \
 			src/tools/compare_floating_points.c \
@@ -120,11 +122,14 @@ create_obj_dir:
 	@mkdir -p $(OBJ_DIR)
 	@mkdir -p $(OBJ_DIR)/src
 	@mkdir -p $(OBJ_DIR)/src/parsing
+	@mkdir -p $(OBJ_DIR)/src/render
 	@mkdir -p $(OBJ_DIR)/src/tools
 
 ## FULL CLEAN ALL OBJECTS
 git: fclean
 	git add . && clear && git status
+
+RT_FILE = ./test/test_files/011_all_config_with_cylinder.rt
 
 valgrind: $(NAME)
 	valgrind  --leak-check=full --show-leak-kinds=all ./miniRT $(RT_FILE)
