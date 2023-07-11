@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 20:17:31 by gde-mora          #+#    #+#             */
-/*   Updated: 2023/07/10 16:18:18 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/07/10 22:05:09 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@
 # include <math.h>
 # include "../libft/libft.h"
 
+// Shape Types
 # define KEY_ESCAPE (0xff1b)
 # define CYLINDER 1
 # define PLANE 2
@@ -39,11 +40,15 @@
 # define LIGHT 5
 # define AMBIENT_LIGHTING 6
 
+// Colors
+# define RED 0x00FF0000
+# define GREEN 0x0000FF00
+# define BLUE 0x000000FF
+
 // main functions
 int		validate_scene_file(int argc, char *argv[], t_data *data);
 int		read_scene_file(char *file, t_data *data);
 void	get_scene_info(t_token *tokens, t_data *data);
-void	render(t_data *data);
 
 // exit and utils
 int		exit_error(char *msg, int status, t_data *data);
@@ -75,6 +80,12 @@ int		add_ambient_lighting(t_token *token, t_data *data);
 int		add_light(t_token *token, t_data *data);
 int		add_camera(t_token *token, t_data *data);
 int		add_resolution(char	**args, t_data *data);
+
+// render
+void	render(t_data *data);
+void	paint_pixel(int x, int y, unsigned int color, t_data *data);
+int		handle_esc(int key, t_data *data);
+int		handle_x(t_data *data);
 
 // tools
 int		are_floats_equal(double one, double two);
