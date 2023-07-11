@@ -25,7 +25,7 @@ void	paint_pixel(int x, int y, unsigned int color, t_data *data) //recebe as pos
 		return ;
 
 	// Seleciona a posição do pixel a ser pintado.
-	pixel = x * data->size_line + y * \
+	pixel = y * data->size_line + x * \
 	(data->bits_per_pixel / 8);
 
 	// Seleciona o ponteiro do pixel escolhido e altera sua cor.
