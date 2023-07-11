@@ -17,6 +17,7 @@ void	paint_pixel(int x, int y, unsigned int color, t_data *data)
 	char	*pointer;
 	int		pixel;
 
+	(void)color; //
 	// Verifica se o X ou Y ultrapassa a tela.
 	if (x > data->win_width || y > data->win_height)
 		return ;
@@ -27,5 +28,5 @@ void	paint_pixel(int x, int y, unsigned int color, t_data *data)
 
 	// Seleciona o ponteiro do pixel escolhido e altera sua cor.
 	pointer = data->address_img + pixel;
-	*(unsigned int *)pointer = color;
+	*(unsigned int *)pointer = 0xE900FF;
 }

@@ -21,6 +21,7 @@ SRC 	=	src/main.c \
 			src/tools/free_array.c \
 			src/tools/compare_floating_points.c \
 			src/tools/tuples_operations.c \
+			src/tools/colors_operations.c \
 			src/tools/normalize_tuple.c \
 			src/tools/tuple_magnitude.c \
 			src/tools/dot_product.c \

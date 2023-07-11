@@ -92,16 +92,23 @@ int		are_floats_equal(double one, double two);
 int		are_tuples_equal(t_tuple *one, t_tuple *two);
 int		free_array(void **array);
 double	atod(const char *str);
-void	normalize_tuple(t_tuple *tuple);
-double	tuple_magnitude(t_tuple *tuple);
-double	dot_product(t_tuple *one, t_tuple *two);
-t_tuple	*cross_product(t_tuple *one, t_tuple *two);
 
 // tuples operations
 t_tuple	*sum_tuples(t_tuple *one, t_tuple *two);
 t_tuple	*subtract_tuples(t_tuple *one, t_tuple *two);
 t_tuple	*reverse_tuple(t_tuple *tuple);
 t_tuple	*multiply_tuple(t_tuple *tuple, double factor);
+t_tuple	*divide_tuple(t_tuple *tuple, double factor);
+void	normalize_tuple(t_tuple *tuple);
+double	tuple_magnitude(t_tuple *tuple);
+double	dot_product(t_tuple *one, t_tuple *two);
+t_tuple	*cross_product(t_tuple *one, t_tuple *two);
+
+// color operations
+t_color	*sum_colors(t_color *one, t_color *two);
+t_color	*subtract_colors(t_color *one, t_color *two);
+t_color	*multiply_color_scalar(t_color *color, double factor);
+t_color	*multiply_color_x_color(t_color *one, t_color *two);
 
 // token utils
 t_token	*create_token(char **args);
