@@ -6,7 +6,7 @@
 #    By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/20 18:26:17 by gde-mora          #+#    #+#              #
-#    Updated: 2023/07/10 22:06:23 by gsmereka         ###   ########.fr        #
+#    Updated: 2023/07/17 18:15:46 by gsmereka         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,9 @@ SRC 	=	src/main.c \
 			src/tools/tuple_magnitude.c \
 			src/tools/dot_product.c \
 			src/tools/cross_product.c \
+			src/matrix_tools/create_matrix.c \
+			src/matrix_tools/free_matrix.c \
+			src/matrix_tools/str_to_matrix.c \
 			src/parsing/validate_scene_file.c \
 			src/parsing/read_scene_file.c \
 			src/parsing/token_utils.c \
@@ -124,6 +127,7 @@ create_obj_dir:
 	@mkdir -p $(OBJ_DIR)/src/parsing
 	@mkdir -p $(OBJ_DIR)/src/render
 	@mkdir -p $(OBJ_DIR)/src/tools
+	@mkdir -p $(OBJ_DIR)/src/matrix_tools
 
 ## FULL CLEAN ALL OBJECTS
 git: fclean
@@ -132,7 +136,7 @@ git: fclean
 RT_FILE = ./test/test_files/011_all_config_with_cylinder.rt
 
 valgrind: $(NAME)
-	valgrind  --leak-check=full --show-leak-kinds=all ./miniRT $(RT_FILE)
+	clear && valgrind  --leak-check=full --show-leak-kinds=all --track-origins=yes ./miniRT $(RT_FILE)
 
 # Executa o tester.
 test: $(NAME)

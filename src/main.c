@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 20:16:42 by gde-mora          #+#    #+#             */
-/*   Updated: 2023/07/06 21:39:05 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/07/17 18:33:17 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,14 +35,59 @@ static void	test_handler(int signal) //Enqunto fazemos os testes
 
 int	main(int argc, char **argv)
 {
-	t_data	data;
+	(void)argc;
+	(void)argv;
+	// t_data	data;
 
-	ft_bzero(&data, sizeof(data)); //
-	ft_printf("Iniciando\n"); //
-	signals_handling(&data); // //Enqunto fazemos os testes
-	validate_scene_file(argc, argv, &data); //
-	read_scene_file(argv[1], &data); //
-	get_scene_info(data.tokens, &data);
-	render(&data);
+	// ft_bzero(&data, sizeof(data)); //
+	// ft_printf("Iniciando\n"); //
+	// signals_handling(&data); // //Enqunto fazemos os testes
+	// validate_scene_file(argc, argv, &data); //
+	// read_scene_file(argv[1], &data); //
+	// get_scene_info(data.tokens, &data);
+	// render(&data);
+
+	char		*str1;
+	t_matrix	*matrix;
+
+	str1 = "0.0,0.2,0.4|1.222,3.34,4|1.2,1.3,1.4";
+	matrix = str_to_matrix(str1);
+	printf("\nOriginal line: %s\n", str1);
+	print_matrix(matrix);
+	free_matrix(matrix);
+
+	str1 = "1,2,3|4,5,6|7,8,9";
+	matrix = str_to_matrix(str1);
+	printf("\nOriginal line: %s\n", str1);
+	print_matrix(matrix);
+	free_matrix(matrix);
+
+	str1 = "1,2|3,4";
+	matrix = str_to_matrix(str1);
+	printf("\nOriginal line: %s\n", str1);
+	print_matrix(matrix);
+	free_matrix(matrix);
 	return (0);
+}
+
+void	print_matrix(t_matrix *matrix_struct)
+{
+	int		i;
+	int		j;
+	double	**matrix;
+
+	i = 0;
+	matrix = matrix_struct->content;
+	printf("Matrix Final:\n");
+	while (matrix[i])
+	{
+		j = 0;
+		while (j < matrix_struct->cols)
+		{
+			printf("[ %lf ]", matrix[i][j]);
+			j++;
+		}
+		i++;
+		printf("\n");
+	}
 }

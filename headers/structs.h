@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 13:09:51 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/07/10 16:47:24 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/07/17 16:17:54 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,12 @@ typedef struct s_token
 	double			ratio;
 	struct s_token	*next;
 }	t_token;
+
+typedef struct s_matrix
+{
+	double	**content;
+	int		cols;
+}	t_matrix;
 
 typedef struct s_data
 {
