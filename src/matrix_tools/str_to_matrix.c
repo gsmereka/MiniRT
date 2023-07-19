@@ -6,14 +6,14 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 18:11:05 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/07/17 18:17:43 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/07/19 20:46:39 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/miniRT.h"
 
 static int		count_lines(void **array);
-static int		count_cols(char *line);
+static int		count_cols(char **lines, int row, int col);
 static double	**extract_matrix_content(char **lines_str,
 					int lines_count, int cols_count);
 static double	*extract_line_numbers(char *str, int cols_count);
@@ -30,9 +30,12 @@ t_matrix	*str_to_matrix(char *str)
 	if (!lines_str)
 		return (NULL);
 	lines_count = count_lines((void **)lines_str);
-	cols_count = count_cols(lines_str[0]);
-	if (cols_count == 0)
+	cols_count = count_cols(lines_str, 0, 0);
+	if (!cols_count)
+	{
+		free_array((void **)lines_str);
 		return (NULL);
+	}
 	matrix_content = extract_matrix_content(lines_str, lines_count, cols_count);
 	matrix = create_matrix(matrix_content, cols_count);
 	free_array((void **)lines_str);
@@ -69,8 +72,6 @@ static double	*extract_line_numbers(char *str, int cols_count)
 	double	*content;
 	int		i;
 
-	if (count_cols(str) != cols_count)
-		return (NULL);
 	numbers = ft_split(str, ',');
 	if (!numbers)
 		return (NULL);
@@ -102,19 +103,31 @@ static int	count_lines(void **array)
 	return (i);
 }
 
-static int	count_cols(char *line)
+static int	count_cols(char **lines, int row, int col)
 {
-	int	i;
-	int	cols;
+	int	temp_cols;
+	int	max_cols;
 
-	i = 0;
-	cols = 0;
-	while (line[i])
+	max_cols = 0;
+	while (lines[row])
 	{
-		if (line[i] == ',')
-			cols++;
-		i++;
+		col = 0;
+		temp_cols = 0;
+		while (lines[row][col])
+		{
+			if (lines[row][col] == ',' && (ft_isalpha(lines[row][col + 1]
+					|| lines[row][col + 1] == '-')))
+				temp_cols++;
+			else if (lines[row][col] == ',')
+				return (0);
+			col++;
+		}
+		if (row == 0)
+			max_cols = temp_cols;
+		if (temp_cols != max_cols)
+			return (0);
+		row++;
 	}
-	cols++;
-	return (cols);
+	max_cols++;
+	return (max_cols);
 }
