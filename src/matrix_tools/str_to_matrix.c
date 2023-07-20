@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 18:11:05 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/07/19 20:46:39 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/07/19 20:59:08 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,8 +115,8 @@ static int	count_cols(char **lines, int row, int col)
 		temp_cols = 0;
 		while (lines[row][col])
 		{
-			if (lines[row][col] == ',' && (ft_isalpha(lines[row][col + 1]
-					|| lines[row][col + 1] == '-')))
+			if (lines[row][col] == ',' && (ft_isdigit(lines[row][col + 1])
+					|| lines[row][col + 1] == '-'))
 				temp_cols++;
 			else if (lines[row][col] == ',')
 				return (0);

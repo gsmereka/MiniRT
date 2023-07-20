@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 20:16:42 by gde-mora          #+#    #+#             */
-/*   Updated: 2023/07/19 20:40:36 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/07/19 21:01:44 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,64 +60,94 @@ static void	test_matrices(int argc, char **argv) // Retirar depois
 	(void)matrix_a;
 	(void)matrix_b;
 	(void)str1;
-	// str1 = "3,3|2,2";
-	// matrix_a = str_to_matrix(str1);
-	// printf("\nMatriz A: %s\n", str1);
-	// print_matrix(matrix_a);
 
-	// str1 = "3,3|2,2";
-	// matrix_b = str_to_matrix(str1);
-	// printf("\nMatriz B: %s\n", str1);
-	// print_matrix(matrix_b);
-
-	// matrix = multiply_matrices(matrix_a, matrix_b);
-	// printf("\nAxB:\n");
-	// print_matrix(matrix);
-	// free_matrix(matrix_b);
-	// free_matrix(matrix_a);
-	// free_matrix(matrix);
-
-	str1 = "3,3,2|2,";
+	str1 = "3,3|2,2";
 	matrix_a = str_to_matrix(str1);
 	if (matrix_a)
 	{
-		printf("\nMatriz A: %s", str1);
-		printf("\nLinhas:%d\nColunas:%d\n", matrix_a->rows, matrix_a->cols);
+		printf("\nMatriz A: %s\n", str1);
 		print_matrix(matrix_a);
 	}
+	else
+		printf("Matriz A falhou\n");
+
+	str1 = "3,3|2,2";
+	matrix_b = str_to_matrix(str1);
+	if (matrix_b)
+	{
+		printf("\nMatriz B: %s\n", str1);
+		print_matrix(matrix_b);
+	}
+	else
+		printf("Matriz B falhou\n");
+
+	matrix = multiply_matrices(matrix_a, matrix_b);
+	if (matrix)
+	{
+		printf("\nAxB:\n");
+		print_matrix(matrix);
+	}
+	else
+		printf("Matriz AxB falhou\n");
+
+	// str1 = "3,3,2|2,";
+	// matrix_a = str_to_matrix(str1);
+	// if (matrix_a)
+	// {
+	// 	printf("\nMatriz A: %s", str1);
+	// 	printf("\nLinhas:%d\nColunas:%d\n", matrix_a->rows, matrix_a->cols);
+	// 	print_matrix(matrix_a);
+	// }
+	if (matrix_b)
+		free_matrix(matrix_b);
+	matrix_b = NULL;
 
 	// str1 = "3,3|2,2|1,1";
 	// matrix_b = str_to_matrix(str1);
 	// printf("\nMatriz B: %s", str1);
 	// printf("\nLinhas:%d\nColunas:%d\n", matrix_b->rows, matrix_b->cols);
 	// print_matrix(matrix_b);
+	if (matrix_b)
+		free_matrix(matrix_b);
+	matrix_b = NULL;
 
 	// // matrix = multiply_matrices(matrix_a, matrix_b);
 	// printf("\nAxB:\n");
 	// // print_matrix(matrix);
-	// free_matrix(matrix_b);
-	if (matrix_a)
-		free_matrix(matrix_a);
-	// free_matrix(matrix);
+	if (matrix)
+		free_matrix(matrix);
+	matrix = NULL;
 
 	// str1 = "0.0,0.2,0.4|1.222,3.34,4|1.2,1.3,1.4";
 	// matrix = str_to_matrix(str1);
 	// printf("\nOriginal line: %s\n", str1);
 	// print_matrix(matrix);
-	// free_matrix(matrix);
+	if (matrix)
+		free_matrix(matrix);
+	matrix = NULL;
 
 	// str1 = "1,2,3|4,5,6|7,8,9";
 	// matrix = str_to_matrix(str1);
 	// printf("\nOriginal line: %s\n", str1);
 	// print_matrix(matrix);
-	// free_matrix(matrix);
+	if (matrix)
+		free_matrix(matrix);
+	matrix = NULL;
 
 	// str1 = "1,2|3,4";
 	// matrix = str_to_matrix(str1);
 	// printf("\nOriginal line: %s\n", str1);
 	// print_matrix(matrix);
-	// free_matrix(matrix);
-	ft_printf("testando\n");
+
+	if (matrix_a)
+		free_matrix(matrix_a);
+	matrix_a = NULL;
+	if (matrix_b)
+		free_matrix(matrix_b);
+	matrix_b = NULL;
+	if (matrix)
+		free_matrix(matrix);
+	matrix = NULL;
 	exit (0);
 }
 
