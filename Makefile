@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+         #
+#    By: gde-mora <gde-mora@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/20 18:26:17 by gde-mora          #+#    #+#              #
-#    Updated: 2023/07/19 16:30:20 by gsmereka         ###   ########.fr        #
+#    Updated: 2023/07/21 23:55:25 by gde-mora         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,6 +30,7 @@ SRC 	=	src/main.c \
 			src/matrix_tools/create_matrix.c \
 			src/matrix_tools/free_matrix.c \
 			src/matrix_tools/str_to_matrix.c \
+			src/matrix_tools/transposing_matrix.c \
 			src/parsing/validate_scene_file.c \
 			src/parsing/read_scene_file.c \
 			src/parsing/token_utils.c \

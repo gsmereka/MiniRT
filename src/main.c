@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gde-mora <gde-mora@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 20:16:42 by gde-mora          #+#    #+#             */
-/*   Updated: 2023/07/21 17:45:54 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/07/22 01:25:57 by gde-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ static void	test_matrices(int argc, char **argv) // Retirar depois
 	(void)str1;
 
 	// str1 = "-1|-1|-1|-1|-1|-1";
-	str1 = "-1,2|2,5";
+	/*str1 = "-1,2|2,5";
 	matrix_a = str_to_matrix(str1);
 	if (matrix_a)
 	{
@@ -92,6 +92,7 @@ static void	test_matrices(int argc, char **argv) // Retirar depois
 	else
 		printf("Matriz AxB falhou\n");
 
+
 	// str1 = "3,3,2|2,";
 	// matrix_a = str_to_matrix(str1);
 	// if (matrix_a)
@@ -101,8 +102,10 @@ static void	test_matrices(int argc, char **argv) // Retirar depois
 	// 	print_matrix(matrix_a);
 	// }
 	if (matrix_b)
+	{
 		free_matrix(matrix_b);
-	matrix_b = NULL;
+		matrix_b = NULL;
+	}
 
 	// str1 = "3,3|2,2|1,1";
 	// matrix_b = str_to_matrix(str1);
@@ -110,31 +113,39 @@ static void	test_matrices(int argc, char **argv) // Retirar depois
 	// printf("\nLinhas:%d\nColunas:%d\n", matrix_b->rows, matrix_b->cols);
 	// print_matrix(matrix_b);
 	if (matrix_b)
+	{
 		free_matrix(matrix_b);
-	matrix_b = NULL;
+		matrix_b = NULL;
+	}
 
 	// // matrix = multiply_matrices(matrix_a, matrix_b);
 	// printf("\nAxB:\n");
 	// // print_matrix(matrix);
 	if (matrix)
+	{
 		free_matrix(matrix);
-	matrix = NULL;
+		matrix = NULL;
+	}
 
 	// str1 = "0.0,0.2,0.4|1.222,3.34,4|1.2,1.3,1.4";
 	// matrix = str_to_matrix(str1);
 	// printf("\nOriginal line: %s\n", str1);
 	// print_matrix(matrix);
 	if (matrix)
+	{
 		free_matrix(matrix);
-	matrix = NULL;
+		matrix = NULL;
+	}
 
 	// str1 = "1,2,3|4,5,6|7,8,9";
 	// matrix = str_to_matrix(str1);
 	// printf("\nOriginal line: %s\n", str1);
 	// print_matrix(matrix);
 	if (matrix)
+	{
 		free_matrix(matrix);
-	matrix = NULL;
+		matrix = NULL;
+	}
 
 	// str1 = "1,2|3,4";
 	// matrix = str_to_matrix(str1);
@@ -142,14 +153,44 @@ static void	test_matrices(int argc, char **argv) // Retirar depois
 	// print_matrix(matrix);
 
 	if (matrix_a)
+	{
 		free_matrix(matrix_a);
-	matrix_a = NULL;
+		matrix_a = NULL;
+	}
 	if (matrix_b)
+	{
 		free_matrix(matrix_b);
-	matrix_b = NULL;
+		matrix_b = NULL;
+	}
 	if (matrix)
+	{
 		free_matrix(matrix);
-	matrix = NULL;
+		matrix = NULL;
+	}*/
+
+
+	printf("\n\n\n");
+	
+	//str1 = "0,9,3,0|9,8,0,8|1,8,5,3|0,0,5,8";
+	str1 = "1,0,0,0|0,1,0,0|0,0,1,0|0,0,0,1";
+	matrix_a = str_to_matrix(str1);
+	matrix = transposing_matrix(matrix_a);
+	if (matrix_a)
+	{
+		printf("\nMatriz A: %s", str1);
+	 	printf("\nLinhas:%d\nColunas:%d\n", matrix_a->rows, matrix_a->cols);
+	 	print_matrix(matrix_a);
+		free_matrix(matrix_a);
+		matrix_a = NULL;
+	}
+	if (matrix)
+	{
+		printf("\nMatriz Transposta:");
+	 	printf("\nLinhas:%d\nColunas:%d\n", matrix->rows, matrix->cols);
+	 	print_matrix(matrix);
+		free_matrix(matrix);
+		matrix = NULL;
+	}
 	exit (0);
 }
 

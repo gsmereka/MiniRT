@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   miniRT.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gde-mora <gde-mora@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 20:17:31 by gde-mora          #+#    #+#             */
-/*   Updated: 2023/07/19 20:15:09 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/07/21 23:46:20 by gde-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,7 @@ void		print_matrix(t_matrix *matrix_struct); // retirara depois
 void		free_matrix(t_matrix *matrix);
 int			matrices_have_diff(t_matrix *a, t_matrix *b);
 t_matrix	*multiply_matrices(t_matrix *a, t_matrix *b);
+t_matrix	*transposing_matrix(t_matrix *mat);
 
 // tuples operations
 t_tuple		*sum_tuples(t_tuple *one, t_tuple *two);
