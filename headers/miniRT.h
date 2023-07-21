@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 20:17:31 by gde-mora          #+#    #+#             */
-/*   Updated: 2023/07/10 22:05:09 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/07/19 20:15:09 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@
 # include <sys/stat.h>
 # include <fcntl.h>
 # include <math.h>
+# include <stdio.h>
 # include "../libft/libft.h"
 
 // Shape Types
@@ -46,67 +47,75 @@
 # define BLUE 0x000000FF
 
 // main functions
-int		validate_scene_file(int argc, char *argv[], t_data *data);
-int		read_scene_file(char *file, t_data *data);
-void	get_scene_info(t_token *tokens, t_data *data);
+int			validate_scene_file(int argc, char *argv[], t_data *data);
+int			read_scene_file(char *file, t_data *data);
+void		get_scene_info(t_token *tokens, t_data *data);
 
 // exit and utils
-int		exit_error(char *msg, int status, t_data *data);
-int		exit_successful(t_data *data);
+int			exit_error(char *msg, int status, t_data *data);
+int			exit_successful(t_data *data);
 
 // check_shape
-int		is_plane(char **args, t_data *data);
-int		is_sphere(char **args, t_data *data);
-int		is_cylinder(char **args, t_data *data);
+int			is_plane(char **args, t_data *data);
+int			is_sphere(char **args, t_data *data);
+int			is_cylinder(char **args, t_data *data);
 
 // check_config
-int		is_ambient_lighting(char **args, t_data *data);
-int		is_light(char **args, t_data *data);
-int		is_camera(char **args, t_data *data);
-int		is_resolution(char **args, t_data *data);
+int			is_ambient_lighting(char **args, t_data *data);
+int			is_light(char **args, t_data *data);
+int			is_camera(char **args, t_data *data);
+int			is_resolution(char **args, t_data *data);
 
 // check_utils
-int		is_coordinate(char *arg);
-int		is_normalized_vector(char *arg);
-int		is_color(char *arg);
+int			is_coordinate(char *arg);
+int			is_normalized_vector(char *arg);
+int			is_color(char *arg);
 
 // add shape
-int		add_plane(t_token *token, t_data *data);
-int		add_sphere(t_token *token, t_data *data);
-int		add_cylinder(t_token *token, t_data *data);
+int			add_plane(t_token *token, t_data *data);
+int			add_sphere(t_token *token, t_data *data);
+int			add_cylinder(t_token *token, t_data *data);
 
 // add config
-int		add_ambient_lighting(t_token *token, t_data *data);
-int		add_light(t_token *token, t_data *data);
-int		add_camera(t_token *token, t_data *data);
-int		add_resolution(char	**args, t_data *data);
+int			add_ambient_lighting(t_token *token, t_data *data);
+int			add_light(t_token *token, t_data *data);
+int			add_camera(t_token *token, t_data *data);
+int			add_resolution(char	**args, t_data *data);
 
 // render
-void	render(t_data *data);
-void	paint_pixel(int x, int y, unsigned int color, t_data *data);
-int		handle_esc(int key, t_data *data);
-int		handle_x(t_data *data);
+void		render(t_data *data);
+void		paint_pixel(int x, int y, unsigned int color, t_data *data);
+int			handle_esc(int key, t_data *data);
+int			handle_x(t_data *data);
 
 // tools
-int		are_floats_equal(double one, double two);
-int		are_tuples_equal(t_tuple *one, t_tuple *two);
-int		free_array(void **array);
-double	atod(const char *str);
-void	normalize_tuple(t_tuple *tuple);
-double	tuple_magnitude(t_tuple *tuple);
-double	dot_product(t_tuple *one, t_tuple *two);
-t_tuple	*cross_product(t_tuple *one, t_tuple *two);
+int			are_floats_equal(double one, double two);
+int			are_tuples_equal(t_tuple *one, t_tuple *two);
+int			free_array(void **array);
+double		atod(const char *str);
+void		normalize_tuple(t_tuple *tuple);
+double		tuple_magnitude(t_tuple *tuple);
+double		dot_product(t_tuple *one, t_tuple *two);
+t_tuple		*cross_product(t_tuple *one, t_tuple *two);
+
+// matrix_tools
+t_matrix	*str_to_matrix(char *str);
+t_matrix	*create_matrix(double **content, int cols);
+void		print_matrix(t_matrix *matrix_struct); // retirara depois
+void		free_matrix(t_matrix *matrix);
+int			matrices_have_diff(t_matrix *a, t_matrix *b);
+t_matrix	*multiply_matrices(t_matrix *a, t_matrix *b);
 
 // tuples operations
-t_tuple	*sum_tuples(t_tuple *one, t_tuple *two);
-t_tuple	*subtract_tuples(t_tuple *one, t_tuple *two);
-t_tuple	*reverse_tuple(t_tuple *tuple);
-t_tuple	*multiply_tuple(t_tuple *tuple, double factor);
+t_tuple		*sum_tuples(t_tuple *one, t_tuple *two);
+t_tuple		*subtract_tuples(t_tuple *one, t_tuple *two);
+t_tuple		*reverse_tuple(t_tuple *tuple);
+t_tuple		*multiply_tuple(t_tuple *tuple, double factor);
 
 // token utils
-t_token	*create_token(char **args);
-t_token	*token_last(t_token *token);
-void	add_token(t_token **tokens, char **args);
-void	token_clear(t_token **tokens);
+t_token		*create_token(char **args);
+t_token		*token_last(t_token *token);
+void		add_token(t_token **tokens, char **args);
+void		token_clear(t_token **tokens);
 
 #endif
