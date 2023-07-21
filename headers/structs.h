@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 13:09:51 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/07/19 16:59:07 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/07/21 18:17:11 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,20 +55,23 @@ typedef struct s_matrix
 
 typedef struct s_data
 {
-	t_token	*tokens;
-	int		scene_fd;
-	void	*mlx_ptr;
-	void	*win_ptr;
-	int		win_height;
-	int		win_width;
-	void	*img;
-	char	*address_img;
-	int		bits_per_pixel;
-	int		size_line;
-	int		endian;
-	int		has_camera;
-	int		has_light;
-	int		has_ambient_lighting;
+	t_matrix	*idmatrix_2x2;
+	t_matrix	*idmatrix_3x3;
+	t_matrix	*idmatrix_4x4;
+	t_token		*tokens;
+	int			scene_fd;
+	void		*mlx_ptr;
+	void		*win_ptr;
+	int			win_height;
+	int			win_width;
+	void		*img;
+	char		*address_img;
+	int			bits_per_pixel;
+	int			size_line;
+	int			endian;
+	int			has_camera;
+	int			has_light;
+	int			has_ambient_lighting;
 	int										debug_exit; //Enqunto fazemos os testes
 }	t_data;
 

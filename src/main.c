@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 20:16:42 by gde-mora          #+#    #+#             */
-/*   Updated: 2023/07/21 17:45:54 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/07/21 18:27:44 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,10 @@ int	main(int argc, char **argv)
 {
 	t_data	data;
 
+	ft_bzero(&data, sizeof(data));
+	init_idmatrices(&data);
+	exit_error("", 0, &data);
 	test_matrices(argc, argv); // retirar depois
-	ft_bzero(&data, sizeof(data)); //
 	ft_printf("Iniciando\n"); //
 	signals_handling(&data); // //Enqunto fazemos os testes
 	validate_scene_file(argc, argv, &data); //

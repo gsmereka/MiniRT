@@ -6,7 +6,7 @@
 #    By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/20 18:26:17 by gde-mora          #+#    #+#              #
-#    Updated: 2023/07/19 16:30:20 by gsmereka         ###   ########.fr        #
+#    Updated: 2023/07/21 18:24:59 by gsmereka         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,7 @@ SRC 	=	src/main.c \
 			src/tools/tuple_magnitude.c \
 			src/tools/dot_product.c \
 			src/tools/cross_product.c \
+			src/matrix_tools/init_idmatrices.c \
 			src/matrix_tools/matrices_have_diff.c \
 			src/matrix_tools/multiply_matrices.c \
 			src/matrix_tools/create_matrix.c \

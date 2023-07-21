@@ -1,32 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   create_matrix.c                                    :+:      :+:    :+:   */
+/*   init_idmatrices.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/17 15:45:03 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/07/21 17:50:12 by gsmereka         ###   ########.fr       */
+/*   Created: 2023/07/21 18:18:46 by gsmereka          #+#    #+#             */
+/*   Updated: 2023/07/21 18:24:00 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/miniRT.h"
 
-t_matrix	*create_matrix(double **content, int cols)
+void	init_idmatrices(t_data *data)
 {
-	int			rows;
-	t_matrix	*matrix;
-
-	if (!content)
-		return (NULL);
-	matrix = ft_calloc(1, sizeof(t_matrix));
-	if (!matrix)
-		return (NULL);
-	matrix->content = content;
-	rows = 0;
-	while (content[rows])
-		rows++;
-	matrix->rows = rows;
-	matrix->cols = cols;
-	return (matrix);
+	data->idmatrix_2x2 = str_to_matrix("1,0|0,1");
+	data->idmatrix_3x3 = str_to_matrix("1,0,0|0,1,0|0,0,1");
+	data->idmatrix_4x4 = str_to_matrix("1,0,0,0|0,1,0,0|0,0,1,0|0,0,0,1");
+	print_matrix(data->idmatrix_2x2);
+	print_matrix(data->idmatrix_3x3);
+	print_matrix(data->idmatrix_4x4);
 }
