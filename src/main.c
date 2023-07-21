@@ -6,7 +6,7 @@
 /*   By: gde-mora <gde-mora@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 20:16:42 by gde-mora          #+#    #+#             */
-/*   Updated: 2023/07/11 21:50:27 by gde-mora         ###   ########.fr       */
+/*   Updated: 2023/07/13 20:47:44 by gde-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,36 @@ void	tick(t_projectil *projectil, t_ambient *ambient)
 
 #include <stdio.h>
 
+int dtoi(double num)
+{
+	int 	inum;
+	double	aux;
+
+	inum = (int)num;
+	aux = num - inum;
+	if (aux > 0.5)
+		inum++;
+	return (inum);
+}
+
+void	paint_square(int x, int y, unsigned int color, t_data *data)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i < 5)
+	{
+		j = 0;
+		while (j < 5)
+		{
+			paint_pixel(x + j, y + i, color, data);
+			j++;
+		}
+		i++;
+	}
+}
+
 void	create_tuplas(t_data *data)
 {
 	t_projectil	projectil;
@@ -91,7 +121,7 @@ void	create_tuplas(t_data *data)
 	while (projectil.position.y >= 0)
 	{
 		tick(&projectil, &ambient);
-		paint_pixel(projectil.position.x, projectil.position.y, RED + GREEN, data);
+		paint_square(dtoi(round(projectil.position.x)), dtoi(round(projectil.position.y)), RED + GREEN, data);
 		printf("Projectil position after tick: %lf %lf %lf %lf\n", projectil.position.x, projectil.position.y, projectil.position.z, projectil.position.w);
 	}
 }
