@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 20:16:42 by gde-mora          #+#    #+#             */
-/*   Updated: 2023/07/19 21:08:18 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/07/21 17:34:59 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ static void	test_matrices(int argc, char **argv) // Retirar depois
 	(void)matrix_b;
 	(void)str1;
 
-	str1 = "5,3,1,1|2,2,11,1|1,2,1,0|0,0,0,0";
+	str1 = "-1|-1|-1|-1|-1|-1";
 	matrix_a = str_to_matrix(str1);
 	if (matrix_a)
 	{
@@ -71,7 +71,7 @@ static void	test_matrices(int argc, char **argv) // Retirar depois
 	else
 		printf("Matriz A falhou\n");
 
-	str1 = "3,5,1,1|2,2,11,1|1,2,1,0|0,0,0,0";
+	str1 = "-1,-1,-1,-1,-1,-1";
 	matrix_b = str_to_matrix(str1);
 	if (matrix_b)
 	{

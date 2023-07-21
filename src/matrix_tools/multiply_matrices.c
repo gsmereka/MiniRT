@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 16:18:21 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/07/19 18:08:45 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/07/21 17:28:45 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static int	filling_matrix_content(double **new_content,
 	int	row;
 
 	row = 0;
-	while (b[row])
+	while (a[row])
 	{
 		new_content[row] = create_row(a, b, row, max_cols);
 		if (!new_content[row])
@@ -74,9 +74,9 @@ static double	*create_row(double **a, double **b, int row, int max_cols)
 	while (col < max_cols)
 	{
 		element = 0;
-		while (element < max_cols)
+		while (b[element])
 		{
-			new_row[col] += a[row][element] * b[element][col];
+			new_row[col] += (a[row][element] * b[element][col]);
 			element++;
 		}
 		col++;
