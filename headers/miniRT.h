@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 20:17:31 by gde-mora          #+#    #+#             */
-/*   Updated: 2023/07/19 20:15:09 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/07/21 19:27:52 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,12 +99,14 @@ double		dot_product(t_tuple *one, t_tuple *two);
 t_tuple		*cross_product(t_tuple *one, t_tuple *two);
 
 // matrix_tools
+void		init_idmatrices(t_data *data);
 t_matrix	*str_to_matrix(char *str);
 t_matrix	*create_matrix(double **content, int cols);
 void		print_matrix(t_matrix *matrix_struct); // retirara depois
 void		free_matrix(t_matrix *matrix);
 int			matrices_have_diff(t_matrix *a, t_matrix *b);
 t_matrix	*multiply_matrices(t_matrix *a, t_matrix *b);
+t_tuple		*multiply_matrix_with_tuple(t_matrix *matrix, t_tuple *tuple);
 
 // tuples operations
 t_tuple		*sum_tuples(t_tuple *one, t_tuple *two);

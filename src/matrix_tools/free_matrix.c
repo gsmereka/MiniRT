@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 17:09:17 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/07/17 18:07:51 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/07/21 19:48:12 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	free_matrix(t_matrix *matrix)
 		free(matrix);
 		return ;
 	}
-	while(matrix->content[i])
+	while (matrix->content[i])
 	{
 		free(matrix->content[i]);
 		i++;

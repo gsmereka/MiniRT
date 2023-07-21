@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 20:16:42 by gde-mora          #+#    #+#             */
-/*   Updated: 2023/07/21 17:45:54 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/07/21 19:47:32 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 t_data	*g_aux_data; //Enqunto fazemos os testes
 
 static void	test_handler(int signal); //Enqunto fazemos os testes
-static void	test_matrices(int argc, char **argv); // Retirar depois
+static void	test_matrices(int argc, char **argv, t_data *data); // Retirar depois
 
 void	signals_handling(t_data *data) //Enqunto fazemos os testes
 {
@@ -32,8 +32,9 @@ int	main(int argc, char **argv)
 {
 	t_data	data;
 
-	test_matrices(argc, argv); // retirar depois
-	ft_bzero(&data, sizeof(data)); //
+	ft_bzero(&data, sizeof(data));
+	init_idmatrices(&data);
+	test_matrices(argc, argv, &data); // retirar depois
 	ft_printf("Iniciando\n"); //
 	signals_handling(&data); // //Enqunto fazemos os testes
 	validate_scene_file(argc, argv, &data); //
@@ -43,7 +44,7 @@ int	main(int argc, char **argv)
 	return (0);
 }
 
-static void	test_matrices(int argc, char **argv) // Retirar depois
+static void	test_matrices(int argc, char **argv, t_data *data) // Retirar depois
 {
 	char		*str1;
 	t_matrix	*matrix;
@@ -61,6 +62,35 @@ static void	test_matrices(int argc, char **argv) // Retirar depois
 	(void)matrix_b;
 	(void)str1;
 
+	/// Testando multiplicar matrizes por tuplas
+
+	str1  = "1,2,3,4|1,2,3,4|1,2,3,4|1,2,3,4";
+
+	t_tuple *tuple;
+		
+	
+	tuple = ft_calloc(1, sizeof(t_tuple));
+	tuple->x = 1;
+	tuple->y = 1;
+	tuple->z = 1;
+	tuple->w = 1;
+
+	matrix = str_to_matrix(str1);
+
+	t_tuple	*new_tuple = multiply_matrix_with_tuple(matrix, tuple);
+
+	printf("Tupla inicial\nx:%lf\ny:%lf\nz:%lf\nw:%lf\n\n", tuple->x, tuple->y, tuple->z, tuple->w);
+	print_matrix(matrix);
+	printf("\nTupla  final\nx:%lf\ny:%lf\nz:%lf\nw:%lf\n\n", new_tuple->x, new_tuple->y, new_tuple->z, new_tuple->w);
+	free(tuple);
+	free(new_tuple);
+	free_matrix(matrix);
+	matrix = NULL;
+	exit_error("", 0, data);
+
+
+
+	/// Testando Multiplicação de matrizes
 	// str1 = "-1|-1|-1|-1|-1|-1";
 	str1 = "-1,2|2,5";
 	matrix_a = str_to_matrix(str1);
