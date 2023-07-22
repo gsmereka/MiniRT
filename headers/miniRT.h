@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 20:17:31 by gde-mora          #+#    #+#             */
-/*   Updated: 2023/07/21 20:10:05 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/07/21 22:13:11 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@
 # define RED 0x00FF0000
 # define GREEN 0x0000FF00
 # define BLUE 0x000000FF
+
+void		test_matrices_operations(int argc, char **argv, t_data *data); // Retirar depois, do Makefile tb
 
 // main functions
 int			validate_scene_file(int argc, char *argv[], t_data *data);

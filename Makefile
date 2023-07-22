@@ -6,13 +6,14 @@
 #    By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/20 18:26:17 by gde-mora          #+#    #+#              #
-#    Updated: 2023/07/21 20:10:26 by gsmereka         ###   ########.fr        #
+#    Updated: 2023/07/21 22:10:44 by gsmereka         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME 	=	miniRT
 
-SRC 	=	src/main.c \
+SRC 	=	src/test_matrices_operations.c \
+			src/main.c \
 			src/exit.c \
 			src/render/render.c \
 			src/render/paint_pixel.c \
