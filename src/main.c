@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 20:16:42 by gde-mora          #+#    #+#             */
-/*   Updated: 2023/07/21 19:47:32 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/07/21 21:55:12 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,17 +62,41 @@ static void	test_matrices(int argc, char **argv, t_data *data) // Retirar depois
 	(void)matrix_b;
 	(void)str1;
 
-	/// Testando multiplicar matrizes por tuplas
+	/// Testando a função get_submatrix
+	printf("Testando a função get_submatrix\n");
 
-	str1  = "1,2,3,4|1,2,3,4|1,2,3,4|1,2,3,4";
+	str1  = "1,2,3,4|2,2,3,4|3,3,3,4|4,4,4,4";
+
+	matrix = str_to_matrix(str1);
+	printf("Matriz original 4x4:\n");
+	print_matrix(matrix);
+	printf("Submatriz tirando linha 4 e coluna 4:\n\n");
+	matrix_a = get_submatrix(matrix, 3, 3);
+	if (matrix_a)
+		print_matrix(matrix_a);
+	printf("\nSubmatriz da submatriz tirando linha 3 e coluna 3:\n");
+	matrix_b = get_submatrix(matrix_a, 2, 2);
+	if (matrix_b)
+		print_matrix(matrix_b);
+	free_matrix(matrix);
+	free_matrix(matrix_a);
+	free_matrix(matrix_b);
+	matrix = NULL;
+	matrix_a = NULL;
+	matrix_b = NULL;
+	exit_error("", 0, data);
+
+	/// Testando multiplicar matrizes por tuplas
+	printf("Testando multiplicar matrizes por tuplas\n");
+	str1  = "1,2,3,4|5,6,7,8|9,10,11,12|13,14,15,16";
 
 	t_tuple *tuple;
 		
 	
 	tuple = ft_calloc(1, sizeof(t_tuple));
-	tuple->x = 1;
+	tuple->x = -1;
 	tuple->y = 1;
-	tuple->z = 1;
+	tuple->z = -1;
 	tuple->w = 1;
 
 	matrix = str_to_matrix(str1);

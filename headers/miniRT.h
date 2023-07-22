@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 20:17:31 by gde-mora          #+#    #+#             */
-/*   Updated: 2023/07/21 19:27:52 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/07/21 20:10:05 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,7 @@ void		free_matrix(t_matrix *matrix);
 int			matrices_have_diff(t_matrix *a, t_matrix *b);
 t_matrix	*multiply_matrices(t_matrix *a, t_matrix *b);
 t_tuple		*multiply_matrix_with_tuple(t_matrix *matrix, t_tuple *tuple);
+t_matrix	*get_submatrix(t_matrix *matrix, int row, int col);
 
 // tuples operations
 t_tuple		*sum_tuples(t_tuple *one, t_tuple *two);
