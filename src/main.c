@@ -6,7 +6,7 @@
 /*   By: gde-mora <gde-mora@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 20:16:42 by gde-mora          #+#    #+#             */
-/*   Updated: 2023/07/22 01:25:57 by gde-mora         ###   ########.fr       */
+/*   Updated: 2023/07/24 20:06:36 by gde-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,12 @@ t_data	*g_aux_data; //Enqunto fazemos os testes
 static void	test_handler(int signal); //Enqunto fazemos os testes
 static void	test_matrices(int argc, char **argv); // Retirar depois
 
+static void	test_handler(int signal) //Enqunto fazemos os testes
+{
+	(void)signal;
+	g_aux_data->debug_exit = 1;
+}
+
 void	signals_handling(t_data *data) //Enqunto fazemos os testes
 {
 	struct sigaction	test;
@@ -28,19 +34,26 @@ void	signals_handling(t_data *data) //Enqunto fazemos os testes
 	sigaction(SIGTERM, &test, NULL);
 }
 
-int	main(int argc, char **argv)
+void	print_matrix(t_matrix *matrix_struct) // Retirar depois
 {
-	t_data	data;
+	int		i;
+	int		j;
+	double	**matrix;
 
-	test_matrices(argc, argv); // retirar depois
-	ft_bzero(&data, sizeof(data)); //
-	ft_printf("Iniciando\n"); //
-	signals_handling(&data); // //Enqunto fazemos os testes
-	validate_scene_file(argc, argv, &data); //
-	read_scene_file(argv[1], &data); //
-	get_scene_info(data.tokens, &data);
-	render(&data);
-	return (0);
+	i = 0;
+	matrix = matrix_struct->content;
+	printf("Resultado:\n");
+	while (matrix[i])
+	{
+		j = 0;
+		while (j < matrix_struct->cols)
+		{
+			printf("[ %lf ]", matrix[i][j]);
+			j++;
+		}
+		i++;
+		printf("\n");
+	}
 }
 
 static void	test_matrices(int argc, char **argv) // Retirar depois
@@ -194,30 +207,18 @@ static void	test_matrices(int argc, char **argv) // Retirar depois
 	exit (0);
 }
 
-void	print_matrix(t_matrix *matrix_struct) // Retirar depois
+int	main(int argc, char **argv)
 {
-	int		i;
-	int		j;
-	double	**matrix;
+	t_data	data;
 
-	i = 0;
-	matrix = matrix_struct->content;
-	printf("Resultado:\n");
-	while (matrix[i])
-	{
-		j = 0;
-		while (j < matrix_struct->cols)
-		{
-			printf("[ %lf ]", matrix[i][j]);
-			j++;
-		}
-		i++;
-		printf("\n");
-	}
-}
-
-static void	test_handler(int signal) //Enqunto fazemos os testes
-{
-	(void)signal;
-	g_aux_data->debug_exit = 1;
+	ft_bzero(&data, sizeof(data)); //
+	test_matrices(argc, argv); // retirar depois
+	ft_printf("Iniciando\n"); //
+	signals_handling(&data); // //Enqunto fazemos os testes
+	validate_scene_file(argc, argv, &data); //
+	read_scene_file(argv[1], &data); //
+	get_scene_info(data.tokens, &data);
+	//create_tuplas();
+	render(&data);
+	return (0);
 }
