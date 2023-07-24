@@ -6,7 +6,7 @@
 #    By: gde-mora <gde-mora@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/20 18:26:17 by gde-mora          #+#    #+#              #
-#    Updated: 2023/07/21 22:10:44 by gsmereka         ###   ########.fr        #
+#    Updated: 2023/07/24 20:44:26 by gde-mora         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,6 +27,7 @@ SRC 	=	src/test_matrices_operations.c \
 			src/tools/tuple_magnitude.c \
 			src/tools/dot_product.c \
 			src/tools/cross_product.c \
+			src/tools/pass_tuple_values.c \
 			src/matrix_tools/init_idmatrices.c \
 			src/matrix_tools/matrices_have_diff.c \
 			src/matrix_tools/multiply_matrices.c \
@@ -118,12 +119,14 @@ clean:
 	$(RM) -r $(OBJ_DIR)
 	make clean -C libft
 
-fclean: clean ascii_draw_fclean
+fclean: clean
+	rm -f vgcore.*
 	$(RM) $(NAME)
 	$(RM) $(LIBFT_A)
+	make ascii_draw_fclean
 
 # 	Limpa o tester.
-	cd test && ./test.sh clean
+	cd test && rm -f vgcore.* && ./test.sh clean
 
 
 re: fclean all

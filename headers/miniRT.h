@@ -6,7 +6,7 @@
 /*   By: gde-mora <gde-mora@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 20:17:31 by gde-mora          #+#    #+#             */
-/*   Updated: 2023/07/24 20:09:44 by gde-mora         ###   ########.fr       */
+/*   Updated: 2023/07/24 20:43:44 by gde-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,7 @@ int		are_floats_equal(double one, double two);
 int		are_tuples_equal(t_tuple *one, t_tuple *two);
 int		free_array(void **array);
 double	atod(const char *str);
+void	pass_tuple_values(t_tuple *dest, t_tuple *src);
 
 // tuples operations
 t_tuple	*sum_tuples(t_tuple *one, t_tuple *two);

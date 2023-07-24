@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   test_matrices_operations.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gde-mora <gde-mora@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 22:01:46 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/07/21 22:15:36 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/07/24 20:36:46 by gde-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 static void	test_submatrix(t_data *data);
 static void	test_multiply_matrix_with_tuple(t_data *data);
 static void	test_multiply_matrices(t_data *data);
+static void	test_transposing_matrix(t_data *data);
 
 void	test_matrices_operations(int argc, char **argv, t_data *data) // Retirar depois, do makefile tb
 {
@@ -22,10 +23,12 @@ void	test_matrices_operations(int argc, char **argv, t_data *data) // Retirar de
 	(void)argv;
 	(void)data;
 	test_multiply_matrices(data);
-	exit_error("", 0, data);
+	//exit_error("", 0, data);
 	test_multiply_matrix_with_tuple(data);
-	exit_error("", 0, data);
+	//exit_error("", 0, data);
 	test_submatrix(data);
+	//exit_error("", 0, data);
+	test_transposing_matrix(data);
 	exit_error("", 0, data);
 }
 
@@ -216,4 +219,34 @@ static void	test_multiply_matrices(t_data *data)
 	if (matrix)
 		free_matrix(matrix);
 	matrix = NULL;
+}
+
+static void	test_transposing_matrix(t_data *data) // Retirar depois
+{
+	char		*str1;
+	t_matrix	*matrix_a;
+	t_matrix	*matrix;
+
+	printf("\n\n\n");
+	(void)data;
+	str1 = "0,9,3,0|9,8,0,8|1,8,5,3|0,0,5,8";
+	//str1 = "1,0,0,0|0,1,0,0|0,0,1,0|0,0,0,1";
+	matrix_a = str_to_matrix(str1);
+	matrix = transposing_matrix(matrix_a);
+	if (matrix_a)
+	{
+		printf("\nMatriz A: %s", str1);
+	 	printf("\nLinhas:%d\nColunas:%d\n", matrix_a->rows, matrix_a->cols);
+	 	print_matrix(matrix_a);
+		free_matrix(matrix_a);
+		matrix_a = NULL;
+	}
+	if (matrix)
+	{
+		printf("\nMatriz Transposta:");
+	 	printf("\nLinhas:%d\nColunas:%d\n", matrix->rows, matrix->cols);
+	 	print_matrix(matrix);
+		free_matrix(matrix);
+		matrix = NULL;
+	}
 }
