@@ -6,7 +6,7 @@
 /*   By: gde-mora <gde-mora@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 20:17:31 by gde-mora          #+#    #+#             */
-/*   Updated: 2023/07/24 21:04:19 by gde-mora         ###   ########.fr       */
+/*   Updated: 2023/07/24 23:07:22 by gde-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,6 +126,7 @@ t_matrix	*transposing_matrix(t_matrix *mat);
 t_tuple		*multiply_matrix_with_tuple(t_matrix *matrix, t_tuple *tuple);
 t_matrix	*get_submatrix(t_matrix *matrix, int row, int col);
 double		get_determinant(t_matrix *matrix);
+double		cofactor(t_matrix *matrix, int row, int col);
 
 // token utils
 t_token		*create_token(char **args);
