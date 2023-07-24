@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gde-mora <gde-mora@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 20:16:42 by gde-mora          #+#    #+#             */
 /*   Updated: 2023/07/21 22:15:52 by gsmereka         ###   ########.fr       */
@@ -15,7 +15,11 @@
 #					 include <signal.h> //Enqunto fazemos os testes
 t_data	*g_aux_data; //Enqunto fazemos os testes
 
-static void	test_handler(int signal); //Enqunto fazemos os testes
+static void	test_handler(int signal) //Enqunto fazemos os testes
+{
+	(void)signal;
+	g_aux_data->debug_exit = 1;
+}
 
 void	signals_handling(t_data *data) //Enqunto fazemos os testes
 {
@@ -25,22 +29,6 @@ void	signals_handling(t_data *data) //Enqunto fazemos os testes
 	ft_bzero(&test, sizeof(struct sigaction));
 	test.sa_handler = test_handler;
 	sigaction(SIGTERM, &test, NULL);
-}
-
-int	main(int argc, char **argv)
-{
-	t_data	data;
-
-	ft_bzero(&data, sizeof(data));
-	init_idmatrices(&data);
-	test_matrices_operations(argc, argv, &data); // retirar depois
-	ft_printf("Iniciando\n"); //
-	signals_handling(&data); // //Enqunto fazemos os testes
-	validate_scene_file(argc, argv, &data); //
-	read_scene_file(argv[1], &data); //
-	get_scene_info(data.tokens, &data);
-	render(&data);
-	return (0);
 }
 
 void	print_matrix(t_matrix *matrix_struct) // Retirar depois
@@ -65,8 +53,18 @@ void	print_matrix(t_matrix *matrix_struct) // Retirar depois
 	}
 }
 
-static void	test_handler(int signal) //Enqunto fazemos os testes
+int	main(int argc, char **argv)
 {
-	(void)signal;
-	g_aux_data->debug_exit = 1;
+	t_data	data;
+
+  ft_bzero(&data, sizeof(data));
+	init_idmatrices(&data);
+	test_matrices_operations(argc, argv, &data); // retirar depois
+	ft_printf("Iniciando\n"); //
+	signals_handling(&data); // Enqunto fazemos os testes //retirar dps
+	validate_scene_file(argc, argv, &data); //
+	read_scene_file(argv[1], &data); //
+	get_scene_info(data.tokens, &data);
+	render(&data);
+	return (0);
 }

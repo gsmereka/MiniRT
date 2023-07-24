@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   miniRT.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gde-mora <gde-mora@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 20:17:31 by gde-mora          #+#    #+#             */
-/*   Updated: 2023/07/21 22:13:11 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/07/24 20:09:44 by gde-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,14 +91,27 @@ int			handle_esc(int key, t_data *data);
 int			handle_x(t_data *data);
 
 // tools
-int			are_floats_equal(double one, double two);
-int			are_tuples_equal(t_tuple *one, t_tuple *two);
-int			free_array(void **array);
-double		atod(const char *str);
-void		normalize_tuple(t_tuple *tuple);
-double		tuple_magnitude(t_tuple *tuple);
-double		dot_product(t_tuple *one, t_tuple *two);
-t_tuple		*cross_product(t_tuple *one, t_tuple *two);
+int		are_floats_equal(double one, double two);
+int		are_tuples_equal(t_tuple *one, t_tuple *two);
+int		free_array(void **array);
+double	atod(const char *str);
+
+// tuples operations
+t_tuple	*sum_tuples(t_tuple *one, t_tuple *two);
+t_tuple	*subtract_tuples(t_tuple *one, t_tuple *two);
+t_tuple	*reverse_tuple(t_tuple *tuple);
+t_tuple	*multiply_tuple(t_tuple *tuple, double factor);
+t_tuple	*divide_tuple(t_tuple *tuple, double factor);
+void	normalize_tuple(t_tuple *tuple);
+double	tuple_magnitude(t_tuple *tuple);
+double	dot_product(t_tuple *one, t_tuple *two);
+t_tuple	*cross_product(t_tuple *one, t_tuple *two);
+
+// color operations
+t_color	*sum_colors(t_color *one, t_color *two);
+t_color	*subtract_colors(t_color *one, t_color *two);
+t_color	*multiply_color_scalar(t_color *color, double factor);
+t_color	*multiply_color_x_color(t_color *one, t_color *two);
 
 // matrix_tools
 void		init_idmatrices(t_data *data);
@@ -108,14 +121,9 @@ void		print_matrix(t_matrix *matrix_struct); // retirara depois
 void		free_matrix(t_matrix *matrix);
 int			matrices_have_diff(t_matrix *a, t_matrix *b);
 t_matrix	*multiply_matrices(t_matrix *a, t_matrix *b);
+t_matrix	*transposing_matrix(t_matrix *mat);
 t_tuple		*multiply_matrix_with_tuple(t_matrix *matrix, t_tuple *tuple);
 t_matrix	*get_submatrix(t_matrix *matrix, int row, int col);
-
-// tuples operations
-t_tuple		*sum_tuples(t_tuple *one, t_tuple *two);
-t_tuple		*subtract_tuples(t_tuple *one, t_tuple *two);
-t_tuple		*reverse_tuple(t_tuple *tuple);
-t_tuple		*multiply_tuple(t_tuple *tuple, double factor);
 
 // token utils
 t_token		*create_token(char **args);
