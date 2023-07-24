@@ -46,6 +46,8 @@
 # define GREEN 0x0000FF00
 # define BLUE 0x000000FF
 
+void		test_matrices_operations(int argc, char **argv, t_data *data); // Retirar depois, do Makefile tb
+
 // main functions
 int			validate_scene_file(int argc, char *argv[], t_data *data);
 int			read_scene_file(char *file, t_data *data);
@@ -112,6 +114,7 @@ t_color	*multiply_color_scalar(t_color *color, double factor);
 t_color	*multiply_color_x_color(t_color *one, t_color *two);
 
 // matrix_tools
+void		init_idmatrices(t_data *data);
 t_matrix	*str_to_matrix(char *str);
 t_matrix	*create_matrix(double **content, int cols);
 void		print_matrix(t_matrix *matrix_struct); // retirara depois
@@ -119,6 +122,8 @@ void		free_matrix(t_matrix *matrix);
 int			matrices_have_diff(t_matrix *a, t_matrix *b);
 t_matrix	*multiply_matrices(t_matrix *a, t_matrix *b);
 t_matrix	*transposing_matrix(t_matrix *mat);
+t_tuple		*multiply_matrix_with_tuple(t_matrix *matrix, t_tuple *tuple);
+t_matrix	*get_submatrix(t_matrix *matrix, int row, int col);
 
 // token utils
 t_token		*create_token(char **args);

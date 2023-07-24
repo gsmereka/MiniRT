@@ -6,13 +6,14 @@
 #    By: gde-mora <gde-mora@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/20 18:26:17 by gde-mora          #+#    #+#              #
-#    Updated: 2023/07/21 23:55:25 by gde-mora         ###   ########.fr        #
+#    Updated: 2023/07/21 22:10:44 by gsmereka         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME 	=	miniRT
 
-SRC 	=	src/main.c \
+SRC 	=	src/test_matrices_operations.c \
+			src/main.c \
 			src/exit.c \
 			src/render/render.c \
 			src/render/paint_pixel.c \
@@ -26,12 +27,15 @@ SRC 	=	src/main.c \
 			src/tools/tuple_magnitude.c \
 			src/tools/dot_product.c \
 			src/tools/cross_product.c \
+			src/matrix_tools/init_idmatrices.c \
 			src/matrix_tools/matrices_have_diff.c \
 			src/matrix_tools/multiply_matrices.c \
 			src/matrix_tools/create_matrix.c \
 			src/matrix_tools/free_matrix.c \
 			src/matrix_tools/str_to_matrix.c \
 			src/matrix_tools/transposing_matrix.c \
+			src/matrix_tools/multiply_matrix_with_tuple.c \
+			src/matrix_tools/get_submatrix.c \
 			src/parsing/validate_scene_file.c \
 			src/parsing/read_scene_file.c \
 			src/parsing/token_utils.c \
