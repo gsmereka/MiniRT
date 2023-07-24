@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_submatrix.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gde-mora <gde-mora@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 20:08:50 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/07/21 21:46:25 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/07/24 21:23:33 by gde-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ t_matrix	*get_submatrix(t_matrix *matrix, int row_excluded, int col_excluded)
 		return (NULL);
 	if (row_excluded < 0 || col_excluded < 0)
 		return (NULL);
-	if (matrix->rows <= row_excluded || matrix->cols <= col_excluded)
+	if (matrix->rows < row_excluded || matrix->cols < col_excluded)
 		return (NULL);
 	if (matrix->rows != matrix->cols)
 		return (NULL);
