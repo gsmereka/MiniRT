@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   test_matrices_operations.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gde-mora <gde-mora@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 22:01:46 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/07/24 17:24:38 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/07/24 22:38:40 by gde-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,61 +17,6 @@ static void	test_multiply_matrix_with_tuple(t_data *data);
 static void	test_multiply_matrices(t_data *data);
 static void	test_transposing_matrix(t_data *data);*/
 static void	test_determinant(t_data *data);
-double	determinante_3x3(t_matrix *matrix);
-
-
-double cofator(double fator, t_matrix *submatrix, int signal)
-{
-	double	cofator;
-
-	cofator = fator * get_determinant(submatrix) * signal;
-	free_matrix(submatrix);
-	return (cofator);
-}
-
-double	determinante_4x4(t_matrix *matrix)
-{
-	t_matrix	*aux_matrix;
-	double	determinante;
-	int		multiplicador;
-	int		j;
-
-	j = 0;
-	multiplicador = 1;
-	determinante = 0;
-	aux_matrix = NULL;
-	while (j < matrix->cols)
-	{
-		aux_matrix = get_submatrix(matrix, 0, j);
-		determinante += determinante_3x3(aux_matrix) * multiplicador * matrix->content[0][j];
-		free_matrix(aux_matrix);
-		multiplicador *= -1;
-		j++;
-	}
-	// if (determinante < 0)
-	// 	determinante *= -1;
-	return (determinante);
-}
-
-double	determinante_3x3(t_matrix *matrix)
-{
-	double	determinante;
-	int		multiplicador;
-	int		j;
-
-	j = 0;
-	multiplicador = 1;
-	determinante = 0;
-	while (j < matrix->cols)
-	{
-		determinante += cofator(matrix->content[0][j], get_submatrix(matrix, 0, j), multiplicador);
-		multiplicador *= -1;
-		j++;
-	}
-	// if (determinante < 0)
-	// 	determinante *= -1;
-	return (determinante);
-}
 
 void	test_matrices_operations(int argc, char **argv, t_data *data) // Retirar depois, do makefile tb
 {
@@ -312,23 +257,50 @@ static void	test_transposing_matrix(t_data *data) // Retirar depois
 static void	test_determinant(t_data *data)
 {
 	char		*str1;
+	char		*str2;
+	char		*str3;
 	t_matrix	*matrix_a;
+	t_matrix	*matrix_b;
+	t_matrix	*matrix_c;
 	double		det;
 
 	(void)data;
-	str1 = "0,9,3|9,8,0|1,8,5";
-	// str1 = "0,9,3,0|9,8,0,8|1,8,5,3|0,0,5,8";
 	//str1 = "1,0,0,0|0,1,0,0|0,0,1,0|0,0,0,1";
+	str1 = "0,9|9,8";
+	str2 = "0,9,3|9,8,0|1,8,5";
+	str3 = "0,9,3,0|9,8,0,8|1,8,5,3|0,0,5,8";
 	matrix_a = str_to_matrix(str1);
-	// det = get_determinant(matrix_a);
-	det = determinante_3x3(matrix_a);
+	matrix_b = str_to_matrix(str2);
+	matrix_c = str_to_matrix(str3);
+	
 	if (matrix_a)
 	{
-		printf("\nMatriz 3x3:");
+		printf("\nMatriz 2x2:");
 	 	printf("\nLinhas:%d\nColunas:%d\n", matrix_a->rows, matrix_a->cols);
 	 	print_matrix(matrix_a);
+		det = get_determinant(matrix_a);
 		printf("Determinant: %lf\n", det);
 		free_matrix(matrix_a);
 		matrix_a = NULL;
+	}
+	if (matrix_b)
+	{
+		printf("\nMatriz 3x3:");
+	 	printf("\nLinhas:%d\nColunas:%d\n", matrix_b->rows, matrix_b->cols);
+	 	print_matrix(matrix_b);
+		det = get_determinant(matrix_b);
+		printf("Determinant: %lf\n", det);
+		free_matrix(matrix_b);
+		matrix_b = NULL;
+	}
+	if (matrix_c)
+	{
+		printf("\nMatriz 4x4:");
+	 	printf("\nLinhas:%d\nColunas:%d\n", matrix_c->rows, matrix_c->cols);
+	 	print_matrix(matrix_c);
+		det = get_determinant(matrix_c);
+		printf("Determinant: %lf\n", det);
+		free_matrix(matrix_c);
+		matrix_c = NULL;
 	}
 }
