@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   miniRT.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gde-mora <gde-mora@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 20:17:31 by gde-mora          #+#    #+#             */
-/*   Updated: 2023/07/24 23:07:22 by gde-mora         ###   ########.fr       */
+/*   Updated: 2023/07/31 18:32:33 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,6 +127,7 @@ t_tuple		*multiply_matrix_with_tuple(t_matrix *matrix, t_tuple *tuple);
 t_matrix	*get_submatrix(t_matrix *matrix, int row, int col);
 double		get_determinant(t_matrix *matrix);
 double		cofactor(t_matrix *matrix, int row, int col);
+t_matrix	*inverting_matrix(t_matrix *matrix);
 
 // token utils
 t_token		*create_token(char **args);

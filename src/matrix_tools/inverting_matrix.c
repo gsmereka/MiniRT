@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   inverting_matrix.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gde-mora <gde-mora@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 01:31:11 by gde-mora          #+#    #+#             */
-/*   Updated: 2023/07/24 20:51:46 by gde-mora         ###   ########.fr       */
+/*   Updated: 2023/07/31 18:33:39 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ t_matrix *inverting_matrix(t_matrix *matrix)
 
     if (!matrix)
         return (NULL);
-    if (are_floeats_equal(matrix->determinant, 0.0))
+    if (are_floats_equal(matrix->determinant, 0.0))
         return (NULL);
     new_content = ft_calloc(matrix->rows + 1, sizeof(double *));
 	if (!new_content)
