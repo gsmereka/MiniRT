@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 20:16:42 by gde-mora          #+#    #+#             */
-/*   Updated: 2023/07/31 20:08:50 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/07/31 20:19:10 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,16 @@ void	print_matrix(t_matrix *matrix_struct) // Retirar depois
 		i++;
 		printf("\n");
 	}
+}
+
+void	print_tuple(t_tuple *tuple)
+{
+	if (!tuple)
+	{
+		printf("No Tuple\n");
+		return ;
+	}
+	printf("(%lf, %lf, %lf, %lf)\n", tuple->x, tuple->y, tuple->z, tuple->w);
 }
 
 int	main(int argc, char **argv)

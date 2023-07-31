@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 22:01:46 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/07/31 20:15:47 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/07/31 20:31:30 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,23 +119,32 @@ void	putting_it_together(t_data *data) // Da pagina 63
 
 
 
-	// printf("4. Remember how multiplying the identity matrix by a tuple gives you the tuple, unchanged? Now, try changing any single element of the identity matrix to a different num\n");
+	printf("4. Remember how multiplying the identity matrix by a tuple gives you the tuple, unchanged? Now, try changing any single element of the identity matrix to a different num\n");
 
-	// printf("Matriz Identidade: \n");
-	// print_matrix(data->idmatrix_4x4);
+	printf("Matriz Identidade: \n");
+	print_matrix(data->idmatrix_4x4);
 
-	// tuple = ft_calloc(1, sizeof(t_tuple));
-	// tuple->x = -1;
-	// tuple->y = 1;
-	// tuple->z = -1;
-	// tuple->w = 1;
-	// printf("Tupla:\n");
-	// print_tuple(tuple);
+	tuple = ft_calloc(1, sizeof(t_tuple));
+	tuple->x = 5;
+	tuple->y = 6;
+	tuple->z = 7;
+	tuple->w = 8;
+	printf("Tupla:\n");
+	print_tuple(tuple);
 
-	// printf("Multiplicando Matriz identidade pela tupla:\n")
-	// tuple_2	= multiply_matrix_with_tuple(data->idmatrix_4x4, tuple);
-	// print_tuple(tuple_2);
-	// free_tuple(tuple);
+	printf("Multiplicando Matriz identidade pela tupla:\n");
+	tuple_2	= multiply_matrix_with_tuple(data->idmatrix_4x4, tuple);
+	print_tuple(tuple_2);
+	printf("Alterando Valores da matriz identidade:\n");
+	matrix = str_to_matrix("0,0,0,0|0,1,0,0|0,0,1,0|0,0,0,1");
+	print_matrix(matrix);
+	printf("Multiplicando a mesma tupla pela identidade modificada:\n");
+	tuple_3 = multiply_matrix_with_tuple(matrix, tuple);
+	print_tuple(tuple_3);
+	free(tuple);
+	free(tuple_2);
+	free(tuple_3);
+	free_matrix(matrix);
 }
 
 void	test_inversion(t_data	*data)

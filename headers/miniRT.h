@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 20:17:31 by gde-mora          #+#    #+#             */
-/*   Updated: 2023/07/31 19:19:25 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/07/31 20:20:34 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,6 +119,7 @@ void		init_idmatrices(t_data *data);
 t_matrix	*str_to_matrix(char *str);
 t_matrix	*create_matrix(double **content, int cols);
 void		print_matrix(t_matrix *matrix_struct); // retirara depois
+void		print_tuple(t_tuple *tuple); // retirar depois
 void		free_matrix(t_matrix *matrix);
 int			matrices_have_diff(t_matrix *a, t_matrix *b);
 t_matrix	*multiply_matrices(t_matrix *a, t_matrix *b);
