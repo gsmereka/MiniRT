@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 15:45:03 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/07/21 17:50:12 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/07/31 19:36:52 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,6 @@ t_matrix	*create_matrix(double **content, int cols)
 		rows++;
 	matrix->rows = rows;
 	matrix->cols = cols;
+	matrix->determinant = get_determinant(matrix);
 	return (matrix);
 }

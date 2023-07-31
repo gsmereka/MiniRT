@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 23:35:10 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/07/10 21:25:48 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/07/31 19:50:11 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,12 @@
 
 int	are_floats_equal(double one, double two)
 {
-	if ((one - two) < EPSILON)
+	double	result;
+
+	result = one - two;
+	if (result < 0)
+		result *= -1;
+	if ((result) < EPSILON)
 		return (1);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 22:01:46 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/07/31 19:25:29 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/07/31 20:15:47 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,110 +19,124 @@ static void	test_transposing_matrix(t_data *data);*/
 static void	test_determinant(t_data *data);
 
 
-// void	putting_it_together(t_data *data) // Da pagina 63
-// {
-// 	t_matrix	*matrix;
-// 	t_matrix	*matrix_2;
-// 	t_matrix	*matrix_3;
-// 	t_matrix	*matrix_4;
-// 	t_matrix	*matrix_5;
-// 	t_tuple		*tuple;
-// 	t_tuple		*tuple_2;
-// 	t_tuple		*tuple_3;
+void	putting_it_together(t_data *data) // Da pagina 63
+{
+	t_matrix	*matrix;
+	t_matrix	*matrix_2;
+	t_matrix	*matrix_3;
+	t_matrix	*matrix_4;
+	t_matrix	*matrix_5;
+	t_tuple		*tuple;
+	t_tuple		*tuple_2;
+	t_tuple		*tuple_3;
 
-// 	(void)matrix;
-// 	(void)matrix_2;
-// 	(void)matrix_3;
-// 	(void)matrix_4;
-// 	(void)matrix_5;
-// 	(void)tuple;
-// 	(void)tuple_2;
-// 	(void)tuple_3;
+	(void)data;
+	(void)matrix;
+	(void)matrix_2;
+	(void)matrix_3;
+	(void)matrix_4;
+	(void)matrix_5;
+	(void)tuple;
+	(void)tuple_2;
+	(void)tuple_3;
 
-// 	printf("1. What happens when you invert the identity matrix?\n");
+	// printf("1. What happens when you invert the identity matrix?\n");
 	
-// 	printf("Matriz Identidade: \n");
-// 	print_matrix(data->idmatrix_4x4);
-// 	printf("\ninvertendo a matriz:\n");
-// 	// matrix = invert_matrix(data->idmatrix_4x4);
-// 	matrix = data->idmatrix_4x4; // substituir pela linha acima quando encontrar a matriz que inverte.
-// 	print_matrix(matrix);
+	// printf("Matriz Identidade: \n");
+	// print_matrix(data->idmatrix_4x4);
+	// printf("\ninvertendo a matriz:\n");
+	// matrix = inverting_matrix(data->idmatrix_4x4);
+	// print_matrix(matrix);
+	// free_matrix(matrix);
 
 
 
 
+	// printf("2. What do you get when you multiply a matrix by its inverse?\n");
 
-// 	printf("2. What do you get when you multiply a matrix by its inverse?\n");
+	// matrix = str_to_matrix("1,2,3,4|2,2,3,4|3,3,3,4|4,4,4,4");
+	// if (!matrix)
+	// 	return ;
 
-// 	matrix = str_to_matrix("1,2,3,4|2,2,3,4|3,3,3,4|4,4,4,4");
-// 	// matrix_2 = invert_matrix(matrix)
-// 	matrix_2 = str_to_matrix("1,2,3,4|2,2,3,4|3,3,3,4|4,4,4,4"); // substituir pela linha acima quando encontrar a matriz que inverte.
+	// printf("%lf\n", matrix->determinant);
+	// printf("Matriz Original:\n");
+	// print_matrix(matrix);
 
-// 	printf("Matriz Original:\n");
-// 	print_matrix(matrix);
-// 	printf("Inversa da Matriz:\n")
-// 	print_matrix(matrix_2);
+	// matrix_2 = inverting_matrix(matrix);
+	// if (!matrix_2)
+	// {
+	// 	free_matrix(matrix);
+	// 	return ;
+	// }
+	// printf("Inversa da Matriz:\n");
+	// print_matrix(matrix_2);
 
-// 	matrix_3 = multiply_matrices(matrix, matrix_2);
-// 	printf("Multiplicação da matriz pela sua inversa:\n")
-// 	print_matrix(matrix_3);
+	// matrix_3 = multiply_matrices(matrix, matrix_2);
+	// if (!matrix_3)
+	// {
+	// 	free_matrix(matrix);
+	// 	free_matrix(matrix_2);
+	// 	return ;
+	// }
+	// printf("Multiplicação da matriz pela sua inversa:\n");
+	// print_matrix(matrix_3);
 
-// 	free_matrix(matrix);
-// 	free_matrix(matrix_2);
-// 	free_matrix(matrix_3);
+	// free_matrix(matrix);
+	// free_matrix(matrix_2);
+	// free_matrix(matrix_3);
 
 
-// 	printf("3. Is there any difference between the inverse of the transpose of a matrix, and the transpose of the inverse?\n");
+	// printf("3. Is there any difference between the inverse of the transpose of a matrix, and the transpose of the inverse?\n");
 	
-// 	matrix = str_to_matrix("1,2,3,4|2,2,3,4|3,3,3,4|4,4,4,4");
+	// matrix = str_to_matrix("1,2,-3,-4|5,6,-7,8|9,10,-11,12|-13,14,15,16");
 
-// 	printf("Matriz Original:\n");
-// 	print_matrix(matrix);
+	// printf("Matriz Original:\n");
+	// print_matrix(matrix);
 
-// 	matrix_2 = transposing_matrix(matrix);
-// 	printf("Matriz Transposta:\n");
-// 	print_matrix(matrix_2);
+	// matrix_2 = transposing_matrix(matrix);
+	// printf("Matriz Transposta:\n");
+	// print_matrix(matrix_2);
 
-// 	// matrix_3 = invert_matrix(matrix);
-// 	matrix_3 = str_to_matrix("1,2,3,4|2,2,3,4|3,3,3,4|4,4,4,4"); // substituir pela linha acima quando a função da inversa estiver pronta.
-// 	printf("Matriz Inversa:\n");
+	// matrix_3 = inverting_matrix(matrix);
+	// printf("Matriz Inversa:\n");
+	// print_matrix(matrix_3);
 
-// 	matrix_4 = multiply_matrices(matrix_2, matrix_3);
-// 	printf("Transposta multiplicada pela inversa:\n");
-// 	print_matrix(matrix_4);
+	// matrix_4 = multiply_matrices(matrix_2, matrix_3);
+	// printf("Transposta multiplicada pela inversa:\n");
+	// print_matrix(matrix_4);
 
-// 	matrix_5 = multiply_matrices(matrix_3, matrix_2);
-// 	printf("Inversa multiplicada Pela Transposta\n:")
-// 	print_matrix(matrix_5);
+	// matrix_5 = multiply_matrices(matrix_3, matrix_2);
+	// printf("Inversa multiplicada Pela Transposta\n:");
+	// print_matrix(matrix_5);
 
-// 	free_matrix(matrix);
-// 	free_matrix(matrix_2);
-// 	free_matrix(matrix_3);
-// 	free_matrix(matrix_4);
-// 	free_matrix(matrix_5);
-
-
+	// free_matrix(matrix);
+	// free_matrix(matrix_2);
+	// free_matrix(matrix_3);
+	// free_matrix(matrix_4);
+	// free_matrix(matrix_5);
 
 
 
-// 	printf("4. Remember how multiplying the identity matrix by a tuple gives you the tuple, unchanged? Now, try changing any single element of the identity matrix to a different num\n");
 
-// 	printf("Matriz Identidade: \n");
-// 	print_matrix(data->idmatrix_4x4);
 
-// 	tuple = ft_calloc(1, sizeof(t_tuple));
-// 	tuple->x = -1;
-// 	tuple->y = 1;
-// 	tuple->z = -1;
-// 	tuple->w = 1;
-// 	printf("Tupla:\n");
-// 	print_tuple(tuple);
+	// printf("4. Remember how multiplying the identity matrix by a tuple gives you the tuple, unchanged? Now, try changing any single element of the identity matrix to a different num\n");
 
-// 	printf("Multiplicando Matriz identidade pela tupla:\n")
-// 	tuple_2	= multiply_matrix_with_tuple(data->idmatrix_4x4, tuple);
-// 	print_tuple(tuple_2);
-// 	free_tuple(tuple);
-// }
+	// printf("Matriz Identidade: \n");
+	// print_matrix(data->idmatrix_4x4);
+
+	// tuple = ft_calloc(1, sizeof(t_tuple));
+	// tuple->x = -1;
+	// tuple->y = 1;
+	// tuple->z = -1;
+	// tuple->w = 1;
+	// printf("Tupla:\n");
+	// print_tuple(tuple);
+
+	// printf("Multiplicando Matriz identidade pela tupla:\n")
+	// tuple_2	= multiply_matrix_with_tuple(data->idmatrix_4x4, tuple);
+	// print_tuple(tuple_2);
+	// free_tuple(tuple);
+}
 
 void	test_inversion(t_data	*data)
 {
@@ -155,6 +169,8 @@ void	test_matrices_operations(int argc, char **argv, t_data *data) // Retirar de
 	//exit_error("", 0, data);
 	test_transposing_matrix(data);
 	//exit_error("", 0, data);*/
+	putting_it_together(data);
+	exit_error("", 0, data);
 	test_inversion(data);
 	exit_error("", 0, data);
 	test_determinant(data);

@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 16:18:21 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/07/21 17:28:45 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/07/31 20:11:54 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,8 @@ static double	*create_row(double **a, double **b, int row, int max_cols)
 			new_row[col] += (a[row][element] * b[element][col]);
 			element++;
 		}
+		if (are_floats_equal(new_row[col], -0.0))
+			new_row[col] = 0;
 		col++;
 	}
 	return (new_row);

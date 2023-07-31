@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 01:31:11 by gde-mora          #+#    #+#             */
-/*   Updated: 2023/07/31 19:23:58 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/07/31 20:13:06 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@ static	int	invert_content(double **new_content, t_matrix *matrix)
 		{
 			cofactor = get_cofactor(matrix, rows, cols);
 			new_content[rows][cols] = cofactor / matrix->determinant;
+			if (are_floats_equal(new_content[rows][cols], -0.0))
+				new_content[rows][cols] = 0;
 		}
 	}
 	return (1);

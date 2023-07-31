@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gde-mora <gde-mora@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 20:16:42 by gde-mora          #+#    #+#             */
-/*   Updated: 2023/07/21 22:15:52 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/07/31 20:08:50 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,17 @@ void	print_matrix(t_matrix *matrix_struct) // Retirar depois
 	double	**matrix;
 
 	i = 0;
+	if (!matrix_struct)
+	{
+		printf("Não ttinha matriz\n");
+		return ;
+	}
 	matrix = matrix_struct->content;
+	if (!matrix)
+	{
+		printf("a matriz não tinha conteudo\n");
+		return ;
+	}
 	printf("Resultado:\n");
 	while (matrix[i])
 	{
@@ -57,7 +67,7 @@ int	main(int argc, char **argv)
 {
 	t_data	data;
 
-  ft_bzero(&data, sizeof(data));
+  	ft_bzero(&data, sizeof(data));
 	init_idmatrices(&data);
 	test_matrices_operations(argc, argv, &data); // retirar depois
 	ft_printf("Iniciando\n"); //
