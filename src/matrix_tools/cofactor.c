@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cofactor.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gde-mora <gde-mora@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 22:59:18 by gde-mora          #+#    #+#             */
-/*   Updated: 2023/07/24 23:10:18 by gde-mora         ###   ########.fr       */
+/*   Updated: 2023/07/31 18:54:42 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ double cofactor(t_matrix *matrix, int row, int col) //mudar nome pra get_cofacto
 	if (!submatrix)
 		return (0); //?
 	cofactor = get_determinant(submatrix) * signal;
+	if (cofactor == -0)
+		cofactor = 0;
 	free_matrix(submatrix);
 	return (cofactor);
 }

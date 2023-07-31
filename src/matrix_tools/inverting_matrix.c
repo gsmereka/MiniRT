@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 01:31:11 by gde-mora          #+#    #+#             */
-/*   Updated: 2023/07/31 18:33:39 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/07/31 18:55:06 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,17 @@ t_matrix *inverting_matrix(t_matrix *matrix)
     rows = -1;
     while (++rows < matrix->rows)
     {
+        new_content[rows] = ft_calloc(matrix->cols, sizeof(double));
+        if (!new_content[rows])
+        {
+            free_array((void **)new_content);
+            return (NULL);
+        }
         cols = -1;
         while (++cols < matrix->cols)
         {
             cofact = cofactor(matrix, rows, cols);
-            new_content[cols][rows] = cofact / matrix->determinant;
+            new_content[rows][cols] = cofact / matrix->determinant;
         }
     }
     new_matrix = create_matrix(new_content, matrix->cols);

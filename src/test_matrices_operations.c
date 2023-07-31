@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   test_matrices_operations.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gde-mora <gde-mora@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 22:01:46 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/07/24 22:38:40 by gde-mora         ###   ########.fr       */
+/*   Updated: 2023/07/31 18:52:27 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,26 @@ static void	test_multiply_matrices(t_data *data);
 static void	test_transposing_matrix(t_data *data);*/
 static void	test_determinant(t_data *data);
 
+void	test_inversion(t_data	*data)
+{
+	t_matrix	*matrix;
+	t_matrix	*matrix_2;
+	t_matrix	*matrix_3;
+
+	(void)data;
+	(void)matrix;
+	(void)matrix_2;
+	(void)matrix_3;
+	data->idmatrix_4x4->determinant = get_determinant(data->idmatrix_4x4);
+	matrix = inverting_matrix(data->idmatrix_4x4);
+	print_matrix(data->idmatrix_4x4);
+	printf("%lf\n", get_determinant(data->idmatrix_4x4));
+	if (matrix)
+	{
+		print_matrix(matrix);
+		free_matrix(matrix);
+	}
+}
 void	test_matrices_operations(int argc, char **argv, t_data *data) // Retirar depois, do makefile tb
 {
 	(void)argc;
@@ -31,6 +51,8 @@ void	test_matrices_operations(int argc, char **argv, t_data *data) // Retirar de
 	//exit_error("", 0, data);
 	test_transposing_matrix(data);
 	//exit_error("", 0, data);*/
+	test_inversion(data);
+	exit_error("", 0, data);
 	test_determinant(data);
 	exit_error("", 0, data);
 }
