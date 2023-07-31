@@ -12,7 +12,7 @@
 
 #include "../../headers/miniRT.h"
 
-double cofactor(t_matrix *matrix, int row, int col)
+double cofactor(t_matrix *matrix, int row, int col) //mudar nome pra get_cofactor
 {
 	double		cofactor;
 	int			signal;
