@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 22:01:46 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/07/31 20:31:30 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/07/31 20:33:53 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,6 +165,7 @@ void	test_inversion(t_data	*data)
 		free_matrix(matrix);
 	}
 }
+
 void	test_matrices_operations(int argc, char **argv, t_data *data) // Retirar depois, do makefile tb
 {
 	(void)argc;
