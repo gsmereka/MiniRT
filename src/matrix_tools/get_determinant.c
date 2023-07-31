@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_determinant.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gde-mora <gde-mora@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 20:49:07 by gde-mora          #+#    #+#             */
-/*   Updated: 2023/07/24 23:11:40 by gde-mora         ###   ########.fr       */
+/*   Updated: 2023/07/31 19:19:25 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ double	get_determinant(t_matrix *matrix)
 	{
 		j = -1;
 		while (++j < matrix->cols)
-			determinant += cofactor(matrix, 0, j) * matrix->content[0][j];
+			determinant += get_cofactor(matrix, 0, j) * matrix->content[0][j];
 	}
 	return (determinant);
 }

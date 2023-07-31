@@ -6,7 +6,7 @@
 #    By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/20 18:26:17 by gde-mora          #+#    #+#              #
-#    Updated: 2023/07/31 18:33:21 by gsmereka         ###   ########.fr        #
+#    Updated: 2023/07/31 19:19:25 by gsmereka         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,7 +39,7 @@ SRC 	=	src/test_matrices_operations.c \
 			src/matrix_tools/multiply_matrix_with_tuple.c \
 			src/matrix_tools/get_submatrix.c \
 			src/matrix_tools/get_determinant.c \
-			src/matrix_tools/cofactor.c \
+			src/matrix_tools/get_cofactor.c \
 			src/parsing/validate_scene_file.c \
 			src/parsing/read_scene_file.c \
 			src/parsing/token_utils.c \

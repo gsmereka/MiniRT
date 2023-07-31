@@ -6,43 +6,53 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 01:31:11 by gde-mora          #+#    #+#             */
-/*   Updated: 2023/07/31 18:55:06 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/07/31 19:23:58 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/miniRT.h"
 
-t_matrix *inverting_matrix(t_matrix *matrix)
-{
-    t_matrix    *new_matrix;
-    double      **new_content;
-    int			rows;
-	int			cols;
-    double      cofact; //mudar nome pra cofactor
+static	int	invert_content(double **new_content, t_matrix *matrix);
 
-    if (!matrix)
-        return (NULL);
-    if (are_floats_equal(matrix->determinant, 0.0))
-        return (NULL);
-    new_content = ft_calloc(matrix->rows + 1, sizeof(double *));
+t_matrix	*inverting_matrix(t_matrix *matrix)
+{
+	t_matrix	*new_matrix;
+	double		**new_content;
+
+	if (!matrix)
+		return (NULL);
+	if (are_floats_equal(matrix->determinant, 0.0))
+		return (NULL);
+	new_content = ft_calloc(matrix->rows + 1, sizeof(double *));
 	if (!new_content)
 		return (NULL);
-    rows = -1;
-    while (++rows < matrix->rows)
-    {
-        new_content[rows] = ft_calloc(matrix->cols, sizeof(double));
-        if (!new_content[rows])
-        {
-            free_array((void **)new_content);
-            return (NULL);
-        }
-        cols = -1;
-        while (++cols < matrix->cols)
-        {
-            cofact = cofactor(matrix, rows, cols);
-            new_content[rows][cols] = cofact / matrix->determinant;
-        }
-    }
-    new_matrix = create_matrix(new_content, matrix->cols);
-    return (new_matrix);
+	if (!invert_content(new_content, matrix))
+		return (NULL);
+	new_matrix = create_matrix(new_content, matrix->cols);
+	return (new_matrix);
+}
+
+static	int	invert_content(double **new_content, t_matrix *matrix)
+{
+	int			rows;
+	int			cols;
+	double		cofactor;
+
+	rows = -1;
+	while (++rows < matrix->rows)
+	{
+		new_content[rows] = ft_calloc(matrix->cols, sizeof(double));
+		if (!new_content[rows])
+		{
+			free_array((void **)new_content);
+			return (0);
+		}
+		cols = -1;
+		while (++cols < matrix->cols)
+		{
+			cofactor = get_cofactor(matrix, rows, cols);
+			new_content[rows][cols] = cofactor / matrix->determinant;
+		}
+	}
+	return (1);
 }
