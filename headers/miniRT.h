@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   miniRT.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gde-mora <gde-mora@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 20:17:31 by gde-mora          #+#    #+#             */
 /*   Updated: 2023/08/02 15:48:26 by gsmereka         ###   ########.fr       */
@@ -132,6 +132,7 @@ t_matrix	*get_submatrix(t_matrix *matrix, int row, int col);
 double		get_determinant(t_matrix *matrix);
 double		get_cofactor(t_matrix *matrix, int row, int col);
 t_matrix	*inverting_matrix(t_matrix *matrix);
+t_matrix	*copy_matrix(t_matrix *src);
 
 // token utils
 t_token		*create_token(char **args);
