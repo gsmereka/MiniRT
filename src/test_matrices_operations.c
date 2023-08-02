@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   test_matrices_operations.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gde-mora <gde-mora@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 22:01:46 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/07/31 20:33:53 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/08/02 21:02:46 by gde-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,7 @@ void	putting_it_together(t_data *data) // Da pagina 63
 
 
 
-
+	/*
 	printf("4. Remember how multiplying the identity matrix by a tuple gives you the tuple, unchanged? Now, try changing any single element of the identity matrix to a different num\n");
 
 	printf("Matriz Identidade: \n");
@@ -144,7 +144,20 @@ void	putting_it_together(t_data *data) // Da pagina 63
 	free(tuple);
 	free(tuple_2);
 	free(tuple_3);
+	free_matrix(matrix);*/
+
+	
+	printf("5. Test copy matrix");
+	matrix = str_to_matrix("1,2,3,4|2,2,3,4|3,3,3,4|4,4,4,4");
+	if (!matrix)
+	 	return ;
+	matrix_2 = copy_matrix(matrix);
+	printf("\nMatrix:\n");
+	print_matrix(matrix);
+	printf("\nMatrix 2:\n");
+	print_matrix(matrix_2);
 	free_matrix(matrix);
+	free_matrix(matrix_2);
 }
 
 void	test_inversion(t_data	*data)
