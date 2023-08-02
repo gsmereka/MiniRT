@@ -6,13 +6,13 @@
 /*   By: gde-mora <gde-mora@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 21:24:17 by gde-mora          #+#    #+#             */
-/*   Updated: 2023/08/02 21:33:04 by gde-mora         ###   ########.fr       */
+/*   Updated: 2023/08/02 22:46:29 by gde-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/miniRT.h"
 
-t_matrix	*scaling(t_data *data, double x, double y, double z) //como fazer a diferenciação de ponto e vetor?
+t_matrix	*scaling(t_data *data, double x, double y, double z)
 {
 	t_matrix	*matrix;
 

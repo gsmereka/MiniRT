@@ -6,7 +6,7 @@
 /*   By: gde-mora <gde-mora@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 20:17:31 by gde-mora          #+#    #+#             */
-/*   Updated: 2023/08/02 22:21:08 by gde-mora         ###   ########.fr       */
+/*   Updated: 2023/08/02 23:33:10 by gde-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,6 +119,9 @@ t_color	*multiply_color_x_color(t_color *one, t_color *two);
 // Matrix Transformations
 t_matrix	*translation(t_matrix *src);
 t_matrix	*scaling(t_data *data, double x, double y, double z);
+t_matrix	*rotation_x(t_data *data, double  radians);
+t_matrix	*rotation_y(t_data *data, double  radians);
+t_matrix	*rotation_z(t_data *data, double  radians);
 
 // matrix_tools
 void		init_idmatrices(t_data *data);
