@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   test_matrices_operations.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gde-mora <gde-mora@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 22:01:46 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/08/02 19:06:23 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/08/03 00:39:27 by gde-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,90 @@ static void	test_multiply_matrix_with_tuple(t_data *data);
 static void	test_multiply_matrices(t_data *data);
 static void	test_transposing_matrix(t_data *data);*/
 static void	test_determinant(t_data *data);
+
+
+void	chaining_transformations(t_data *data)
+{
+	t_matrix	*translation_matrix;
+	t_matrix	*inverse_matrix;
+	t_matrix	*scaling_matrix;
+	t_matrix	*rotation_x_matrix;
+	t_matrix	*shearing_matrix;
+	t_matrix	*ultimate_transformation;
+	t_tuple		*point;
+	t_tuple		*point_2;
+	t_tuple		*point_3;
+	t_tuple		*point_4;
+	t_tuple		*point_5;
+	t_tuple		*point_6;
+	t_matrix	*matrix_1;
+	t_matrix	*matrix_2;
+	t_matrix	*matrix_3;
+
+	(void)data;
+	(void)translation_matrix;
+	(void)point;
+	(void)point_2;
+	(void)point_3;
+	(void)point_4;
+	(void)point_5;
+	(void)point_6;
+	(void)translation_matrix;
+	(void)inverse_matrix;
+	(void)rotation_x_matrix;
+	(void)shearing_matrix;
+	(void)scaling_matrix;
+	(void)ultimate_transformation;
+	(void)matrix_1;
+	(void)matrix_2;
+	(void)matrix_3;
+
+	point = create_point(1, 0, 1);
+	rotation_x_matrix = rotation_x(data, M_PI / 2);
+	scaling_matrix = scaling(data, 5, 5, 5);
+	translation_matrix = translation(10, 5, 7, data);
+
+
+
+	// printf("Scenario: Individual transformations are applied in sequence\n");
+
+	// 	printf("Aplicando Rotação Primeiro:\n");
+	// 	point_2 = multiply_matrix_with_tuple(rotation_x_matrix, point);
+	// 	print_tuple(point_2);
+
+	// 	printf("Aplicando scaling em seguida:\n");
+	// 	point_3 = multiply_matrix_with_tuple(scaling_matrix, point_2);
+	// 	print_tuple(point_3);
+
+	// 	printf("Aplicando translação em seguida:\n");
+	// 	point_4 = multiply_matrix_with_tuple(translation_matrix, point_3);
+	// 	print_tuple(point_4);
+
+	// 	free(point);
+	// 	free(point_2);
+	// 	free(point_3);
+	// 	free(point_4);
+	// 	free_matrix(scaling_matrix);
+	// 	free_matrix(translation_matrix);
+	// 	free_matrix(rotation_x_matrix);
+	
+	
+	// printf(" Chained transformations must be applied in reverse order\n");
+	
+	// 	matrix_1 = multiply_matrices(translation_matrix, scaling_matrix);
+	// 	ultimate_transformation = multiply_matrices(matrix_1, rotation_x_matrix);
+	// 	point_2 = multiply_matrix_with_tuple(ultimate_transformation, point);
+	// 	print_matrix(ultimate_transformation);
+	// 	print_tuple(point_2);
+
+	// 	free(point_2);
+	// 	free(point);
+	// 	free_matrix(scaling_matrix);
+	// 	free_matrix(translation_matrix);
+	// 	free_matrix(ultimate_transformation);
+	// 	free_matrix(matrix_1);
+	// 	free_matrix(rotation_x_matrix);
+}
 
 
 void	putting_it_together(t_data *data) // Da pagina 63
@@ -200,35 +284,61 @@ void	putting_it_together(t_data *data) // Da pagina 63
 	free(tuple_2);*/
 
 
-	/*printf("7. Rotation transformation");
+	// printf("7. Rotation transformation");
 	
-	printf("\nRotation Around the X Axis\n");
-	tuple = create_point(0, 1, 0);
-	matrix = rotation_x(data, M_PI/4);
-	matrix_2 = rotation_x(data, M_PI/2);
+	// printf("\nRotation Around the X Axis\n");
+	// tuple = create_point(0, 1, 0);
+	// matrix = rotation_x(data, M_PI/4);
+	// matrix_2 = rotation_x(data, M_PI/2);
+	// tuple_2 = multiply_matrix_with_tuple(matrix, tuple);
+	// tuple_3 = multiply_matrix_with_tuple(matrix_2, tuple);
+	// print_tuple(tuple_2);
+	// print_tuple(tuple_3);
+	// free_matrix(matrix);
+	// free_matrix(matrix_2);
+	// free(tuple);
+	// free(tuple_2);
+	// free(tuple_3);
+	// printf("\nInverse\n");
+	// tuple = create_point(0, 1, 0);
+	// matrix = rotation_x(data, M_PI/4);
+	// matrix_2 = inverting_matrix(matrix);
+	// tuple_2 = multiply_matrix_with_tuple(matrix_2, tuple);
+	// print_tuple(tuple_2);
+	// free_matrix(matrix);
+	// free_matrix(matrix_2);
+	// free(tuple);
+	// free(tuple_2);
 
-	tuple_2 = multiply_matrix_with_tuple(matrix, tuple);
-	tuple_3 = multiply_matrix_with_tuple(matrix_2, tuple);
-	print_tuple(tuple_2);
-	print_tuple(tuple_3);
+	// printf("\nRotation Around the Y Axis\n");
+	// tuple = create_point(0, 0, 1);
+	// matrix = rotation_y(data, M_PI/4);
+	// matrix_2 = rotation_y(data, M_PI/2);
+	// tuple_2 = multiply_matrix_with_tuple(matrix, tuple);
+	// tuple_3 = multiply_matrix_with_tuple(matrix_2, tuple);
+	// print_tuple(tuple_2);
+	// print_tuple(tuple_3);
+	// free_matrix(matrix);
+	// free_matrix(matrix_2);
+	// free(tuple);
+	// free(tuple_2);
+	// free(tuple_3);
 	
-	free_matrix(matrix);
-	free_matrix(matrix_2);
-	free(tuple);
-	free(tuple_2);
-	free(tuple_3);
+	// printf("\nRotation Around the Z Axis\n");
+	// tuple = create_point(0, 1, 0);
+	// matrix = rotation_z(data, M_PI/4);
+	// matrix_2 = rotation_z(data, M_PI/2);
+	// tuple_2 = multiply_matrix_with_tuple(matrix, tuple);
+	// tuple_3 = multiply_matrix_with_tuple(matrix_2, tuple);
+	// print_tuple(tuple_2);
+	// print_tuple(tuple_3);
+	// free_matrix(matrix);
+	// free_matrix(matrix_2);
+	// free(tuple);
+	// free(tuple_2);
+	// free(tuple_3);
 
-	printf("\nInverse\n");
-	tuple = create_point(0, 1, 0);
-	matrix = rotation_x(data, M_PI/4);
-	matrix_2 = inverting_matrix(matrix);
-	tuple_2 = multiply_matrix_with_tuple(matrix_2, tuple);
-	print_tuple(tuple_2);
-
-	free_matrix(matrix);
-	free_matrix(matrix_2);
-	free(tuple);
-	free(tuple_2);*/
+	chaining_transformations(data);
 }
 
 void	test_inversion(t_data	*data)
@@ -250,260 +360,6 @@ void	test_inversion(t_data	*data)
 	}
 }
 
-void	tests_translations(t_data *data)
-{
-	t_matrix	*translation_matrix;
-	t_matrix	*inverse;
-	t_tuple		*point;
-	t_tuple		*point_2;
-
-	(void)data;
-	(void)translation_matrix;
-	(void)point;
-	(void)point_2;
-	(void)inverse;
-
-	// printf("Translação de ponto simples\n");
-	// translation_matrix = translation(5, -3, 2, data);
-	// point = ft_calloc(1, sizeof(t_tuple));
-	// point->x = -3;
-	// point->y = 4;
-	// point->z = 5;
-	// point->w = 1;
-	// point_2 = multiply_matrix_with_tuple(translation_matrix, point);
-	// print_tuple(point_2);
-	// free(point);
-	// free(point_2);
-	// free_matrix(translation_matrix);
-
-
-	printf("Translação de ponto reversa\n");
-	translation_matrix = translation(5, -3, 2, data);
-	print_matrix(translation_matrix);
-	inverse = inverting_matrix(translation_matrix);
-	print_matrix(inverse);
-	point = ft_calloc(1, sizeof(t_tuple));
-	point->x = -3;
-	point->y = 4;
-	point->z = 5;
-	point->w = 1;
-	point_2 = multiply_matrix_with_tuple(inverse, point);
-	print_tuple(point_2);
-	free(point);
-	free(point_2);
-	free_matrix(translation_matrix);
-	free_matrix(inverse);
-
-
-	// printf("Translação de vetores\n");
-	// translation_matrix = translation(5, -3, 2, data);
-	// point = ft_calloc(1, sizeof(t_tuple));
-	// point->x = -3;
-	// point->y = 4;
-	// point->z = 5;
-	// point->w = 0;
-	// point_2 = multiply_matrix_with_tuple(translation_matrix, point);
-	// print_tuple(point_2);
-	// free(point);
-	// free(point_2);
-	// free_matrix(translation_matrix);
-}
-
-void	tests_shearing(t_data *data)
-{
-	t_matrix	*shearing_matrix;
-	t_matrix	*inverse;
-	t_tuple		*point;
-	t_tuple		*point_2;
-	double		proportions[6] = {0,0,0,0,0,0};
-
-	(void)proportions;
-	(void)data;
-	(void)shearing_matrix;
-	(void)point;
-	(void)point_2;
-	(void)inverse;
-
-	printf("A shearing transformation moves x in proportion to y\n");
-	proportions[0] = 1;
-	shearing_matrix = shearing(proportions, data);
-	point = create_point(2,3,4);
-	point_2 = multiply_matrix_with_tuple(shearing_matrix, point);
-	print_tuple(point_2);
-	free(point);
-	free(point_2);
-	free_matrix(shearing_matrix);
-	ft_bzero(&proportions, sizeof(proportions));
-
-	printf("A shearing transformation moves x in proportion to z\n");
-	proportions[1] = 400;
-	shearing_matrix = shearing(proportions, data);
-	point = create_point(2,3,4);
-	point_2 = multiply_matrix_with_tuple(shearing_matrix, point);
-	print_tuple(point_2);
-	free(point);
-	free(point_2);
-	free_matrix(shearing_matrix);
-	ft_bzero(&proportions, sizeof(proportions));
-
-	printf("A shearing transformation moves y in proportion to x\n");
-	proportions[2] = 1;
-	shearing_matrix = shearing(proportions, data);
-	point = create_point(2,3,4);
-	point_2 = multiply_matrix_with_tuple(shearing_matrix, point);
-	print_tuple(point_2);
-	free(point);
-	free(point_2);
-	free_matrix(shearing_matrix);
-	ft_bzero(&proportions, sizeof(proportions));
-
-	printf("A shearing transformation moves y in proportion to z\n");
-	proportions[3] = 1;
-	shearing_matrix = shearing(proportions, data);
-	point = create_point(2,3,4);
-	point_2 = multiply_matrix_with_tuple(shearing_matrix, point);
-	print_tuple(point_2);
-	free(point);
-	free(point_2);
-	free_matrix(shearing_matrix);
-	ft_bzero(&proportions, sizeof(proportions));
-
-	printf("A shearing transformation moves z in proportion to x\n");
-	proportions[4] = 1;
-	shearing_matrix = shearing(proportions, data);
-	point = create_point(2,3,4);
-	point_2 = multiply_matrix_with_tuple(shearing_matrix, point);
-	print_tuple(point_2);
-	free(point);
-	free(point_2);
-	free_matrix(shearing_matrix);
-	ft_bzero(&proportions, sizeof(proportions));
-
-	printf("A shearing transformation moves z in proportion to ys\n");
-	proportions[5] = 1;
-	shearing_matrix = shearing(proportions, data);
-	point = create_point(2,3,4);
-	point_2 = multiply_matrix_with_tuple(shearing_matrix, point);
-	print_tuple(point_2);
-	free(point);
-	free(point_2);
-	free_matrix(shearing_matrix);
-	ft_bzero(&proportions, sizeof(proportions));
-
-	// printf("shearing de ponto reversa\n");
-	// shearing_matrix = shearing(5, -3, 2, data);
-	// inverse = inverting_matrix(shearing_matrix);
-	// point = ft_calloc(1, sizeof(t_tuple));
-	// point->x = -3;
-	// point->y = 4;
-	// point->z = 5;
-	// point->w = 1;
-	// point_2 = multiply_matrix_with_tuple(inverse, point);
-	// print_tuple(point_2);
-	// free(point);
-	// free(point_2);
-	// free_matrix(shearing_matrix);
-	// free_matrix(inverse);
-
-
-	// printf("shearing de vetores\n");
-	// shearing_matrix = shearing(5, -3, 2, data);
-	// point = ft_calloc(1, sizeof(t_tuple));
-	// point->x = -3;
-	// point->y = 4;
-	// point->z = 5;
-	// point->w = 0;
-	// point_2 = multiply_matrix_with_tuple(shearing_matrix, point);
-	// print_tuple(point_2);
-	// free(point);
-	// free(point_2);
-	// free_matrix(shearing_matrix);
-}
-
-void	chaining_transformations(t_data *data)
-{
-	t_matrix	*translation_matrix;
-	t_matrix	*inverse_matrix;
-	t_matrix	*scaling_matrix;
-	t_matrix	*rotation_x_matrix;
-	t_matrix	*shearing_matrix;
-	t_matrix	*ultimate_transformation;
-	t_tuple		*point;
-	t_tuple		*point_2;
-	t_tuple		*point_3;
-	t_tuple		*point_4;
-	t_tuple		*point_5;
-	t_tuple		*point_6;
-	t_matrix	*matrix_1;
-	t_matrix	*matrix_2;
-	t_matrix	*matrix_3;
-
-	(void)data;
-	(void)translation_matrix;
-	(void)point;
-	(void)point_2;
-	(void)point_3;
-	(void)point_4;
-	(void)point_5;
-	(void)point_6;
-	(void)translation_matrix;
-	(void)inverse_matrix;
-	(void)rotation_x_matrix;
-	(void)shearing_matrix;
-	(void)scaling_matrix;
-	(void)ultimate_transformation;
-	(void)matrix_1;
-	(void)matrix_2;
-	(void)matrix_3;
-
-	point = create_point(1, 0, 1);
-	// rotation_x_matrix = rotation(M_PI / 2, data);
-	scaling_matrix = scaling(data, 5, 5, 5);
-	translation_matrix = translation(10, 5, 7, data);
-
-
-
-	printf("Scenario: Individual transformations are applied in sequence\n");
-
-		printf("Aplicando Rotação Primeiro:\n");
-		// point_2 = multiply_matrix_with_tuple(rotation_x_matrix, point);
-		// print_tuple(point_2);
-
-		printf("Aplicando scaling em seguida:\n");
-		// point_3 = multiply_matrix_with_tuple(scaling_matrix, point_2);
-		point_3 = multiply_matrix_with_tuple(scaling_matrix, point);
-		print_tuple(point_3);
-
-		printf("Aplicando translação em seguida:\n");
-		point_4 = multiply_matrix_with_tuple(translation_matrix, point_3);
-		print_tuple(point_4);
-
-		free(point);
-		// free(point_2);
-		free(point_3);
-		free(point_4);
-		free_matrix(scaling_matrix);
-		free_matrix(translation_matrix);
-		// free_matrix(rotation_x_matrix);
-	
-	
-	// printf(" Chained transformations must be applied in reverse order\n");
-	
-	// 	matrix_1 = multiply_matrices(translation_matrix, scaling_matrix);
-	// 	ultimate_transformation = multiply_matrices(matrix_1, rotation_x_matrix);
-	// 	point_2 = multiply_matrix_with_tuple(ultimate_transformation, point);
-
-	// 	print_tuple(point_2);
-
-	// 	free(point_2)
-	// 	free(point);
-	// 	free_matrix(scaling_matrix);
-	// 	free_matrix(translation_matrix);
-	// 	free_matrix(ultimate_transformation);
-	// 	free_matrix(matrix_1);
-	// 	free_matrix(rotation_x_matrix);
-}
-
 void	test_matrices_operations(int argc, char **argv, t_data *data) // Retirar depois, do makefile tb
 {
 	(void)argc;
@@ -517,8 +373,6 @@ void	test_matrices_operations(int argc, char **argv, t_data *data) // Retirar de
 	//exit_error("", 0, data);
 	test_transposing_matrix(data);
 	//exit_error("", 0, data);*/
-	test_inversion(data);
-	exit_error("", 0, data);
 	putting_it_together(data);
 	exit_error("", 0, data);
 	test_inversion(data);
