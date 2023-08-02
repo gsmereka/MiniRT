@@ -6,7 +6,7 @@
 #    By: gde-mora <gde-mora@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/20 18:26:17 by gde-mora          #+#    #+#              #
-#    Updated: 2023/08/02 15:49:16 by gsmereka         ###   ########.fr        #
+#    Updated: 2023/08/02 22:07:24 by gde-mora         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,17 +18,20 @@ SRC 	=	src/test_matrices_operations.c \
 			src/render/render.c \
 			src/render/paint_pixel.c \
 			src/render/minilibx_handlers.c \
+			src/tools/are_floats_equal.c \
 			src/tools/atod.c \
 			src/tools/free_array.c \
-			src/tools/compare_floating_points.c \
-			src/tools/tuples_operations.c \
 			src/tools/colors_operations.c \
-			src/tools/normalize_tuple.c \
-			src/tools/tuple_magnitude.c \
-			src/tools/dot_product.c \
-			src/tools/cross_product.c \
-			src/tools/pass_tuple_values.c \
+			src/tuple_tools/are_tuples_equal.c \
+			src/tuple_tools/create_tuple.c \
+			src/tuple_tools/tuples_operations.c \
+			src/tuple_tools/normalize_tuple.c \
+			src/tuple_tools/tuple_magnitude.c \
+			src/tuple_tools/dot_product.c \
+			src/tuple_tools/cross_product.c \
+			src/tuple_tools/pass_tuple_values.c \
 			src/matrix_transformations/translation.c \
+			src/matrix_transformations/scaling.c \
 			src/matrix_tools/inverting_matrix.c \
 			src/matrix_tools/init_idmatrices.c \
 			src/matrix_tools/matrices_have_diff.c \
@@ -143,6 +146,7 @@ create_obj_dir:
 	@mkdir -p $(OBJ_DIR)/src/parsing
 	@mkdir -p $(OBJ_DIR)/src/render
 	@mkdir -p $(OBJ_DIR)/src/tools
+	@mkdir -p $(OBJ_DIR)/src/tuple_tools
 	@mkdir -p $(OBJ_DIR)/src/matrix_tools
 	@mkdir -p $(OBJ_DIR)/src/matrix_transformations
 
