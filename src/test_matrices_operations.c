@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 22:01:46 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/08/02 17:26:24 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/08/02 17:59:14 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -252,6 +252,117 @@ void	tests_translations(t_data *data)
 	free_matrix(translation_matrix);
 }
 
+void	tests_shearing(t_data *data)
+{
+	t_matrix	*shearing_matrix;
+	t_matrix	*inverse;
+	t_tuple		*point;
+	t_tuple		*point_2;
+	double		proportions[6] = {0,0,0,0,0,0};
+
+	(void)proportions;
+	(void)data;
+	(void)shearing_matrix;
+	(void)point;
+	(void)point_2;
+	(void)inverse;
+
+	printf("A shearing transformation moves x in proportion to y\n");
+	proportions[0] = 1;
+	shearing_matrix = shearing(proportions, data);
+	point = create_point(2,3,4);
+	point_2 = multiply_matrix_with_tuple(shearing_matrix, point);
+	print_tuple(point_2);
+	free(point);
+	free(point_2);
+	free_matrix(shearing_matrix);
+	ft_bzero(&proportions, sizeof(proportions));
+
+	printf("A shearing transformation moves x in proportion to z\n");
+	proportions[1] = 1;
+	shearing_matrix = shearing(proportions, data);
+	point = create_point(2,3,4);
+	point_2 = multiply_matrix_with_tuple(shearing_matrix, point);
+	print_tuple(point_2);
+	free(point);
+	free(point_2);
+	free_matrix(shearing_matrix);
+	ft_bzero(&proportions, sizeof(proportions));
+
+	printf("A shearing transformation moves y in proportion to x\n");
+	proportions[2] = 1;
+	shearing_matrix = shearing(proportions, data);
+	point = create_point(2,3,4);
+	point_2 = multiply_matrix_with_tuple(shearing_matrix, point);
+	print_tuple(point_2);
+	free(point);
+	free(point_2);
+	free_matrix(shearing_matrix);
+	ft_bzero(&proportions, sizeof(proportions));
+
+	printf("A shearing transformation moves y in proportion to z\n");
+	proportions[3] = 1;
+	shearing_matrix = shearing(proportions, data);
+	point = create_point(2,3,4);
+	point_2 = multiply_matrix_with_tuple(shearing_matrix, point);
+	print_tuple(point_2);
+	free(point);
+	free(point_2);
+	free_matrix(shearing_matrix);
+	ft_bzero(&proportions, sizeof(proportions));
+
+	printf("A shearing transformation moves z in proportion to x\n");
+	proportions[4] = 1;
+	shearing_matrix = shearing(proportions, data);
+	point = create_point(2,3,4);
+	point_2 = multiply_matrix_with_tuple(shearing_matrix, point);
+	print_tuple(point_2);
+	free(point);
+	free(point_2);
+	free_matrix(shearing_matrix);
+	ft_bzero(&proportions, sizeof(proportions));
+
+	printf("A shearing transformation moves z in proportion to ys\n");
+	proportions[5] = 1;
+	shearing_matrix = shearing(proportions, data);
+	point = create_point(2,3,4);
+	point_2 = multiply_matrix_with_tuple(shearing_matrix, point);
+	print_tuple(point_2);
+	free(point);
+	free(point_2);
+	free_matrix(shearing_matrix);
+	ft_bzero(&proportions, sizeof(proportions));
+
+	// printf("shearing de ponto reversa\n");
+	// shearing_matrix = shearing(5, -3, 2, data);
+	// inverse = inverting_matrix(shearing_matrix);
+	// point = ft_calloc(1, sizeof(t_tuple));
+	// point->x = -3;
+	// point->y = 4;
+	// point->z = 5;
+	// point->w = 1;
+	// point_2 = multiply_matrix_with_tuple(inverse, point);
+	// print_tuple(point_2);
+	// free(point);
+	// free(point_2);
+	// free_matrix(shearing_matrix);
+	// free_matrix(inverse);
+
+
+	// printf("shearing de vetores\n");
+	// shearing_matrix = shearing(5, -3, 2, data);
+	// point = ft_calloc(1, sizeof(t_tuple));
+	// point->x = -3;
+	// point->y = 4;
+	// point->z = 5;
+	// point->w = 0;
+	// point_2 = multiply_matrix_with_tuple(shearing_matrix, point);
+	// print_tuple(point_2);
+	// free(point);
+	// free(point_2);
+	// free_matrix(shearing_matrix);
+}
+
 void	test_matrices_operations(int argc, char **argv, t_data *data) // Retirar depois, do makefile tb
 {
 	(void)argc;
@@ -265,7 +376,7 @@ void	test_matrices_operations(int argc, char **argv, t_data *data) // Retirar de
 	//exit_error("", 0, data);
 	test_transposing_matrix(data);
 	//exit_error("", 0, data);*/
-	tests_translations(data);
+	tests_shearing(data);
 	exit_error("", 0, data);
 	putting_it_together(data);
 	exit_error("", 0, data);
