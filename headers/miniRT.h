@@ -119,6 +119,9 @@ t_color	*multiply_color_x_color(t_color *one, t_color *two);
 // Matrix Transformations
 t_matrix	*translation(double x, double y, double z, t_data *data);
 t_matrix	*scaling(t_data *data, double x, double y, double z);
+t_matrix	*rotation_x(t_data *data, double  radians);
+t_matrix	*rotation_y(t_data *data, double  radians);
+t_matrix	*rotation_z(t_data *data, double  radians);
 t_matrix	*shearing(double *proportions, t_data *data);
 
 // matrix_tools

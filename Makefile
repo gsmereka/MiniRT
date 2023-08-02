@@ -32,6 +32,7 @@ SRC 	=	src/test_matrices_operations.c \
 			src/tuple_tools/pass_tuple_values.c \
 			src/matrix_transformations/translation.c \
 			src/matrix_transformations/scaling.c \
+			src/matrix_transformations/rotation.c \
 			src/matrix_transformations/shearing.c \
 			src/matrix_tools/inverting_matrix.c \
 			src/matrix_tools/init_idmatrices.c \

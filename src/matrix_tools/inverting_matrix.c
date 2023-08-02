@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   inverting_matrix.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gde-mora <gde-mora@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 01:31:11 by gde-mora          #+#    #+#             */
 /*   Updated: 2023/08/02 19:04:38 by gsmereka         ###   ########.fr       */

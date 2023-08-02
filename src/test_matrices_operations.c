@@ -160,7 +160,31 @@ void	putting_it_together(t_data *data) // Da pagina 63
 	free_matrix(matrix_2);*/
 
 
-	printf("6. Scaling transformation");
+	/*printf("6. Scaling transformation");
+	
+	printf("\nCase 1:\n");
+	matrix = scaling(data, 2, 3, 4);
+	printf("\nMatrix:\n");
+	print_matrix(matrix);
+	tuple = create_point(-4, 6, 8);
+	tuple_2 = multiply_matrix_with_tuple(matrix, tuple);
+	print_tuple(tuple_2);
+	free_matrix(matrix);
+	free(tuple);
+	free(tuple_2);
+
+	printf("\nCase 2:\n");
+	matrix = scaling(data, 2, 3, 4);
+	printf("\nMatrix:\n");
+	print_matrix(matrix);
+	tuple = create_vector(-4, 6, 8);
+	tuple_2 = multiply_matrix_with_tuple(matrix, tuple);
+	print_tuple(tuple_2);
+	free_matrix(matrix);
+	free(tuple);
+	free(tuple_2);
+
+	printf("\nCase 3:\n");
 	matrix = scaling(data, 2, 3, 4);
 	printf("\nMatrix:\n");
 	print_matrix(matrix);
@@ -173,7 +197,38 @@ void	putting_it_together(t_data *data) // Da pagina 63
 	free_matrix(matrix);
 	free_matrix(matrix_2);
 	free(tuple);
+	free(tuple_2);*/
+
+
+	/*printf("7. Rotation transformation");
+	
+	printf("\nRotation Around the X Axis\n");
+	tuple = create_point(0, 1, 0);
+	matrix = rotation_x(data, M_PI/4);
+	matrix_2 = rotation_x(data, M_PI/2);
+
+	tuple_2 = multiply_matrix_with_tuple(matrix, tuple);
+	tuple_3 = multiply_matrix_with_tuple(matrix_2, tuple);
+	print_tuple(tuple_2);
+	print_tuple(tuple_3);
+	
+	free_matrix(matrix);
+	free_matrix(matrix_2);
+	free(tuple);
 	free(tuple_2);
+	free(tuple_3);
+
+	printf("\nInverse\n");
+	tuple = create_point(0, 1, 0);
+	matrix = rotation_x(data, M_PI/4);
+	matrix_2 = inverting_matrix(matrix);
+	tuple_2 = multiply_matrix_with_tuple(matrix_2, tuple);
+	print_tuple(tuple_2);
+
+	free_matrix(matrix);
+	free_matrix(matrix_2);
+	free(tuple);
+	free(tuple_2);*/
 }
 
 void	test_inversion(t_data	*data)
