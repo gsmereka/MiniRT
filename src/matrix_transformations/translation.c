@@ -6,14 +6,22 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 15:47:08 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/08/02 15:48:04 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/08/02 17:14:52 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/miniRT.h"
 
-t_matrix	*translation(t_matrix *src)
+t_matrix	*translation(double x, double y, double z, t_data *data)
 {
-	(void)src;
-	return (NULL);
+	t_matrix	*identidy;
+
+	identidy = copy_matrix(data->idmatrix_4x4);
+	if (!identidy)
+		return (NULL);
+	identidy->content[0][3] = x;
+	identidy->content[1][3] = y;
+	identidy->content[2][3] = z;
+	identidy->determinant = get_determinant(identidy);
+	return (identidy);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   miniRT.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gde-mora <gde-mora@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 20:17:31 by gde-mora          #+#    #+#             */
-/*   Updated: 2023/08/02 15:48:26 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/08/02 16:18:00 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,7 @@ t_color	*multiply_color_scalar(t_color *color, double factor);
 t_color	*multiply_color_x_color(t_color *one, t_color *two);
 
 // Matrix Transformations
-t_matrix	*translation(t_matrix *src);
+t_matrix	*translation(double x, double y, double z, t_data *data);
 
 // matrix_tools
 void		init_idmatrices(t_data *data);
