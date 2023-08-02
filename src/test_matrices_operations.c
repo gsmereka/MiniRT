@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 22:01:46 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/08/02 19:06:23 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/08/02 19:19:55 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -222,22 +222,22 @@ void	tests_translations(t_data *data)
 	// free_matrix(translation_matrix);
 
 
-	printf("Translação de ponto reversa\n");
-	translation_matrix = translation(5, -3, 2, data);
-	print_matrix(translation_matrix);
-	inverse = inverting_matrix(translation_matrix);
-	print_matrix(inverse);
-	point = ft_calloc(1, sizeof(t_tuple));
-	point->x = -3;
-	point->y = 4;
-	point->z = 5;
-	point->w = 1;
-	point_2 = multiply_matrix_with_tuple(inverse, point);
-	print_tuple(point_2);
-	free(point);
-	free(point_2);
-	free_matrix(translation_matrix);
-	free_matrix(inverse);
+	// printf("Translação de ponto reversa\n");
+	// translation_matrix = translation(5, -3, 2, data);
+	// print_matrix(translation_matrix);
+	// inverse = inverting_matrix(translation_matrix);
+	// print_matrix(inverse);
+	// point = ft_calloc(1, sizeof(t_tuple));
+	// point->x = -3;
+	// point->y = 4;
+	// point->z = 5;
+	// point->w = 1;
+	// point_2 = multiply_matrix_with_tuple(inverse, point);
+	// print_tuple(point_2);
+	// free(point);
+	// free(point_2);
+	// free_matrix(translation_matrix);
+	// free_matrix(inverse);
 
 
 	// printf("Translação de vetores\n");
@@ -252,6 +252,23 @@ void	tests_translations(t_data *data)
 	// free(point);
 	// free(point_2);
 	// free_matrix(translation_matrix);
+
+	printf("Translação de ponto reversa\n");
+	translation_matrix = translation(5, -3, 2, data);
+	print_matrix(translation_matrix);
+	inverse = inverting_matrix(translation_matrix);
+	print_matrix(inverse);
+	point = ft_calloc(1, sizeof(t_tuple));
+	point->x = -3;
+	point->y = 4;
+	point->z = 5;
+	point->w = 0;
+	point_2 = multiply_matrix_with_tuple(inverse, point);
+	print_tuple(point_2);
+	free(point);
+	free(point_2);
+	free_matrix(translation_matrix);
+	free_matrix(inverse);
 }
 
 void	tests_shearing(t_data *data)
@@ -462,7 +479,7 @@ void	test_matrices_operations(int argc, char **argv, t_data *data) // Retirar de
 	//exit_error("", 0, data);
 	test_transposing_matrix(data);
 	//exit_error("", 0, data);*/
-	test_inversion(data);
+	tests_translations(data);
 	exit_error("", 0, data);
 	putting_it_together(data);
 	exit_error("", 0, data);
