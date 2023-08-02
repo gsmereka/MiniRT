@@ -1,21 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pass_tuple_values.c                                :+:      :+:    :+:   */
+/*   are_floats_equal.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gde-mora <gde-mora@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/24 20:01:36 by gde-mora          #+#    #+#             */
-/*   Updated: 2023/07/24 20:02:20 by gde-mora         ###   ########.fr       */
+/*   Created: 2023/07/07 23:35:10 by gsmereka          #+#    #+#             */
+/*   Updated: 2023/08/02 21:48:48 by gde-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/miniRT.h"
+#define EPSILON 0.00001
 
-void	pass_tuple_values(t_tuple *dest, t_tuple *src) //colocar no makefile e header
+int	are_floats_equal(double one, double two)
 {
-	dest->x = src->x;
-	dest->y = src->y;
-	dest->z = src->z;
-	dest->w = src->w;
+	double	result;
+
+	result = one - two;
+	if (result < 0)
+		result *= -1;
+	if ((result) < EPSILON)
+		return (1);
+	return (0);
 }

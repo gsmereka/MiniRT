@@ -1,29 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   compare_floating_points.c                          :+:      :+:    :+:   */
+/*   are_tuples_equal.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gde-mora <gde-mora@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/07 23:35:10 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/07/31 19:50:11 by gsmereka         ###   ########.fr       */
+/*   Created: 2023/08/02 21:48:07 by gde-mora          #+#    #+#             */
+/*   Updated: 2023/08/02 22:01:42 by gde-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/miniRT.h"
-#define EPSILON 0.00001
-
-int	are_floats_equal(double one, double two)
-{
-	double	result;
-
-	result = one - two;
-	if (result < 0)
-		result *= -1;
-	if ((result) < EPSILON)
-		return (1);
-	return (0);
-}
 
 int	are_tuples_equal(t_tuple *one, t_tuple *two)
 {

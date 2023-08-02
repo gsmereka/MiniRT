@@ -6,7 +6,7 @@
 /*   By: gde-mora <gde-mora@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 20:17:31 by gde-mora          #+#    #+#             */
-/*   Updated: 2023/08/02 15:48:26 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/08/02 22:21:08 by gde-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,9 +95,10 @@ int		are_floats_equal(double one, double two);
 int		are_tuples_equal(t_tuple *one, t_tuple *two);
 int		free_array(void **array);
 double	atod(const char *str);
-void	pass_tuple_values(t_tuple *dest, t_tuple *src);
 
 // tuples operations
+t_tuple	*create_point(double x, double y, double z);
+t_tuple	*create_vector(double x, double y, double z);
 t_tuple	*sum_tuples(t_tuple *one, t_tuple *two);
 t_tuple	*subtract_tuples(t_tuple *one, t_tuple *two);
 t_tuple	*reverse_tuple(t_tuple *tuple);
@@ -107,6 +108,7 @@ void	normalize_tuple(t_tuple *tuple);
 double	tuple_magnitude(t_tuple *tuple);
 double	dot_product(t_tuple *one, t_tuple *two);
 t_tuple	*cross_product(t_tuple *one, t_tuple *two);
+void	pass_tuple_values(t_tuple *dest, t_tuple *src);
 
 // color operations
 t_color	*sum_colors(t_color *one, t_color *two);
@@ -116,6 +118,7 @@ t_color	*multiply_color_x_color(t_color *one, t_color *two);
 
 // Matrix Transformations
 t_matrix	*translation(t_matrix *src);
+t_matrix	*scaling(t_data *data, double x, double y, double z);
 
 // matrix_tools
 void		init_idmatrices(t_data *data);

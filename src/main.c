@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gde-mora <gde-mora@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 20:16:42 by gde-mora          #+#    #+#             */
-/*   Updated: 2023/07/31 20:19:10 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/08/02 21:56:19 by gde-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	print_matrix(t_matrix *matrix_struct) // Retirar depois
 	i = 0;
 	if (!matrix_struct)
 	{
-		printf("Não ttinha matriz\n");
+		printf("Não tinha matriz\n");
 		return ;
 	}
 	matrix = matrix_struct->content;
@@ -61,6 +61,7 @@ void	print_matrix(t_matrix *matrix_struct) // Retirar depois
 		i++;
 		printf("\n");
 	}
+	printf("Determinant: %lf\n\n", matrix_struct->determinant);
 }
 
 void	print_tuple(t_tuple *tuple)

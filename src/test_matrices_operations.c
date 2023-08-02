@@ -6,7 +6,7 @@
 /*   By: gde-mora <gde-mora@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 22:01:46 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/08/02 21:02:46 by gde-mora         ###   ########.fr       */
+/*   Updated: 2023/08/02 22:23:19 by gde-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,7 +147,7 @@ void	putting_it_together(t_data *data) // Da pagina 63
 	free_matrix(matrix);*/
 
 	
-	printf("5. Test copy matrix");
+	/*printf("5. Test copy matrix");
 	matrix = str_to_matrix("1,2,3,4|2,2,3,4|3,3,3,4|4,4,4,4");
 	if (!matrix)
 	 	return ;
@@ -157,7 +157,23 @@ void	putting_it_together(t_data *data) // Da pagina 63
 	printf("\nMatrix 2:\n");
 	print_matrix(matrix_2);
 	free_matrix(matrix);
+	free_matrix(matrix_2);*/
+
+
+	printf("6. Scaling transformation");
+	matrix = scaling(data, 2, 3, 4);
+	printf("\nMatrix:\n");
+	print_matrix(matrix);
+	matrix_2 = inverting_matrix(matrix);
+	printf("\nMatrix 2:\n");
+	print_matrix(matrix_2);
+	tuple = create_vector(-4, 6, 8);
+	tuple_2 = multiply_matrix_with_tuple(matrix_2, tuple);
+	print_tuple(tuple_2);
+	free_matrix(matrix);
 	free_matrix(matrix_2);
+	free(tuple);
+	free(tuple_2);
 }
 
 void	test_inversion(t_data	*data)
