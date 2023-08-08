@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 17:55:50 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/08/08 19:32:11 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/08/08 19:39:27 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,14 +95,18 @@ void	criar_relogio_2(t_data *data)
 void	paint_relogio(t_tuple *tuple, unsigned int color, t_data *data)
 {
 	int		i;
+	int		x;
+	int		z;
 
 	i = 0;
+	x = dtoi(tuple->x);
+	z = dtoi(tuple->z);
 	while (i < 16)
 	{
-		paint_pixel(tuple->x + i, tuple->z, color, data);
-		paint_pixel(tuple->x, tuple->z + i, color, data);
-		paint_pixel(tuple->x + i, tuple->z + 15, color, data);
-		paint_pixel(tuple->x + 15, tuple->z + i, color, data);
+		paint_pixel(x + i, z, color, data);
+		paint_pixel(x, z + i, color, data);
+		paint_pixel(x + i, z + 15, color, data);
+		paint_pixel(x + 15, z + i, color, data);
 		i++;
 	}
 }
