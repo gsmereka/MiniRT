@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 22:02:13 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/08/08 18:40:04 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/08/08 19:40:55 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,5 @@ void	paint_pixel(int x, int y, unsigned int color, t_data *data)
 
 	// Seleciona o ponteiro do pixel escolhido e altera sua cor.
 	pointer = data->address_img + pixel;
-	*(unsigned int *)pointer = 0xE900FF;
+	*(unsigned int *)pointer = color;
 }
