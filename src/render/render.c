@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 20:20:54 by gde-mora          #+#    #+#             */
-/*   Updated: 2023/07/10 22:04:01 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/08/08 18:35:04 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	render(t_data *data)
 	data->mlx_ptr = mlx_init();
 	if (!(data->mlx_ptr))
 		exit_error(INTERFACE_ERROR, 2, data);
-	if (!data->win_width && !data->win_height)
+	if (!data->win_width && !data->win_height) // escolher um lugar melhor pra isso
 	{
 		data->win_width = 500;
 		data->win_height = 500;

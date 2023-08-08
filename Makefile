@@ -6,19 +6,21 @@
 #    By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/20 18:26:17 by gde-mora          #+#    #+#              #
-#    Updated: 2023/08/02 17:52:07 by gsmereka         ###   ########.fr        #
+#    Updated: 2023/08/08 18:10:53 by gsmereka         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME 	=	miniRT
 
 SRC 	=	src/test_matrices_operations.c \
+			src/test_render.c \
 			src/main.c \
 			src/exit.c \
 			src/render/render.c \
 			src/render/paint_pixel.c \
 			src/render/minilibx_handlers.c \
 			src/tools/are_floats_equal.c \
+			src/tools/dtoi.c \
 			src/tools/atod.c \
 			src/tools/free_array.c \
 			src/tools/colors_operations.c \

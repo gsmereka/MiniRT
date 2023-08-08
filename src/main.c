@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gde-mora <gde-mora@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 20:16:42 by gde-mora          #+#    #+#             */
-/*   Updated: 2023/08/02 21:56:19 by gde-mora         ###   ########.fr       */
+/*   Updated: 2023/08/08 18:55:29 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,12 +80,13 @@ int	main(int argc, char **argv)
 
   	ft_bzero(&data, sizeof(data));
 	init_idmatrices(&data);
-	test_matrices_operations(argc, argv, &data); // retirar depois
+	// test_matrices_operations(argc, argv, &data); // retirar depois
 	ft_printf("Iniciando\n"); //
 	signals_handling(&data); // Enqunto fazemos os testes //retirar dps
 	validate_scene_file(argc, argv, &data); //
 	read_scene_file(argv[1], &data); //
 	get_scene_info(data.tokens, &data);
-	render(&data);
+	// render(&data);
+	test_render(&data);
 	return (0);
 }
