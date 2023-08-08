@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 13:09:51 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/08/08 18:18:12 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/08/08 18:35:32 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,6 @@ typedef struct s_data
 	void		*win_ptr;
 	int			win_height;
 	int			win_width;
-	int			win_center;
 	void		*img;
 	char		*address_img;
 	int			bits_per_pixel;

@@ -6,11 +6,34 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 17:55:50 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/08/08 18:17:56 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/08/08 18:38:25 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/miniRT.h"
+
+
+void	criar_relogio(t_data *data)
+{
+	t_tuple	*relogio;
+	t_tuple	*twelve;
+	t_tuple	*three;
+	t_matrix	*r;
+
+	(void)data;
+	// passo 2
+	relogio = create_point(0, 0, 0);
+	twelve = create_point(0, 0, 1);
+
+	// passo 3
+	r = rotation_y(data, (3 * M_PI) / 6);
+	three = multiply_matrix_with_tuple(r, twelve);
+	print_tuple(three);
+	free(twelve);
+	free(three);
+	free_matrix(r);
+	free(relogio);
+}
 
 // void	paint_matrix(t_matrix *matrix)
 // {
@@ -40,6 +63,8 @@ static int	handle_render(t_data *data)
 
 int	test_render(t_data	*data)
 {
+	// criar_relogio(data);
+	// exit_error("", 0, data);
 	data->mlx_ptr = mlx_init();
 	if (!(data->mlx_ptr))
 		exit_error(INTERFACE_ERROR, 2, data);
