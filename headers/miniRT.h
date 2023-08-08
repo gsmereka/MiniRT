@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 20:17:31 by gde-mora          #+#    #+#             */
-/*   Updated: 2023/08/02 17:45:52 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/08/08 17:58:58 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ int			add_camera(t_token *token, t_data *data);
 int			add_resolution(char	**args, t_data *data);
 
 // render
+int			test_render(t_data	*data); // SO PRA TESTES
 void		render(t_data *data);
 void		paint_pixel(int x, int y, unsigned int color, t_data *data);
 int			handle_esc(int key, t_data *data);
