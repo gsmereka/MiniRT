@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 22:02:13 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/07/11 15:11:49 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/08/08 18:19:55 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,9 @@ void	paint_pixel(int x, int y, unsigned int color, t_data *data)
 	char	*pointer;
 	int		pixel;
 
-	(void)color; //
+	(void)color;
+	x = x + data->win_center;
+	y = y + data->win_center;
 	// Verifica se o X ou Y ultrapassa a tela.
 	if (x > data->win_width || y > data->win_height)
 		return ;

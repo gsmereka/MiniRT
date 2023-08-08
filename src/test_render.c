@@ -6,11 +6,16 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 17:55:50 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/08/08 18:01:07 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/08/08 18:17:56 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/miniRT.h"
+
+// void	paint_matrix(t_matrix *matrix)
+// {
+
+// }
 
 static int	handle_render(t_data *data)
 {

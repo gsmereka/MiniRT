@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 20:17:31 by gde-mora          #+#    #+#             */
-/*   Updated: 2023/08/08 17:58:58 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/08/08 18:10:38 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,7 @@ int			handle_esc(int key, t_data *data);
 int			handle_x(t_data *data);
 
 // tools
+int 	dtoi(double num);
 int		are_floats_equal(double one, double two);
 int		are_tuples_equal(t_tuple *one, t_tuple *two);
 int		free_array(void **array);

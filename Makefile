@@ -6,7 +6,7 @@
 #    By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/20 18:26:17 by gde-mora          #+#    #+#              #
-#    Updated: 2023/08/08 17:57:09 by gsmereka         ###   ########.fr        #
+#    Updated: 2023/08/08 18:10:53 by gsmereka         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,7 @@ SRC 	=	src/test_matrices_operations.c \
 			src/render/paint_pixel.c \
 			src/render/minilibx_handlers.c \
 			src/tools/are_floats_equal.c \
+			src/tools/dtoi.c \
 			src/tools/atod.c \
 			src/tools/free_array.c \
 			src/tools/colors_operations.c \
