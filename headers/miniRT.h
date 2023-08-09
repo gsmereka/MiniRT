@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   miniRT.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gde-mora <gde-mora@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 20:17:31 by gde-mora          #+#    #+#             */
-/*   Updated: 2023/08/08 18:10:38 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/08/09 21:24:14 by gde-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@
 # define BLUE 0x000000FF
 
 void		test_matrices_operations(int argc, char **argv, t_data *data); // Retirar depois, do Makefile tb
+void	test_ray(t_data *data);
 
 // main functions
 int			validate_scene_file(int argc, char *argv[], t_data *data);
@@ -97,6 +98,8 @@ int		are_floats_equal(double one, double two);
 int		are_tuples_equal(t_tuple *one, t_tuple *two);
 int		free_array(void **array);
 double	atod(const char *str);
+t_ray	create_ray(t_tuple *origin, t_tuple *direction);
+t_tuple	*position(t_ray *ray, double time);
 
 // tuples operations
 t_tuple	*create_point(double x, double y, double z);

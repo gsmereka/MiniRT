@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gde-mora <gde-mora@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 20:16:42 by gde-mora          #+#    #+#             */
-/*   Updated: 2023/08/08 18:55:29 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/08/09 21:04:16 by gde-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ int	main(int argc, char **argv)
 
   	ft_bzero(&data, sizeof(data));
 	init_idmatrices(&data);
+	test_ray(&data);
 	// test_matrices_operations(argc, argv, &data); // retirar depois
 	ft_printf("Iniciando\n"); //
 	signals_handling(&data); // Enqunto fazemos os testes //retirar dps

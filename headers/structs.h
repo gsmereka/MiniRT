@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gde-mora <gde-mora@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 13:09:51 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/08/08 18:35:32 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/08/09 21:05:21 by gde-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,14 @@ typedef struct s_tuple
 	double	x;
 	double	y;
 	double	z;
-	double	w;
+	double	w; //mudar a forma de identificar ponto e vetor?
 }	t_tuple;
+
+typedef struct s_ray
+{
+	struct s_tuple *origin;
+	struct s_tuple *direction;
+}	t_ray;
 
 typedef struct s_token
 {

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+         #
+#    By: gde-mora <gde-mora@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/20 18:26:17 by gde-mora          #+#    #+#              #
-#    Updated: 2023/08/08 18:10:53 by gsmereka         ###   ########.fr        #
+#    Updated: 2023/08/09 21:04:58 by gde-mora         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,6 +14,7 @@ NAME 	=	miniRT
 
 SRC 	=	src/test_matrices_operations.c \
 			src/test_render.c \
+			src/test_ray.c \
 			src/main.c \
 			src/exit.c \
 			src/render/render.c \
@@ -24,6 +25,7 @@ SRC 	=	src/test_matrices_operations.c \
 			src/tools/atod.c \
 			src/tools/free_array.c \
 			src/tools/colors_operations.c \
+			src/tools/rays.c \
 			src/tuple_tools/are_tuples_equal.c \
 			src/tuple_tools/create_tuple.c \
 			src/tuple_tools/tuples_operations.c \
