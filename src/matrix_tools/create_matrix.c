@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 15:45:03 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/08/13 18:36:45 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/08/13 18:52:39 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ t_matrix	create_matrix(double **content, int cols) // alterada
 	rows = 0;
 	while (content[rows])
 		rows++;
-	copy_content(content, (double (*)[4])matrix.content, cols, rows);
+	copy_content(content, (double (*)[MATRIX_SIZE])matrix.content, cols, rows);
 	matrix.rows = rows;
 	matrix.cols = cols;
 	matrix.determinant = get_determinant(&matrix);
