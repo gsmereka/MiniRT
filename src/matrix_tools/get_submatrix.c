@@ -6,19 +6,19 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 20:08:50 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/08/13 17:43:22 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/08/13 18:46:57 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/miniRT.h"
 
-static void		get_subrow(double *dest, double *row, int max_cols, int col_excluded);
-static void		get_subcontent(t_matrix *matrix,
-					int row_excluded, int col_excluded, double **subcontent);
+static double	*get_subrow(double *row, int max_cols, int col_excluded);
+static double	**get_subcontent(t_matrix *matrix,
+					int row_excluded, int col_excluded);
 
-t_matrix	get_submatrix(t_matrix *matrix, int row_excluded, int col_excluded) // alterada
+t_matrix	get_submatrix(t_matrix *matrix, int row_excluded, int col_excluded)
 {
-	double		subcontent[MATRIX_SIZE + 1][MATRIX_SIZE];
+	double		**subcontent;
 	t_matrix	submatrix;
 
 	if (!matrix || !matrix->content)
@@ -29,41 +29,58 @@ t_matrix	get_submatrix(t_matrix *matrix, int row_excluded, int col_excluded) // 
 		return ((t_matrix){0});
 	if (matrix->rows != matrix->cols)
 		return ((t_matrix){0});
-	get_subcontent(matrix, row_excluded, col_excluded, (double **)subcontent);
-	submatrix = create_matrix((double **)subcontent, matrix->cols - 1);
+	subcontent = get_subcontent(matrix, row_excluded, col_excluded);
+	if (!subcontent)
+		return ((t_matrix){0});
+	submatrix = create_matrix(subcontent, matrix->cols - 1);
 	return (submatrix);
 }
 
-static void	get_subcontent(t_matrix *matrix,
-				int row_excluded, int col_excluded, double **subcontent) // alterada
+static double	**get_subcontent(t_matrix *matrix,
+				int row_excluded, int col_excluded)
 {
 	int		row;
 	int		skip;
+	double	**subcontent;
 
 	row = 0;
 	skip = 0;
+	subcontent = ft_calloc(matrix->rows, sizeof(double *));
+	if (!subcontent)
+		return (NULL);
 	while (row < matrix->rows - 1)
 	{
 		if (row == row_excluded)
 			skip = 1;
-		get_subrow((double *)subcontent[row], (double *)matrix->content[row + skip],
+		subcontent[row] = get_subrow(matrix->content[row + skip],
 				matrix->cols, col_excluded);
+		if (!subcontent[row])
+		{
+			free_array((void **)subcontent);
+			return (NULL);
+		}
 		row++;
 	}
+	return (subcontent);
 }
 
-static void get_subrow(double *dest, double *row, int max_cols, int col_excluded) // alterada
+static double	*get_subrow(double *row, int max_cols, int col_excluded)
 {
 	int		col;
 	int		skip;
+	double	*new_row;
 
+	new_row = ft_calloc(max_cols - 1, sizeof(double));
+	if (!new_row)
+		return (NULL);
 	col = 0;
 	skip = 0;
 	while (col < max_cols - 1)
 	{
 		if (col == col_excluded)
 			skip = 1;
-		dest[col] = row[col + skip];
+		new_row[col] = row[col + skip];
 		col++;
 	}
+	return (new_row);
 }

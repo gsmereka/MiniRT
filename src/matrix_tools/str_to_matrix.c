@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 18:11:05 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/08/13 16:01:49 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/08/13 17:57:47 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ t_matrix	str_to_matrix(char *str) // alterada
 	int			lines_count;
 	int			cols_count;
 
+	matrix = (t_matrix){0};
 	lines_str = ft_split(str, '|');
 	if (!lines_str)
 		return ((t_matrix){0});
