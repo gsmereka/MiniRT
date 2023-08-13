@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 16:18:21 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/07/31 20:11:54 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/08/13 15:58:08 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,28 +16,28 @@ static int		filling_matrix_content(double **new_content,
 					double **a, double **b, int max_cols);
 static double	*create_row(double **a, double **b, int row, int max_cols);
 
-t_matrix	*multiply_matrices(t_matrix *a, t_matrix *b)
+t_matrix	multiply_matrices(t_matrix *a, t_matrix *b) // alterada
 {
-	t_matrix	*new_matrix;
+	t_matrix	new_matrix;
 	double		**new_content;
 	int			new_rows;
 	int			new_cols;
 
 	if (!a || !b)
-		return (NULL);
+		return ((t_matrix){0});
 	else if (!a->content || !b->content)
-		return (NULL);
+		return ((t_matrix){0});
 	else if (!a->cols || !b->cols)
-		return (NULL);
+		return ((t_matrix){0});
 	else if (a->cols != b->rows)
-		return (NULL);
+		return ((t_matrix){0});
 	new_rows = a->rows;
 	new_cols = b->cols;
 	new_content = ft_calloc(new_rows + 1, sizeof(double *));
 	if (!new_content)
-		return (NULL);
-	if (!filling_matrix_content(new_content, a->content, b->content, new_cols))
-		return (NULL);
+		return ((t_matrix){0});
+	if (!filling_matrix_content(new_content, (double **)a->content, (double **)b->content, new_cols))
+		return ((t_matrix){0});
 	new_matrix = create_matrix(new_content, new_cols);
 	return (new_matrix);
 }

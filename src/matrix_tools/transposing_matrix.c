@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 23:03:49 by gde-mora          #+#    #+#             */
-/*   Updated: 2023/08/02 17:28:42 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/08/13 16:03:18 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static int	filling_matrix_content(double **new_content, t_matrix *matrix_struct)
 	double	**matrix;
 
 	i = 0;
-	matrix = matrix_struct->content;
+	matrix = (double **)matrix_struct->content;
 	while (matrix[i]) //linha
 	{
 		j = 0;
@@ -50,24 +50,24 @@ static int	filling_matrix_content(double **new_content, t_matrix *matrix_struct)
 	return (1);
 }
 
-t_matrix	*transposing_matrix(t_matrix *mat)
+t_matrix	transposing_matrix(t_matrix *mat) // alterada
 {
-	t_matrix	*new_matrix;
+	t_matrix	new_matrix;
 	double		**new_content;
 	int			new_rows;
 	int			new_cols;
 
 	if (!mat)
-		return (NULL);
+		return ((t_matrix){0});
 	else if (!mat->content)
-		return (NULL); //mais uma verficação aqui?
+		return ((t_matrix){0}); //mais uma verficação aqui?
 	new_rows = mat->cols;
 	new_cols = mat->rows;
 	new_content = ft_calloc(new_rows + 1, sizeof(double *));
 	if (!new_content)
-		return (NULL);
+		return ((t_matrix){0});
 	if (!filling_matrix_content(new_content, mat))
-		return (NULL);
+		return ((t_matrix){0});
 	new_matrix = create_matrix(new_content, new_cols);
 	return (new_matrix);
 }

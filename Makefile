@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: gde-mora <gde-mora@student.42sp.org.br>    +#+  +:+       +#+         #
+#    By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/20 18:26:17 by gde-mora          #+#    #+#              #
-#    Updated: 2023/08/09 21:04:58 by gde-mora         ###   ########.fr        #
+#    Updated: 2023/08/13 14:18:25 by gsmereka         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,7 +43,6 @@ SRC 	=	src/test_matrices_operations.c \
 			src/matrix_tools/matrices_have_diff.c \
 			src/matrix_tools/multiply_matrices.c \
 			src/matrix_tools/create_matrix.c \
-			src/matrix_tools/free_matrix.c \
 			src/matrix_tools/copy_matrix.c \
 			src/matrix_tools/str_to_matrix.c \
 			src/matrix_tools/transposing_matrix.c \

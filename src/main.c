@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gde-mora <gde-mora@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 20:16:42 by gde-mora          #+#    #+#             */
-/*   Updated: 2023/08/09 21:04:16 by gde-mora         ###   ########.fr       */
+/*   Updated: 2023/08/13 17:47:31 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	print_matrix(t_matrix *matrix_struct) // Retirar depois
 		printf("Não tinha matriz\n");
 		return ;
 	}
-	matrix = matrix_struct->content;
+	matrix = (double **)matrix_struct->content;
 	if (!matrix)
 	{
 		printf("a matriz não tinha conteudo\n");
@@ -79,9 +79,9 @@ int	main(int argc, char **argv)
 	t_data	data;
 
   	ft_bzero(&data, sizeof(data));
-	init_idmatrices(&data);
-	test_ray(&data);
-	// test_matrices_operations(argc, argv, &data); // retirar depois
+	// init_idmatrices(&data);
+	// test_ray(&data);
+	test_matrices_operations(argc, argv, &data); // retirar depois
 	ft_printf("Iniciando\n"); //
 	signals_handling(&data); // Enqunto fazemos os testes //retirar dps
 	validate_scene_file(argc, argv, &data); //

@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gde-mora <gde-mora@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 13:09:51 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/08/09 21:05:21 by gde-mora         ###   ########.fr       */
+/*   Updated: 2023/08/13 15:19:00 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCTS_H
 # define STRUCTS_H
+# define MATRIX_SIZE 4
 
 // ## RGB
 typedef struct s_color
@@ -31,8 +32,8 @@ typedef struct s_tuple
 
 typedef struct s_ray
 {
-	struct s_tuple *origin;
-	struct s_tuple *direction;
+	struct s_tuple origin;
+	struct s_tuple direction;
 }	t_ray;
 
 typedef struct s_token
@@ -53,7 +54,7 @@ typedef struct s_token
 
 typedef struct s_matrix
 {
-	double	**content;
+	double	content[MATRIX_SIZE + 1][MATRIX_SIZE]; // + 1 ?
 	double	determinant;
 	int		cols;
 	int		rows;
@@ -61,9 +62,9 @@ typedef struct s_matrix
 
 typedef struct s_data
 {
-	t_matrix	*idmatrix_2x2;
-	t_matrix	*idmatrix_3x3;
-	t_matrix	*idmatrix_4x4;
+	t_matrix	idmatrix_2x2;
+	t_matrix	idmatrix_3x3;
+	t_matrix	idmatrix_4x4;
 	t_token		*tokens;
 	int			scene_fd;
 	void		*mlx_ptr;
