@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   matrices_have_diff.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gde-mora <gde-mora@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 16:01:47 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/08/13 17:43:46 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/08/16 21:01:32 by gde-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,12 @@ int	matrices_have_diff(t_matrix *a, t_matrix *b) // alterada
 
 	if (!a || !b)
 		return (-1);
-	else if (!a->content && !b->content)
-		return (0);
-	else if (!a->content && b->content)
-		return (1);
-	else if (a->content && !b->content)
-		return (1);
+	// else if (!a->content && !b->content)
+	// 	return (0);
+	// else if (!a->content && b->content)
+	// 	return (1);
+	// else if (a->content && !b->content)
+	// 	return (1);
 	else if (a->cols != b->cols)
 		return (1);
 	else if (a->rows != b->rows)

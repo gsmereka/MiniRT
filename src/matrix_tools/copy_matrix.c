@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   copy_matrix.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gde-mora <gde-mora@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 20:24:07 by gde-mora          #+#    #+#             */
-/*   Updated: 2023/08/13 16:01:11 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/08/16 21:02:54 by gde-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ t_matrix	copy_matrix(t_matrix *src) // alterada
 
 	if (!src)
 		return ((t_matrix){0});
-	if (!src->content)
-		return ((t_matrix){0});
+	// if (!src->content)
+	// 	return ((t_matrix){0});
 	copy_content(src, &dest);
 	dest.rows = src->rows;
 	dest.cols = src->cols;

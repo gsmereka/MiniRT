@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gde-mora <gde-mora@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 20:16:42 by gde-mora          #+#    #+#             */
-/*   Updated: 2023/08/13 18:49:42 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/08/16 21:39:51 by gde-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ void	print_matrix(t_matrix *matrix_struct) // Retirar depois
 {
 	int		i;
 	int		j;
-	double	**matrix;
 
 	i = 0;
 	if (!matrix_struct)
@@ -43,19 +42,13 @@ void	print_matrix(t_matrix *matrix_struct) // Retirar depois
 		printf("Não tinha matriz\n");
 		return ;
 	}
-	matrix = (double **)matrix_struct->content;
-	if (!matrix)
-	{
-		printf("a matriz não tinha conteudo\n");
-		return ;
-	}
 	printf("Resultado:\n");
-	while (matrix[i])
+	while (i < matrix_struct->rows)
 	{
 		j = 0;
 		while (j < matrix_struct->cols)
 		{
-			printf("[ %lf ]", matrix[i][j]);
+			printf("[ %lf ]", matrix_struct->content[i][j]);
 			j++;
 		}
 		i++;
@@ -81,7 +74,7 @@ int	main(int argc, char **argv)
   	ft_bzero(&data, sizeof(data));
 	init_idmatrices(&data);
 	// test_ray(&data);
-	// test_matrices_operations(argc, argv, &data); // retirar depois
+	test_matrices_operations(argc, argv, &data); // retirar depois
 	ft_printf("Iniciando\n"); //
 	signals_handling(&data); // Enqunto fazemos os testes //retirar dps
 	validate_scene_file(argc, argv, &data); //

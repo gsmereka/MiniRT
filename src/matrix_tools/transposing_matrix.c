@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   transposing_matrix.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gde-mora <gde-mora@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 23:03:49 by gde-mora          #+#    #+#             */
-/*   Updated: 2023/08/13 16:03:18 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/08/16 21:03:08 by gde-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,8 @@ t_matrix	transposing_matrix(t_matrix *mat) // alterada
 
 	if (!mat)
 		return ((t_matrix){0});
-	else if (!mat->content)
-		return ((t_matrix){0}); //mais uma verficação aqui?
+	// else if (!mat->content)
+	// 	return ((t_matrix){0}); //mais uma verficação aqui?
 	new_rows = mat->cols;
 	new_cols = mat->rows;
 	new_content = ft_calloc(new_rows + 1, sizeof(double *));

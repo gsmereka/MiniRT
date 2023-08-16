@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   test_matrices_operations.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gde-mora <gde-mora@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 22:01:46 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/08/13 17:49:47 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/08/16 21:41:37 by gde-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,9 +112,9 @@ void	putting_it_together(t_data *data) // Da pagina 63
 	// printf("1. What happens when you invert the identity matrix?\n");
 	
 	// printf("Matriz Identidade: \n");
-	// print_matrix(data->idmatrix_4x4);
+	// print_matrix(&data->idmatrix_4x4);
 	// printf("\ninvertendo a matriz:\n");
-	// matrix = inverting_matrix(data->idmatrix_4x4);
+	// matrix = inverting_matrix(&data->idmatrix_4x4);
 	// print_matrix(&matrix);
 
 
@@ -122,22 +122,13 @@ void	putting_it_together(t_data *data) // Da pagina 63
 	// printf("2. What do you get when you multiply a matrix by its inverse?\n");
 
 	// matrix = str_to_matrix("1,2,3,4|2,2,3,4|3,3,3,4|4,4,4,4");
-	// if (!matrix)
-	// 	return ;
-
-	// printf("%lf\n", matrix->determinant);
+	// printf("%lf\n", matrix.determinant);
 	// printf("Matriz Original:\n");
 	// print_matrix(&matrix);
-
-	// matrix_2 = inverting_matrix(matrix);
-	// if (!matrix_2)
-	// 	return ;
+	// matrix_2 = inverting_matrix(&matrix);
 	// printf("Inversa da Matriz:\n");
 	// print_matrix(&matrix_2);
-
-	// matrix_3 = multiply_matrices(matrix, matrix_2);
-	// if (!matrix_3)
-	// 	return ;
+	// matrix_3 = multiply_matrices(&matrix, &matrix_2);
 	// printf("Multiplicação da matriz pela sua inversa:\n");
 	// print_matrix(&matrix_3);
 
@@ -287,7 +278,7 @@ void	test_inversion(t_data	*data)
 	print_matrix(&matrix);
 }
 
-void	test_matrices_operations(int argc, char **argv, t_data *data)
+void	test_matrices_operations_2(int argc, char **argv, t_data *data)
 {
 	t_matrix	matrix;
 	char		*str1;
@@ -301,7 +292,7 @@ void	test_matrices_operations(int argc, char **argv, t_data *data)
 	exit_error("", 0, data);
 }
 
-void	test_matrices_operations_2(int argc, char **argv, t_data *data) // Retirar depois, do makefile tb
+void	test_matrices_operations(int argc, char **argv, t_data *data) // Retirar depois, do makefile tb
 {
 	(void)argc;
 	(void)argv;

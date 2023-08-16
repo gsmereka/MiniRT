@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   multiply_matrices.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gde-mora <gde-mora@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 16:18:21 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/08/13 15:58:08 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/08/16 21:02:34 by gde-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ t_matrix	multiply_matrices(t_matrix *a, t_matrix *b) // alterada
 
 	if (!a || !b)
 		return ((t_matrix){0});
-	else if (!a->content || !b->content)
-		return ((t_matrix){0});
+	// else if (!a->content || !b->content)
+	// 	return ((t_matrix){0});
 	else if (!a->cols || !b->cols)
 		return ((t_matrix){0});
 	else if (a->cols != b->rows)

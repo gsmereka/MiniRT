@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_determinant.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gde-mora <gde-mora@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 20:49:07 by gde-mora          #+#    #+#             */
-/*   Updated: 2023/07/31 19:19:25 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/08/16 21:04:06 by gde-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ double	get_determinant(t_matrix *matrix)
 	double	determinant;
 	int		j;
 
-	if (!matrix || !matrix->content) //? fazer consistencia de erros
+	if (!matrix) //? fazer consistencia de erros      || !matrix->content
 		return (0);
 	determinant = 0;
 	if (matrix->rows == 2 && matrix->cols == 2)
