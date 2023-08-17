@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   transposing_matrix.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gde-mora <gde-mora@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 23:03:49 by gde-mora          #+#    #+#             */
-/*   Updated: 2023/08/16 21:03:08 by gde-mora         ###   ########.fr       */
+/*   Updated: 2023/08/16 20:58:56 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,26 +26,38 @@ Example:
 0 8 3 8
 */
 
-static int	filling_matrix_content(double **new_content, t_matrix *matrix_struct)
+static	int	init_new_content(double **new_content, t_matrix *matrix)
 {
-	int	i;
-	int	j;
-	double	**matrix;
+	int	rows;
+
+	rows = -1;
+	while (++rows < matrix->rows)
+	{
+		new_content[rows] = ft_calloc(matrix->cols, sizeof(double));
+		if (!new_content[rows])
+		{
+			free_array((void **)new_content);
+			return (0);
+		}
+	}
+	return (1);
+}
+
+static int	filling_matrix_content(double **new_content, t_matrix *matrix_struct, double old_content[MATRIX_SIZE][MATRIX_SIZE])
+{
+	int		i;
+	int		j;
 
 	i = 0;
-	matrix = (double **)matrix_struct->content;
-	while (matrix[i]) //linha
+	while (i < matrix_struct->rows) //linha
 	{
 		j = 0;
-		new_content[i] = ft_calloc(matrix_struct->rows, sizeof(double));
 		while (j < matrix_struct->cols) //colunas
 		{
-			new_content[i][j] = matrix[j][i];
-			//printf("[ %lf ]", matrix[j][i]); //invés de printar, devo salvar
+			new_content[i][j] = old_content[j][i];
 			j++;
 		}
 		i++;
-		//printf("\n");
 	}
 	return (1);
 }
@@ -66,7 +78,9 @@ t_matrix	transposing_matrix(t_matrix *mat) // alterada
 	new_content = ft_calloc(new_rows + 1, sizeof(double *));
 	if (!new_content)
 		return ((t_matrix){0});
-	if (!filling_matrix_content(new_content, mat))
+	if (!init_new_content(new_content, mat))
+		return ((t_matrix){0});
+	if (!filling_matrix_content(new_content, mat, mat->content))
 		return ((t_matrix){0});
 	new_matrix = create_matrix(new_content, new_cols);
 	return (new_matrix);

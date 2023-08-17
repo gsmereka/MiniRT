@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gde-mora <gde-mora@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 13:09:51 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/08/16 21:26:11 by gde-mora         ###   ########.fr       */
+/*   Updated: 2023/08/16 19:24:12 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ typedef struct s_token
 
 typedef struct s_matrix
 {
-	double	content[MATRIX_SIZE + 1][MATRIX_SIZE]; // + 1 ?
+	double	content[MATRIX_SIZE][MATRIX_SIZE]; // + 1 ?
 	double	determinant;
 	int		cols;
 	int		rows;

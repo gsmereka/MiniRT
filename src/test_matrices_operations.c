@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   test_matrices_operations.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gde-mora <gde-mora@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 22:01:46 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/08/16 21:41:37 by gde-mora         ###   ########.fr       */
+/*   Updated: 2023/08/16 21:12:12 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,28 +62,28 @@ void	chaining_transformations(t_data *data)
 
 
 
-	// printf("Scenario: Individual transformations are applied in sequence\n");
+	printf("Scenario: Individual transformations are applied in sequence\n");
 
-	// 	printf("Aplicando Rotação Primeiro:\n");
-	// 	point_2 = multiply_matrix_with_tuple(rotation_x_matrix, point);
-	// 	print_tuple(point_2);
+		printf("Aplicando Rotação Primeiro:\n");
+		point_2 = multiply_matrix_with_tuple(&rotation_x_matrix, &point);
+		print_tuple(&point_2);
 
-	// 	printf("Aplicando scaling em seguida:\n");
-	// 	point_3 = multiply_matrix_with_tuple(scaling_matrix, point_2);
-	// 	print_tuple(point_3);
+		printf("Aplicando scaling em seguida:\n");
+		point_3 = multiply_matrix_with_tuple(&scaling_matrix, &point_2);
+		print_tuple(&point_3);
 
-	// 	printf("Aplicando translação em seguida:\n");
-	// 	point_4 = multiply_matrix_with_tuple(translation_matrix, point_3);
-	// 	print_tuple(point_4);
+		printf("Aplicando translação em seguida:\n");
+		point_4 = multiply_matrix_with_tuple(&translation_matrix, &point_3);
+		print_tuple(&point_4);
 	
 	
-	// printf(" Chained transformations must be applied in reverse order\n");
+	printf(" Chained transformations must be applied in reverse order\n");
 	
-	// 	matrix_1 = multiply_matrices(translation_matrix, scaling_matrix);
-	// 	ultimate_transformation = multiply_matrices(matrix_1, rotation_x_matrix);
-	// 	point_2 = multiply_matrix_with_tuple(ultimate_transformation, point);
-	// 	print_matrix(ultimate_transformation);
-	// 	print_tuple(point_2);
+		matrix_1 = multiply_matrices(&translation_matrix, &scaling_matrix);
+		ultimate_transformation = multiply_matrices(&matrix_1, &rotation_x_matrix);
+		point_2 = multiply_matrix_with_tuple(&ultimate_transformation, &point);
+		print_matrix(&ultimate_transformation);
+		print_tuple(&point_2);
 
 }
 
@@ -133,132 +133,131 @@ void	putting_it_together(t_data *data) // Da pagina 63
 	// print_matrix(&matrix_3);
 
 
-	// printf("3. Is there any difference between the inverse of the transpose of a matrix, and the transpose of the inverse?\n");
+	printf("3. Is there any difference between the inverse of the transpose of a matrix, and the transpose of the inverse?\n");
 	
-	// matrix = str_to_matrix("1,2,-3,-4|5,6,-7,8|9,10,-11,12|-13,14,15,16");
+	matrix = str_to_matrix("1,2,-3,-4|5,6,-7,8|9,10,-11,12|-13,14,15,16");
 
-	// printf("Matriz Original:\n");
-	// print_matrix(&matrix);
+	printf("%lf\n", matrix.content[3][3]);
+	printf("Matriz Original:\n");
+	print_matrix(&matrix);
 
-	// matrix_2 = transposing_matrix(matrix);
-	// printf("Matriz Transposta:\n");
-	// print_matrix(&matrix_2);
+	matrix_2 = transposing_matrix(&matrix);
+	printf("Matriz Transposta:\n");
+	print_matrix(&matrix_2);
 
-	// matrix_3 = inverting_matrix(matrix);
-	// printf("Matriz Inversa:\n");
-	// print_matrix(&matrix_3);
+	matrix_3 = inverting_matrix(&matrix);
+	printf("Matriz Inversa:\n");
+	print_matrix(&matrix_3);
 
-	// matrix_4 = multiply_matrices(matrix_2, matrix_3);
-	// printf("Transposta multiplicada pela inversa:\n");
-	// print_matrix(&matrix_4);
+	matrix_4 = multiply_matrices(&matrix_2, &matrix_3);
+	printf("Transposta multiplicada pela inversa:\n");
+	print_matrix(&matrix_4);
 
-	// matrix_5 = multiply_matrices(matrix_3, matrix_2);
-	// printf("Inversa multiplicada Pela Transposta\n:");
-	// print_matrix(&matrix_5);
-
-
-
+	matrix_5 = multiply_matrices(&matrix_3, &matrix_2);
+	printf("Inversa multiplicada Pela Transposta\n:");
+	print_matrix(&matrix_5);
 
 
-	// printf("4. Remember how multiplying the identity matrix by a tuple gives you the tuple, unchanged? Now, try changing any single element of the identity matrix to a different num\n");
 
-	// printf("Matriz Identidade: \n");
-	// print_matrix(data->idmatrix_4x4);
 
-	// tuple = ft_calloc(1, sizeof(t_tuple));
-	// tuple->x = 5;
-	// tuple->y = 6;
-	// tuple->z = 7;
-	// tuple->w = 8;
-	// printf("Tupla:\n");
-	// print_tuple(tuple);
 
-	// printf("Multiplicando Matriz identidade pela tupla:\n");
-	// tuple_2	= multiply_matrix_with_tuple(data->idmatrix_4x4, tuple);
-	// print_tuple(tuple_2);
-	// printf("Alterando Valores da matriz identidade:\n");
-	// matrix = str_to_matrix("0,0,0,0|0,1,0,0|0,0,1,0|0,0,0,1");
-	// print_matrix(&matrix);
-	// printf("Multiplicando a mesma tupla pela identidade modificada:\n");
-	// tuple_3 = multiply_matrix_with_tuple(matrix, tuple);
-	// print_tuple(tuple_3);
+	printf("4. Remember how multiplying the identity matrix by a tuple gives you the tuple, unchanged? Now, try changing any single element of the identity matrix to a different num\n");
+
+	printf("Matriz Identidade: \n");
+	print_matrix(&data->idmatrix_4x4);
+
+	tuple.x = 5;
+	tuple.y = 6;
+	tuple.z = 7;
+	tuple.w = 8;
+	printf("Tupla:\n");
+	print_tuple(&tuple);
+
+	printf("Multiplicando Matriz identidade pela tupla:\n");
+	tuple_2	= multiply_matrix_with_tuple(&data->idmatrix_4x4, &tuple);
+	print_tuple(&tuple_2);
+	printf("Alterando Valores da matriz identidade:\n");
+	matrix = str_to_matrix("0,0,0,0|0,1,0,0|0,0,1,0|0,0,0,1");
+	print_matrix(&matrix);
+	printf("Multiplicando a mesma tupla pela identidade modificada:\n");
+	tuple_3 = multiply_matrix_with_tuple(&matrix, &tuple);
+	print_tuple(&tuple_3);
 
 	
-	// printf("5. Test copy matrix");
-	// matrix = str_to_matrix("1,2,3,4|2,2,3,4|3,3,3,4|4,4,4,4");
-	// if (!matrix)
-	//  	return ;
-	// matrix_2 = copy_matrix(matrix);
-	// printf("\nMatrix:\n");
-	// print_matrix(&matrix);
-	// printf("\nMatrix 2:\n");
-	// print_matrix(&matrix_2);
+	printf("5. Test copy matrix");
+	matrix = str_to_matrix("1,2,3,4|2,2,3,4|3,3,3,4|4,4,4,4");
+
+	matrix_2 = copy_matrix(&matrix);
+	printf("\nMatrix:\n");
+	print_matrix(&matrix);
+	printf("\nMatrix 2:\n");
+	print_matrix(&matrix_2);
 
 
-	// printf("6. Scaling transformation");
+	printf("6. Scaling transformation");
 	
-	// printf("\nCase 1:\n");
-	// matrix = scaling(data, 2, 3, 4);
-	// printf("\nMatrix:\n");
-	// print_matrix(&matrix);
-	// tuple = create_point(-4, 6, 8);
-	// tuple_2 = multiply_matrix_with_tuple(matrix, tuple);
-	// print_tuple(tuple_2);
+	printf("\nCase 1:\n");
+	matrix = scaling(data, 2, 3, 4);
+	printf("\nMatrix:\n");
+	print_matrix(&matrix);
+	tuple = create_point(-4, 6, 8);
+	tuple_2 = multiply_matrix_with_tuple(&matrix, &tuple);
+	print_tuple(&tuple_2);
 
-	// printf("\nCase 2:\n");
-	// matrix = scaling(data, 2, 3, 4);
-	// printf("\nMatrix:\n");
-	// print_matrix(&matrix);
-	// tuple = create_vector(-4, 6, 8);
-	// tuple_2 = multiply_matrix_with_tuple(matrix, tuple);
-	// print_tuple(tuple_2);
+	printf("\nCase 2:\n");
+	matrix = scaling(data, 2, 3, 4);
+	printf("\nMatrix:\n");
+	print_matrix(&matrix);
+	tuple = create_vector(-4, 6, 8);
+	tuple_2 = multiply_matrix_with_tuple(&matrix, &tuple);
+	print_tuple(&tuple_2);
 
-	// printf("\nCase 3:\n");
-	// matrix = scaling(data, 2, 3, 4);
-	// printf("\nMatrix:\n");
-	// print_matrix(&matrix);
-	// matrix_2 = inverting_matrix(matrix);
-	// printf("\nMatrix 2:\n");
-	// print_matrix(&matrix_2);
-	// tuple = create_vector(-4, 6, 8);
-	// tuple_2 = multiply_matrix_with_tuple(matrix_2, tuple);
-	// print_tuple(tuple_2);
+	printf("\nCase 3:\n");
+	matrix = scaling(data, 2, 3, 4);
+	printf("\nMatrix:\n");
+	print_matrix(&matrix);
+	matrix_2 = inverting_matrix(&matrix);
+	printf("\nMatrix 2:\n");
+	print_matrix(&matrix_2);
+	tuple = create_vector(-4, 6, 8);
+	tuple_2 = multiply_matrix_with_tuple(&matrix_2, &tuple);
+	print_tuple(&tuple_2);
 
 
-	// printf("7. Rotation transformation");
+	printf("7. Rotation transformation");
 	
-	// printf("\nRotation Around the X Axis\n");
-	// tuple = create_point(0, 1, 0);
-	// matrix = rotation_x(data, M_PI/4);
-	// matrix_2 = rotation_x(data, M_PI/2);
-	// tuple_2 = multiply_matrix_with_tuple(matrix, tuple);
-	// tuple_3 = multiply_matrix_with_tuple(matrix_2, tuple);
-	// print_tuple(tuple_2);
-	// print_tuple(tuple_3);
-	// printf("\nInverse\n");
-	// tuple = create_point(0, 1, 0);
-	// matrix = rotation_x(data, M_PI/4);
-	// matrix_2 = inverting_matrix(matrix);
-	// tuple_2 = multiply_matrix_with_tuple(matrix_2, tuple);
-	// print_tuple(tuple_2);
+	printf("\nRotation Around the X Axis\n");
+	tuple = create_point(0, 1, 0);
+	matrix = rotation_x(data, M_PI/4);
+	matrix_2 = rotation_x(data, M_PI/2);
+	tuple_2 = multiply_matrix_with_tuple(&matrix, &tuple);
+	tuple_3 = multiply_matrix_with_tuple(&matrix_2, &tuple);
+	print_tuple(&tuple_2);
+	print_tuple(&tuple_3);
+	printf("\nInverse\n");
+	tuple = create_point(0, 1, 0);
+	matrix = rotation_x(data, M_PI/4);
+	matrix_2 = inverting_matrix(&matrix);
+	tuple_2 = multiply_matrix_with_tuple(&matrix_2, &tuple);
+	print_tuple(&tuple_2);
 
-	// printf("\nRotation Around the Y Axis\n");
-	// tuple = create_point(0, 0, 1);
-	// matrix = rotation_y(data, M_PI/4);
-	// matrix_2 = rotation_y(data, M_PI/2);
-	// tuple_2 = multiply_matrix_with_tuple(matrix, tuple);
-	// tuple_3 = multiply_matrix_with_tuple(matrix_2, tuple);
-	// print_tuple(tuple_2);
-	// print_tuple(tuple_3);
+	printf("\nRotation Around the Y Axis\n");
+	tuple = create_point(0, 0, 1);
+	matrix = rotation_y(data, M_PI/4);
+	matrix_2 = rotation_y(data, M_PI/2);
+	tuple_2 = multiply_matrix_with_tuple(&matrix, &tuple);
+	tuple_3 = multiply_matrix_with_tuple(&matrix_2, &tuple);
+	print_tuple(&tuple_2);
+	print_tuple(&tuple_3);
 	
-	// printf("\nRotation Around the Z Axis\n");
-	// tuple = create_point(0, 1, 0);
-	// matrix = rotation_z(data, M_PI/4);
-	// matrix_2 = rotation_z(data, M_PI/2);
-	// tuple_2 = multiply_matrix_with_tuple(matrix, tuple);
-	// tuple_3 = multiply_matrix_with_tuple(matrix_2, tuple);
-	// print_tuple(tuple_2);
-	// print_tuple(tuple_3);
+	printf("\nRotation Around the Z Axis\n");
+	tuple = create_point(0, 1, 0);
+	matrix = rotation_z(data, M_PI/4);
+	matrix_2 = rotation_z(data, M_PI/2);
+	tuple_2 = multiply_matrix_with_tuple(&matrix, &tuple);
+	tuple_3 = multiply_matrix_with_tuple(&matrix_2, &tuple);
+	print_tuple(&tuple_2);
+	print_tuple(&tuple_3);
 
 	chaining_transformations(data);
 }
@@ -306,7 +305,8 @@ void	test_matrices_operations(int argc, char **argv, t_data *data) // Retirar de
 	test_transposing_matrix(data);
 	//exit_error("", 0, data);*/
 	putting_it_together(data);
-	exit_error("", 0, data);
+	exit_successful(data);
+	// exit_error("", 0, data);
 	test_inversion(data);
 	exit_error("", 0, data);
 	test_determinant(data);
@@ -339,12 +339,12 @@ void	test_matrices_operations(int argc, char **argv, t_data *data) // Retirar de
 	printf("Matriz original 4x4:\n");
 	print_matrix(&matrix);
 	printf("Submatriz tirando linha 4 e coluna 4:\n\n");
-	matrix_a = get_submatrix(matrix, 3, 3);
-	if (matrix_a)
+	matrix_a = get_submatrix(&matrix, 3, 3);
+	if (&matrix_a)
 		print_matrix(&matrix_a);
 	printf("\nSubmatriz da submatriz tirando linha 3 e coluna 3:\n");
-	matrix_b = get_submatrix(matrix_a, 2, 2);
-	if (matrix_b)
+	matrix_b = get_submatrix(&matrix_a, 2, 2);
+	if (&matrix_b)
 		print_matrix(&matrix_b);
 	matrix = NULL;
 	matrix_a = NULL;
@@ -379,9 +379,9 @@ static void	test_multiply_matrix_with_tuple(t_data *data)
 	tuple->w = 1;
 
 	matrix = str_to_matrix(str1);
-	t_tuple	new_tuple = multiply_matrix_with_tuple(matrix, tuple);
+	t_tuple	new_tuple = multiply_matrix_with_tuple(&matrix, &tuple);
 
-	printf("Tupla inicial\nx:%lf\ny:%lf\nz:%lf\nw:%lf\n\n", tuple->x, tuple->y, tuple->z, tuple->w);
+	printf("Tupla inicial\nx:%lf\ny:%lf\nz:%lf\nw:%lf\n\n", &tuple->x, &tuple->y, &tuple->z, &tuple->w);
 	print_matrix(&matrix);
 	printf("\nTupla  final\nx:%lf\ny:%lf\nz:%lf\nw:%lf\n\n", new_tuple->x, new_tuple->y, new_tuple->z, new_tuple->w);
 	matrix = NULL;
@@ -408,7 +408,7 @@ static void	test_multiply_matrices(t_data *data)
 	// str1 = "-1|-1|-1|-1|-1|-1";
 	str1 = "-1,2|2,5";
 	matrix_a = str_to_matrix(str1);
-	if (matrix_a)
+	if (&matrix_a)
 	{
 		printf("\nMatriz A: %s\n", str1);
 		print_matrix(&matrix_a);
@@ -419,7 +419,7 @@ static void	test_multiply_matrices(t_data *data)
 	// str1 = "-1,-1,-1,-1,-1,-1";
 	str1 = "2,-9|2,6";
 	matrix_b = str_to_matrix(str1);
-	if (matrix_b)
+	if (&matrix_b)
 	{
 		printf("\nMatriz B: %s\n", str1);
 		print_matrix(&matrix_b);
@@ -427,8 +427,8 @@ static void	test_multiply_matrices(t_data *data)
 	else
 		printf("Matriz B falhou\n");
 
-	matrix = multiply_matrices(matrix_a, matrix_b);
-	if (matrix)
+	matrix = multiply_matrices(&matrix_a, matrix_b);
+	if (&matrix)
 	{
 		printf("\nAxB:\n");
 		print_matrix(&matrix);
@@ -438,7 +438,7 @@ static void	test_multiply_matrices(t_data *data)
 
 	// str1 = "3,3,2|2,";
 	// matrix_a = str_to_matrix(str1);
-	// if (matrix_a)
+	// if (&matrix_a)
 	// {
 	// 	printf("\nMatriz A: %s", str1);
 	// 	printf("\nLinhas:%d\nColunas:%d\n", matrix_a.rows, matrix_a.cols);
@@ -451,11 +451,11 @@ static void	test_multiply_matrices(t_data *data)
 	// printf("\nMatriz B: %s", str1);
 	// printf("\nLinhas:%d\nColunas:%d\n", matrix_b.rows, matrix_b.cols);
 	// print_matrix(&matrix_b);
-	if (matrix_b)
-		free_matrix(matrix_b);
+	if (&matrix_b)
+		free_matrix(&matrix_b);
 	matrix_b = NULL;
 
-	// // matrix = multiply_matrices(matrix_a, matrix_b);
+	// // matrix = multiply_matrices(&matrix_a, matrix_b);
 	// printf("\nAxB:\n");
 	// // print_matrix(&matrix);
 	matrix = NULL;
@@ -493,15 +493,15 @@ static void	test_transposing_matrix(t_data *data) // Retirar depois
 	str1 = "0,9,3,0|9,8,0,8|1,8,5,3|0,0,5,8";
 	//str1 = "1,0,0,0|0,1,0,0|0,0,1,0|0,0,0,1";
 	matrix_a = str_to_matrix(str1);
-	matrix = transposing_matrix(matrix_a);
-	if (matrix_a)
+	matrix = transposing_matrix(&matrix_a);
+	if (&matrix_a)
 	{
 		printf("\nMatriz A: %s", str1);
 	 	printf("\nLinhas:%d\nColunas:%d\n", matrix_a.rows, matrix_a.cols);
 	 	print_matrix(&matrix_a);
 		matrix_a = NULL;
 	}
-	if (matrix)
+	if (&matrix)
 	{
 		printf("\nMatriz Transposta:");
 	 	printf("\nLinhas:%d\nColunas:%d\n", matrix.rows, matrix.cols);

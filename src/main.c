@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gde-mora <gde-mora@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 20:16:42 by gde-mora          #+#    #+#             */
-/*   Updated: 2023/08/16 21:39:51 by gde-mora         ###   ########.fr       */
+/*   Updated: 2023/08/16 20:38:32 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,7 @@ void	print_matrix(t_matrix *matrix_struct) // Retirar depois
 	int		j;
 
 	i = 0;
-	if (!matrix_struct)
-	{
-		printf("Não tinha matriz\n");
-		return ;
-	}
-	printf("Resultado:\n");
+	printf("linhas e colunas: %d, %d\n", matrix_struct->rows, matrix_struct->cols);
 	while (i < matrix_struct->rows)
 	{
 		j = 0;
@@ -73,9 +68,9 @@ int	main(int argc, char **argv)
 
   	ft_bzero(&data, sizeof(data));
 	init_idmatrices(&data);
-	// test_ray(&data);
 	test_matrices_operations(argc, argv, &data); // retirar depois
 	ft_printf("Iniciando\n"); //
+	// test_ray(&data);
 	signals_handling(&data); // Enqunto fazemos os testes //retirar dps
 	validate_scene_file(argc, argv, &data); //
 	read_scene_file(argv[1], &data); //

@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   multiply_matrices.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gde-mora <gde-mora@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 16:18:21 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/08/16 21:02:34 by gde-mora         ###   ########.fr       */
+/*   Updated: 2023/08/16 21:06:49 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/miniRT.h"
 
 static int		filling_matrix_content(double **new_content,
-					double **a, double **b, int max_cols);
-static double	*create_row(double **a, double **b, int row, int max_cols);
+					t_matrix *a, t_matrix *b, int max_cols);
+static double	*create_row(t_matrix *a, t_matrix *b, int row, int max_cols);
 
 t_matrix	multiply_matrices(t_matrix *a, t_matrix *b) // alterada
 {
@@ -36,19 +36,19 @@ t_matrix	multiply_matrices(t_matrix *a, t_matrix *b) // alterada
 	new_content = ft_calloc(new_rows + 1, sizeof(double *));
 	if (!new_content)
 		return ((t_matrix){0});
-	if (!filling_matrix_content(new_content, (double **)a->content, (double **)b->content, new_cols))
+	if (!filling_matrix_content(new_content, a, b, new_cols))
 		return ((t_matrix){0});
 	new_matrix = create_matrix(new_content, new_cols);
 	return (new_matrix);
 }
 
 static int	filling_matrix_content(double **new_content,
-	double **a, double **b, int max_cols)
+	t_matrix *a, t_matrix *b, int max_cols)
 {
 	int	row;
 
 	row = 0;
-	while (a[row])
+	while (row < a->rows)
 	{
 		new_content[row] = create_row(a, b, row, max_cols);
 		if (!new_content[row])
@@ -61,7 +61,7 @@ static int	filling_matrix_content(double **new_content,
 	return (1);
 }
 
-static double	*create_row(double **a, double **b, int row, int max_cols)
+static double	*create_row(t_matrix *a, t_matrix *b, int row, int max_cols)
 {
 	double	*new_row;
 	int		col;
@@ -74,9 +74,9 @@ static double	*create_row(double **a, double **b, int row, int max_cols)
 	while (col < max_cols)
 	{
 		element = 0;
-		while (b[element])
+		while (element < b->rows)
 		{
-			new_row[col] += (a[row][element] * b[element][col]);
+			new_row[col] += (a->content[row][element] * b->content[element][col]);
 			element++;
 		}
 		if (are_floats_equal(new_row[col], -0.0))

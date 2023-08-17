@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 16:06:05 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/08/13 15:14:47 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/08/16 20:39:37 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 static void	free_data(t_data *data)
 {
+	
 	if (data->mlx_ptr && data->img)
 		mlx_destroy_image(data->mlx_ptr, data->img);
 	if (data->mlx_ptr && data->win_ptr)
@@ -24,7 +25,9 @@ static void	free_data(t_data *data)
 		free(data->mlx_ptr);
 	}
 	if (data->tokens)
+	{
 		token_clear(&data->tokens);
+	}
 }
 
 int	exit_error(char *msg, int status, t_data *data)

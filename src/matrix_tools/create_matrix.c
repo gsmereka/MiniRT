@@ -6,13 +6,13 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 15:45:03 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/08/13 18:52:39 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/08/16 19:24:43 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/miniRT.h"
 
-static void copy_content(double **src, double dest[MATRIX_SIZE + 1][MATRIX_SIZE], int cols, int rows) // alterada
+static void copy_content(double **src, double dest[MATRIX_SIZE][MATRIX_SIZE], int cols, int rows) // alterada
 {
 	int		i;
 	int		j;
