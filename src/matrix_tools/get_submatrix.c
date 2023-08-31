@@ -6,7 +6,7 @@
 /*   By: gde-mora <gde-mora@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 20:08:50 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/07/24 21:23:33 by gde-mora         ###   ########.fr       */
+/*   Updated: 2023/08/16 21:03:49 by gde-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,22 +16,22 @@ static double	*get_subrow(double *row, int max_cols, int col_excluded);
 static double	**get_subcontent(t_matrix *matrix,
 					int row_excluded, int col_excluded);
 
-t_matrix	*get_submatrix(t_matrix *matrix, int row_excluded, int col_excluded)
+t_matrix	get_submatrix(t_matrix *matrix, int row_excluded, int col_excluded)
 {
 	double		**subcontent;
-	t_matrix	*submatrix;
+	t_matrix	submatrix;
 
-	if (!matrix || !matrix->content)
-		return (NULL);
+	if (!matrix) //  || !matrix->content
+		return ((t_matrix){0});
 	if (row_excluded < 0 || col_excluded < 0)
-		return (NULL);
+		return ((t_matrix){0});
 	if (matrix->rows < row_excluded || matrix->cols < col_excluded)
-		return (NULL);
+		return ((t_matrix){0});
 	if (matrix->rows != matrix->cols)
-		return (NULL);
+		return ((t_matrix){0});
 	subcontent = get_subcontent(matrix, row_excluded, col_excluded);
 	if (!subcontent)
-		return (NULL);
+		return ((t_matrix){0});
 	submatrix = create_matrix(subcontent, matrix->cols - 1);
 	return (submatrix);
 }

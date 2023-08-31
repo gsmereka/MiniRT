@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   inverting_matrix.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gde-mora <gde-mora@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 01:31:11 by gde-mora          #+#    #+#             */
-/*   Updated: 2023/08/02 19:04:38 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/08/13 15:57:50 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,22 +15,22 @@
 static	int	invert_content(double **new_content, t_matrix *matrix);
 static	int	init_new_content(double **new_content, t_matrix *matrix);
 
-t_matrix	*inverting_matrix(t_matrix *matrix)
+t_matrix	inverting_matrix(t_matrix *matrix) // não precisa, mas da pra tirar o malloc tambem do new_content
 {
-	t_matrix	*new_matrix;
+	t_matrix	new_matrix;
 	double		**new_content;
 
 	if (!matrix)
-		return (NULL);
+		return ((t_matrix){0});
 	if (are_floats_equal(matrix->determinant, 0.0))
-		return (NULL);
+		return ((t_matrix){0});
 	new_content = ft_calloc(matrix->rows + 1, sizeof(double *));
 	if (!new_content)
-		return (NULL);
+		return ((t_matrix){0});
 	if (!init_new_content(new_content, matrix))
-		return (NULL);
+		return ((t_matrix){0});
 	if (!invert_content(new_content, matrix))
-		return (NULL);
+		return ((t_matrix){0});
 	new_matrix = create_matrix(new_content, matrix->cols);
 	return (new_matrix);
 }

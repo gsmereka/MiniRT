@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 17:55:50 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/08/08 19:39:27 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/08/13 15:42:16 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ void	criar_relogio(t_data *data)
 {
 	double		angulo;
 	double		raio;
-	t_matrix	*rota;
-	t_tuple		*ponto;
-	t_tuple		*temp;
+	t_matrix	rota;
+	t_tuple		ponto;
+	t_tuple		temp;
 	int			i;
 
 	angulo = (M_PI / 6);
@@ -37,25 +37,22 @@ void	criar_relogio(t_data *data)
 	i = 0;
 	while(i <= 12)
 	{
-		ponto = multiply_matrix_with_tuple(rota, temp);
-		paint_relogio(ponto, RED, data);
-		pass_tuple_values(temp, ponto);
-		free(ponto);
+		ponto = multiply_matrix_with_tuple(&rota, &temp);
+		paint_relogio(&ponto, RED, data);
+		pass_tuple_values(&temp, &ponto);
 		i++;
 	}
-	free(temp);
-	free_matrix(rota);
 }
 
 void	criar_relogio_2(t_data *data)
 {
-	t_tuple		*relogio;
-	t_tuple		*twelve;
-	t_tuple		*three;
-	t_tuple		*extra;
+	t_tuple		relogio;
+	t_tuple		twelve;
+	t_tuple		three;
+	t_tuple		extra;
 	double		raio;
-	t_matrix	*r;
-	t_matrix	*r_2;
+	t_matrix	r;
+	t_matrix	r_2;
 
 	(void)data;
 	// passo 2
@@ -64,32 +61,25 @@ void	criar_relogio_2(t_data *data)
 
 	// passo 3
 	r = rotation_y(data, (3 * M_PI) / 6);
-	three = multiply_matrix_with_tuple(r, twelve);
+	three = multiply_matrix_with_tuple(&r, &twelve);
 	// print_tuple(three);
 
 	// passo 4
 	raio = (3.0 / 8) * data->win_width;
 
-	multiply_teste_tuple(twelve, raio);
-	multiply_teste_tuple(three, raio);
+	multiply_teste_tuple(&twelve, raio);
+	multiply_teste_tuple(&three, raio);
 
-	paint_relogio(twelve, RED, data);
-	paint_relogio(three, RED, data);
-	paint_relogio(relogio, GREEN, data);
+	paint_relogio(&twelve, RED, data);
+	paint_relogio(&three, RED, data);
+	paint_relogio(&relogio, GREEN, data);
 
 	// passo
 
 	r_2 = rotation_y(data, M_PI / 6);
-	extra = multiply_matrix_with_tuple(r_2, twelve);
-	print_tuple(extra);
-	paint_relogio(extra, RED, data);
-
-	free_matrix(r_2);
-	free(extra);
-	free(twelve);
-	free(three);
-	free_matrix(r);
-	free(relogio);
+	extra = multiply_matrix_with_tuple(&r_2, &twelve);
+	print_tuple(&extra);
+	paint_relogio(&extra, RED, data);
 }
 
 void	paint_relogio(t_tuple *tuple, unsigned int color, t_data *data)

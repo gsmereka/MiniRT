@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   miniRT.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gde-mora <gde-mora@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 20:17:31 by gde-mora          #+#    #+#             */
-/*   Updated: 2023/08/09 21:24:14 by gde-mora         ###   ########.fr       */
+/*   Updated: 2023/08/13 15:19:36 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@
 # define BLUE 0x000000FF
 
 void		test_matrices_operations(int argc, char **argv, t_data *data); // Retirar depois, do Makefile tb
-void	test_ray(t_data *data);
+void		test_ray(t_data *data);
 
 // main functions
 int			validate_scene_file(int argc, char *argv[], t_data *data);
@@ -99,20 +99,20 @@ int		are_tuples_equal(t_tuple *one, t_tuple *two);
 int		free_array(void **array);
 double	atod(const char *str);
 t_ray	create_ray(t_tuple *origin, t_tuple *direction);
-t_tuple	*position(t_ray *ray, double time);
+t_tuple	position(t_ray *ray, double time);
 
 // tuples operations
-t_tuple	*create_point(double x, double y, double z);
-t_tuple	*create_vector(double x, double y, double z);
-t_tuple	*sum_tuples(t_tuple *one, t_tuple *two);
-t_tuple	*subtract_tuples(t_tuple *one, t_tuple *two);
-t_tuple	*reverse_tuple(t_tuple *tuple);
-t_tuple	*multiply_tuple(t_tuple *tuple, double factor);
-t_tuple	*divide_tuple(t_tuple *tuple, double factor);
+t_tuple	create_point(double x, double y, double z);
+t_tuple	create_vector(double x, double y, double z);
+t_tuple	sum_tuples(t_tuple *one, t_tuple *two);
+t_tuple	subtract_tuples(t_tuple *one, t_tuple *two);
+t_tuple	reverse_tuple(t_tuple *tuple);
+t_tuple	multiply_tuple(t_tuple *tuple, double factor);
+t_tuple	divide_tuple(t_tuple *tuple, double factor);
 void	normalize_tuple(t_tuple *tuple);
 double	tuple_magnitude(t_tuple *tuple);
 double	dot_product(t_tuple *one, t_tuple *two);
-t_tuple	*cross_product(t_tuple *one, t_tuple *two);
+t_tuple	cross_product(t_tuple *one, t_tuple *two);
 void	pass_tuple_values(t_tuple *dest, t_tuple *src);
 
 // color operations
@@ -122,29 +122,28 @@ t_color	*multiply_color_scalar(t_color *color, double factor);
 t_color	*multiply_color_x_color(t_color *one, t_color *two);
 
 // Matrix Transformations
-t_matrix	*translation(double x, double y, double z, t_data *data);
-t_matrix	*scaling(t_data *data, double x, double y, double z);
-t_matrix	*rotation_x(t_data *data, double  radians);
-t_matrix	*rotation_y(t_data *data, double  radians);
-t_matrix	*rotation_z(t_data *data, double  radians);
-t_matrix	*shearing(double *proportions, t_data *data);
+t_matrix	translation(double x, double y, double z, t_data *data);
+t_matrix	scaling(t_data *data, double x, double y, double z);
+t_matrix	rotation_x(t_data *data, double  radians);
+t_matrix	rotation_y(t_data *data, double  radians);
+t_matrix	rotation_z(t_data *data, double  radians);
+t_matrix	shearing(double *proportions, t_data *data);
 
 // matrix_tools
 void		init_idmatrices(t_data *data);
-t_matrix	*str_to_matrix(char *str);
-t_matrix	*create_matrix(double **content, int cols);
+t_matrix	str_to_matrix(char *str);
+t_matrix	create_matrix(double **content, int cols);
 void		print_matrix(t_matrix *matrix_struct); // retirara depois
 void		print_tuple(t_tuple *tuple); // retirar depois
-void		free_matrix(t_matrix *matrix);
 int			matrices_have_diff(t_matrix *a, t_matrix *b);
-t_matrix	*multiply_matrices(t_matrix *a, t_matrix *b);
-t_matrix	*transposing_matrix(t_matrix *mat);
-t_tuple		*multiply_matrix_with_tuple(t_matrix *matrix, t_tuple *tuple);
-t_matrix	*get_submatrix(t_matrix *matrix, int row, int col);
+t_matrix	multiply_matrices(t_matrix *a, t_matrix *b);
+t_matrix	transposing_matrix(t_matrix *mat);
+t_tuple		multiply_matrix_with_tuple(t_matrix *matrix, t_tuple *tuple);
+t_matrix	get_submatrix(t_matrix *matrix, int row, int col);
 double		get_determinant(t_matrix *matrix);
 double		get_cofactor(t_matrix *matrix, int row, int col);
-t_matrix	*inverting_matrix(t_matrix *matrix);
-t_matrix	*copy_matrix(t_matrix *src);
+t_matrix	inverting_matrix(t_matrix *matrix);
+t_matrix	copy_matrix(t_matrix *src);
 
 // token utils
 t_token		*create_token(char **args);

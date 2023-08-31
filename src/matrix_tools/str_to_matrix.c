@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 18:11:05 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/07/19 20:59:08 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/08/13 17:57:47 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,23 +18,24 @@ static double	**extract_matrix_content(char **lines_str,
 					int lines_count, int cols_count);
 static double	*extract_line_numbers(char *str, int cols_count);
 
-t_matrix	*str_to_matrix(char *str)
+t_matrix	str_to_matrix(char *str) // alterada
 {
-	t_matrix	*matrix;
+	t_matrix	matrix;
 	char		**lines_str;
 	double		**matrix_content;
 	int			lines_count;
 	int			cols_count;
 
+	matrix = (t_matrix){0};
 	lines_str = ft_split(str, '|');
 	if (!lines_str)
-		return (NULL);
+		return ((t_matrix){0});
 	lines_count = count_lines((void **)lines_str);
 	cols_count = count_cols(lines_str, 0, 0);
 	if (!cols_count)
 	{
 		free_array((void **)lines_str);
-		return (NULL);
+		return ((t_matrix){0});
 	}
 	matrix_content = extract_matrix_content(lines_str, lines_count, cols_count);
 	matrix = create_matrix(matrix_content, cols_count);
