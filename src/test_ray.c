@@ -3,14 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   test_ray.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gde-mora <gde-mora@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 20:57:01 by gde-mora          #+#    #+#             */
-/*   Updated: 2023/08/09 22:25:11 by gde-mora         ###   ########.fr       */
+/*   Updated: 2023/08/31 17:33:27 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/miniRT.h"
+
+double	calculate_discriminant(t_sphere *sphere, t_ray *ray);
 
 typedef struct s_sphere
 {
@@ -24,21 +26,37 @@ typedef struct s_intersect
 	double	intersect_times[2];
 }	t_intersect;
 
-// t_intersect intersect(t_sphere *sphere, t_ray *ray)
-// {
-// 	int		i;
-// 	t_tuple	*point;
+t_intersect intersect(t_sphere *sphere, t_ray *ray)
+{
+	t_intersect	intersect;
+	double		discriminant;
+
+	intersect = (t_intersect){0};
+	discriminant = calculate_discriminant(sphere, ray);
+	if (discriminant < 0)
+	{
+		intersect.count = 0;
+		return (intersect);
+	}
+	intersect.intersect_times[0] = 
+}
+
+double	calculate_discriminant(t_sphere *sphere, t_ray *ray)
+{
+	double	a;
+	double	b;
+	double	c;
+	double	d;
+	t_tuple	sphere_to_ray;
+
+	sphere_to_ray = subtract_tuples(ray->origin, create_point(0, 0, 0));
+	a = dot_product(ray->direction, ray->direction);
+	b = dot_product(ray->direction, sphere_to_ray) * 2;
+	c = dot_product(sphere_to_ray, sphere_to_ray) - 1;
 	
-	// 0 0 -1
-	// 0 0 1
-	//(void)sphere;
-	//(void)ray;
-	// while (i < 10)
-	// {
-	// 	point = position(ray, i);
-	// 	if (are_tuples_equal()
-	// }
-// }
+	d = (b * b) - (4 * a * c);
+	return (d);
+}
 
 void	test_ray(t_data *data)
 {
