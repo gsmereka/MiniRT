@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 19:07:48 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/09/08 19:29:38 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/09/08 19:44:20 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,11 @@ typedef struct s_intersect
 
 typedef struct s_intersection
 {
-	double	a;
-	double	b;
-	double	c;
-	int		count;
-	double	intersect_times[2];
+	double	time;
+	t_token	*object;
 }	t_intersection;
 
-t_intersect intersect(t_token *token, t_ray *ray);
+t_intersect 	intersect(t_token *token, t_ray *ray);
+t_intersection	intersection(double time, t_token *object);
 
 #endif

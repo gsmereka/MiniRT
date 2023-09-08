@@ -6,7 +6,7 @@
 #    By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/20 18:26:17 by gde-mora          #+#    #+#              #
-#    Updated: 2023/09/08 19:31:48 by gsmereka         ###   ########.fr        #
+#    Updated: 2023/09/08 19:49:27 by gsmereka         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,7 @@ SRC 	=	src/test_matrices_operations.c \
 			src/main.c \
 			src/exit.c \
 			src/ray_tools/intersect.c \
+			src/ray_tools/intersection.c \
 			src/render/render.c \
 			src/render/paint_pixel.c \
 			src/render/minilibx_handlers.c \
