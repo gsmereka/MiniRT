@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 20:52:31 by gde-mora          #+#    #+#             */
-/*   Updated: 2023/08/13 17:46:03 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/09/08 18:50:11 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,9 @@ t_ray	create_ray(t_tuple *origin, t_tuple *direction) // alterada
 {
 	t_ray	ray;
 
-	pass_tuple_values(origin, &ray.origin);
-	pass_tuple_values(direction, &ray.direction);
+	ray = (t_ray){0};
+	pass_tuple_values(&ray.origin, origin);
+	pass_tuple_values(&ray.direction, direction);
 	return (ray);	
 }
 
