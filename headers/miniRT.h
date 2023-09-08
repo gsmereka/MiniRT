@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 20:17:31 by gde-mora          #+#    #+#             */
-/*   Updated: 2023/08/13 15:19:36 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/09/08 19:15:08 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 
 # include "./error_msg.h"
 # include "./structs.h"
+# include "../src/ray_tools/ray.h"
 # include <mlx.h>
 # include <X11/X.h>
 # include <X11/keysym.h>
@@ -46,6 +47,7 @@
 # define GREEN 0x0000FF00
 # define BLUE 0x000000FF
 
+void		test_intersections(t_data *data);
 void		test_matrices_operations(int argc, char **argv, t_data *data); // Retirar depois, do Makefile tb
 void		test_ray(t_data *data);
 
