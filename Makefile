@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+         #
+#    By: gde-mora <gde-mora@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/20 18:26:17 by gde-mora          #+#    #+#              #
-#    Updated: 2023/09/08 19:49:27 by gsmereka         ###   ########.fr        #
+#    Updated: 2023/09/22 21:19:06 by gde-mora         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,7 @@ SRC 	=	src/test_matrices_operations.c \
 			src/test_ray.c \
 			src/main.c \
 			src/exit.c \
+			src/ray_tools/rays.c \
 			src/ray_tools/intersect.c \
 			src/ray_tools/intersection.c \
 			src/render/render.c \
@@ -28,7 +29,6 @@ SRC 	=	src/test_matrices_operations.c \
 			src/tools/atod.c \
 			src/tools/free_array.c \
 			src/tools/colors_operations.c \
-			src/tools/rays.c \
 			src/tuple_tools/are_tuples_equal.c \
 			src/tuple_tools/create_tuple.c \
 			src/tuple_tools/tuples_operations.c \
@@ -72,7 +72,7 @@ LIBFT_A =	./libft/libft.a
 
 HEADERS =	./headers/miniRT.h
 
-# CCFLAGS =	-Wall -Wextra -Werror
+CCFLAGS =	-Wall -Wextra -Werror
 
 MLX_FLAGS = -lmlx -lXext -lX11 -lm
 

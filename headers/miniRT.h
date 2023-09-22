@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   miniRT.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gde-mora <gde-mora@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 20:17:31 by gde-mora          #+#    #+#             */
-/*   Updated: 2023/09/08 19:15:08 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/09/22 20:37:38 by gde-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@
 # define GREEN 0x0000FF00
 # define BLUE 0x000000FF
 
-void		test_intersections(t_data *data);
+void		test_intersection(t_data *data);
 void		test_matrices_operations(int argc, char **argv, t_data *data); // Retirar depois, do Makefile tb
 void		test_ray(t_data *data);
 
