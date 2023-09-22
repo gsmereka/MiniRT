@@ -6,7 +6,7 @@
 /*   By: gde-mora <gde-mora@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 19:14:23 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/09/22 22:11:25 by gde-mora         ###   ########.fr       */
+/*   Updated: 2023/09/22 22:27:43 by gde-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,12 +43,12 @@ void	test_intersection(t_data *data)
 	while (sphere->type != 3)
 		sphere = sphere->next;
 	inter_list = NULL;
-	add_intersection(inter_list, 1, sphere); //lista de interseções para passar p o intersections  (em ordem?)
-	add_intersection(inter_list, 2, sphere);
+	add_intersection(&inter_list, 1, sphere); //lista de interseções para passar p o intersections  (em ordem?)
+	add_intersection(&inter_list, 2, sphere);
 
 	xs = intersections(inter_list); //return intersect struct
 	printf("%d\n", xs.count);
 	printf("%lf\n", xs.intersect_times[0]);
 	printf("%lf\n", xs.intersect_times[1]);
-	//free_intersection_list(inter_list);
+	free_intersection_list(inter_list);
 }

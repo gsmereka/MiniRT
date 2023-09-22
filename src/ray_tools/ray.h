@@ -6,7 +6,7 @@
 /*   By: gde-mora <gde-mora@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 19:07:48 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/09/22 22:08:44 by gde-mora         ###   ########.fr       */
+/*   Updated: 2023/09/22 22:26:14 by gde-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ typedef struct s_intersection
 
 t_intersect 	intersect(t_token *token, t_ray *ray);
 t_intersection	*create_intersection(double time, t_token *object);
-void			add_intersection(t_intersection *inter_list, double time, \
+void			add_intersection(t_intersection **inter_list, double time, \
 	t_token *object);
 t_intersect	intersections(t_intersection *inter_list);
 void	free_intersection_list(t_intersection *inter_list);

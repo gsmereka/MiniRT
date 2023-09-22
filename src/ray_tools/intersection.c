@@ -6,7 +6,7 @@
 /*   By: gde-mora <gde-mora@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 19:41:19 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/09/22 22:21:03 by gde-mora         ###   ########.fr       */
+/*   Updated: 2023/09/22 22:26:49 by gde-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,17 +35,17 @@ t_intersection	*intersection_last(t_intersection *inter_list)
 	return (aux);
 }
 
-void	add_intersection(t_intersection *inter_list, double time, \
+void	add_intersection(t_intersection **inter_list, double time, \
 	t_token *object)
 {
 	t_intersection	*last_node;
 	t_intersection	*new_node;            //ou a lista é no intersect? aí seria add intersect. pq la tem intersect times...
 
-	if (!inter_list)
-		inter_list = create_intersection(time, object);
+	if (!*inter_list)
+		*inter_list = create_intersection(time, object);
 	else
 	{
-		last_node = intersection_last(inter_list);
+		last_node = intersection_last(*inter_list);
 		new_node = create_intersection(time, object); //dps alterar para add em ordem
 		last_node->next = new_node;
 	}
