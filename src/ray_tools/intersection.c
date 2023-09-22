@@ -1,21 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pass_tuple_values.c                                :+:      :+:    :+:   */
+/*   intersection.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/24 20:01:36 by gde-mora          #+#    #+#             */
-/*   Updated: 2023/09/08 18:50:55 by gsmereka         ###   ########.fr       */
+/*   Created: 2023/09/08 19:41:19 by gsmereka          #+#    #+#             */
+/*   Updated: 2023/09/08 19:43:55 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/miniRT.h"
 
-void	pass_tuple_values(t_tuple *dest, t_tuple *src)
+t_intersection	intersection(double time, t_token *object)
 {
-	dest->x = src->x;
-	dest->y = src->y;
-	dest->z = src->z;
-	dest->w = src->w;
+	t_intersection	intersection;
+
+	intersection = (t_intersection){0};
+	intersection.time = time;
+	intersection.object = object;
+	return (intersection);
 }

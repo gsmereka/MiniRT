@@ -1,21 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pass_tuple_values.c                                :+:      :+:    :+:   */
+/*   test_intersection.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/24 20:01:36 by gde-mora          #+#    #+#             */
-/*   Updated: 2023/09/08 18:50:55 by gsmereka         ###   ########.fr       */
+/*   Created: 2023/09/08 19:14:23 by gsmereka          #+#    #+#             */
+/*   Updated: 2023/09/08 19:50:29 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../headers/miniRT.h"
+#include "../headers/miniRT.h"
 
-void	pass_tuple_values(t_tuple *dest, t_tuple *src)
+void	test_intersection(t_data *data)
 {
-	dest->x = src->x;
-	dest->y = src->y;
-	dest->z = src->z;
-	dest->w = src->w;
+	t_token			*sphere;
+	double			time;
+	t_intersection	inter;
+
+	sphere = data->tokens;
+	while (sphere->type != 3)
+		sphere = sphere->next;
+	time = 3.5;
+	inter = intersection(time, sphere);
+	printf("%lf\n", inter.time);
+	if (inter.object->type == 3)
+		printf("ESFERA!\n");
+	else
+		printf("ERROU\n");
+
 }

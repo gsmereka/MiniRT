@@ -6,17 +6,20 @@
 #    By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/20 18:26:17 by gde-mora          #+#    #+#              #
-#    Updated: 2023/08/13 14:18:25 by gsmereka         ###   ########.fr        #
+#    Updated: 2023/09/08 19:49:27 by gsmereka         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME 	=	miniRT
 
 SRC 	=	src/test_matrices_operations.c \
+			src/test_intersection.c \
 			src/test_render.c \
 			src/test_ray.c \
 			src/main.c \
 			src/exit.c \
+			src/ray_tools/intersect.c \
+			src/ray_tools/intersection.c \
 			src/render/render.c \
 			src/render/paint_pixel.c \
 			src/render/minilibx_handlers.c \
@@ -69,7 +72,7 @@ LIBFT_A =	./libft/libft.a
 
 HEADERS =	./headers/miniRT.h
 
-CCFLAGS =	-Wall -Wextra -Werror
+# CCFLAGS =	-Wall -Wextra -Werror
 
 MLX_FLAGS = -lmlx -lXext -lX11 -lm
 
@@ -148,6 +151,7 @@ re: fclean all
 create_obj_dir:
 	@mkdir -p $(OBJ_DIR)
 	@mkdir -p $(OBJ_DIR)/src
+	@mkdir -p $(OBJ_DIR)/src/ray_tools
 	@mkdir -p $(OBJ_DIR)/src/parsing
 	@mkdir -p $(OBJ_DIR)/src/render
 	@mkdir -p $(OBJ_DIR)/src/tools
@@ -159,7 +163,7 @@ create_obj_dir:
 git: fclean
 	git add . && clear && git status
 
-RT_FILE = ./test/test_files/011_all_config_with_cylinder.rt
+RT_FILE = ./scene_files/sphere.rt
 
 valgrind: $(NAME)
 	clear && valgrind  --leak-check=full --show-leak-kinds=all --track-origins=yes ./miniRT $(RT_FILE)
