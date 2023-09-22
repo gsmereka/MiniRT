@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   intersect.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gde-mora <gde-mora@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 19:09:29 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/09/08 19:23:38 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/09/22 23:14:33 by gde-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 double	calculate_discriminant(t_intersect *intersect, t_token *token, t_ray *ray);
 
-t_intersect intersect(t_token *token, t_ray *ray)
+t_intersect intersect(t_token *token, t_ray *ray) //criar struct p salvar a b c
 {
 	t_intersect	intersect;
 	double		discriminant;
@@ -32,6 +32,8 @@ t_intersect intersect(t_token *token, t_ray *ray)
 		intersect.count = 1;
 	else
 		intersect.count = 2;
+	intersect.objects[0] = *token;
+	intersect.objects[1] = *token;
 	return (intersect);
 }
 

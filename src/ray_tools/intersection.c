@@ -6,7 +6,7 @@
 /*   By: gde-mora <gde-mora@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 19:41:19 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/09/22 22:26:49 by gde-mora         ###   ########.fr       */
+/*   Updated: 2023/09/22 23:03:54 by gde-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ t_intersect	intersections(t_intersection *inter_list)
 	while (inter_list)
 	{
 		xs.intersect_times[xs.count] = inter_list->time;
+		xs.objects[xs.count] = *(inter_list->object); //isso funciona?
 		xs.count++;
 		inter_list = inter_list->next;
 	}

@@ -6,7 +6,7 @@
 /*   By: gde-mora <gde-mora@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 19:07:48 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/09/22 22:26:14 by gde-mora         ###   ########.fr       */
+/*   Updated: 2023/09/22 22:59:06 by gde-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ typedef struct s_intersect
 	double	b;
 	double	c;
 	int		count;
+	t_token	objects[2];
 	double	intersect_times[2];
 }	t_intersect;
 

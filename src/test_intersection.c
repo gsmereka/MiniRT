@@ -6,7 +6,7 @@
 /*   By: gde-mora <gde-mora@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 19:14:23 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/09/22 22:27:43 by gde-mora         ###   ########.fr       */
+/*   Updated: 2023/09/22 23:19:27 by gde-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,17 @@ void	test_intersection(t_data *data)
 	double			time;
 	t_intersection	*inter_list;
 	t_intersect		xs;
+	t_tuple			origin;
+	t_tuple			direction;
+	t_ray			ray;
 
 	(void)sphere;
 	(void)time;
 	(void)inter_list;
 	(void)xs;
+	(void)origin;
+	(void)direction;
+	(void)ray;
 
 	// teste 1
 	
@@ -38,17 +44,57 @@ void	test_intersection(t_data *data)
 	// 	printf("ERROU\n");
 	// free_intersection_list(inter_list);
 
-	// teste 2
-	sphere = data->tokens;
-	while (sphere->type != 3)
-		sphere = sphere->next;
-	inter_list = NULL;
-	add_intersection(&inter_list, 1, sphere); //lista de interseções para passar p o intersections  (em ordem?)
-	add_intersection(&inter_list, 2, sphere);
 
-	xs = intersections(inter_list); //return intersect struct
-	printf("%d\n", xs.count);
-	printf("%lf\n", xs.intersect_times[0]);
-	printf("%lf\n", xs.intersect_times[1]);
-	free_intersection_list(inter_list);
+	// teste 2
+	
+	// sphere = data->tokens;
+	// while (sphere->type != 3)
+	// 	sphere = sphere->next;
+	// inter_list = NULL;
+	// add_intersection(&inter_list, 1, sphere); //lista de interseções para passar p o intersections  (em ordem?)
+	// add_intersection(&inter_list, 2, sphere);
+
+	// xs = intersections(inter_list); //return intersect struct
+	// printf("%d\n", xs.count);
+	// printf("%lf\n", xs.intersect_times[0]);
+	// printf("%lf\n", xs.intersect_times[1]);
+	// free_intersection_list(inter_list);
+
+	
+	// teste 3
+	
+	// origin = create_point(0, 0, -5);
+	// direction = create_vector(0, 0, 1);
+	// ray = create_ray(&origin, &direction);
+	// sphere = data->tokens;
+	// while (sphere->type != 3)
+	// 	sphere = sphere->next;
+	// xs = intersect(sphere, &ray);
+	// printf("%d\n", xs.count);
+	// printf("%lf\n", xs.intersect_times[0]);
+	// printf("%lf\n", xs.intersect_times[1]);
+	// if (xs.objects[0].type == 3)
+	// 	printf("XS 0 is SPHERE\n");
+	// if (xs.objects[1].type == 3)
+	// 	printf("XS 1 is SPHERE\n");
+
+
+	// teste especial
+
+	// sphere = data->tokens;
+	// while (sphere->type != 3)
+	// 	sphere = sphere->next;
+	// inter_list = NULL;
+	// add_intersection(&inter_list, 1, sphere); //lista de interseções para passar p o intersections  (em ordem?)
+	// add_intersection(&inter_list, 2, sphere);
+
+	// xs = intersections(inter_list); //return intersect struct
+	// printf("%d\n", xs.count);
+	// printf("%lf\n", xs.intersect_times[0]);
+	// printf("%lf\n", xs.intersect_times[1]);
+	// if (xs.objects[0].type == 3)
+	// 	printf("XS 0 is SPHERE\n");
+	// if (xs.objects[1].type == 3)
+	// 	printf("XS 1 is SPHERE\n");
+	// free_intersection_list(inter_list);
 }
