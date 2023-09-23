@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   test_intersection.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gde-mora <gde-mora@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 19:14:23 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/09/22 23:19:27 by gde-mora         ###   ########.fr       */
+/*   Updated: 2023/09/23 01:24:25 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void	test_intersection(t_data *data)
 	(void)origin;
 	(void)direction;
 	(void)ray;
+	(void)data;
 
 	// teste 1
 	
@@ -81,20 +82,20 @@ void	test_intersection(t_data *data)
 
 	// teste especial
 
-	// sphere = data->tokens;
-	// while (sphere->type != 3)
-	// 	sphere = sphere->next;
-	// inter_list = NULL;
-	// add_intersection(&inter_list, 1, sphere); //lista de interseções para passar p o intersections  (em ordem?)
-	// add_intersection(&inter_list, 2, sphere);
+	sphere = data->tokens;
+	while (sphere->type != 3)
+		sphere = sphere->next;
+	inter_list = NULL;
+	add_intersection(&inter_list, 1, sphere); //lista de interseções para passar p o intersections  (em ordem?)
+	add_intersection(&inter_list, 2, sphere);
 
-	// xs = intersections(inter_list); //return intersect struct
-	// printf("%d\n", xs.count);
-	// printf("%lf\n", xs.intersect_times[0]);
-	// printf("%lf\n", xs.intersect_times[1]);
-	// if (xs.objects[0].type == 3)
-	// 	printf("XS 0 is SPHERE\n");
-	// if (xs.objects[1].type == 3)
-	// 	printf("XS 1 is SPHERE\n");
-	// free_intersection_list(inter_list);
+	xs = intersections(inter_list); //return intersect struct
+	printf("%d\n", xs.count);
+	printf("%lf\n", xs.intersect_times[0]);
+	printf("%lf\n", xs.intersect_times[1]);
+	if (xs.objects[0].type == 3)
+		printf("XS 0 is SPHERE\n");
+	if (xs.objects[1].type == 3)
+		printf("XS 1 is SPHERE\n");
+	free_intersection_list(inter_list);
 }
