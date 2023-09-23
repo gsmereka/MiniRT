@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 20:17:31 by gde-mora          #+#    #+#             */
-/*   Updated: 2023/09/23 01:35:40 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/09/23 01:43:34 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,9 @@
 # include "../src/parsing/parsing.h"
 # include "../src/render/render.h"
 # include "../src/tools/tools.h"
+# include "../src/tuple_tools/tuple_tools.h"
 
+void    	test_hits(t_data *data);
 void		test_intersection(t_data *data);
 void		test_matrices_operations(int argc, char **argv, t_data *data); // Retirar depois, do Makefile tb
 void		test_ray(t_data *data);

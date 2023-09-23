@@ -3,16 +3,17 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: gde-mora <gde-mora@student.42sp.org.br>    +#+  +:+       +#+         #
+#    By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/20 18:26:17 by gde-mora          #+#    #+#              #
-#    Updated: 2023/09/22 21:19:06 by gde-mora         ###   ########.fr        #
+#    Updated: 2023/09/23 01:48:10 by gsmereka         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME 	=	miniRT
 
 SRC 	=	src/test_matrices_operations.c \
+			src/test_hits.c \
 			src/test_intersection.c \
 			src/test_render.c \
 			src/test_ray.c \
@@ -163,13 +164,13 @@ create_obj_dir:
 git: fclean
 	git add . && clear && git status
 
-RT_FILE = ./scene_files/sphere.rt
+RT_FILE = ./debug.rt
 
 valgrind: $(NAME)
 	clear && valgrind  --leak-check=full --show-leak-kinds=all --track-origins=yes ./miniRT $(RT_FILE)
 
 # Executa o tester.
-test: $(NAME)
+test: $(NAME)s
 	clear && cd test && ./test.sh
 
 .PHONY: all clean fclean re create_obj_dir git ascii_draw ascii_draw_fclean valgrind test
