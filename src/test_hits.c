@@ -40,7 +40,7 @@ void	test_hits(t_data *data)
 	inter_list = NULL;
 	add_intersection(&inter_list, 1, sphere);  // i1 ← intersection(1, s)
 	add_intersection(&inter_list, 2, sphere);  // i2 ← intersection(2, s)
-	xs = intersections(inter_list); //return intersect struct
+	xs = intersections_xs(inter_list); //return intersect struct
 
 	printf("Esste teste (./test_hits.c) está na pagina 85/286\n");
 	// When i ← hit(xs) o que essa função hit significa ?????

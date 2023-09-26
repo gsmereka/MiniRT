@@ -42,15 +42,15 @@ void	add_sorted_node(t_intersection **inter_list, t_intersection *new_node)
 	aux = *inter_list;
 	while (aux->next)
 	{
-		if (aux->next->time > new_node->time)
+		if (aux->next->time >= new_node->time)
 		{
 			new_node->next = aux->next;
 			aux->next = new_node;
-			break ;
+			return ;
 		}
 		aux = aux->next;
 	}
-	if (aux->time > new_node->time)
+	if (aux->time >= new_node->time)
 	{
 		new_node->next = aux;
 		new_node->size_list_first_node_only = (*inter_list)->size_list_first_node_only;
@@ -75,15 +75,21 @@ void	add_intersection(t_intersection **inter_list, double time, \
 	(*inter_list)->size_list_first_node_only++;
 }
 
-t_intersect	intersections(t_intersection *inter_list)
+t_intersect	intersections_xs(t_intersection *inter_list)
 {
 	t_intersect	xs;
 	
 	xs = (t_intersect){0};
+	xs.objects = ft_calloc(inter_list->size_list_first_node_only, sizeof(t_token *));
+	if (!xs.objects)
+		return ((t_intersect){0});
+	xs.intersect_times = ft_calloc(inter_list->size_list_first_node_only, sizeof(double));
+	if (!xs.intersect_times)
+		return ((t_intersect){0});
 	while (inter_list)
 	{
 		xs.intersect_times[xs.count] = inter_list->time;
-		xs.objects[xs.count] = *(inter_list->object); //isso funciona?
+		xs.objects[xs.count] = (inter_list->object); //isso funciona?
 		xs.count++;
 		inter_list = inter_list->next;
 	}

@@ -32,8 +32,8 @@ t_intersect intersect(t_token *token, t_ray *ray) //criar struct p salvar a b c
 		intersect.count = 1;
 	else
 		intersect.count = 2;
-	intersect.objects[0] = *token;
-	intersect.objects[1] = *token;
+	// intersect.objects[0] = *token;
+	// intersect.objects[1] = *token;
 	return (intersect);
 }
 
