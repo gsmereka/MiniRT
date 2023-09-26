@@ -86,13 +86,14 @@ void	test_intersection(t_data *data)
 	while (sphere->type != 3)
 		sphere = sphere->next;
 	inter_list = NULL;
+	// add_intersection(&inter_list, 2, sphere);
 	add_intersection(&inter_list, 1, sphere); //lista de interseções para passar p o intersections  (em ordem?)
-	add_intersection(&inter_list, 2, sphere);
+	
 
 	xs = intersections(inter_list); //return intersect struct
 	printf("%d\n", xs.count);
 	printf("%lf\n", xs.intersect_times[0]);
-	printf("%lf\n", xs.intersect_times[1]);
+	printf("%lf\n", xs.intersect_times[1]); // Caso so exista uma intersect, o valor de um dos tempos vai ser 0. ISSO PODE DAR PROBLEMA ????
 	if (xs.objects[0].type == 3)
 		printf("XS 0 is SPHERE\n");
 	if (xs.objects[1].type == 3)

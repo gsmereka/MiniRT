@@ -76,8 +76,8 @@ int	main(int argc, char **argv)
 	read_scene_file(argv[1], &data); //
 	get_scene_info(data.tokens, &data);
 
-	test_hits(&data);
-	// test_intersection(&data);
+	// test_hits(&data);
+	test_intersection(&data);
 	// render(&data);
 	// test_render(&data);
 

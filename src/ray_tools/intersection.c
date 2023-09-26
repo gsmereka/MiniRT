@@ -35,19 +35,41 @@ t_intersection	*intersection_last(t_intersection *inter_list)
 	return (aux);
 }
 
+void	add_sorted_node(t_intersection **inter_list, t_intersection *new_node)
+{
+	t_intersection *aux;
+
+	aux = *inter_list;
+	while (aux->next)
+	{
+		if (aux->next->time > new_node->time)
+		{
+			new_node->next = aux->next;
+			aux->next = new_node;
+			break ;
+		}
+		aux = aux->next;
+	}
+	if (aux->time > new_node->time)
+	{
+		new_node->next = aux;
+		*inter_list = new_node;	
+	}
+	else
+		aux->next = new_node;
+} 
+
 void	add_intersection(t_intersection **inter_list, double time, \
 	t_token *object)
 {
-	t_intersection	*last_node;
 	t_intersection	*new_node;            //ou a lista é no intersect? aí seria add intersect. pq la tem intersect times...
 
 	if (!*inter_list)
 		*inter_list = create_intersection(time, object);
 	else
 	{
-		last_node = intersection_last(*inter_list);
 		new_node = create_intersection(time, object); //dps alterar para add em ordem
-		last_node->next = new_node;
+		add_sorted_node(inter_list, new_node);
 	}
 }
 
