@@ -53,7 +53,8 @@ void	add_sorted_node(t_intersection **inter_list, t_intersection *new_node)
 	if (aux->time > new_node->time)
 	{
 		new_node->next = aux;
-		*inter_list = new_node;	
+		new_node->size_list_first_node_only = (*inter_list)->size_list_first_node_only;
+		*inter_list = new_node;
 	}
 	else
 		aux->next = new_node;
@@ -71,6 +72,7 @@ void	add_intersection(t_intersection **inter_list, double time, \
 		new_node = create_intersection(time, object); //dps alterar para add em ordem
 		add_sorted_node(inter_list, new_node);
 	}
+	(*inter_list)->size_list_first_node_only++;
 }
 
 t_intersect	intersections(t_intersection *inter_list)
