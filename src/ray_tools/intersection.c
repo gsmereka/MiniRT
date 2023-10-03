@@ -6,7 +6,7 @@
 /*   By: gde-mora <gde-mora@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 19:41:19 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/09/22 23:03:54 by gde-mora         ###   ########.fr       */
+/*   Updated: 2023/10/03 22:28:56 by gde-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,24 +40,22 @@ void	add_sorted_node(t_intersection **inter_list, t_intersection *new_node)
 	t_intersection *aux;
 
 	aux = *inter_list;
-	while (aux->next)
+	while (aux)
 	{
-		if (aux->next->time >= new_node->time)
+		if (new_node->time <= aux->time)
 		{
-			new_node->next = aux->next;
+			new_node->next = aux;
+			new_node->size_list_first_node_only = (*inter_list)->size_list_first_node_only;
+			*inter_list = new_node;
+			return ;
+		}
+		if (!aux->next)
+		{
 			aux->next = new_node;
 			return ;
 		}
 		aux = aux->next;
 	}
-	if (aux->time >= new_node->time)
-	{
-		new_node->next = aux;
-		new_node->size_list_first_node_only = (*inter_list)->size_list_first_node_only;
-		*inter_list = new_node;
-	}
-	else
-		aux->next = new_node;
 } 
 
 void	add_intersection(t_intersection **inter_list, double time, \
