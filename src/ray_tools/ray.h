@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gde-mora <gde-mora@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 19:07:48 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/09/22 22:59:06 by gde-mora         ###   ########.fr       */
+/*   Updated: 2023/10/05 17:41:14 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ typedef struct s_intersection
 	struct s_intersection	*next;
 }	t_intersection;
 
+t_intersection	*hit(t_intersect *xs);
 t_intersect		intersect(t_token *token, t_ray *ray);
 t_intersection	*create_intersection(double time, t_token *object);
 t_intersect		intersections_xs(t_intersection *inter_list);

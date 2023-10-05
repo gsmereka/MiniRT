@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   test_intersection.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gde-mora <gde-mora@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 19:14:23 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/10/03 22:28:24 by gde-mora         ###   ########.fr       */
+/*   Updated: 2023/10/05 17:41:25 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,13 +87,14 @@ void	test_intersection(t_data *data)
 		sphere = sphere->next;
 	inter_list = NULL;
 	
-	add_intersection(&inter_list, 3, sphere);
-	add_intersection(&inter_list, 3, sphere);
-	add_intersection(&inter_list, 2, sphere);
 	add_intersection(&inter_list, 1, sphere);
-	add_intersection(&inter_list, 5, sphere);
+	add_intersection(&inter_list, 3, sphere);
+	add_intersection(&inter_list, -3, sphere);
+	add_intersection(&inter_list, -6, sphere);
 	add_intersection(&inter_list, 1, sphere);
-	add_intersection(&inter_list, 6, sphere);
+	// add_intersection(&inter_list, 5, sphere);
+	// add_intersection(&inter_list, 1, sphere);
+	add_intersection(&inter_list, -600000, sphere);
 
 	 //lista de interseções para passar p o intersections  (em ordem?)
 	
@@ -101,13 +102,20 @@ void	test_intersection(t_data *data)
 	xs = intersections_xs(inter_list); //return intersect struct
 	//printf("%ld\n", inter_list->size_list_first_node_only);
 	printf("%d\n", xs.count);
-	printf("%lf\n", xs.intersect_times[0]);
-	printf("%lf\n", xs.intersect_times[1]); // Caso so exista uma intersect, o valor de um dos tempos vai ser 0. ISSO PODE DAR PROBLEMA ????
-	printf("%lf\n", xs.intersect_times[2]);
-	printf("%lf\n", xs.intersect_times[3]);
-	printf("%lf\n", xs.intersect_times[4]);
-	printf("%lf\n", xs.intersect_times[5]);
-	printf("%lf\n", xs.intersect_times[6]);
+	int i;
+
+	i = 0;
+	while (i < xs.count)
+	{
+		printf("%lf\n", xs.intersect_times[i]);
+		i++;
+	}
+	// printf("%lf\n", xs.intersect_times[1]); // Caso so exista uma intersect, o valor de um dos tempos vai ser 0. ISSO PODE DAR PROBLEMA ????
+	// printf("%lf\n", xs.intersect_times[2]);
+	// printf("%lf\n", xs.intersect_times[3]);
+	// printf("%lf\n", xs.intersect_times[4]);
+	// printf("%lf\n", xs.intersect_times[5]);
+	// printf("%lf\n", xs.intersect_times[6]);
 	// if (xs.objects[0]->type == 3)
 	// 	printf("XS 0 is SPHERE\n");
 	// if (xs.objects[1]->type == 3)

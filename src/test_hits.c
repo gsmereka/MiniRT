@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 19:14:23 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/09/23 02:27:05 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/10/05 17:43:21 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	test_hits(t_data *data)
 	t_token			*sphere;
 	double			time;
 	t_intersection	*inter_list;
+	t_intersection	*result;
 	t_intersect		xs;
 	t_tuple			origin;
 	t_tuple			direction;
@@ -42,7 +43,7 @@ void	test_hits(t_data *data)
 	add_intersection(&inter_list, 2, sphere);  // i2 ← intersection(2, s)
 	xs = intersections_xs(inter_list); //return intersect struct
 
-	printf("Esste teste (./test_hits.c) está na pagina 85/286\n");
+	
 	// When i ← hit(xs) o que essa função hit significa ?????
 	// Then i = i1
 

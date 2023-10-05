@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   intersection.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gde-mora <gde-mora@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 19:41:19 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/10/03 22:28:56 by gde-mora         ###   ########.fr       */
+/*   Updated: 2023/10/05 17:49:16 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,28 +35,61 @@ t_intersection	*intersection_last(t_intersection *inter_list)
 	return (aux);
 }
 
+// void	add_sorted_node(t_intersection **inter_list, t_intersection *new_node)
+// {
+// 	t_intersection *aux;
+
+// 	aux = *inter_list;
+// 	if (new_node->time <= aux->time)
+// 	{
+// 		new_node->next = aux;
+// 		new_node->size_list_first_node_only = (*inter_list)->size_list_first_node_only;
+// 		*inter_list = new_node;
+// 		return ;
+// 	}
+// 	if (!aux->next)
+// 	{
+// 		aux->next = new_node;
+// 		return ;
+// 	}
+// 	while (aux->next)
+// 	{
+// 		if (new_node->time <= aux->next->time)
+// 		{
+// 			new_node->next = aux->next;
+// 			new_node->size_list_first_node_only = (*inter_list)->size_list_first_node_only;
+// 			aux->next = new_node;
+// 			return ;
+// 		}
+// 		if (!aux->next->next)
+// 		{
+// 			aux->next->next = new_node;
+// 			return ;
+// 		}
+// 		aux = aux->next;
+// 	}
+// } 
+
 void	add_sorted_node(t_intersection **inter_list, t_intersection *new_node)
 {
-	t_intersection *aux;
+	t_intersection	*aux;
 
 	aux = *inter_list;
-	while (aux)
+	if (new_node->time <= aux->time) // COMPARAR COM O EPISLON
 	{
-		if (new_node->time <= aux->time)
-		{
-			new_node->next = aux;
-			new_node->size_list_first_node_only = (*inter_list)->size_list_first_node_only;
-			*inter_list = new_node;
-			return ;
-		}
-		if (!aux->next)
-		{
-			aux->next = new_node;
-			return ;
-		}
+		new_node->next = aux;
+		new_node->size_list_first_node_only
+			= (*inter_list)->size_list_first_node_only;
+		*inter_list = new_node;
+		return ;
+	}
+	while (aux->next && new_node->time > aux->next->time) // COMPARAR COM O EPISLON
+	{
 		aux = aux->next;
 	}
-} 
+	new_node->next = aux->next;
+	aux->next = new_node;
+}
 
 void	add_intersection(t_intersection **inter_list, double time, \
 	t_token *object)
