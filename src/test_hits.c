@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   test_hits.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gde-mora <gde-mora@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 19:14:23 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/10/06 22:45:23 by gde-mora         ###   ########.fr       */
+/*   Updated: 2023/10/06 18:50:49 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ void	test_hits(t_data *data)
 	xs = intersections_xs(inter_list); //return intersect struct
 	result = hit(&xs); // result é o i2
 	aux = inter_list;
-	while (aux->time < 0)
+	while (aux && aux->time < 0)
 	 	aux = aux->next;
 	if (!result)
 		printf("sem result\n");
