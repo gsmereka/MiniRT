@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   test_hits.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gde-mora <gde-mora@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 19:14:23 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/10/05 17:43:21 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/10/06 22:45:23 by gde-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,10 @@ void	test_hits(t_data *data)
 	t_tuple			origin;
 	t_tuple			direction;
 	t_ray			ray;
+	t_intersection	*aux;
 
+	(void)aux;
+	(void)result;
 	(void)sphere;
 	(void)time;
 	(void)inter_list;
@@ -31,23 +34,24 @@ void	test_hits(t_data *data)
 	(void)direction;
 	(void)ray;
 	(void)data;
-
-
-	// 1 Scenario: The hit, when all intersections have positive t
-	sphere = data->tokens;
-	while (sphere->type != SPHERE)
-		sphere = sphere->next;
-
-	inter_list = NULL;
-	add_intersection(&inter_list, 1, sphere);  // i1 ← intersection(1, s)
-	add_intersection(&inter_list, 2, sphere);  // i2 ← intersection(2, s)
-	xs = intersections_xs(inter_list); //return intersect struct
-
 	
-	// When i ← hit(xs) o que essa função hit significa ?????
-	// Then i = i1
+	
+	// 1 Scenario: The hit, when all intersections have positive t
+	// sphere = data->tokens;
+	// while (sphere->type != SPHERE)
+	// 	sphere = sphere->next;
 
-
+	// inter_list = NULL;
+	// add_intersection(&inter_list, 1, sphere);  // i1 ← intersection(1, s)
+	// add_intersection(&inter_list, 2, sphere);  // i2 ← intersection(2, s)
+	// xs = intersections_xs(inter_list); // return intersect struct
+	// result = hit(&xs); //            result é o i1
+	// printf("%lf %lf\n", inter_list->time, result->time);
+	// if (inter_list->object->type == 3)
+	// 	printf("i1 0 is SPHERE\n");
+	// if (result->object->type == 3)
+	// 	printf("result 1 is SPHERE\n");
+	// free_intersection_list(result);	
 
 
 
@@ -59,27 +63,50 @@ void	test_hits(t_data *data)
 	// inter_list = NULL;
 	// add_intersection(&inter_list, -1, sphere);  // i1 ← intersection(-1, s)
 	// add_intersection(&inter_list, 1, sphere);  // i2 ← intersection(1, s)
-	// xs = intersections(inter_list); //return intersect struct
-
-	// // When i ← hit(xs)
-	// // Then i = i2
+	// xs = intersections_xs(inter_list); //return intersect struct
+	// result = hit(&xs); // result é o i2
+	// aux = inter_list;
+	// while (aux->time < 0)
+	// 	aux = aux->next;
+	// if (aux)
+	// {	
+	// 	printf("%lf %lf\n", aux->time, result->time);
+	// 	if (aux->object->type == 3)
+	// 		printf("i2 0 is SPHERE\n");
+	// 	if (result->object->type == 3)
+	// 		printf("result 1 is SPHERE\n");
+	// }
+	// free_intersection_list(result);	
 
 
 
 
 
 	// // 3 Scenario: The hit, when all intersections have negative t
-	// sphere = data->tokens;
-	// while (sphere->type != SPHERE)
-	// 	sphere = sphere->next;
+	sphere = data->tokens;
+	while (sphere->type != SPHERE)
+		sphere = sphere->next;
 
-	// inter_list = NULL;
-	// add_intersection(&inter_list, -2, sphere);  // i1 ← intersection(-2, s)
-	// add_intersection(&inter_list, -1, sphere);  // i2 ← intersection(-1, s)
-	// xs = intersections(inter_list); //return intersect struct
-
-	// // When i ← hit(xs)
-	// // Then i is nothing
+	inter_list = NULL;
+	add_intersection(&inter_list, -2, sphere);  // i1 ← intersection(-2, s)
+	add_intersection(&inter_list, -1, sphere);  // i2 ← intersection(-1, s)
+	xs = intersections_xs(inter_list); //return intersect struct
+	result = hit(&xs); // result é o i2
+	aux = inter_list;
+	while (aux->time < 0)
+	 	aux = aux->next;
+	if (!result)
+		printf("sem result\n");
+	if (aux && result)
+	{	
+		printf("%lf %lf\n", aux->time, result->time);
+		if (aux->object->type == 3)
+			printf("i2 0 is SPHERE\n");
+		if (result->object->type == 3)
+			printf("result 1 is SPHERE\n");
+		free_intersection_list(result);	
+	}
+	
 
 
 
@@ -98,6 +125,7 @@ void	test_hits(t_data *data)
 	// // And xs ← intersections(i1, i2, i3, i4)
 	// // When i ← hit(xs)
 	// Then i = i4
-
+	free(xs.intersect_times);
+	free(xs.objects);
 	free_intersection_list(inter_list);
 }

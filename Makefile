@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+         #
+#    By: gde-mora <gde-mora@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/20 18:26:17 by gde-mora          #+#    #+#              #
-#    Updated: 2023/09/23 01:48:10 by gsmereka         ###   ########.fr        #
+#    Updated: 2023/10/06 22:19:17 by gde-mora         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,7 @@ SRC 	=	src/test_matrices_operations.c \
 			src/ray_tools/rays.c \
 			src/ray_tools/intersect.c \
 			src/ray_tools/intersection.c \
+			src/ray_tools/hit.c \
 			src/render/render.c \
 			src/render/paint_pixel.c \
 			src/render/minilibx_handlers.c \
