@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: gde-mora <gde-mora@student.42sp.org.br>    +#+  +:+       +#+         #
+#    By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/20 18:26:17 by gde-mora          #+#    #+#              #
-#    Updated: 2023/10/06 22:19:17 by gde-mora         ###   ########.fr        #
+#    Updated: 2023/10/25 17:24:14 by gsmereka         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,6 +17,7 @@ SRC 	=	src/test_matrices_operations.c \
 			src/test_intersection.c \
 			src/test_render.c \
 			src/test_ray.c \
+			src/python_ver.c \
 			src/main.c \
 			src/exit.c \
 			src/ray_tools/rays.c \
