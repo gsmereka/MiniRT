@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 15:42:37 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/10/28 03:05:03 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/10/28 03:09:32 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -349,7 +349,11 @@ void	define_SCENE(t_data *data)
 	camera_token.normalized_vector = (t_tuple){-10, 5, 0, 0};
 	camera = init_CAMERA(&camera_token, data);
 	scene.lights[0] = create_POINTLIGHT(&(t_tuple){-1.3, 8.4, 0, 0}, 20);
-	definir_esfera(esfera_0)
+	definir_esfera(&esfera_0, &(t_tuple){2.5, 2.8, 5.15, 0}, 2.8, &(t_color){83, 221, 108});
+	definir_esfera(&esfera_1, &(t_tuple){0.6, 5.6, 3.6, 0}, 0.6, &(t_color){128, 117, 255});
+	definir_esfera(&esfera_2, &(t_tuple){-3.1, 1.4, 0.06, 0}, 1.4, &(t_color){128, 117, 255});
+	definir_esfera(&esfera_3, &(t_tuple){-4.2, 5.4, 4.2, 0}, 0.9, &(t_color){83, 221, 108});
+	definir_esfera(&esfera_4, &(t_tuple){0, -1000000, 0, 0}, 1000000, &(t_color){234, 234, 234});
 	scene.objects[0] = esfera_0;
 	scene.objects[1] = esfera_1;
 	scene.objects[2] = esfera_2;
