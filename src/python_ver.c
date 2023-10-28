@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 15:42:37 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/10/28 02:15:35 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/10/28 03:05:03 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -219,7 +219,8 @@ typedef struct s_SCENE
 {
 	t_tuple			background;
 	size_t			ambient_light;
-	int				numero_a_definir; // numero a definir;
+	int				luzes_a_definir; // numero a definir;
+	int				objetos_a_definir; // numero a definir
 	t_POINTLIGHT	lights[4]; // numero a definir
 	t_token			objects[4]; // numero a definir		
 }  t_SCENE;
@@ -229,7 +230,6 @@ t_SCENE	create_SCENE(t_tuple *background, size_t ambient_light)
 	t_SCENE	scene;
 
 	scene = (t_SCENE){0};
-	scene.numero_a_definir = 4; // numero a definir;
 	pass_tuple_values(&scene.background, background);
 	scene.ambient_light = ambient_light;
 	return (scene);
@@ -244,7 +244,7 @@ t_HIT	CLOSEST_HIT(t_SCENE *scene, t_RAY *ray)
 
 	i = 0;
 	closest_hit = (t_HIT){0};
-	limit = scene->numero_a_definir;
+	limit = scene->objetos_a_definir;
 	while (i < limit)
 	{
 		hit = intersect_SPHERE(&scene->objects[i], ray);
@@ -271,7 +271,7 @@ t_tuple	trace_COLOR(t_SCENE *scene, t_RAY *ray)
 	{
 		intensity = scene->ambient_light;
 		i = 0;
-		while (i < scene->numero_a_definir) // numero a definir
+		while (i < scene->luzes_a_definir) // numero a definir
 		{
 			light_position = scene->lights[i].position;
 			tuple_subtraction = subtract_tuples(&closest_hit.position, &scene->lights[i].position);
@@ -284,35 +284,81 @@ t_tuple	trace_COLOR(t_SCENE *scene, t_RAY *ray)
 			result.x = closest_hit.object->color.r * intensity;
 			result.y = closest_hit.object->color.g * intensity;
 			result.z = closest_hit.object->color.b * intensity;
-			return (result);
+			i++;
 		}
+		return (result);
 	}
 	return (scene->background);
 }
 
+void	RENDER_MASTER(t_SCENE *scene, t_CAMERA *camera, t_data *data)
+{
+	int				i;
+	int				j;
+	t_RAY			aux_ray;
+	t_tuple			color;
+	unsigned int	final_color;
+	int				pixel_coord[2];
 
-// def render(scene, camera):
-//     surface = pygame.display.set_mode((camera.width, camera.height))
-//     surface.fill((125, 125, 125))
-//     i = 0
-//     while True:
-//         for event in pygame.event.get():
-//             if event.type == pygame.QUIT:
-//                 exit()
-//         if i < camera.height: 
-//             for j in range(0, camera.width):
-//                 pixel_center = (j + 0.5, camera.height - 0.5 - i)
-//                 color = scene.trace(camera.get_ray(*pixel_center)) 
-//                 surface.set_at((j, i), color)
-//             pygame.display.flip()
-//             i += 1
+	i = 0;
+	while (i < camera->height)
+	{
+		j = 0;
+		while (j < camera->width)
+		{
+			pixel_coord[0] = j + 0.5;
+			pixel_coord[1] = camera->height - 0.5 - i;
+			aux_ray = get_RAY(camera, pixel_coord[0], pixel_coord[1]);
+			color = trace_COLOR(scene, &aux_ray);
+			final_color = 0;
+			final_color |= ((int)color.x & 0xFF) << 16;  // Adiciona o valor de r ao componente vermelho.
+			final_color |= ((int)color.y & 0xFF) << 8;   // Adiciona o valor de g ao componente verde.
+			final_color |= ((int)color.z & 0xFF);        // Adiciona o valor de b ao componente azul
+			paint_pixel(pixel_coord[0], pixel_coord[1], final_color, data);
+			j++;
+		}
+		i++;
+	}
+}
 
-// if __name__=="__main__":
-//     scene = Scene(vec3(26, 27, 33), 0.12)
-//     camera = Camera(vec3(0, 5, -8), vec3(-10, 5, 0), 800, 600, 0.7)
+void	definir_esfera(t_token *esfera, t_tuple *center, double raio, t_color *color)
+{
+	pass_tuple_values(&esfera->coordinate, center);
+	esfera->color.r = color->r;
+	esfera->color.g = color->g;
+	esfera->color.b = color->b;
+	esfera->ratio = raio;
+}
 
-//     light = PointLight(vec3(-1.3, 8.4, 0), 20)
-//     scene.lights.append(light)
+void	define_SCENE(t_data *data)
+{
+	t_SCENE			scene;
+	t_CAMERA		camera;
+	t_token			camera_token;
+	t_token			esfera_1;
+	t_token			esfera_2;
+	t_token			esfera_3;
+	t_token			esfera_4;
+	t_token			esfera_0;
+
+	scene = create_SCENE(&(t_tuple){26, 27, 33, 0}, 0.12);
+	scene.luzes_a_definir = 1; // numero a definir;
+	scene.objetos_a_definir = 5; // numero a definir;
+	camera_token = (t_token){0};
+	camera_token.coordinate = (t_tuple){0, 5, -8, 0};
+	camera_token.normalized_vector = (t_tuple){-10, 5, 0, 0};
+	camera = init_CAMERA(&camera_token, data);
+	scene.lights[0] = create_POINTLIGHT(&(t_tuple){-1.3, 8.4, 0, 0}, 20);
+	definir_esfera(esfera_0)
+	scene.objects[0] = esfera_0;
+	scene.objects[1] = esfera_1;
+	scene.objects[2] = esfera_2;
+	scene.objects[3] = esfera_3;
+	scene.objects[4] = esfera_4;
+}
+
+
+
 
 //     sphere1 = Sphere(vec3(2.5, 2.8, 5.15), 2.8, vec3(83, 221, 108))
 //     scene.objects.append(sphere1)

@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 13:09:51 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/08/16 19:24:12 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/10/28 02:35:33 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ typedef struct s_tuple
 	double	x;
 	double	y;
 	double	z;
-	double	w; //mudar a forma de identificar ponto e vetor?
+	double	w;
 }	t_tuple;
 
 typedef struct s_ray
