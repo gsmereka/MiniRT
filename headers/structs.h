@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 13:09:51 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/10/28 03:27:51 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/10/28 16:24:09 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,9 +75,9 @@ typedef struct s_CAMERA
 	int			height;
 	size_t		focal_length;
 	t_matrix	direction;
-	t_matrix	right;
-	t_matrix	up;
-	t_matrix	front;
+	t_tuple		right;
+	t_tuple		up;
+	t_tuple		front;
 	size_t		fov;
 }  t_CAMERA;
 
@@ -103,8 +103,8 @@ typedef struct s_SCENE
 	size_t			ambient_light;
 	int				luzes_a_definir; // numero a definir;
 	int				objetos_a_definir; // numero a definir
-	t_POINTLIGHT	lights[4]; // numero a definir
-	t_token			objects[4]; // numero a definir		
+	t_POINTLIGHT	lights[1]; // numero a definir
+	t_token			objects[5]; // numero a definir		
 }  t_SCENE;
 
 ///////////////////////////////////////////////////////////////////////////

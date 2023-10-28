@@ -6,17 +6,11 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 15:42:37 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/10/28 03:25:21 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/10/28 16:39:06 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/miniRT.h"
-
-// import pygame
-// import math
-// import glm
-// from glm import vec3
-
 
 t_RAY init_RAY(t_tuple *origin, t_tuple *direction)
 {
@@ -39,16 +33,23 @@ t_tuple RAY_position(t_RAY *ray, double time)
 }
 
 
-// void multiplyMatrix(int x, int y, int z, int w, int matrix[4][4], int result[4]) {
-//     result[0] = x * matrix[0][0] + y * matrix[1][0] + z * matrix[2][0] + w * matrix[3][0];
-//     result[1] = x * matrix[0][1] + y * matrix[1][1] + z * matrix[2][1] + w * matrix[3][1];
-//     result[2] = x * matrix[0][2] + y * matrix[1][2] + z * matrix[2][2] + w * matrix[3][2];
-//     result[3] = x * matrix[0][3] + y * matrix[1][3] + z * matrix[2][3] + w * matrix[3][3];
-// }
+t_tuple	multiply_tuple_by_matrix(t_tuple *tuple, t_matrix *matrix)
+{
+	t_tuple result;
+
+	result.x = tuple->x * matrix->content[0][0] + tuple->y * matrix->content[1][0] + tuple->z * matrix->content[2][0] + tuple->w * matrix->content[3][0];
+	result.y = tuple->x * matrix->content[0][1] + tuple->y * matrix->content[1][1] + tuple->z * matrix->content[2][1] + tuple->w * matrix->content[3][1];
+	result.z = tuple->x * matrix->content[0][2] + tuple->y * matrix->content[1][2] + tuple->z * matrix->content[2][2] + tuple->w * matrix->content[3][2];
+	result.w = tuple->x * matrix->content[0][3] + tuple->y * matrix->content[1][3] + tuple->z * matrix->content[2][3] + tuple->w * matrix->content[3][3];
+	return (result);
+}
 
 t_CAMERA	init_CAMERA(t_token *token, t_data *data)
 {
-	t_CAMERA camera;
+	t_CAMERA	camera;
+	t_matrix	rot_x;
+	t_matrix	rot_y;
+	t_matrix	rot_z;
 
 	camera = (t_CAMERA){0};
 	pass_tuple_values(&camera.center, &token->coordinate);
@@ -60,27 +61,16 @@ t_CAMERA	init_CAMERA(t_token *token, t_data *data)
 	// camera.focal_length = focal_length;
 	camera.focal_length = 0.7;
 	camera.fov = token->fov;
-	camera.direction = copy_matrix(&data->idmatrix_4x4);
-	// self.right  = glm.vec4(1, 0, 0, 1) * matrix
-	// self.up     = glm.vec4(0, 1, 0, 1) * matrix
-	// self.front  = glm.vec4(0, 0, 1, 1) * matrix
+	rot_x = rotation_x(data, camera.radians_vector.x);
+	rot_y = rotation_y(data, camera.radians_vector.y);
+	rot_z = rotation_z(data, camera.radians_vector.z);
+	camera.direction = multiply_matrices(&rot_x, &rot_y);
+	camera.direction = multiply_matrices(&camera.direction, &rot_z);
+	camera.right  = multiply_tuple_by_matrix(&(t_tuple){1, 0, 0, 1}, &camera.direction);
+	camera.up     = multiply_tuple_by_matrix(&(t_tuple){0, 1, 0, 1}, &camera.direction);
+	camera.front  = multiply_tuple_by_matrix(&(t_tuple){0, 0, 1, 1}, &camera.direction);
 	return (camera);
 }
-
-// class Camera():
-//     def __init__(self, center, euler_angles, width, height, focal_length):
-//         self.center = center
-//         self.width  = width
-//         self.height = height
-//         self.focal_length = focal_length
-//         euler_angles = glm.radians(euler_angles)
-//         matrix = glm.mat4()
-//         matrix = glm.rotate(matrix, euler_angles.x, vec3(1, 0, 0))
-//         matrix = glm.rotate(matrix, euler_angles.y, vec3(0, 1, 0))
-//         matrix = glm.rotate(matrix, euler_angles.z, vec3(0, 0, 1))
-//         self.right  = glm.vec4(1, 0, 0, 1) * matrix
-//         self.up     = glm.vec4(0, 1, 0, 1) * matrix
-//         self.front  = glm.vec4(0, 0, 1, 1) * matrix
 
 //     def get_ray(self, j, i):
 //         direction  = self.front * self.focal_length
@@ -91,10 +81,14 @@ t_CAMERA	init_CAMERA(t_token *token, t_data *data)
 t_RAY	get_RAY(t_CAMERA *camera, size_t j, size_t i)
 {
 	t_RAY	new_ray;
+	t_tuple	aux;
 
-	// new_ray.direction = camera->front *camera.focal_length; // funções erradas
-	// new_ray.direction += camera.right * (j / camera.width - 0.5);  // funções erradas
-	// new_ray.direction += camera.up * (camera.height / camera.width) * (i / camera.height - 0.5); // funções erradas
+	new_ray = (t_RAY){0};
+	new_ray.direction = multiply_tuple(&camera->front, camera->focal_length);
+	aux = multiply_tuple(&camera->right, (j / camera->width - 0.5));
+	new_ray.direction = sum_tuples(&new_ray.direction, &aux);
+	aux = multiply_tuple(&camera->up, (camera->height / camera->width) * (i / camera->height - 0.5));
+	new_ray.direction = sum_tuples(&new_ray.direction, &aux);
 	return (init_RAY(&camera->center, &new_ray.direction));
 }
 
@@ -158,6 +152,7 @@ t_POINTLIGHT create_POINTLIGHT(t_tuple *position, size_t intensity)
 {
 	t_POINTLIGHT	light;
 
+	light = (t_POINTLIGHT){0};
 	pass_tuple_values(&light.position, position);
 	light.intensity = intensity;
 	return (light);
@@ -259,10 +254,10 @@ void	RENDER_MASTER(t_SCENE *scene, t_CAMERA *camera, t_data *data)
 	int				pixel_coord[2];
 
 	i = 0;
-	while (i < camera->height)
+	while (i < camera->width)
 	{
 		j = 0;
-		while (j < camera->width)
+		while (j < camera->height)
 		{
 			pixel_coord[0] = j + 0.5;
 			pixel_coord[1] = camera->height - 0.5 - i;
@@ -272,7 +267,8 @@ void	RENDER_MASTER(t_SCENE *scene, t_CAMERA *camera, t_data *data)
 			final_color |= ((int)color.x & 0xFF) << 16;  // Adiciona o valor de r ao componente vermelho.
 			final_color |= ((int)color.y & 0xFF) << 8;   // Adiciona o valor de g ao componente verde.
 			final_color |= ((int)color.z & 0xFF);        // Adiciona o valor de b ao componente azul
-			paint_pixel(pixel_coord[0], pixel_coord[1], final_color, data);
+			// paint_pixel(i, j, RED, data);
+			paint_pixel(i, j, final_color, data);
 			j++;
 		}
 		i++;
@@ -320,23 +316,3 @@ void	define_SCENE(t_data *data)
 	data->camera = camera;
 	data->scene = scene;
 }
-
-
-
-
-//     sphere1 = Sphere(vec3(2.5, 2.8, 5.15), 2.8, vec3(83, 221, 108))
-//     scene.objects.append(sphere1)
-
-//     sphere2 = Sphere(vec3(0.6, 5.6, 3.6), 0.6, vec3(128, 117, 255))
-//     scene.objects.append(sphere2)
-
-//     sphere3 = Sphere(vec3(-3.1, 1.4, 0.06), 1.4, vec3(128, 117, 255))
-//     scene.objects.append(sphere3)
-
-//     sphere4 = Sphere(vec3(-4.2, 5.4, 4.2), 0.9, vec3(83, 221, 108))
-//     scene.objects.append(sphere4)
-
-//     sphere5 = Sphere(vec3(0, -1000000, 0), 1000000, vec3(234, 234, 234))
-//     scene.objects.append(sphere5)
-
-//     render(scene, camera)
