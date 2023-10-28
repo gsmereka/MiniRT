@@ -6,7 +6,7 @@
 #    By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/20 18:26:17 by gde-mora          #+#    #+#              #
-#    Updated: 2023/10/25 17:24:14 by gsmereka         ###   ########.fr        #
+#    Updated: 2023/10/28 00:36:10 by gsmereka         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -75,7 +75,7 @@ LIBFT_A =	./libft/libft.a
 
 HEADERS =	./headers/miniRT.h
 
-CCFLAGS =	-Wall -Wextra -Werror
+# CCFLAGS =	-Wall -Wextra -Werror
 
 MLX_FLAGS = -lmlx -lXext -lX11 -lm
 

@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 15:42:37 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/10/25 20:23:26 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/10/28 02:15:35 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ t_RAY init_RAY(t_tuple *origin, t_tuple *direction)
 	return (ray);
 }
 
-t_tuple RAY_position(t_RAY *ray, size_t time)
+t_tuple RAY_position(t_RAY *ray, double time)
 {
 	t_tuple direction;
 	t_tuple position;
@@ -43,29 +43,42 @@ t_tuple RAY_position(t_RAY *ray, size_t time)
 	return (position);
 }
 
-
 typedef struct s_CAMERA
 {
 	t_tuple		center;
+	t_tuple		radians_vector;
 	int			width;
 	int			height;
 	size_t		focal_length;
+	t_matrix	direction;
 	t_matrix	right;
 	t_matrix	up;
 	t_matrix	front;
 	size_t		fov;
 }  t_CAMERA;
 
+// void multiplyMatrix(int x, int y, int z, int w, int matrix[4][4], int result[4]) {
+//     result[0] = x * matrix[0][0] + y * matrix[1][0] + z * matrix[2][0] + w * matrix[3][0];
+//     result[1] = x * matrix[0][1] + y * matrix[1][1] + z * matrix[2][1] + w * matrix[3][1];
+//     result[2] = x * matrix[0][2] + y * matrix[1][2] + z * matrix[2][2] + w * matrix[3][2];
+//     result[3] = x * matrix[0][3] + y * matrix[1][3] + z * matrix[2][3] + w * matrix[3][3];
+// }
+
 t_CAMERA	init_CAMERA(t_token *token, t_data *data)
 {
 	t_CAMERA camera;
 
+	camera = (t_CAMERA){0};
 	pass_tuple_values(&camera.center, &token->coordinate);
 	camera.width = data->win_width;
 	camera.height = data->win_height;
+	camera.radians_vector.x = 2.0 * asin(sqrt(token->normalized_vector.x * token->normalized_vector.x + token->normalized_vector.y * token->normalized_vector.y));
+	camera.radians_vector.y = atan2(token->normalized_vector.y, token->normalized_vector.x);
+	camera.radians_vector.z = asin(token->normalized_vector.z);
 	// camera.focal_length = focal_length;
-	camera.focal_length = 1000;
+	camera.focal_length = 0.7;
 	camera.fov = token->fov;
+	camera.direction = copy_matrix(&data->idmatrix_4x4);
 	// self.right  = glm.vec4(1, 0, 0, 1) * matrix
 	// self.up     = glm.vec4(0, 1, 0, 1) * matrix
 	// self.front  = glm.vec4(0, 0, 1, 1) * matrix
@@ -93,76 +106,190 @@ t_CAMERA	init_CAMERA(t_token *token, t_data *data)
 //         direction += self.up*(self.height/self.width)*(i/self.height - 0.5)
 //         return Ray(self.center, vec3(direction))
 
-// class Hit():
-//     def __init__(self, object, position, normal, distance):
-//         self.object   = object
-//         self.position = position
-//         self.normal   = normal
-//         self.distance = distance
+t_RAY	get_RAY(t_CAMERA *camera, size_t j, size_t i)
+{
+	t_RAY	new_ray;
 
-// class Sphere():
-//     def __init__(self, center, radius, color):
-//         self.center = center
-//         self.radius = radius
-//         self.color  = color
-	
-//     def intersect(self, ray):
-//         a = glm.dot(ray.direction, ray.direction)
-//         s0_p0 = ray.origin - self.center
-//         b = 2.0*glm.dot(ray.direction, s0_p0)
-//         c = glm.dot(s0_p0, s0_p0) - self.radius**2
-//         delta = b**2 - 4.0*a*c
-//         if(delta > 0):
-//             sqrt_delta = math.sqrt(delta)
-//             bhaskara = lambda d: (-b + d)/(2.0*a)
-//             solutions = [bhaskara(sqrt_delta), bhaskara(-sqrt_delta)]
-//             positive_solutions = [s for s in solutions if s > 0]
-//             if(len(positive_solutions) > 0):
-//                 distance = min(positive_solutions)
-//                 hit_point = ray.at(distance)
-//                 normal = glm.normalize(hit_point - self.center)
-//                 return Hit(self, hit_point, normal, distance)
-//         return None
+	// new_ray.direction = camera->front *camera.focal_length; // funções erradas
+	// new_ray.direction += camera.right * (j / camera.width - 0.5);  // funções erradas
+	// new_ray.direction += camera.up * (camera.height / camera.width) * (i / camera.height - 0.5); // funções erradas
+	return (init_RAY(&camera->center, &new_ray.direction));
+}
 
-// class PointLight():
-//     def __init__(self, position, intensity):
-//         self.position  = position
-//         self.intensity = intensity
-	
-//     def intensity_at(self, hit):
-//         direction = self.position - hit.position 
-//         distance  = glm.length(direction)
-//         direction = glm.normalize(direction)
-//         cos_theta = glm.dot(direction, hit.normal)
-//         return max(0, self.intensity*cos_theta/distance**2)
+typedef struct s_HIT
+{
+	int			valid;
+	t_tuple		position;
+	t_token		*object;
+	t_tuple		normal;
+	size_t		distance;
+}  t_HIT;
 
-// class Scene():
-//     def __init__(self, background, ambient_light):
-//         self.background = background
-//         self.ambient_light = ambient_light
-//         self.objects = []
-//         self.lights  = []
+t_HIT	init_HIT(t_token *object, t_tuple *normal, size_t distance, t_tuple *position)
+{
+	t_HIT hit;
 
-//     def closest(self, ray):
-//         closest_hit = None
-//         for object in self.objects:
-//             hit = object.intersect(ray)
-//             if hit and (not closest_hit or hit.distance < closest_hit.distance):
-//                 closest_hit = hit
-//         return closest_hit
-	
-//     def trace(self, ray):
-//         closest_hit = self.closest(ray)
-//         if closest_hit:
-//             intensity = self.ambient_light
-//             for light in self.lights:
-//                 light_ray = Ray(light.position, closest_hit.position - light.position)
-//                 light_hit = self.closest(light_ray)
-//                 if(light_hit and light_hit.object == closest_hit.object):
-//                     intensity += light.intensity_at(closest_hit)
-//             return closest_hit.object.color*min(intensity, 1)
-//         else:
-//             return self.background
+	pass_tuple_values(&hit.position, position);
+	pass_tuple_values(&hit.normal, normal);
+	hit.object = object;
+	hit.distance = distance;
+	return (hit);
+}
+
+t_HIT	intersect_SPHERE(t_token *sphere, t_RAY *ray)
+{
+	t_HIT	hit;
+	size_t	a;
+	size_t	b;
+	size_t	c;
+	size_t	delta;
+	t_tuple	s0_p0;
+	size_t	sqrt_delta;
+	size_t	bhaskara_1;
+	size_t	bhaskara_2;
+	size_t	bhaskara_result;
+	double	distance;
+	t_tuple	hit_point;
+	t_tuple	normal;
+
+	hit = (t_HIT){0};
+	a = dot_product(&ray->direction, &ray->direction);
+	s0_p0 = subtract_tuples(&ray->origin, &sphere->coordinate);
+	b = 2.0 * dot_product(&ray->direction, &s0_p0);
+	c = dot_product(&s0_p0, &s0_p0) - (sphere->ratio * sphere->ratio);
+	delta = (b * b) - 4.0 *a * c;
+	if (delta > 0)
+	{
+		sqrt_delta = sqrt(delta);
+		bhaskara_1 = (-b + sqrt_delta)/(2.0 * a);
+		bhaskara_2 = (-b - sqrt_delta)/(2.0 * a);
+		if (bhaskara_1 < bhaskara_2)
+			bhaskara_result = bhaskara_1;
+		else
+			bhaskara_result = bhaskara_2;
+		if(bhaskara_result > 0)
+		{
+			distance = bhaskara_result;
+			hit_point = RAY_position(ray, distance);
+			normal = subtract_tuples(&hit_point, &sphere->coordinate);
+			normalize_tuple(&normal);
+			hit = init_HIT(sphere, &normal, distance, &hit_point);
+			hit.valid = 1;
+			return (hit);
+		}
+	}
+	return (hit);
+}
+
+typedef struct s_POINTLIGHT
+{
+	t_tuple		position;
+	size_t		intensity;
+}  t_POINTLIGHT;
+
+t_POINTLIGHT create_POINTLIGHT(t_tuple *position, size_t intensity)
+{
+	t_POINTLIGHT	light;
+
+	pass_tuple_values(&light.position, position);
+	light.intensity = intensity;
+	return (light);
+}
+
+size_t LIGHT_at(t_POINTLIGHT *light, t_HIT *hit)
+{
+	t_tuple	direction;
+	size_t	distance;
+	size_t	cos_theta;
+	size_t	result;
+
+	direction = subtract_tuples(&light->position, &hit->position);
+	distance = tuple_magnitude(&direction);
+	normalize_tuple(&direction);
+	cos_theta = dot_product(&direction, &hit->normal);
+	result = light->intensity * (cos_theta / (distance * distance));
+	if (are_floats_equal(0, result))
+		return (result);
+	if (result < 0);
+		return (0);
+	return (result);
+}
+
+typedef struct s_SCENE
+{
+	t_tuple			background;
+	size_t			ambient_light;
+	int				numero_a_definir; // numero a definir;
+	t_POINTLIGHT	lights[4]; // numero a definir
+	t_token			objects[4]; // numero a definir		
+}  t_SCENE;
+
+t_SCENE	create_SCENE(t_tuple *background, size_t ambient_light)
+{
+	t_SCENE	scene;
+
+	scene = (t_SCENE){0};
+	scene.numero_a_definir = 4; // numero a definir;
+	pass_tuple_values(&scene.background, background);
+	scene.ambient_light = ambient_light;
+	return (scene);
+}
+
+t_HIT	CLOSEST_HIT(t_SCENE *scene, t_RAY *ray)
+{
+	t_HIT	hit;
+	t_HIT	closest_hit;
+	int		limit;
+	int		i;
+
+	i = 0;
+	closest_hit = (t_HIT){0};
+	limit = scene->numero_a_definir;
+	while (i < limit)
+	{
+		hit = intersect_SPHERE(&scene->objects[i], ray);
+		if (!hit.valid || !closest_hit.valid || hit.distance < closest_hit.distance)
+			closest_hit = hit;
+		i++;
+	}
+	return (closest_hit);
+}
+
+t_tuple	trace_COLOR(t_SCENE *scene, t_RAY *ray)
+{
+	t_HIT			closest_hit;
+	t_RAY			light_ray;
+	t_HIT			light_hit;
+	t_tuple			result;
+	t_tuple			light_position;
+	t_tuple			tuple_subtraction;
+	size_t			intensity;
+	int				i;
+
+	closest_hit = CLOSEST_HIT(scene, ray);
+	if (closest_hit.valid)
+	{
+		intensity = scene->ambient_light;
+		i = 0;
+		while (i < scene->numero_a_definir) // numero a definir
+		{
+			light_position = scene->lights[i].position;
+			tuple_subtraction = subtract_tuples(&closest_hit.position, &scene->lights[i].position);
+			light_ray = init_RAY(&light_position, &tuple_subtraction);
+			light_hit = CLOSEST_HIT(scene, &light_ray);
+			if (light_hit.valid && &light_hit.object == &closest_hit.object)
+				intensity += LIGHT_at(&scene->lights[i], &closest_hit);
+			if (intensity < 1)
+				intensity = 1;
+			result.x = closest_hit.object->color.r * intensity;
+			result.y = closest_hit.object->color.g * intensity;
+			result.z = closest_hit.object->color.b * intensity;
+			return (result);
+		}
+	}
+	return (scene->background);
+}
+
 
 // def render(scene, camera):
 //     surface = pygame.display.set_mode((camera.width, camera.height))
