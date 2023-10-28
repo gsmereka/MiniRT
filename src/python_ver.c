@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 15:42:37 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/10/28 16:39:06 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/10/28 19:46:17 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,11 @@ t_tuple	multiply_tuple_by_matrix(t_tuple *tuple, t_matrix *matrix)
 	return (result);
 }
 
+double degrees_to_radians(double degrees)
+{
+    return (degrees * M_PI / 180.0);
+}
+
 t_CAMERA	init_CAMERA(t_token *token, t_data *data)
 {
 	t_CAMERA	camera;
@@ -55,20 +60,28 @@ t_CAMERA	init_CAMERA(t_token *token, t_data *data)
 	pass_tuple_values(&camera.center, &token->coordinate);
 	camera.width = data->win_width;
 	camera.height = data->win_height;
-	camera.radians_vector.x = 2.0 * asin(sqrt(token->normalized_vector.x * token->normalized_vector.x + token->normalized_vector.y * token->normalized_vector.y));
-	camera.radians_vector.y = atan2(token->normalized_vector.y, token->normalized_vector.x);
-	camera.radians_vector.z = asin(token->normalized_vector.z);
+	printf("%f, %f, %f\n", token->normalized_vector.x, token->normalized_vector.y, token->normalized_vector.z);
+	camera.radians_vector.x = degrees_to_radians(token->normalized_vector.x);
+	camera.radians_vector.y = degrees_to_radians(token->normalized_vector.y);
+	camera.radians_vector.z = degrees_to_radians(token->normalized_vector.z);
+	// camera.radians_vector.x = 2.0 * asin(sqrt(token->normalized_vector.x * token->normalized_vector.x + token->normalized_vector.y * token->normalized_vector.y));
+	// camera.radians_vector.y = atan2(token->normalized_vector.y, token->normalized_vector.x);
+	// camera.radians_vector.z = asin(token->normalized_vector.z);
 	// camera.focal_length = focal_length;
 	camera.focal_length = 0.7;
 	camera.fov = token->fov;
 	rot_x = rotation_x(data, camera.radians_vector.x);
 	rot_y = rotation_y(data, camera.radians_vector.y);
 	rot_z = rotation_z(data, camera.radians_vector.z);
-	camera.direction = multiply_matrices(&rot_x, &rot_y);
-	camera.direction = multiply_matrices(&camera.direction, &rot_z);
-	camera.right  = multiply_tuple_by_matrix(&(t_tuple){1, 0, 0, 1}, &camera.direction);
-	camera.up     = multiply_tuple_by_matrix(&(t_tuple){0, 1, 0, 1}, &camera.direction);
-	camera.front  = multiply_tuple_by_matrix(&(t_tuple){0, 0, 1, 1}, &camera.direction);
+	camera.direction = copy_matrix(&data->idmatrix_4x4);
+    camera.direction = multiply_matrices(&rot_x, &camera.direction);
+    camera.direction = multiply_matrices(&rot_y, &camera.direction);
+    camera.direction = multiply_matrices(&rot_z, &camera.direction);
+	// print_matrix(&camera.direction);
+	camera.right  = multiply_matrix_with_tuple(&camera.direction, &(t_tuple){1, 0, 0, 1});
+	camera.up     = multiply_matrix_with_tuple(&camera.direction, &(t_tuple){0, 1, 0, 1});
+	camera.front  = multiply_matrix_with_tuple(&camera.direction, &(t_tuple){0, 0, 1, 1});
+	// printf("%f %f %f\n", camera.right.x, camera.right.y, camera.right.z);
 	return (camera);
 }
 
@@ -78,7 +91,7 @@ t_CAMERA	init_CAMERA(t_token *token, t_data *data)
 //         direction += self.up*(self.height/self.width)*(i/self.height - 0.5)
 //         return Ray(self.center, vec3(direction))
 
-t_RAY	get_RAY(t_CAMERA *camera, size_t j, size_t i)
+t_RAY	get_RAY(t_CAMERA *camera, double j, double i)
 {
 	t_RAY	new_ray;
 	t_tuple	aux;
@@ -89,10 +102,11 @@ t_RAY	get_RAY(t_CAMERA *camera, size_t j, size_t i)
 	new_ray.direction = sum_tuples(&new_ray.direction, &aux);
 	aux = multiply_tuple(&camera->up, (camera->height / camera->width) * (i / camera->height - 0.5));
 	new_ray.direction = sum_tuples(&new_ray.direction, &aux);
-	return (init_RAY(&camera->center, &new_ray.direction));
+	new_ray = init_RAY(&camera->center, &new_ray.direction);
+	return (new_ray);
 }
 
-t_HIT	init_HIT(t_token *object, t_tuple *normal, size_t distance, t_tuple *position)
+t_HIT	init_HIT(t_token *object, t_tuple *normal, double distance, t_tuple *position)
 {
 	t_HIT hit;
 
@@ -106,15 +120,15 @@ t_HIT	init_HIT(t_token *object, t_tuple *normal, size_t distance, t_tuple *posit
 t_HIT	intersect_SPHERE(t_token *sphere, t_RAY *ray)
 {
 	t_HIT	hit;
-	size_t	a;
-	size_t	b;
-	size_t	c;
-	size_t	delta;
+	double	a;
+	double	b;
+	double	c;
+	double	delta;
 	t_tuple	s0_p0;
-	size_t	sqrt_delta;
-	size_t	bhaskara_1;
-	size_t	bhaskara_2;
-	size_t	bhaskara_result;
+	double	sqrt_delta;
+	double	bhaskara_1;
+	double	bhaskara_2;
+	double	bhaskara_result;
 	double	distance;
 	t_tuple	hit_point;
 	t_tuple	normal;
@@ -124,7 +138,7 @@ t_HIT	intersect_SPHERE(t_token *sphere, t_RAY *ray)
 	s0_p0 = subtract_tuples(&ray->origin, &sphere->coordinate);
 	b = 2.0 * dot_product(&ray->direction, &s0_p0);
 	c = dot_product(&s0_p0, &s0_p0) - (sphere->ratio * sphere->ratio);
-	delta = (b * b) - 4.0 *a * c;
+	delta = (b * b) - (4.0 * a * c);
 	if (delta > 0)
 	{
 		sqrt_delta = sqrt(delta);
@@ -148,7 +162,7 @@ t_HIT	intersect_SPHERE(t_token *sphere, t_RAY *ray)
 	return (hit);
 }
 
-t_POINTLIGHT create_POINTLIGHT(t_tuple *position, size_t intensity)
+t_POINTLIGHT create_POINTLIGHT(t_tuple *position, double intensity)
 {
 	t_POINTLIGHT	light;
 
@@ -158,12 +172,12 @@ t_POINTLIGHT create_POINTLIGHT(t_tuple *position, size_t intensity)
 	return (light);
 }
 
-size_t LIGHT_at(t_POINTLIGHT *light, t_HIT *hit)
+double LIGHT_at(t_POINTLIGHT *light, t_HIT *hit)
 {
 	t_tuple	direction;
-	size_t	distance;
-	size_t	cos_theta;
-	size_t	result;
+	double	distance;
+	double	cos_theta;
+	double	result;
 
 	direction = subtract_tuples(&light->position, &hit->position);
 	distance = tuple_magnitude(&direction);
@@ -178,7 +192,7 @@ size_t LIGHT_at(t_POINTLIGHT *light, t_HIT *hit)
 }
 
 
-t_SCENE	create_SCENE(t_tuple *background, size_t ambient_light)
+t_SCENE	create_SCENE(t_tuple *background, double ambient_light)
 {
 	t_SCENE	scene;
 
@@ -216,7 +230,7 @@ t_tuple	trace_COLOR(t_SCENE *scene, t_RAY *ray)
 	t_tuple			result;
 	t_tuple			light_position;
 	t_tuple			tuple_subtraction;
-	size_t			intensity;
+	double			intensity;
 	int				i;
 
 	closest_hit = CLOSEST_HIT(scene, ray);
