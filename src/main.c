@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gde-mora <gde-mora@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 20:16:42 by gde-mora          #+#    #+#             */
-/*   Updated: 2023/10/06 22:23:17 by gde-mora         ###   ########.fr       */
+/*   Updated: 2023/10/28 03:28:39 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,9 +76,9 @@ int	main(int argc, char **argv)
 	read_scene_file(argv[1], &data); //
 	get_scene_info(data.tokens, &data);
 
-	test_hits(&data);
+	// test_hits(&data);
 	// test_intersection(&data);
-	// render(&data);
+	render(&data);
 	// test_render(&data);
 
 	exit_error("", 0, &data);

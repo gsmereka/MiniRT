@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 20:20:54 by gde-mora          #+#    #+#             */
-/*   Updated: 2023/08/08 18:35:04 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/10/28 03:28:17 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,16 @@ static int	handle_render(t_data *data)
 	//deve ter verificação para n usar pontos q passem da tela
 	data->address_img = mlx_get_data_addr(data->img, &data->bits_per_pixel, \
 		&data->size_line, &data->endian);
-	pos = 50;
-	while (i < 16)
-	{
-		paint_pixel(pos + i, pos, RED, data);
-		paint_pixel(pos, pos + i, RED, data);
-		paint_pixel(pos + i, pos + 15, BLUE, data);
-		paint_pixel(pos + 15, pos + i, BLUE, data);
-		i++;
-	}
+	// pos = 50;
+	// while (i < 16)
+	// {
+	// 	paint_pixel(pos + i, pos, RED, data);
+	// 	paint_pixel(pos, pos + i, RED, data);
+	// 	paint_pixel(pos + i, pos + 15, BLUE, data);
+	// 	paint_pixel(pos + 15, pos + i, BLUE, data);
+	// 	i++;
+	// }
+	RENDER_MASTER(&data->scene, &data->camera, data);
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img, 0, 0);
 	return (0);
 }
@@ -47,6 +48,7 @@ int	debug(void *data_ptr) //Enqunto fazemos os testes // Função que verifica s
 
 void	render(t_data *data)
 {
+	define_SCENE(data);
 	data->mlx_ptr = mlx_init();
 	if (!(data->mlx_ptr))
 		exit_error(INTERFACE_ERROR, 2, data);

@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 15:42:37 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/10/28 03:09:32 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/10/28 03:25:21 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,6 @@
 // import glm
 // from glm import vec3
 
-typedef struct s_RAY
-{
-	t_tuple  origin;
-	t_tuple  direction;
-}  t_RAY;
 
 t_RAY init_RAY(t_tuple *origin, t_tuple *direction)
 {
@@ -43,19 +38,6 @@ t_tuple RAY_position(t_RAY *ray, double time)
 	return (position);
 }
 
-typedef struct s_CAMERA
-{
-	t_tuple		center;
-	t_tuple		radians_vector;
-	int			width;
-	int			height;
-	size_t		focal_length;
-	t_matrix	direction;
-	t_matrix	right;
-	t_matrix	up;
-	t_matrix	front;
-	size_t		fov;
-}  t_CAMERA;
 
 // void multiplyMatrix(int x, int y, int z, int w, int matrix[4][4], int result[4]) {
 //     result[0] = x * matrix[0][0] + y * matrix[1][0] + z * matrix[2][0] + w * matrix[3][0];
@@ -116,15 +98,6 @@ t_RAY	get_RAY(t_CAMERA *camera, size_t j, size_t i)
 	return (init_RAY(&camera->center, &new_ray.direction));
 }
 
-typedef struct s_HIT
-{
-	int			valid;
-	t_tuple		position;
-	t_token		*object;
-	t_tuple		normal;
-	size_t		distance;
-}  t_HIT;
-
 t_HIT	init_HIT(t_token *object, t_tuple *normal, size_t distance, t_tuple *position)
 {
 	t_HIT hit;
@@ -181,12 +154,6 @@ t_HIT	intersect_SPHERE(t_token *sphere, t_RAY *ray)
 	return (hit);
 }
 
-typedef struct s_POINTLIGHT
-{
-	t_tuple		position;
-	size_t		intensity;
-}  t_POINTLIGHT;
-
 t_POINTLIGHT create_POINTLIGHT(t_tuple *position, size_t intensity)
 {
 	t_POINTLIGHT	light;
@@ -215,15 +182,6 @@ size_t LIGHT_at(t_POINTLIGHT *light, t_HIT *hit)
 	return (result);
 }
 
-typedef struct s_SCENE
-{
-	t_tuple			background;
-	size_t			ambient_light;
-	int				luzes_a_definir; // numero a definir;
-	int				objetos_a_definir; // numero a definir
-	t_POINTLIGHT	lights[4]; // numero a definir
-	t_token			objects[4]; // numero a definir		
-}  t_SCENE;
 
 t_SCENE	create_SCENE(t_tuple *background, size_t ambient_light)
 {
@@ -359,6 +317,8 @@ void	define_SCENE(t_data *data)
 	scene.objects[2] = esfera_2;
 	scene.objects[3] = esfera_3;
 	scene.objects[4] = esfera_4;
+	data->camera = camera;
+	data->scene = scene;
 }
 
 

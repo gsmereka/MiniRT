@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 13:09:51 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/10/28 02:35:33 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/10/28 03:27:51 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,55 @@ typedef struct s_matrix
 	int		rows;
 }	t_matrix;
 
+////////////////////////////////////////////// teste
+typedef struct s_RAY
+{
+	t_tuple  origin;
+	t_tuple  direction;
+}  t_RAY;
+
+typedef struct s_CAMERA
+{
+	t_tuple		center;
+	t_tuple		radians_vector;
+	int			width;
+	int			height;
+	size_t		focal_length;
+	t_matrix	direction;
+	t_matrix	right;
+	t_matrix	up;
+	t_matrix	front;
+	size_t		fov;
+}  t_CAMERA;
+
+
+typedef struct s_HIT
+{
+	int			valid;
+	t_tuple		position;
+	t_token		*object;
+	t_tuple		normal;
+	size_t		distance;
+}  t_HIT;
+
+typedef struct s_POINTLIGHT
+{
+	t_tuple		position;
+	size_t		intensity;
+}  t_POINTLIGHT;
+
+typedef struct s_SCENE
+{
+	t_tuple			background;
+	size_t			ambient_light;
+	int				luzes_a_definir; // numero a definir;
+	int				objetos_a_definir; // numero a definir
+	t_POINTLIGHT	lights[4]; // numero a definir
+	t_token			objects[4]; // numero a definir		
+}  t_SCENE;
+
+///////////////////////////////////////////////////////////////////////////
+
 typedef struct s_data
 {
 	t_matrix	idmatrix_2x2;
@@ -80,6 +129,9 @@ typedef struct s_data
 	int			has_light;
 	int			has_ambient_lighting;
 	int										debug_exit; //Enqunto fazemos os testes
+
+	t_CAMERA	camera; // teste
+	t_SCENE		scene; // teste
 }	t_data;
 
 #endif

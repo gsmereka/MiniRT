@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 20:17:31 by gde-mora          #+#    #+#             */
-/*   Updated: 2023/09/23 01:43:34 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/10/28 03:21:01 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@
 # include "./shape_types.h"
 # include "./colors.h"
 # include "./structs.h"
+# include "../src/python_ver.h" // teste
 # include "../src/ray_tools/ray.h"
 # include "../src/matrix_tools/matrix_tools.h"
 # include "../src/matrix_transformations/matrix_transformations.h"
@@ -54,5 +55,9 @@ void		get_scene_info(t_token *tokens, t_data *data);
 // exit and utils
 int			exit_error(char *msg, int status, t_data *data);
 int			exit_successful(t_data *data);
+
+// TESTE COM VERSÃO DO PYTHON
+void	define_SCENE(t_data *data); // TESTE
+void	RENDER_MASTER(t_SCENE *scene, t_CAMERA *camera, t_data *data);
 
 #endif
