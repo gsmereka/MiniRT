@@ -6,12 +6,12 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 19:07:48 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/10/05 17:41:14 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/10/28 23:04:35 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RAY_H
-# define RAY_H
+#ifndef ray_H
+# define ray_H
 
 typedef struct s_sphere
 {

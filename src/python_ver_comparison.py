@@ -14,6 +14,7 @@ class Ray():
 
 class Camera():
     def __init__(self, center, euler_angles, width, height, focal_length):
+        self.first_execution = True
         self.center = center
         self.width  = width
         self.height = height
@@ -40,6 +41,12 @@ class Camera():
         direction  = self.front * self.focal_length
         direction += self.right*(j/self.width - 0.5)
         direction += self.up*(self.height/self.width)*(i/self.height - 0.5)
+        if self.first_execution:
+            # print("Valores de vec3(direction):", direction)
+            # print("Valores de vec3(direction):", self.front)
+            # print("Valores de vec3(direction):", self.up)
+            # print("Valores de vec3(direction):", self.right)
+            self.first_execution = False
         return Ray(self.center, vec3(direction))
 
 class Hit():
