@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 19:07:48 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/10/28 23:04:35 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/10/28 23:15:25 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ typedef struct s_intersect
 	double	b;
 	double	c;
 	int		count;
+	t_token	*local_obj;
+	double	local_times[2];
 	t_token	**objects;
 	double	*intersect_times;
 }	t_intersect;

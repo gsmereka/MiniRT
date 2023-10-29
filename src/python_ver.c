@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 15:42:37 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/10/28 23:05:08 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/10/29 14:32:51 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -196,8 +196,30 @@ t_HIT	intersect_SPHERE2(t_token *sphere, t_ray *ray)
 
 t_HIT	intersect_SPHERE(t_token *sphere, t_ray *ray)
 {
+	static int	g;
 	t_intersect	inter;
+	double		closest;
+	t_tuple		hit_point;
+	t_tuple		normal;
+	t_HIT		hit;
+
+	hit = (t_HIT){0};
+	if (!g)
+			// printf("%f\n", ray->direction.x);
+		g++;
 	inter = intersect(sphere, ray);
+	// if (inter.local_times[0] < inter.local_times[1])
+	// 	closest = inter.local_times[0];
+	// else
+	// 	closest = inter.local_times[1];
+	// if (closest < 0)
+	// 	return (hit);
+	// hit_point = ray_position(ray, closest);
+	// normal = subtract_tuples(&hit_point, &sphere->coordinate);
+	// normalize_tuple(&normal);
+	// hit = init_HIT(sphere, &normal, closest, &hit_point);
+	// hit.valid = 1;
+	return (hit);
 }
 
 t_POINTLIGHT create_POINTLIGHT(t_tuple *position, double intensity)
@@ -246,12 +268,16 @@ t_HIT	CLOSEST_HIT(t_SCENE *scene, t_ray *ray)
 	t_HIT	closest_hit;
 	int		limit;
 	int		i;
+	static	g;
 
 	i = 0;
 	closest_hit = (t_HIT){0};
 	limit = scene->objetos_a_definir;
 	while (i < limit)
 	{
+		if (!g)
+			printf("%f\n", ray->direction.x);
+		g++;
 		hit = intersect_SPHERE(&scene->objects[i], ray);
 		if (!hit.valid || !closest_hit.valid || hit.distance < closest_hit.distance)
 			closest_hit = hit;
@@ -306,6 +332,7 @@ void	RENDER_MASTER(t_SCENE *scene, t_CAMERA *camera, t_data *data)
 	int				pixel_coord[2];
 
 	i = 0;
+	aux_ray = (t_ray){0};
 	while (i < camera->width)
 	{
 		j = 0;

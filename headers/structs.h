@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 13:09:51 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/10/28 23:04:13 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/10/28 23:11:22 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,6 @@ typedef struct s_tuple
 	double	z;
 	double	w;
 }	t_tuple;
-
-typedef struct s_ray
-{
-	struct s_tuple origin;
-	struct s_tuple direction;
-}	t_ray;
 
 typedef struct s_token
 {
@@ -62,6 +56,12 @@ typedef struct s_matrix
 
 ////////////////////////////////////////////// teste
 
+typedef struct s_ray
+{
+	t_tuple	origin;
+	t_tuple	direction;
+}	t_ray;
+
 typedef struct s_CAMERA
 {
 	t_tuple		center;
@@ -75,7 +75,6 @@ typedef struct s_CAMERA
 	t_tuple		front;
 	double		fov;
 }  t_CAMERA;
-
 
 typedef struct s_HIT
 {
