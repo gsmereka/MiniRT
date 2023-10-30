@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 13:09:51 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/10/28 23:11:22 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/10/29 15:41:57 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ typedef struct s_SCENE
 	int				luzes_a_definir; // numero a definir;
 	int				objetos_a_definir; // numero a definir
 	t_POINTLIGHT	lights[1]; // numero a definir
-	t_token			objects[5]; // numero a definir		
+	t_token			**objects; // numero a definir		
 }  t_SCENE;
 
 ///////////////////////////////////////////////////////////////////////////

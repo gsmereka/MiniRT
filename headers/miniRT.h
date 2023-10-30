@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 20:17:31 by gde-mora          #+#    #+#             */
-/*   Updated: 2023/10/28 03:21:01 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/10/29 15:19:16 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ void    	test_hits(t_data *data);
 void		test_intersection(t_data *data);
 void		test_matrices_operations(int argc, char **argv, t_data *data); // Retirar depois, do Makefile tb
 void		test_ray(t_data *data);
+t_intersect *intersect_2(t_token *token, t_ray *ray); //criar struct p salvar a b c
 
 // main functions
 int			validate_scene_file(int argc, char *argv[], t_data *data);

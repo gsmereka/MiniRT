@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 15:42:37 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/10/29 14:32:51 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/10/29 22:36:31 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,19 +93,19 @@ t_CAMERA	init_CAMERA(t_token *token, t_data *data)
 //     direction.y = front.y * focal_length + right.y * (j / width - 0.5) + up.y * (height / width) * (i / height - 0.5);
 //     direction.z = front.z * focal_length + right.z * (j / width - 0.5) + up.z * (height / width) * (i / height - 0.5);
 
-t_ray	get_ray(t_CAMERA *camera, double j, double i)
+t_ray	*get_ray(t_CAMERA *camera, double j, double i)
 {
 	static int	g;
-	t_ray	new_ray;
+	t_ray	*new_ray;
 	t_tuple	temp;
 	t_tuple	aux;
 
-	new_ray = (t_ray){0};
+	new_ray = ft_calloc(1, sizeof(t_ray));
 
 	// direction = self.front * self.focal_length
-    new_ray.direction.x = camera->front.x * camera->focal_length;
-    new_ray.direction.y = camera->front.y * camera->focal_length;
-    new_ray.direction.z = camera->front.z * camera->focal_length;
+    new_ray->direction.x = camera->front.x * camera->focal_length;
+    new_ray->direction.y = camera->front.y * camera->focal_length;
+    new_ray->direction.z = camera->front.z * camera->focal_length;
 
     // temp = self.right * (j / self.width - 0.5)
     temp.x = camera->right.x * (j / (double)camera->width - 0.50);
@@ -113,9 +113,9 @@ t_ray	get_ray(t_CAMERA *camera, double j, double i)
     temp.z = camera->right.z * (j / (double)camera->width - 0.50);
 
     // direction += temp
-    new_ray.direction.x += temp.x;
-    new_ray.direction.y += temp.y;
-    new_ray.direction.z += temp.z;
+    new_ray->direction.x += temp.x;
+    new_ray->direction.y += temp.y;
+    new_ray->direction.z += temp.z;
 
     // temp = self.up * (self.height / self.width) * (i / self.height - 0.5)
     temp.x = camera->up.x * ((double)camera->height / (double)camera->width) * (i / (double)camera->height - 0.50);
@@ -123,13 +123,13 @@ t_ray	get_ray(t_CAMERA *camera, double j, double i)
     temp.z = camera->up.z * ((double)camera->height / (double)camera->width) * (i / (double)camera->height - 0.50);
 
     // direction += temp
-    new_ray.direction.x += temp.x;
-    new_ray.direction.y += temp.y;
-    new_ray.direction.z += temp.z;
+    new_ray->direction.x += temp.x;
+    new_ray->direction.y += temp.y;
+    new_ray->direction.z += temp.z;
 
 	if (!g)
 	{
-		// printf("new_direction %f %f %f\n", new_ray.direction.x, new_ray.direction.y, new_ray.direction.z);
+		// printf("new_direction %f %f %f\n", new_ray->direction.x, new_ray->direction.y, new_ray->direction.z);
 		// printf("camera %f %f %f\n", camera->front.x, camera->front.y, camera->front.z);
 		// printf("camera %f %f %f\n", camera->up.x, camera->up.y, camera->up.z);
 		// printf("camera %f %f %f\n", camera->right.x, camera->right.y, camera->right.z);
@@ -149,7 +149,7 @@ t_HIT	init_HIT(t_token *object, t_tuple *normal, double distance, t_tuple *posit
 	return (hit);
 }
 
-t_HIT	intersect_SPHERE2(t_token *sphere, t_ray *ray)
+t_HIT	intersect_SPHERE(t_token *sphere, t_ray *ray)
 {
 	t_HIT	hit;
 	double	a;
@@ -170,44 +170,44 @@ t_HIT	intersect_SPHERE2(t_token *sphere, t_ray *ray)
 	s0_p0 = subtract_tuples(&ray->origin, &sphere->coordinate);
 	b = 2.0 * dot_product(&ray->direction, &s0_p0);
 	c = dot_product(&s0_p0, &s0_p0) - (sphere->ratio * sphere->ratio);
+	// printf("%f\n", a); de vez em quando da um erro de nao inicialização
+	// printf("%f\n", c);
+	// printf("%f\n", b);
 	delta = (b * b) - (4.0 * a * c);
-	if (delta > 0)
-	{
-		sqrt_delta = sqrt(delta);
-		bhaskara_1 = (-b + sqrt_delta)/(2.0 * a);
-		bhaskara_2 = (-b - sqrt_delta)/(2.0 * a);
-		if (bhaskara_1 < bhaskara_2)
-			bhaskara_result = bhaskara_1;
-		else
-			bhaskara_result = bhaskara_2;
-		if(bhaskara_result > 0)
-		{
-			distance = bhaskara_result;
-			hit_point = ray_position(ray, distance);
-			normal = subtract_tuples(&hit_point, &sphere->coordinate);
-			normalize_tuple(&normal);
-			hit = init_HIT(sphere, &normal, distance, &hit_point);
-			hit.valid = 1;
-			return (hit);
-		}
-	}
+	// if (delta > 0)
+	// // {
+	// 	sqrt_delta = sqrt(delta);
+		// bhaskara_1 = (-b + sqrt_delta)/(2.0 * a);
+	// 	bhaskara_2 = (-b - sqrt_delta)/(2.0 * a);
+	// 	if (bhaskara_1 < bhaskara_2)
+	// 		bhaskara_result = bhaskara_1;
+	// 	else
+	// 		bhaskara_result = bhaskara_2;
+	// 	if(bhaskara_result > 0)
+	// 	{
+	// 		distance = bhaskara_result;
+	// 		hit_point = ray_position(ray, distance);
+	// 		normal = subtract_tuples(&hit_point, &sphere->coordinate);
+	// 		normalize_tuple(&normal);
+	// 		hit = init_HIT(sphere, &normal, distance, &hit_point);
+	// 		hit.valid = 1;
+	// 		return (hit);
+	// 	}
+	// }
 	return (hit);
 }
 
-t_HIT	intersect_SPHERE(t_token *sphere, t_ray *ray)
+t_HIT	intersect_SPHERE2(t_token *sphere, t_ray *ray)
 {
-	static int	g;
-	t_intersect	inter;
+	t_intersect	*inter;
 	double		closest;
 	t_tuple		hit_point;
 	t_tuple		normal;
 	t_HIT		hit;
 
 	hit = (t_HIT){0};
-	if (!g)
-			// printf("%f\n", ray->direction.x);
-		g++;
-	inter = intersect(sphere, ray);
+	inter = intersect_2(sphere, ray);
+	free(inter);
 	// if (inter.local_times[0] < inter.local_times[1])
 	// 	closest = inter.local_times[0];
 	// else
@@ -268,17 +268,17 @@ t_HIT	CLOSEST_HIT(t_SCENE *scene, t_ray *ray)
 	t_HIT	closest_hit;
 	int		limit;
 	int		i;
-	static	g;
+	static	int g;
 
 	i = 0;
 	closest_hit = (t_HIT){0};
 	limit = scene->objetos_a_definir;
 	while (i < limit)
 	{
-		if (!g)
-			printf("%f\n", ray->direction.x);
-		g++;
-		hit = intersect_SPHERE(&scene->objects[i], ray);
+		// if (!g)
+		// 	printf("%f\n", ray->direction.x);
+		// g++;
+		hit = intersect_SPHERE(scene->objects[i], ray);
 		if (!hit.valid || !closest_hit.valid || hit.distance < closest_hit.distance)
 			closest_hit = hit;
 		i++;
@@ -326,13 +326,12 @@ void	RENDER_MASTER(t_SCENE *scene, t_CAMERA *camera, t_data *data)
 {
 	int				i;
 	int				j;
-	t_ray			aux_ray;
+	t_ray			*aux_ray;
 	t_tuple			color;
 	unsigned int	final_color;
 	int				pixel_coord[2];
 
 	i = 0;
-	aux_ray = (t_ray){0};
 	while (i < camera->width)
 	{
 		j = 0;
@@ -341,7 +340,8 @@ void	RENDER_MASTER(t_SCENE *scene, t_CAMERA *camera, t_data *data)
 			pixel_coord[0] = j + 0.5;
 			pixel_coord[1] = camera->height - 0.5 - i;
 			aux_ray = get_ray(camera, pixel_coord[0], pixel_coord[i]);
-			color = trace_COLOR(scene, &aux_ray);
+			color = trace_COLOR(scene, aux_ray);
+			free(aux_ray);
 			final_color = 0;
 			final_color |= ((int)color.x & 0xFF) << 16;  // Adiciona o valor de r ao componente vermelho.
 			final_color |= ((int)color.y & 0xFF) << 8;   // Adiciona o valor de g ao componente verde.
@@ -368,11 +368,11 @@ void	define_SCENE(t_data *data)
 	t_SCENE			scene;
 	t_CAMERA		camera;
 	t_token			camera_token;
-	t_token			esfera_1;
-	t_token			esfera_2;
-	t_token			esfera_3;
-	t_token			esfera_4;
-	t_token			esfera_0;
+	t_token			*esfera_1;
+	t_token			*esfera_2;
+	t_token			*esfera_3;
+	t_token			*esfera_4;
+	t_token			*esfera_0;
 
 	scene = create_SCENE(&(t_tuple){26, 27, 33, 0}, 0.12);
 	scene.luzes_a_definir = 1; // numero a definir;
@@ -382,11 +382,17 @@ void	define_SCENE(t_data *data)
 	camera_token.normalized_vector = (t_tuple){-10, 5, 0, 0};
 	camera = init_CAMERA(&camera_token, data);
 	scene.lights[0] = create_POINTLIGHT(&(t_tuple){-1.3, 8.4, 0, 0}, 20);
-	definir_esfera(&esfera_0, &(t_tuple){2.5, 2.8, 5.15, 0}, 2.8, &(t_color){83, 221, 108});
-	definir_esfera(&esfera_1, &(t_tuple){0.6, 5.6, 3.6, 0}, 0.6, &(t_color){128, 117, 255});
-	definir_esfera(&esfera_2, &(t_tuple){-3.1, 1.4, 0.06, 0}, 1.4, &(t_color){128, 117, 255});
-	definir_esfera(&esfera_3, &(t_tuple){-4.2, 5.4, 4.2, 0}, 0.9, &(t_color){83, 221, 108});
-	definir_esfera(&esfera_4, &(t_tuple){0, -1000000, 0, 0}, 1000000, &(t_color){234, 234, 234});
+	esfera_0 = ft_calloc(1, sizeof(t_token));
+	esfera_1 = ft_calloc(1, sizeof(t_token));
+	esfera_2 = ft_calloc(1, sizeof(t_token));
+	esfera_3 = ft_calloc(1, sizeof(t_token));
+	esfera_4 = ft_calloc(1, sizeof(t_token));
+	definir_esfera(esfera_0, &(t_tuple){2.5, 2.8, 5.15, 0}, 2.8, &(t_color){83, 221, 108});
+	definir_esfera(esfera_1, &(t_tuple){0.6, 5.6, 3.6, 0}, 0.6, &(t_color){128, 117, 255});
+	definir_esfera(esfera_2, &(t_tuple){-3.1, 1.4, 0.06, 0}, 1.4, &(t_color){128, 117, 255});
+	definir_esfera(esfera_3, &(t_tuple){-4.2, 5.4, 4.2, 0}, 0.9, &(t_color){83, 221, 108});
+	definir_esfera(esfera_4, &(t_tuple){0, -1000000, 0, 0}, 1000000, &(t_color){234, 234, 234});
+	scene.objects = (t_token **)ft_calloc(scene.objetos_a_definir + 1, sizeof(t_token *));
 	scene.objects[0] = esfera_0;
 	scene.objects[1] = esfera_1;
 	scene.objects[2] = esfera_2;
