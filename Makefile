@@ -6,18 +6,22 @@
 #    By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/20 18:26:17 by gde-mora          #+#    #+#              #
-#    Updated: 2023/10/28 00:36:10 by gsmereka         ###   ########.fr        #
+#    Updated: 2023/10/29 23:09:18 by gsmereka         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME 	=	miniRT
 
-SRC 	=	src/test_matrices_operations.c \
-			src/test_hits.c \
-			src/test_intersection.c \
-			src/test_render.c \
-			src/test_ray.c \
-			src/python_ver.c \
+# src/test_matrices_operations.c \
+# 			src/test_hits.c \
+# 			src/test_intersection.c \
+# 			src/test_render.c \
+# 			src/test_ray.c \
+
+SRC 	=	src/define_scene/define_scene.c \
+			src/define_scene/render_scene.c \
+			src/define_scene/get_ray.c \
+			src/define_scene/trace_color.c \
 			src/main.c \
 			src/exit.c \
 			src/ray_tools/rays.c \
@@ -154,6 +158,7 @@ re: fclean all
 create_obj_dir:
 	@mkdir -p $(OBJ_DIR)
 	@mkdir -p $(OBJ_DIR)/src
+	@mkdir -p $(OBJ_DIR)/src/define_scene
 	@mkdir -p $(OBJ_DIR)/src/ray_tools
 	@mkdir -p $(OBJ_DIR)/src/parsing
 	@mkdir -p $(OBJ_DIR)/src/render

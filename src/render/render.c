@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 20:20:54 by gde-mora          #+#    #+#             */
-/*   Updated: 2023/10/29 15:49:20 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/10/29 23:05:05 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static int	handle_render(t_data *data)
 	// }
 	if (!size)
 	{
-		RENDER_MASTER(&data->scene, &data->camera, data);
+		render_scene(&data->scene, &data->camera, data);
 	}
 	size++;
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img, 0, 0);

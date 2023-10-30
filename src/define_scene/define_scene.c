@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   python_ver.c                                       :+:      :+:    :+:   */
+/*   define_scene.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 15:42:37 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/10/29 22:36:31 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/10/29 23:08:27 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../headers/miniRT.h"
+#include "../../headers/miniRT.h"
 
 t_ray init_ray(t_tuple *origin, t_tuple *direction)
 {
@@ -60,7 +60,7 @@ t_CAMERA	init_CAMERA(t_token *token, t_data *data)
 	pass_tuple_values(&camera.center, &token->coordinate);
 	camera.width = data->win_width;
 	camera.height = data->win_height;
-	printf("%f, %f, %f\n", token->normalized_vector.x, token->normalized_vector.y, token->normalized_vector.z);
+	// printf("%f, %f, %f\n", token->normalized_vector.x, token->normalized_vector.y, token->normalized_vector.z);
 	camera.radians_vector.x = degrees_to_radians(token->normalized_vector.x);
 	camera.radians_vector.y = degrees_to_radians(token->normalized_vector.y);
 	camera.radians_vector.z = degrees_to_radians(token->normalized_vector.z);
@@ -92,51 +92,6 @@ t_CAMERA	init_CAMERA(t_token *token, t_data *data)
 //	   direction.x = front.x * focal_length + right.x * (j / width - 0.5) + up.x * (height / width) * (i / height - 0.5);
 //     direction.y = front.y * focal_length + right.y * (j / width - 0.5) + up.y * (height / width) * (i / height - 0.5);
 //     direction.z = front.z * focal_length + right.z * (j / width - 0.5) + up.z * (height / width) * (i / height - 0.5);
-
-t_ray	*get_ray(t_CAMERA *camera, double j, double i)
-{
-	static int	g;
-	t_ray	*new_ray;
-	t_tuple	temp;
-	t_tuple	aux;
-
-	new_ray = ft_calloc(1, sizeof(t_ray));
-
-	// direction = self.front * self.focal_length
-    new_ray->direction.x = camera->front.x * camera->focal_length;
-    new_ray->direction.y = camera->front.y * camera->focal_length;
-    new_ray->direction.z = camera->front.z * camera->focal_length;
-
-    // temp = self.right * (j / self.width - 0.5)
-    temp.x = camera->right.x * (j / (double)camera->width - 0.50);
-    temp.y = camera->right.y * (j / (double)camera->width - 0.50);
-    temp.z = camera->right.z * (j / (double)camera->width - 0.50);
-
-    // direction += temp
-    new_ray->direction.x += temp.x;
-    new_ray->direction.y += temp.y;
-    new_ray->direction.z += temp.z;
-
-    // temp = self.up * (self.height / self.width) * (i / self.height - 0.5)
-    temp.x = camera->up.x * ((double)camera->height / (double)camera->width) * (i / (double)camera->height - 0.50);
-    temp.y = camera->up.y * ((double)camera->height / (double)camera->width) * (i / (double)camera->height - 0.50);
-    temp.z = camera->up.z * ((double)camera->height / (double)camera->width) * (i / (double)camera->height - 0.50);
-
-    // direction += temp
-    new_ray->direction.x += temp.x;
-    new_ray->direction.y += temp.y;
-    new_ray->direction.z += temp.z;
-
-	if (!g)
-	{
-		// printf("new_direction %f %f %f\n", new_ray->direction.x, new_ray->direction.y, new_ray->direction.z);
-		// printf("camera %f %f %f\n", camera->front.x, camera->front.y, camera->front.z);
-		// printf("camera %f %f %f\n", camera->up.x, camera->up.y, camera->up.z);
-		// printf("camera %f %f %f\n", camera->right.x, camera->right.y, camera->right.z);
-	}
-	g++;
-	return (new_ray);
-}
 
 t_HIT	init_HIT(t_token *object, t_tuple *normal, double distance, t_tuple *position)
 {
@@ -206,7 +161,7 @@ t_HIT	intersect_SPHERE2(t_token *sphere, t_ray *ray)
 	t_HIT		hit;
 
 	hit = (t_HIT){0};
-	inter = intersect_2(sphere, ray);
+	// inter = intersect(sphere, ray);
 	free(inter);
 	// if (inter.local_times[0] < inter.local_times[1])
 	// 	closest = inter.local_times[0];
@@ -284,74 +239,6 @@ t_HIT	CLOSEST_HIT(t_SCENE *scene, t_ray *ray)
 		i++;
 	}
 	return (closest_hit);
-}
-
-t_tuple	trace_COLOR(t_SCENE *scene, t_ray *ray)
-{
-	t_HIT			closest_hit;
-	t_ray			light_ray;
-	t_HIT			light_hit;
-	t_tuple			result;
-	t_tuple			light_position;
-	t_tuple			tuple_subtraction;
-	double			intensity;
-	int				i;
-
-	closest_hit = CLOSEST_HIT(scene, ray);
-	if (closest_hit.valid)
-	{
-		intensity = scene->ambient_light;
-		i = 0;
-		while (i < scene->luzes_a_definir) // numero a definir
-		{
-			light_position = scene->lights[i].position;
-			tuple_subtraction = subtract_tuples(&closest_hit.position, &scene->lights[i].position);
-			light_ray = init_ray(&light_position, &tuple_subtraction);
-			light_hit = CLOSEST_HIT(scene, &light_ray);
-			if (light_hit.valid && &light_hit.object == &closest_hit.object)
-				intensity += LIGHT_at(&scene->lights[i], &closest_hit);
-			if (intensity < 1)
-				intensity = 1;
-			result.x = closest_hit.object->color.r * intensity;
-			result.y = closest_hit.object->color.g * intensity;
-			result.z = closest_hit.object->color.b * intensity;
-			i++;
-		}
-		return (result);
-	}
-	return (scene->background);
-}
-
-void	RENDER_MASTER(t_SCENE *scene, t_CAMERA *camera, t_data *data)
-{
-	int				i;
-	int				j;
-	t_ray			*aux_ray;
-	t_tuple			color;
-	unsigned int	final_color;
-	int				pixel_coord[2];
-
-	i = 0;
-	while (i < camera->width)
-	{
-		j = 0;
-		while (j < camera->height)
-		{
-			pixel_coord[0] = j + 0.5;
-			pixel_coord[1] = camera->height - 0.5 - i;
-			aux_ray = get_ray(camera, pixel_coord[0], pixel_coord[i]);
-			color = trace_COLOR(scene, aux_ray);
-			free(aux_ray);
-			final_color = 0;
-			final_color |= ((int)color.x & 0xFF) << 16;  // Adiciona o valor de r ao componente vermelho.
-			final_color |= ((int)color.y & 0xFF) << 8;   // Adiciona o valor de g ao componente verde.
-			final_color |= ((int)color.z & 0xFF);        // Adiciona o valor de b ao componente azul
-			// paint_pixel(i, j, RED, data);
-			paint_pixel(i, j, final_color, data);
-			j++;
-		}
-		i++;
-	}
 }
 
 void	definir_esfera(t_token *esfera, t_tuple *center, double raio, t_color *color)

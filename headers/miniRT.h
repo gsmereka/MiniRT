@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 20:17:31 by gde-mora          #+#    #+#             */
-/*   Updated: 2023/10/29 15:19:16 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/10/29 23:05:05 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@
 # include "./shape_types.h"
 # include "./colors.h"
 # include "./structs.h"
-# include "../src/python_ver.h" // teste
+# include "../src/define_scene/define_scene.h"
 # include "../src/ray_tools/ray.h"
 # include "../src/matrix_tools/matrix_tools.h"
 # include "../src/matrix_transformations/matrix_transformations.h"
@@ -46,7 +46,6 @@ void    	test_hits(t_data *data);
 void		test_intersection(t_data *data);
 void		test_matrices_operations(int argc, char **argv, t_data *data); // Retirar depois, do Makefile tb
 void		test_ray(t_data *data);
-t_intersect *intersect_2(t_token *token, t_ray *ray); //criar struct p salvar a b c
 
 // main functions
 int			validate_scene_file(int argc, char *argv[], t_data *data);
@@ -59,6 +58,6 @@ int			exit_successful(t_data *data);
 
 // TESTE COM VERSÃO DO PYTHON
 void	define_SCENE(t_data *data); // TESTE
-void	RENDER_MASTER(t_SCENE *scene, t_CAMERA *camera, t_data *data);
+void	render_scene(t_SCENE *scene, t_CAMERA *camera, t_data *data);
 
 #endif
