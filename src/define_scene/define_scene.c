@@ -6,21 +6,11 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 15:42:37 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/10/29 23:08:27 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/10/31 23:21:13 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/miniRT.h"
-
-t_ray init_ray(t_tuple *origin, t_tuple *direction)
-{
-	t_ray ray;
-
-	pass_tuple_values(&ray.direction, direction);
-	normalize_tuple(&ray.direction);
-	pass_tuple_values(&ray.origin, origin);
-	return (ray);
-}
 
 t_tuple ray_position(t_ray *ray, double time)
 {
@@ -83,16 +73,6 @@ t_CAMERA	init_CAMERA(t_token *token, t_data *data)
 	return (camera);
 }
 
-//     def get_ray(self, j, i):
-//         direction  = self.front * self.focal_length
-//         direction += self.right*(j/self.width - 0.5)
-//         direction += self.up*(self.height/self.width)*(i/self.height - 0.5)
-//         return Ray(self.center, vec3(direction))
-
-//	   direction.x = front.x * focal_length + right.x * (j / width - 0.5) + up.x * (height / width) * (i / height - 0.5);
-//     direction.y = front.y * focal_length + right.y * (j / width - 0.5) + up.y * (height / width) * (i / height - 0.5);
-//     direction.z = front.z * focal_length + right.z * (j / width - 0.5) + up.z * (height / width) * (i / height - 0.5);
-
 t_HIT	init_HIT(t_token *object, t_tuple *normal, double distance, t_tuple *position)
 {
 	t_HIT hit;
@@ -101,79 +81,6 @@ t_HIT	init_HIT(t_token *object, t_tuple *normal, double distance, t_tuple *posit
 	pass_tuple_values(&hit.normal, normal);
 	hit.object = object;
 	hit.distance = distance;
-	return (hit);
-}
-
-t_HIT	intersect_SPHERE(t_token *sphere, t_ray *ray)
-{
-	t_HIT	hit;
-	double	a;
-	double	b;
-	double	c;
-	double	delta;
-	t_tuple	s0_p0;
-	double	sqrt_delta;
-	double	bhaskara_1;
-	double	bhaskara_2;
-	double	bhaskara_result;
-	double	distance;
-	t_tuple	hit_point;
-	t_tuple	normal;
-
-	hit = (t_HIT){0};
-	a = dot_product(&ray->direction, &ray->direction);
-	s0_p0 = subtract_tuples(&ray->origin, &sphere->coordinate);
-	b = 2.0 * dot_product(&ray->direction, &s0_p0);
-	c = dot_product(&s0_p0, &s0_p0) - (sphere->ratio * sphere->ratio);
-	// printf("%f\n", a); de vez em quando da um erro de nao inicialização
-	// printf("%f\n", c);
-	// printf("%f\n", b);
-	delta = (b * b) - (4.0 * a * c);
-	// if (delta > 0)
-	// // {
-	// 	sqrt_delta = sqrt(delta);
-		// bhaskara_1 = (-b + sqrt_delta)/(2.0 * a);
-	// 	bhaskara_2 = (-b - sqrt_delta)/(2.0 * a);
-	// 	if (bhaskara_1 < bhaskara_2)
-	// 		bhaskara_result = bhaskara_1;
-	// 	else
-	// 		bhaskara_result = bhaskara_2;
-	// 	if(bhaskara_result > 0)
-	// 	{
-	// 		distance = bhaskara_result;
-	// 		hit_point = ray_position(ray, distance);
-	// 		normal = subtract_tuples(&hit_point, &sphere->coordinate);
-	// 		normalize_tuple(&normal);
-	// 		hit = init_HIT(sphere, &normal, distance, &hit_point);
-	// 		hit.valid = 1;
-	// 		return (hit);
-	// 	}
-	// }
-	return (hit);
-}
-
-t_HIT	intersect_SPHERE2(t_token *sphere, t_ray *ray)
-{
-	t_intersect	*inter;
-	double		closest;
-	t_tuple		hit_point;
-	t_tuple		normal;
-	t_HIT		hit;
-
-	hit = (t_HIT){0};
-	// inter = intersect(sphere, ray);
-	free(inter);
-	// if (inter.local_times[0] < inter.local_times[1])
-	// 	closest = inter.local_times[0];
-	// else
-	// 	closest = inter.local_times[1];
-	// if (closest < 0)
-	// 	return (hit);
-	// hit_point = ray_position(ray, closest);
-	// normal = subtract_tuples(&hit_point, &sphere->coordinate);
-	// normalize_tuple(&normal);
-	// hit = init_HIT(sphere, &normal, closest, &hit_point);
-	// hit.valid = 1;
 	return (hit);
 }
 
@@ -187,26 +94,6 @@ t_POINTLIGHT create_POINTLIGHT(t_tuple *position, double intensity)
 	return (light);
 }
 
-double LIGHT_at(t_POINTLIGHT *light, t_HIT *hit)
-{
-	t_tuple	direction;
-	double	distance;
-	double	cos_theta;
-	double	result;
-
-	direction = subtract_tuples(&light->position, &hit->position);
-	distance = tuple_magnitude(&direction);
-	normalize_tuple(&direction);
-	cos_theta = dot_product(&direction, &hit->normal);
-	result = light->intensity * (cos_theta / (distance * distance));
-	if (are_floats_equal(0, result))
-		return (result);
-	if (result < 0);
-		return (0);
-	return (result);
-}
-
-
 t_SCENE	create_SCENE(t_tuple *background, double ambient_light)
 {
 	t_SCENE	scene;
@@ -215,30 +102,6 @@ t_SCENE	create_SCENE(t_tuple *background, double ambient_light)
 	pass_tuple_values(&scene.background, background);
 	scene.ambient_light = ambient_light;
 	return (scene);
-}
-
-t_HIT	CLOSEST_HIT(t_SCENE *scene, t_ray *ray)
-{
-	t_HIT	hit;
-	t_HIT	closest_hit;
-	int		limit;
-	int		i;
-	static	int g;
-
-	i = 0;
-	closest_hit = (t_HIT){0};
-	limit = scene->objetos_a_definir;
-	while (i < limit)
-	{
-		// if (!g)
-		// 	printf("%f\n", ray->direction.x);
-		// g++;
-		hit = intersect_SPHERE(scene->objects[i], ray);
-		if (!hit.valid || !closest_hit.valid || hit.distance < closest_hit.distance)
-			closest_hit = hit;
-		i++;
-	}
-	return (closest_hit);
 }
 
 void	definir_esfera(t_token *esfera, t_tuple *center, double raio, t_color *color)
