@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 20:20:54 by gde-mora          #+#    #+#             */
-/*   Updated: 2023/11/01 09:16:21 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/11/01 09:58:10 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,10 @@
 
 static int	handle_render(t_data *data)
 {
-	static	int	size;
-	int		i;
-	int		pos;
+	// int		i;
+	// int		pos;
 
-	i = 0;
+	// i = 0;
 	//int pos = (y * size_line + x * (bits_per_pixel / 8));
 	//deve ter verificação para n usar pontos q passem da tela
 	// data->address_img = mlx_get_data_addr(data->img, &data->bits_per_pixel, \
@@ -32,11 +31,6 @@ static int	handle_render(t_data *data)
 	// 	paint_pixel(pos + 15, pos + i, BLUE, data);
 	// 	i++;
 	// }
-	// if (!size)
-	// {
-	// 	render_scene(&data->scene, &data->camera, data);
-	// }
-	size++;
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img, 0, 0);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 23:04:34 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/11/01 09:28:28 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/11/01 10:01:48 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,10 @@ void	render_scene(t_SCENE *scene, t_CAMERA *camera, t_data *data)
 
 	i = 0;
 	pixel_coord = ft_calloc(3, sizeof(double));
-	while (i < camera->width)
+	while (i < camera->height)
 	{
 		j = 0;
-		while (j < camera->height)
+		while (j < camera->width)
 		{
 			pixel_coord[0] = j + 0.5;
 			pixel_coord[1] = camera->height - 0.5 - i;
@@ -37,8 +37,7 @@ void	render_scene(t_SCENE *scene, t_CAMERA *camera, t_data *data)
 			final_color |= ((int)color.x & 0xFF) << 16;  // Adiciona o valor de r ao componente vermelho.
 			final_color |= ((int)color.y & 0xFF) << 8;   // Adiciona o valor de g ao componente verde.
 			final_color |= ((int)color.z & 0xFF);        // Adiciona o valor de b ao componente azul
-	// 		// paint_pixel(i, j, RED, data);
-			paint_pixel(i, j, final_color, data);
+			paint_pixel(j, i, final_color, data);
 			j++;
 		}
 		i++;
