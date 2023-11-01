@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 23:09:10 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/11/01 09:50:39 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/11/01 14:54:46 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,12 +63,12 @@ t_HIT	*intersect_sphere(t_token *sphere, t_ray *ray)
 		sqrt_delta = sqrt(delta);
 		bhaskara_1 = (-b + sqrt_delta)/(2.0 * a);
 		bhaskara_2 = (-b - sqrt_delta)/(2.0 * a);
-		if (bhaskara_1 < bhaskara_2)
-			bhaskara_result = bhaskara_1;
-		else
-			bhaskara_result = bhaskara_2;
-		if(bhaskara_result > 0)
+		if (bhaskara_1 > 0 || bhaskara_2 > 0)
 		{
+			if (bhaskara_1 < bhaskara_2)
+				bhaskara_result = bhaskara_1;
+			else
+				bhaskara_result = bhaskara_2;
 			distance = bhaskara_result;
 			hit_point = ray_position(ray, distance);
 			normal = subtract_tuples(&hit_point, &sphere->coordinate);

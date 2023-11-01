@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 15:42:37 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/11/01 10:09:14 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/11/01 14:39:54 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,14 +116,14 @@ void	define_SCENE(t_data *data)
 	camera_token = ft_calloc(1, sizeof(t_token));
 	if (!camera_token)
 		exit_error("Error at create scene\n", 4, data);
-	pass_tuple_values(&camera_token->coordinate, &(t_tuple){0, 5, -8, 0});
+	pass_tuple_values(&camera_token->coordinate, &(t_tuple){0.0, 5.0, -8.0, 1});
 	pass_tuple_values(&camera_token->normalized_vector, &(t_tuple){-10, 5, 0, 0});
 	camera = init_CAMERA(camera_token, data);
 	free(camera_token);
 	if (!camera)
 		exit_error("Error at create scene\n", 4, data);
 	scene->lights = (t_POINTLIGHT **)ft_calloc(scene->luzes_a_definir + 1, sizeof(t_POINTLIGHT *));
-	scene->lights[0] = create_POINTLIGHT(&(t_tuple){-1.3, 8.4, 0, 0}, 20);
+	scene->lights[0] = create_POINTLIGHT(&(t_tuple){-1.3, 8.4, 0.0, 0}, 20);
 	esfera_0 = ft_calloc(1, sizeof(t_token));
 	esfera_1 = ft_calloc(1, sizeof(t_token));
 	esfera_2 = ft_calloc(1, sizeof(t_token));

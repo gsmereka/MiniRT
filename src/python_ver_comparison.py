@@ -94,6 +94,7 @@ class PointLight():
 
 class Scene():
     def __init__(self, background, ambient_light):
+        self.first_execution = True
         self.background = background
         self.ambient_light = ambient_light
         self.objects = []
@@ -116,6 +117,9 @@ class Scene():
                 light_hit = self.closest(light_ray)
                 if(light_hit and light_hit.object == closest_hit.object):
                     intensity += light.intensity_at(closest_hit)
+            # if (self.first_execution):
+            #     print(intensity)
+            # self.first_execution = False
             return closest_hit.object.color*min(intensity, 1)
         else:
             return self.background
