@@ -6,20 +6,20 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 23:09:10 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/10/31 23:10:02 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/11/01 00:13:36 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/miniRT.h"
 
-t_HIT	intersect_sphere(t_token *sphere, t_ray *ray)
+t_HIT	*intersect_sphere(t_token *sphere, t_ray *ray)
 {
-	t_HIT	hit;
+	t_HIT	*hit;
 	double	a;
 	double	b;
 	double	c;
 	double	delta;
-	t_tuple	s0_p0;
+	t_tuple	*s0_p0;
 	double	sqrt_delta;
 	double	bhaskara_1;
 	double	bhaskara_2;
@@ -28,17 +28,24 @@ t_HIT	intersect_sphere(t_token *sphere, t_ray *ray)
 	t_tuple	hit_point;
 	t_tuple	normal;
 
-	hit = (t_HIT){0};
+	if (!ray || !sphere)
+		return (NULL);
+	hit = ft_calloc(1, sizeof(t_HIT));
 	a = dot_product(&ray->direction, &ray->direction);
-	s0_p0 = subtract_tuples(&ray->origin, &sphere->coordinate);
-	b = 2.0 * dot_product(&ray->direction, &s0_p0);
-	c = dot_product(&s0_p0, &s0_p0) - (sphere->ratio * sphere->ratio);
-	// printf("%f\n", a); de vez em quando da um erro de nao inicialização
-	// printf("%f\n", c);
-	// printf("%f\n", b);
-	delta = (b * b) - (4.0 * a * c);
+	s0_p0 = ft_calloc(1, sizeof(t_tuple));
+	s0_p0->x = ray->origin.x - sphere->coordinate.x;
+	s0_p0->y = ray->origin.y - sphere->coordinate.y;
+	s0_p0->z = ray->origin.z - sphere->coordinate.z;
+	// s0_p0 = subtract_tuples(&ray->origin, &sphere->coordinate);
+	b = 2.0 * dot_product(&ray->direction, s0_p0);
+	c = dot_product(s0_p0, s0_p0) - (sphere->ratio * sphere->ratio);
+	free(s0_p0);
+	if (!b || !a || !c)
+		delta = 0;
+	else
+		delta = (b * b) - (4.0 * a * c);
 	// if (delta > 0)
-	// // {
+	// // // {
 	// 	sqrt_delta = sqrt(delta);
 		// bhaskara_1 = (-b + sqrt_delta)/(2.0 * a);
 	// 	bhaskara_2 = (-b - sqrt_delta)/(2.0 * a);
