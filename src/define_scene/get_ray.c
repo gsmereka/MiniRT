@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 23:07:15 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/11/01 09:23:14 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/11/01 17:35:42 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,11 +49,10 @@ t_ray	*get_ray(t_CAMERA *camera, double j, double i)
     new_ray->direction.y += temp.y;
     new_ray->direction.z += temp.z;
 
+    pass_tuple_values(&new_ray->origin, &camera->center);
 	if (!g)
 	{
-		printf("new_direction %f %f %f\n", new_ray->direction.x, new_ray->direction.y, new_ray->direction.z);
-        printf("new_direction %f %f %f\n", new_ray->origin.x, new_ray->origin.y, new_ray->origin.z);
-		// printf("camera %f %f %f\n", camera->front.x, camera->front.y, camera->front.z);
+		// print_tuple(&camera->center);
 		// printf("camera %f %f %f\n", camera->up.x, camera->up.y, camera->up.z);
 		// printf("camera %f %f %f\n", camera->right.x, camera->right.y, camera->right.z);
 	}

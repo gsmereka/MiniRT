@@ -42,7 +42,8 @@ class Camera():
         direction += self.right*(j/self.width - 0.5)
         direction += self.up*(self.height/self.width)*(i/self.height - 0.5)
         if self.first_execution:
-            # print("Valores de vec3(direction):", direction)
+            print("Valores de vec3(origin):", self.center)
+            print("Valores de vec3(direction):", direction)
             # print("Valores de vec3(direction):", self.front)
             # print("Valores de vec3(direction):", self.up)
             # print("Valores de vec3(direction):", self.right)

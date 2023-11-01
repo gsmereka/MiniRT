@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 15:42:37 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/11/01 14:39:54 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/11/01 17:25:14 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,9 @@ t_CAMERA	*init_CAMERA(t_token *token, t_data *data)
 	camera->right  = multiply_tuple_by_matrix(&(t_tuple){1, 0, 0, 1}, &camera->direction);
 	camera->up     = multiply_tuple_by_matrix(&(t_tuple){0, 1, 0, 1}, &camera->direction);
 	camera->front  = multiply_tuple_by_matrix(&(t_tuple){0, 0, 1, 1}, &camera->direction);
-	// printf("%f %f %f\n", camera->right.x, camera->right.y, camera->right.z);
+	// print_tuple(&camera->right);
+	// print_tuple(&camera->up);
+	// print_tuple(&camera->front);
 	return (camera);
 }
 
@@ -141,7 +143,7 @@ void	define_SCENE(t_data *data)
 	scene->objects[3] = esfera_3;
 	scene->objects[4] = esfera_4;
 	int	i = 0;
-	while (i < scene->objects[i])
+	while (scene->objects[i])
 	{
 		scene->objects[i]->id = i;
 		i++;
