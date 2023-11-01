@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 20:20:54 by gde-mora          #+#    #+#             */
-/*   Updated: 2023/10/29 23:05:05 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/11/01 09:16:21 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ static int	handle_render(t_data *data)
 	i = 0;
 	//int pos = (y * size_line + x * (bits_per_pixel / 8));
 	//deve ter verificação para n usar pontos q passem da tela
-	data->address_img = mlx_get_data_addr(data->img, &data->bits_per_pixel, \
-		&data->size_line, &data->endian);
+	// data->address_img = mlx_get_data_addr(data->img, &data->bits_per_pixel, \
+	// 	&data->size_line, &data->endian);
 	// pos = 50;
 	// while (i < 16)
 	// {
@@ -32,10 +32,10 @@ static int	handle_render(t_data *data)
 	// 	paint_pixel(pos + 15, pos + i, BLUE, data);
 	// 	i++;
 	// }
-	if (!size)
-	{
-		render_scene(&data->scene, &data->camera, data);
-	}
+	// if (!size)
+	// {
+	// 	render_scene(&data->scene, &data->camera, data);
+	// }
 	size++;
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img, 0, 0);
 	return (0);
@@ -64,6 +64,12 @@ void	render(t_data *data)
 	data->win_ptr = mlx_new_window(data->mlx_ptr, \
 		data->win_width, data->win_height, "miniRT");
 	data->img = mlx_new_image(data->mlx_ptr, data->win_width, data->win_height);
+
+	// melhor posição pra pintar a imagem
+	data->address_img = mlx_get_data_addr(data->img, &data->bits_per_pixel,
+		&data->size_line, &data->endian);
+	render_scene(data->scene, data->camera, data);
+
 	mlx_expose_hook(data->win_ptr, &handle_render, data);
 	mlx_key_hook(data->win_ptr, &handle_esc, data);
 	mlx_hook(data->win_ptr, 17, 0, &handle_x, data);

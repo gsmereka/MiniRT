@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 16:06:05 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/10/29 22:20:54 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/11/01 09:02:58 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,21 @@
 static void	free_data(t_data *data)
 {
 	int	i = 0;
-	while (i < data->scene.objetos_a_definir)
+	while (i < data->scene->objetos_a_definir)
 	{
-		free(data->scene.objects[i]);
+		free(data->scene->objects[i]);
 		i++;
 	}
-	free(data->scene.objects);
+	free(data->scene->objects);
+	i = 0;
+	while (i < data->scene->luzes_a_definir)
+	{
+		free(data->scene->lights[i]);
+		i++;
+	}
+	free(data->scene->lights);
+	free(data->scene);
+	free(data->camera);
 	if (data->mlx_ptr && data->img)
 		mlx_destroy_image(data->mlx_ptr, data->img);
 	if (data->mlx_ptr && data->win_ptr)

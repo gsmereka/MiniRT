@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 13:09:51 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/10/29 15:41:57 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/11/01 09:47:07 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,6 @@ typedef struct s_CAMERA
 
 typedef struct s_HIT
 {
-	int			valid;
 	t_tuple		position;
 	t_token		*object;
 	t_tuple		normal;
@@ -97,7 +96,7 @@ typedef struct s_SCENE
 	size_t			ambient_light;
 	int				luzes_a_definir; // numero a definir;
 	int				objetos_a_definir; // numero a definir
-	t_POINTLIGHT	lights[1]; // numero a definir
+	t_POINTLIGHT	**lights; // numero a definir
 	t_token			**objects; // numero a definir		
 }  t_SCENE;
 
@@ -124,8 +123,8 @@ typedef struct s_data
 	int			has_ambient_lighting;
 	int										debug_exit; //Enqunto fazemos os testes
 
-	t_CAMERA	camera; // teste
-	t_SCENE		scene; // teste
+	t_CAMERA	*camera; // teste
+	t_SCENE		*scene; // teste
 }	t_data;
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 23:07:15 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/11/01 00:21:59 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/11/01 09:23:14 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,11 @@ t_ray	*get_ray(t_CAMERA *camera, double j, double i)
 	t_tuple	temp;
 	t_tuple	aux;
 
+    if (!camera)
+        return (NULL);
 	new_ray = ft_calloc(1, sizeof(t_ray));
-
+    if (!new_ray)
+        return (NULL);
 	// direction = self.front * self.focal_length
     new_ray->direction.x = camera->front.x * camera->focal_length;
     new_ray->direction.y = camera->front.y * camera->focal_length;
