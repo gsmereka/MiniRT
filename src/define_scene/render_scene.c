@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 23:04:34 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/11/01 10:01:48 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/11/01 10:07:02 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,9 @@ void	render_scene(t_SCENE *scene, t_CAMERA *camera, t_data *data)
 	t_ray			*aux_ray;
 	t_tuple			color;
 	unsigned int	final_color;
-	double			*pixel_coord;
+	double			pixel_coord[2];
 
 	i = 0;
-	pixel_coord = ft_calloc(3, sizeof(double));
 	while (i < camera->height)
 	{
 		j = 0;
@@ -42,5 +41,4 @@ void	render_scene(t_SCENE *scene, t_CAMERA *camera, t_data *data)
 		}
 		i++;
 	}
-	free(pixel_coord);
 }

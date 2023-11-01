@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 23:08:21 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/11/01 09:48:44 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/11/01 10:20:43 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,27 +38,23 @@ t_tuple	trace_color(t_SCENE *scene, t_ray *ray)
 		i = 0;
 		while (i < scene->luzes_a_definir) // numero a definir
 		{
-			light_position = scene->lights[i]->position;
+			pass_tuple_values(&light_position, &scene->lights[i]->position);
 			tuple_subtraction = subtract_tuples(&closesthit->position, &scene->lights[i]->position);
 			init_ray(light_ray, &light_position, &tuple_subtraction);
 			light_hit = closest_hit(scene, light_ray);
-			if (!light_hit)
+			if (light_hit && light_hit->object->id == closesthit->object->id)
 			{
-				free(light_ray);
-				free(closesthit);
-				return (scene->background);
-			}
-			if (light_hit && light_hit->object == closesthit->object)
 				intensity += LIGHT_at(scene->lights[i], closesthit);
-			if (intensity < 1)
-				intensity = 1;
-			result.x = closesthit->object->color.r * intensity;
-			result.y = closesthit->object->color.g * intensity;
-			result.z = closesthit->object->color.b * intensity;
+			}
 			i++;
 			free(light_hit);
 		}
 		free(light_ray);
+		if (intensity < 1)
+			intensity = 1;
+		result.x = (double)closesthit->object->color.r * intensity;
+		result.y = (double)closesthit->object->color.g * intensity;
+		result.z = (double)closesthit->object->color.b * intensity;
 		free(closesthit);
 		return (result);
 	}

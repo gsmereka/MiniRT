@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 15:42:37 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/11/01 09:36:45 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/11/01 10:09:14 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,6 +140,12 @@ void	define_SCENE(t_data *data)
 	scene->objects[2] = esfera_2;
 	scene->objects[3] = esfera_3;
 	scene->objects[4] = esfera_4;
+	int	i = 0;
+	while (i < scene->objects[i])
+	{
+		scene->objects[i]->id = i;
+		i++;
+	}
 	data->camera = camera;
 	data->scene = scene;
 }

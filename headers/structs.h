@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 13:09:51 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/11/01 09:47:07 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/11/01 10:12:05 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ typedef struct s_tuple
 
 typedef struct s_token
 {
+	int				id;
 	int				size;
 	char			**args;
 	int				type;
