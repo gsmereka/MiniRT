@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 13:09:51 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/11/01 10:12:05 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/11/02 11:08:47 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,19 +82,19 @@ typedef struct s_HIT
 	t_tuple		position;
 	t_token		*object;
 	t_tuple		normal;
-	size_t		distance;
+	double		distance;
 }  t_HIT;
 
 typedef struct s_POINTLIGHT
 {
 	t_tuple		position;
-	size_t		intensity;
+	double		intensity;
 }  t_POINTLIGHT;
 
 typedef struct s_SCENE
 {
 	t_tuple			background;
-	size_t			ambient_light;
+	double			ambient_light;
 	int				luzes_a_definir; // numero a definir;
 	int				objetos_a_definir; // numero a definir
 	t_POINTLIGHT	**lights; // numero a definir

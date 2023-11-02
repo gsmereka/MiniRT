@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 15:42:37 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/11/01 17:25:14 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/11/02 11:19:31 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,7 +125,7 @@ void	define_SCENE(t_data *data)
 	if (!camera)
 		exit_error("Error at create scene\n", 4, data);
 	scene->lights = (t_POINTLIGHT **)ft_calloc(scene->luzes_a_definir + 1, sizeof(t_POINTLIGHT *));
-	scene->lights[0] = create_POINTLIGHT(&(t_tuple){-1.3, 8.4, 0.0, 0}, 20);
+	scene->lights[0] = create_POINTLIGHT(&(t_tuple){-1.3, 8.4, 0.0, 1}, 20);
 	esfera_0 = ft_calloc(1, sizeof(t_token));
 	esfera_1 = ft_calloc(1, sizeof(t_token));
 	esfera_2 = ft_calloc(1, sizeof(t_token));

@@ -24,30 +24,15 @@ class Camera():
         matrix = glm.rotate(matrix, euler_angles.x, vec3(1, 0, 0))
         matrix = glm.rotate(matrix, euler_angles.y, vec3(0, 1, 0))
         matrix = glm.rotate(matrix, euler_angles.z, vec3(0, 0, 1))
-        # for i in range(4):
-        #     row = ""
-        #     for j in range(4):
-        #         row += str(matrix[i][j]) + " "
-        #     print(row)
         self.right  = glm.vec4(1, 0, 0, 1) * matrix
         self.up     = glm.vec4(0, 1, 0, 1) * matrix
         self.front  = glm.vec4(0, 0, 1, 1) * matrix
-        # print("right:", self.right)
-        # print("up:", self.up)
-        # print("front:", self.front)
         
 
     def get_ray(self, j, i):
         direction  = self.front * self.focal_length
         direction += self.right*(j/self.width - 0.5)
         direction += self.up*(self.height/self.width)*(i/self.height - 0.5)
-        if self.first_execution:
-            print("Valores de vec3(origin):", self.center)
-            print("Valores de vec3(direction):", direction)
-            # print("Valores de vec3(direction):", self.front)
-            # print("Valores de vec3(direction):", self.up)
-            # print("Valores de vec3(direction):", self.right)
-            self.first_execution = False
         return Ray(self.center, vec3(direction))
 
 class Hit():
@@ -85,12 +70,16 @@ class PointLight():
     def __init__(self, position, intensity):
         self.position  = position
         self.intensity = intensity
+        self.first_execution = True
     
     def intensity_at(self, hit):
         direction = self.position - hit.position 
         distance  = glm.length(direction)
         direction = glm.normalize(direction)
         cos_theta = glm.dot(direction, hit.normal)
+        if (self.first_execution):
+            print(hit.normal)
+            self.first_execution = False
         return max(0, self.intensity*cos_theta/distance**2)
 
 class Scene():
@@ -118,9 +107,6 @@ class Scene():
                 light_hit = self.closest(light_ray)
                 if(light_hit and light_hit.object == closest_hit.object):
                     intensity += light.intensity_at(closest_hit)
-            # if (self.first_execution):
-            #     print(intensity)
-            # self.first_execution = False
             return closest_hit.object.color*min(intensity, 1)
         else:
             return self.background
