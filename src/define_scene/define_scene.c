@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 15:42:37 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/11/02 11:19:31 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/11/02 13:27:39 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ t_CAMERA	*init_CAMERA(t_token *token, t_data *data)
 	if (!camera)
 		return (NULL);
 	pass_tuple_values(&camera->center, &token->coordinate);
+	camera->center.w = 1;
 	camera->width = data->win_width;
 	camera->height = data->win_height;
 	// printf("%f, %f, %f\n", token->normalized_vector.x, token->normalized_vector.y, token->normalized_vector.z);
@@ -74,6 +75,7 @@ t_POINTLIGHT *create_POINTLIGHT(t_tuple *position, double intensity)
 	if (!light)
 		return (NULL);
 	pass_tuple_values(&light->position, position);
+	light->position.w = 1;
 	light->intensity = intensity;
 	return (light);
 }
@@ -86,68 +88,83 @@ t_SCENE	*create_SCENE(t_tuple *background, double ambient_light)
 	if (!scene)
 		return (NULL);
 	pass_tuple_values(&scene->background, background);
+	scene->background.w = 0;
 	scene->ambient_light = ambient_light;
 	return (scene);
 }
 
-void	definir_esfera(t_token *esfera, t_tuple *center, double raio, t_color *color)
+void	adicionar_esfera(t_token **list, t_tuple *center, double raio, t_color *color)
 {
-	pass_tuple_values(&esfera->coordinate, center);
+	t_token	*esfera;
+	t_tuple	point;
+	t_token	*aux;
+
+	aux = *list;
+	while (aux && aux->next)
+		aux = aux->next;
+	esfera = ft_calloc(1, sizeof(t_token));
+	point = create_point(center->x, center->y, center->z);
+	pass_tuple_values(&esfera->coordinate, &point);
 	esfera->color.r = color->r;
 	esfera->color.g = color->g;
 	esfera->color.b = color->b;
 	esfera->ratio = raio;
+	esfera->type = SPHERE;
+	aux->next = esfera;
 }
 
-void	define_SCENE(t_data *data)
+void	trocar_lista_original_pela_versao_python(t_data *data)
 {
-	t_SCENE			*scene;
-	t_CAMERA		*camera;
 	t_token			*camera_token;
-	t_token			*esfera_1;
-	t_token			*esfera_2;
-	t_token			*esfera_3;
-	t_token			*esfera_4;
-	t_token			*esfera_0;
 
-	scene = create_SCENE(&(t_tuple){26, 27, 33, 0}, 0.12);
-	if (!scene)
-		exit_error("Error at create scene\n", 4, data);
-	scene->luzes_a_definir = 1; // numero a definir;
-	scene->objetos_a_definir = 5; // numero a definir;
+	token_clear(&data->tokens);
 	camera_token = ft_calloc(1, sizeof(t_token));
 	if (!camera_token)
 		exit_error("Error at create scene\n", 4, data);
 	pass_tuple_values(&camera_token->coordinate, &(t_tuple){0.0, 5.0, -8.0, 1});
 	pass_tuple_values(&camera_token->normalized_vector, &(t_tuple){-10, 5, 0, 0});
-	camera = init_CAMERA(camera_token, data);
-	free(camera_token);
-	if (!camera)
+	camera_token->type = CAMERA;
+	data->tokens = camera_token;
+	adicionar_esfera(&data->tokens, &(t_tuple){2.5, 2.8, 5.15, 0}, 2.8, &(t_color){83, 221, 108});
+	adicionar_esfera(&data->tokens, &(t_tuple){0.6, 5.6, 3.6, 0}, 0.6, &(t_color){128, 117, 255});
+	adicionar_esfera(&data->tokens, &(t_tuple){-3.1, 1.4, 0.06, 0}, 1.4, &(t_color){128, 117, 255});
+	adicionar_esfera(&data->tokens, &(t_tuple){-4.2, 5.4, 4.2, 0}, 0.9, &(t_color){83, 221, 108});
+	adicionar_esfera(&data->tokens, &(t_tuple){0, -1000000, 0, 0}, 1000000, &(t_color){234, 234, 234});
+}
+
+void	define_objects(t_SCENE *scene, t_data *data)
+{
+	t_token	*aux;
+	int		objects;
+
+	aux = data->tokens;
+	objects = 0;
+	while (aux)
+	{
+		if (aux->type == 1 || aux->type == 2 || aux->type == 3)
+		{
+			scene->objects[objects] = aux;
+			objects++;
+		}
+		if (aux->type == 4)
+			data->camera = init_CAMERA(data->tokens, data);
+		aux = aux->next;
+	}
+}
+
+void	define_SCENE(t_data *data)
+{
+	t_SCENE			*scene;
+
+	trocar_lista_original_pela_versao_python(data);
+	scene = create_SCENE(&(t_tuple){26, 27, 33, 0}, 0.12);
+	if (!scene)
 		exit_error("Error at create scene\n", 4, data);
+	scene->luzes_a_definir = 1; // numero a definir;
+	scene->objetos_a_definir = 5; // numero a definir;
 	scene->lights = (t_POINTLIGHT **)ft_calloc(scene->luzes_a_definir + 1, sizeof(t_POINTLIGHT *));
 	scene->lights[0] = create_POINTLIGHT(&(t_tuple){-1.3, 8.4, 0.0, 1}, 20);
-	esfera_0 = ft_calloc(1, sizeof(t_token));
-	esfera_1 = ft_calloc(1, sizeof(t_token));
-	esfera_2 = ft_calloc(1, sizeof(t_token));
-	esfera_3 = ft_calloc(1, sizeof(t_token));
-	esfera_4 = ft_calloc(1, sizeof(t_token));
-	definir_esfera(esfera_0, &(t_tuple){2.5, 2.8, 5.15, 0}, 2.8, &(t_color){83, 221, 108});
-	definir_esfera(esfera_1, &(t_tuple){0.6, 5.6, 3.6, 0}, 0.6, &(t_color){128, 117, 255});
-	definir_esfera(esfera_2, &(t_tuple){-3.1, 1.4, 0.06, 0}, 1.4, &(t_color){128, 117, 255});
-	definir_esfera(esfera_3, &(t_tuple){-4.2, 5.4, 4.2, 0}, 0.9, &(t_color){83, 221, 108});
-	definir_esfera(esfera_4, &(t_tuple){0, -1000000, 0, 0}, 1000000, &(t_color){234, 234, 234});
 	scene->objects = (t_token **)ft_calloc(scene->objetos_a_definir + 1, sizeof(t_token *));
-	scene->objects[0] = esfera_0;
-	scene->objects[1] = esfera_1;
-	scene->objects[2] = esfera_2;
-	scene->objects[3] = esfera_3;
-	scene->objects[4] = esfera_4;
-	int	i = 0;
-	while (scene->objects[i])
-	{
-		scene->objects[i]->id = i;
-		i++;
-	}
-	data->camera = camera;
+	define_objects(scene, data);
 	data->scene = scene;
 }
