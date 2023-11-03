@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 23:08:21 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/11/03 10:07:08 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/11/03 15:35:25 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,9 @@ t_tuple	trace_color(t_SCENE *scene, t_ray *ray)
 	t_tuple			tuple_subtraction;
 	double			intensity;
 	int				i;
-	static int		g;
 
 	if (!ray)
 		return (scene->background);
-	ray->direction.w = 0;
-	ray->origin.w = 1;
 	light_ray = ft_calloc(1, sizeof(t_ray));
 	if (!light_ray)
 		return (scene->background);
@@ -41,15 +38,12 @@ t_tuple	trace_color(t_SCENE *scene, t_ray *ray)
 			pass_tuple_values(&light_position, &scene->lights[i]->position);
 			tuple_subtraction = subtract_tuples(&closesthit->position, &scene->lights[i]->position);
 			init_ray(light_ray, &light_position, &tuple_subtraction);
-			light_ray->direction.w = 0;
-			light_ray->origin.w = 1;
 			light_hit = closest_hit(scene, light_ray);
 			if (light_hit && light_hit->object->id == closesthit->object->id)
 				intensity += LIGHT_at(scene->lights[i], closesthit);
 			i++;
 			free(light_hit);
 		}
-		g++;
 		free(light_ray);
 		if (intensity >= 1)
 			intensity = 1;
