@@ -6,7 +6,7 @@
 #    By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/20 18:26:17 by gde-mora          #+#    #+#              #
-#    Updated: 2023/10/31 23:21:45 by gsmereka         ###   ########.fr        #
+#    Updated: 2023/11/03 16:28:16 by gsmereka         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ SRC 	=	src/define_scene/trace_color.c \
 			src/define_scene/init_ray.c \
 			src/define_scene/define_scene.c \
 			src/define_scene/render_scene.c \
-			src/define_scene/get_ray.c \
+			src/define_scene/prepare_ray.c \
 			src/define_scene/intersect_sphere.c \
 			src/main.c \
 			src/exit.c \

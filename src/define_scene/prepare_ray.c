@@ -1,57 +1,56 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_ray.c                                          :+:      :+:    :+:   */
+/*   prepare_ray.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 23:07:15 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/11/03 16:09:07 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/11/03 16:32:38 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/miniRT.h"
 
-void	calculate_direction(t_ray *new_ray,
+void	calculate_direction(t_ray *ray,
 	t_CAMERA *camera, double j, double i)
 {
 	t_tuple	temp;
 
-	new_ray->direction.x = camera->front.x * camera->focal_length;
-	new_ray->direction.y = camera->front.y * camera->focal_length;
-	new_ray->direction.z = camera->front.z * camera->focal_length;
+	ray->direction.x = camera->front.x * camera->focal_length;
+	ray->direction.y = camera->front.y * camera->focal_length;
+	ray->direction.z = camera->front.z * camera->focal_length;
 	temp.x = camera->right.x * (j / (double)camera->width - 0.50);
 	temp.y = camera->right.y * (j / (double)camera->width - 0.50);
 	temp.z = camera->right.z * (j / (double)camera->width - 0.50);
-	new_ray->direction.x += temp.x;
-	new_ray->direction.y += temp.y;
-	new_ray->direction.z += temp.z;
+	ray->direction.x += temp.x;
+	ray->direction.y += temp.y;
+	ray->direction.z += temp.z;
 	temp.x = camera->up.x * ((double)camera->height
 			/ (double)camera->width) * (i / (double)camera->height - 0.50);
 	temp.y = camera->up.y * ((double)camera->height
 			/ (double)camera->width) * (i / (double)camera->height - 0.50);
 	temp.z = camera->up.z * ((double)camera->height
 			/ (double)camera->width) * (i / (double)camera->height - 0.50);
-	new_ray->direction.x += temp.x;
-	new_ray->direction.y += temp.y;
-	new_ray->direction.z += temp.z;
+	ray->direction.x += temp.x;
+	ray->direction.y += temp.y;
+	ray->direction.z += temp.z;
 }
 
-void	set_ray_origin(t_ray *new_ray, t_tuple *center)
+void	set_ray_origin(t_ray *ray, t_tuple *center)
 {
-	pass_tuple_values(&new_ray->origin, center);
+	pass_tuple_values(&ray->origin, center);
 }
 
-t_ray	*get_ray(t_CAMERA *camera, double j, double i)
+void	prepare_ray(t_ray *ray, t_CAMERA *camera, double j, double i)
 {
-	t_ray	*new_ray;
+	double	pixel_center_coord[2];
 
 	if (!camera)
-		return (NULL);
-	new_ray = ft_calloc(1, sizeof(t_ray));
-	if (!new_ray)
-		return (NULL);
-	calculate_direction(new_ray, camera, j, i);
-	set_ray_origin(new_ray, &camera->center);
-	return (new_ray);
+		return ;
+	pixel_center_coord[0] = j + 0.5;
+	pixel_center_coord[1] = camera->height - 0.5 - i;
+	calculate_direction(ray, camera,
+		pixel_center_coord[0], pixel_center_coord[1]);
+	set_ray_origin(ray, &camera->center);
 }

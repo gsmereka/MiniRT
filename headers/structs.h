@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 13:09:51 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/11/02 13:04:08 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/11/03 18:51:37 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,8 @@ typedef struct s_POINTLIGHT
 
 typedef struct s_SCENE
 {
+	t_ray			*object_ray;
+	t_ray			*light_ray;
 	t_tuple			background;
 	double			ambient_light;
 	int				luzes_a_definir; // numero a definir;

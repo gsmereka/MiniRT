@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 15:42:37 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/11/03 09:33:46 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/11/03 18:55:57 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,15 @@ t_SCENE	*create_SCENE(t_tuple *background, double ambient_light)
 	scene = ft_calloc(1, sizeof(t_SCENE));
 	if (!scene)
 		return (NULL);
+	scene->object_ray = ft_calloc(1, sizeof(t_ray));
+	scene->light_ray = ft_calloc(1, sizeof(t_ray));
+	if (!scene->object_ray || !scene->object_ray)
+	{
+		free(scene->object_ray);
+		free(scene->light_ray);
+		free(scene);
+		return (NULL);
+	}
 	pass_tuple_values(&scene->background, background);
 	scene->background.w = 0;
 	scene->ambient_light = ambient_light;

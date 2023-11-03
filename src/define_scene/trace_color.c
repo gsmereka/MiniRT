@@ -6,16 +6,15 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 23:08:21 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/11/03 15:35:25 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/11/03 19:01:43 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/miniRT.h"
 
-t_tuple	trace_color(t_SCENE *scene, t_ray *ray)
+t_tuple	trace_color(t_SCENE *scene, t_ray *object_ray, t_ray *light_ray)
 {
 	t_HIT			*closesthit;
-	t_ray			*light_ray;
 	t_HIT			*light_hit;
 	t_tuple			result;
 	t_tuple			light_position;
@@ -23,17 +22,12 @@ t_tuple	trace_color(t_SCENE *scene, t_ray *ray)
 	double			intensity;
 	int				i;
 
-	if (!ray)
-		return (scene->background);
-	light_ray = ft_calloc(1, sizeof(t_ray));
-	if (!light_ray)
-		return (scene->background);
-	closesthit = closest_hit(scene, ray);
+	closesthit = closest_hit(scene, object_ray);
 	if (closesthit)
 	{
 		intensity = scene->ambient_light;
 		i = 0;
-		while (i < scene->luzes_a_definir) // numero a definir
+		while (scene->lights[i])
 		{
 			pass_tuple_values(&light_position, &scene->lights[i]->position);
 			tuple_subtraction = subtract_tuples(&closesthit->position, &scene->lights[i]->position);
@@ -44,7 +38,6 @@ t_tuple	trace_color(t_SCENE *scene, t_ray *ray)
 			i++;
 			free(light_hit);
 		}
-		free(light_ray);
 		if (intensity >= 1)
 			intensity = 1;
 		if (intensity < 0)
@@ -52,10 +45,9 @@ t_tuple	trace_color(t_SCENE *scene, t_ray *ray)
 		result.x = (double)closesthit->object->color.r * intensity;
 		result.y = (double)closesthit->object->color.g * intensity;
 		result.z = (double)closesthit->object->color.b * intensity;
-		free(closesthit);
-		return (result);
 	}
-	free(light_ray);
+	else
+		result = scene->background;
 	free(closesthit);
-	return (scene->background);
+	return (result);
 }

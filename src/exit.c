@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 16:06:05 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/11/02 13:28:55 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/11/03 18:53:33 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,10 @@ static void	free_data(t_data *data)
 		free(data->scene->lights[i]);
 		i++;
 	}
+	if (data->scene->object_ray);
+		free(data->scene->object_ray);
+	if (data->scene->light_ray);
+		free(data->scene->light_ray);
 	free(data->scene->objects);
 	free(data->scene->lights);
 	free(data->scene);
