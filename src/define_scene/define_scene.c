@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 15:42:37 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/11/02 13:27:39 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/11/03 09:33:46 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ t_CAMERA	*init_CAMERA(t_token *token, t_data *data)
 	if (!camera)
 		return (NULL);
 	pass_tuple_values(&camera->center, &token->coordinate);
-	camera->center.w = 1;
 	camera->width = data->win_width;
 	camera->height = data->win_height;
 	// printf("%f, %f, %f\n", token->normalized_vector.x, token->normalized_vector.y, token->normalized_vector.z);
@@ -70,12 +69,13 @@ t_CAMERA	*init_CAMERA(t_token *token, t_data *data)
 t_POINTLIGHT *create_POINTLIGHT(t_tuple *position, double intensity)
 {
 	t_POINTLIGHT	*light;
+	t_tuple			point;
 
 	light = ft_calloc(1, sizeof(t_POINTLIGHT));
 	if (!light)
 		return (NULL);
-	pass_tuple_values(&light->position, position);
-	light->position.w = 1;
+	point = create_point(position->x, position->y, position->z);
+	pass_tuple_values(&light->position, &point);
 	light->intensity = intensity;
 	return (light);
 }
@@ -98,6 +98,7 @@ void	adicionar_esfera(t_token **list, t_tuple *center, double raio, t_color *col
 	t_token	*esfera;
 	t_tuple	point;
 	t_token	*aux;
+	static	int	id;
 
 	aux = *list;
 	while (aux && aux->next)
@@ -110,6 +111,8 @@ void	adicionar_esfera(t_token **list, t_tuple *center, double raio, t_color *col
 	esfera->color.b = color->b;
 	esfera->ratio = raio;
 	esfera->type = SPHERE;
+	esfera->id = id;
+	id++;
 	aux->next = esfera;
 }
 

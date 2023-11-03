@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 23:09:10 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/11/01 14:54:46 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/11/03 09:49:34 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,12 @@ t_tuple ray_position(t_ray *ray, double time)
 
 	direction = multiply_tuple(&ray->direction, time);
 	position = sum_tuples(&direction, &ray->origin);
+	// printf("Começa daqui\n");
+	// if (ray->direction.w == 1 || ray->direction.w == 0)
+	// {
+	// 	print_tuple(&ray->direction);
+	// 	print_tuple(&ray->origin);
+	// }
 	return (position);
 }
 

@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 23:08:21 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/11/02 10:49:32 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/11/03 10:03:20 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ t_tuple	trace_color(t_SCENE *scene, t_ray *ray)
 
 	if (!ray)
 		return (scene->background);
+	ray->direction.w = 0;
+	ray->origin.w = 1;
 	light_ray = ft_calloc(1, sizeof(t_ray));
 	if (!light_ray)
 		return (scene->background);
@@ -39,20 +41,20 @@ t_tuple	trace_color(t_SCENE *scene, t_ray *ray)
 			pass_tuple_values(&light_position, &scene->lights[i]->position);
 			tuple_subtraction = subtract_tuples(&closesthit->position, &scene->lights[i]->position);
 			init_ray(light_ray, &light_position, &tuple_subtraction);
+			light_ray->direction.w = 0;
+			light_ray->origin.w = 1;
 			light_hit = closest_hit(scene, light_ray);
-			if (light_hit && light_hit->object == closesthit->object)
-			{
+			if (light_hit && light_hit->object->id == closesthit->object->id)
 				intensity += LIGHT_at(scene->lights[i], closesthit);
-				// if (!g)
-				// 	printf("%f\n", scene->ambient_light);
-			}
 			i++;
 			free(light_hit);
 		}
 		g++;
 		free(light_ray);
-		if (intensity > 1)
+		if (intensity >= 1)
 			intensity = 1;
+		if (intensity < 0)
+			intensity *= -1;
 		result.x = (double)closesthit->object->color.r * intensity;
 		result.y = (double)closesthit->object->color.g * intensity;
 		result.z = (double)closesthit->object->color.b * intensity;

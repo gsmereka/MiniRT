@@ -77,9 +77,14 @@ class PointLight():
         distance  = glm.length(direction)
         direction = glm.normalize(direction)
         cos_theta = glm.dot(direction, hit.normal)
-        if (self.first_execution):
-            print(hit.normal)
-            self.first_execution = False
+        # if (self.first_execution):
+        #     print(direction)
+        #     print(distance)
+        #     print(cos_theta)
+        #     print(self.intensity*cos_theta/distance**2)
+        #     self.first_execution = False
+        print(max(0, self.intensity*cos_theta/distance**2))
+
         return max(0, self.intensity*cos_theta/distance**2)
 
 class Scene():
