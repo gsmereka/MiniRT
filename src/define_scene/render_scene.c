@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 23:04:34 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/11/03 19:02:54 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/11/03 19:17:22 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,8 @@ void	render_scene(t_SCENE *scene, t_CAMERA *camera, t_data *data)
 		while (j < camera->width)
 		{
 			prepare_ray(scene->object_ray, data->camera, j, i);
-			color_tuple = trace_color(data->scene, scene->object_ray, scene->light_ray);
+			color_tuple = trace_color(data->scene,
+					scene->object_ray, scene->light_ray);
 			final_color = tuple_to_color(&color_tuple);
 			paint_pixel(j, i, final_color, data);
 			j++;

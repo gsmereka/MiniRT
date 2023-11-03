@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 13:09:51 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/11/03 18:51:37 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/11/03 20:01:26 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,6 @@ typedef struct s_matrix
 	int		rows;
 }	t_matrix;
 
-////////////////////////////////////////////// teste
-
 typedef struct s_ray
 {
 	t_tuple	origin;
@@ -103,8 +101,6 @@ typedef struct s_SCENE
 	t_token			**objects; // numero a definir		
 }  t_SCENE;
 
-///////////////////////////////////////////////////////////////////////////
-
 typedef struct s_data
 {
 	t_matrix	idmatrix_2x2;
@@ -125,9 +121,8 @@ typedef struct s_data
 	int			has_light;
 	int			has_ambient_lighting;
 	int										debug_exit; //Enqunto fazemos os testes
-
-	t_CAMERA	*camera; // teste
-	t_SCENE		*scene; // teste
+	t_CAMERA	*camera;
+	t_SCENE		*scene;
 }	t_data;
 
 #endif

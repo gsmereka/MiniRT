@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 19:07:48 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/10/28 23:15:25 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/11/03 20:02:01 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ typedef struct s_intersect
 typedef struct s_intersection
 {
 	size_t					size_list_first_node_only;
-	double					time; // ta escrito o que aqui ????
+	double					time;
 	t_token					*object;
 	struct s_intersection	*next;
 }	t_intersection;

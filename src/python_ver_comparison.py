@@ -14,7 +14,6 @@ class Ray():
 
 class Camera():
     def __init__(self, center, euler_angles, width, height, focal_length):
-        self.first_execution = True
         self.center = center
         self.width  = width
         self.height = height
@@ -70,20 +69,12 @@ class PointLight():
     def __init__(self, position, intensity):
         self.position  = position
         self.intensity = intensity
-        self.first_execution = True
     
     def intensity_at(self, hit):
         direction = self.position - hit.position 
         distance  = glm.length(direction)
         direction = glm.normalize(direction)
         cos_theta = glm.dot(direction, hit.normal)
-        # if (self.first_execution):
-        #     print(direction)
-        #     print(distance)
-        #     print(cos_theta)
-        #     print(self.intensity*cos_theta/distance**2)
-        #     self.first_execution = False
-        print(max(0, self.intensity*cos_theta/distance**2))
 
         return max(0, self.intensity*cos_theta/distance**2)
 

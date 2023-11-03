@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 23:07:15 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/11/03 16:32:38 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/11/03 19:27:02 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,6 @@ void	calculate_direction(t_ray *ray,
 	ray->direction.z += temp.z;
 }
 
-void	set_ray_origin(t_ray *ray, t_tuple *center)
-{
-	pass_tuple_values(&ray->origin, center);
-}
-
 void	prepare_ray(t_ray *ray, t_CAMERA *camera, double j, double i)
 {
 	double	pixel_center_coord[2];
@@ -52,5 +47,5 @@ void	prepare_ray(t_ray *ray, t_CAMERA *camera, double j, double i)
 	pixel_center_coord[1] = camera->height - 0.5 - i;
 	calculate_direction(ray, camera,
 		pixel_center_coord[0], pixel_center_coord[1]);
-	set_ray_origin(ray, &camera->center);
+	init_ray(ray, &camera->center, &ray->direction);
 }
