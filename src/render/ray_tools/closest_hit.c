@@ -6,16 +6,16 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 23:04:48 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/11/04 14:47:02 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/11/04 14:59:31 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../headers/miniRT.h"
 
-t_HIT	*closest_hit(t_SCENE *scene, t_ray *ray)
+t_hit	*closest_hit(t_SCENE *scene, t_ray *ray)
 {
-	t_HIT	*hit;
-	t_HIT	*closest_hit;
+	t_hit	*hit;
+	t_hit	*closest_hit;
 	int		i;
 
 	i = 0;

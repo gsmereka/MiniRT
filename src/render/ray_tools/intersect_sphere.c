@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 19:09:29 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/11/04 14:58:12 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/11/04 14:59:31 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,12 @@ static double	calculate_distance(t_token *sphere, t_ray *ray);
 static double	calculate_discriminant(t_intersect *intersect,
 					t_token *sphere, t_ray *ray);
 
-t_HIT	*intersect_sphere(t_token *sphere, t_ray *ray)
+t_hit	*intersect_sphere(t_token *sphere, t_ray *ray)
 {
 	double		distance;
 	t_tuple		hit_point;
 	t_tuple		normal;
-	t_HIT		*hit;
+	t_hit		*hit;
 
 	distance = calculate_distance(sphere, ray);
 	if (!distance)
@@ -29,7 +29,7 @@ t_HIT	*intersect_sphere(t_token *sphere, t_ray *ray)
 	hit_point = ray_position(ray, distance);
 	normal = subtract_tuples(&hit_point, &sphere->coordinate);
 	normalize_tuple(&normal);
-	hit = init_HIT(sphere, &normal, distance, &hit_point);
+	hit = init_hit(sphere, &normal, distance, &hit_point);
 	return (hit);
 }
 

@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 19:07:48 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/11/04 14:58:01 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/11/04 15:11:36 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ typedef struct s_intersect
 
 t_intersect		intersect(t_token *token, t_ray *ray);
 t_tuple			ray_position(t_ray *ray, double time);
-t_HIT			*init_HIT(t_token *object,
+t_hit			*init_hit(t_token *object,
 					t_tuple *normal, double distance, t_tuple *position);
+double			LIGHT_at(t_token *light, t_hit *hit);
 
 #endif

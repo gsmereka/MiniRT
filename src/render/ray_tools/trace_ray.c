@@ -12,11 +12,11 @@
 
 #include "../../../headers/miniRT.h"
 
-double	trace_ilumination(t_SCENE *scene, t_HIT *object_hit, t_ray *light_ray);
+double	trace_ilumination(t_SCENE *scene, t_hit *object_hit, t_ray *light_ray);
 
 t_tuple	trace_ray(t_SCENE *scene, t_ray *object_ray, t_ray *light_ray)
 {
-	t_HIT			*object_hit;
+	t_hit			*object_hit;
 	t_tuple			ray_color;
 	double			light_intensity;
 
@@ -34,12 +34,12 @@ t_tuple	trace_ray(t_SCENE *scene, t_ray *object_ray, t_ray *light_ray)
 	return (ray_color);
 }
 
-double	trace_ilumination(t_SCENE *scene, t_HIT *object_hit, t_ray *light_ray)
+double	trace_ilumination(t_SCENE *scene, t_hit *object_hit, t_ray *light_ray)
 {
 	int		i;
 	double	light_intensity;
 	t_tuple	light_ray_direction;
-	t_HIT	*light_hit;
+	t_hit	*light_hit;
 
 	light_intensity = scene->ambient_light;
 	i = 0;

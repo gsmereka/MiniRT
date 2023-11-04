@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 16:06:05 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/11/03 18:53:33 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/11/04 15:16:46 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,6 @@
 
 static void	free_data(t_data *data)
 {
-	int	i = 0;
-
-	while (i < data->scene->luzes_a_definir)
-	{
-		free(data->scene->lights[i]);
-		i++;
-	}
 	if (data->scene->object_ray);
 		free(data->scene->object_ray);
 	if (data->scene->light_ray);

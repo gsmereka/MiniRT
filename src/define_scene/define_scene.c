@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 15:42:37 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/11/04 11:20:27 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/11/04 15:12:04 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,20 +63,6 @@ t_CAMERA	*init_CAMERA(t_token *token, t_data *data)
 	camera->up = multiply_tuple_by_matrix(&(t_tuple){0, 1, 0, 1}, &camera->direction);
 	camera->front = multiply_tuple_by_matrix(&(t_tuple){0, 0, 1, 1}, &camera->direction);
 	return (camera);
-}
-
-t_POINTLIGHT	*create_POINTLIGHT(t_tuple *position, double intensity)
-{
-	t_POINTLIGHT	*light;
-	t_tuple			point;
-
-	light = ft_calloc(1, sizeof(t_POINTLIGHT));
-	if (!light)
-		return (NULL);
-	point = create_point(position->x, position->y, position->z);
-	pass_tuple_values(&light->position, &point);
-	light->intensity = intensity;
-	return (light);
 }
 
 t_SCENE	*create_SCENE(t_tuple *background, double ambient_light)
@@ -181,7 +167,7 @@ void	define_objects(t_SCENE *scene, t_data *data)
 			data->camera = init_CAMERA(data->tokens, data);
 		else if (aux->type == 5)
 		{
-			scene->lights[lights] = create_POINTLIGHT(&aux->coordinate, aux->brightness);
+			scene->lights[lights] = aux;
 			lights++;
 		}
 		aux = aux->next;
@@ -198,7 +184,7 @@ void	define_SCENE(t_data *data)
 		exit_error("Error at create scene\n", 4, data);
 	scene->luzes_a_definir = 1; // numero a definir;
 	scene->objetos_a_definir = 5; // numero a definir;
-	scene->lights = (t_POINTLIGHT **)ft_calloc(scene->luzes_a_definir + 1, sizeof(t_POINTLIGHT *));
+	scene->lights = (t_token **)ft_calloc(scene->luzes_a_definir + 1, sizeof(t_token *));
 	scene->objects = (t_token **)ft_calloc(scene->objetos_a_definir + 1, sizeof(t_token *));
 	define_objects(scene, data);
 	data->scene = scene;
