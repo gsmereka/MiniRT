@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 15:42:37 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/11/03 18:55:57 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/11/03 21:14:42 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,6 +125,21 @@ void	adicionar_esfera(t_token **list, t_tuple *center, double raio, t_color *col
 	aux->next = esfera;
 }
 
+void	adicionar_luz(t_token **list, t_tuple *coordinate, double brightness)
+{
+	t_token *luz;
+	t_token	*aux;
+
+	aux = *list;
+	while (aux && aux->next)
+		aux = aux->next;
+	luz = ft_calloc(1, sizeof(t_token));
+	luz->type = 5;
+	luz->brightness = brightness;
+	pass_tuple_values(&luz->coordinate, coordinate);
+	aux->next = luz;
+}
+
 void	trocar_lista_original_pela_versao_python(t_data *data)
 {
 	t_token			*camera_token;
@@ -142,15 +157,18 @@ void	trocar_lista_original_pela_versao_python(t_data *data)
 	adicionar_esfera(&data->tokens, &(t_tuple){-3.1, 1.4, 0.06, 0}, 1.4, &(t_color){128, 117, 255});
 	adicionar_esfera(&data->tokens, &(t_tuple){-4.2, 5.4, 4.2, 0}, 0.9, &(t_color){83, 221, 108});
 	adicionar_esfera(&data->tokens, &(t_tuple){0, -1000000, 0, 0}, 1000000, &(t_color){234, 234, 234});
+	adicionar_luz(&data->tokens, &(t_tuple){-1.3, 8.4, 0}, 20);
 }
 
 void	define_objects(t_SCENE *scene, t_data *data)
 {
 	t_token	*aux;
 	int		objects;
+	int		lights;
 
 	aux = data->tokens;
 	objects = 0;
+	lights = 0;
 	while (aux)
 	{
 		if (aux->type == 1 || aux->type == 2 || aux->type == 3)
@@ -158,8 +176,13 @@ void	define_objects(t_SCENE *scene, t_data *data)
 			scene->objects[objects] = aux;
 			objects++;
 		}
-		if (aux->type == 4)
+		else if (aux->type == 4)
 			data->camera = init_CAMERA(data->tokens, data);
+		else if (aux->type == 5)
+		{
+			scene->lights[lights] = create_POINTLIGHT(&aux->coordinate, aux->brightness);
+			lights++;
+		}
 		aux = aux->next;
 	}
 }
@@ -175,7 +198,6 @@ void	define_SCENE(t_data *data)
 	scene->luzes_a_definir = 1; // numero a definir;
 	scene->objetos_a_definir = 5; // numero a definir;
 	scene->lights = (t_POINTLIGHT **)ft_calloc(scene->luzes_a_definir + 1, sizeof(t_POINTLIGHT *));
-	scene->lights[0] = create_POINTLIGHT(&(t_tuple){-1.3, 8.4, 0.0, 1}, 20);
 	scene->objects = (t_token **)ft_calloc(scene->objetos_a_definir + 1, sizeof(t_token *));
 	define_objects(scene, data);
 	data->scene = scene;

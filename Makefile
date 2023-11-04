@@ -6,7 +6,7 @@
 #    By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/20 18:26:17 by gde-mora          #+#    #+#              #
-#    Updated: 2023/11/03 20:19:09 by gsmereka         ###   ########.fr        #
+#    Updated: 2023/11/03 20:56:52 by gsmereka         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,70 +18,64 @@ NAME 	=	miniRT
 # 			src/test_render.c \
 # 			src/test_ray.c \
 
-
-# Comando secreto pra listar todos os objetos .c
+# comando pra encontrar arquivos .c
 #  find . -type f -name "*.c"
 
-SRC 	=	./src/matrix_tools/transposing_matrix.c \
-			./src/matrix_tools/get_determinant.c \
-			./src/matrix_tools/matrices_have_diff.c \
-			./src/matrix_tools/multiply_matrices.c \
-			./src/matrix_tools/copy_matrix.c \
-			./src/matrix_tools/get_submatrix.c \
-			./src/matrix_tools/init_idmatrices.c \
-			./src/matrix_tools/create_matrix.c \
-			./src/matrix_tools/get_cofactor.c \
-			./src/matrix_tools/inverting_matrix.c \
-			./src/matrix_tools/str_to_matrix.c \
-			./src/matrix_tools/multiply_matrix_with_tuple.c \
-			./src/test_matrices_operations.c \
-			./src/tools/colors_operations.c \
-			./src/tools/dtoi.c \
-			./src/tools/atod.c \
-			./src/tools/are_floats_equal.c \
-			./src/tools/free_array.c \
-			./src/ray_tools/hit.c \
-			./src/ray_tools/intersect.c \
-			./src/ray_tools/rays.c \
-			./src/ray_tools/intersection.c \
-			./src/test_ray.c \
-			./src/exit.c \
-			./src/main.c \
-			./src/define_scene/closest_hit.c \
-			./src/define_scene/light_at.c \
-			./src/define_scene/render_scene.c \
-			./src/define_scene/trace_color.c \
-			./src/define_scene/prepare_ray.c \
-			./src/define_scene/init_ray.c \
-			./src/define_scene/define_scene.c \
-			./src/define_scene/intersect_sphere.c \
-			./src/test_intersection.c \
-			./src/render/paint_pixel.c \
-			./src/render/minilibx_handlers.c \
-			./src/render/render.c \
-			./src/tuple_tools/tuples_operations.c \
-			./src/tuple_tools/tuple_magnitude.c \
-			./src/tuple_tools/dot_product.c \
-			./src/tuple_tools/cross_product.c \
-			./src/tuple_tools/are_tuples_equal.c \
-			./src/tuple_tools/normalize_tuple.c \
-			./src/tuple_tools/create_tuple.c \
-			./src/tuple_tools/pass_tuple_values.c \
-			./src/test_hits.c \
-			./src/matrix_transformations/shearing.c \
-			./src/matrix_transformations/rotation.c \
-			./src/matrix_transformations/translation.c \
-			./src/matrix_transformations/scaling.c \
-			./src/parsing/validate_scene_file.c \
-			./src/parsing/get_scene_info.c \
-			./src/parsing/check_shapes.c \
-			./src/parsing/check_configs.c \
-			./src/parsing/add_config.c \
-			./src/parsing/add_shape.c \
-			./src/parsing/check_utils.c \
-			./src/parsing/read_scene_file.c \
-			./src/parsing/token_utils.c \
-			./src/test_render.c
+SRC 	=	src/define_scene/trace_color.c \
+			src/define_scene/closest_hit.c \
+			src/define_scene/light_at.c \
+			src/define_scene/init_ray.c \
+			src/define_scene/define_scene.c \
+			src/define_scene/render_scene.c \
+			src/define_scene/prepare_ray.c \
+			src/define_scene/intersect_sphere.c \
+			src/main.c \
+			src/exit.c \
+			src/ray_tools/rays.c \
+			src/ray_tools/intersect.c \
+			src/ray_tools/intersection.c \
+			src/ray_tools/hit.c \
+			src/render/render.c \
+			src/render/paint_pixel.c \
+			src/render/minilibx_handlers.c \
+			src/tools/are_floats_equal.c \
+			src/tools/dtoi.c \
+			src/tools/atod.c \
+			src/tools/free_array.c \
+			src/tools/colors_operations.c \
+			src/tuple_tools/are_tuples_equal.c \
+			src/tuple_tools/create_tuple.c \
+			src/tuple_tools/tuples_operations.c \
+			src/tuple_tools/normalize_tuple.c \
+			src/tuple_tools/tuple_magnitude.c \
+			src/tuple_tools/dot_product.c \
+			src/tuple_tools/cross_product.c \
+			src/tuple_tools/pass_tuple_values.c \
+			src/matrix_transformations/translation.c \
+			src/matrix_transformations/scaling.c \
+			src/matrix_transformations/rotation.c \
+			src/matrix_transformations/shearing.c \
+			src/matrix_tools/inverting_matrix.c \
+			src/matrix_tools/init_idmatrices.c \
+			src/matrix_tools/matrices_have_diff.c \
+			src/matrix_tools/multiply_matrices.c \
+			src/matrix_tools/create_matrix.c \
+			src/matrix_tools/copy_matrix.c \
+			src/matrix_tools/str_to_matrix.c \
+			src/matrix_tools/transposing_matrix.c \
+			src/matrix_tools/multiply_matrix_with_tuple.c \
+			src/matrix_tools/get_submatrix.c \
+			src/matrix_tools/get_determinant.c \
+			src/matrix_tools/get_cofactor.c \
+			src/parsing/validate_scene_file.c \
+			src/parsing/read_scene_file.c \
+			src/parsing/token_utils.c \
+			src/parsing/get_scene_info.c \
+			src/parsing/check_configs.c \
+			src/parsing/check_shapes.c \
+			src/parsing/check_utils.c \
+			src/parsing/add_config.c \
+			src/parsing/add_shape.c  \
 
 OBJ 	=	$(addprefix $(OBJ_DIR)/, $(SRC:.c=.o))
 
