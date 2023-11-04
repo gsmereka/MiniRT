@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 13:09:51 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/11/04 15:41:19 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/11/04 16:23:27 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ typedef struct s_ray
 	t_tuple	direction;
 }	t_ray;
 
-typedef struct s_CAMERA
+typedef struct s_camera
 {
 	t_tuple		center;
 	t_tuple		radians_vector;
@@ -83,7 +83,7 @@ typedef struct s_hit
 	double		distance;
 }	t_hit;
 
-typedef struct s_SCENE
+typedef struct s_scene
 {
 	t_ray			*object_ray;
 	t_ray			*light_ray;
@@ -117,6 +117,7 @@ typedef struct s_data
 	int										debug_exit; //Enqunto fazemos os testes
 	t_camera	*camera;
 	t_scene		*scene;
+	int			test;
 }	t_data;
 
 #endif

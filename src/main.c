@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 20:16:42 by gde-mora          #+#    #+#             */
-/*   Updated: 2023/11/04 11:19:44 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/11/04 15:48:26 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ int	main(int argc, char **argv)
 	validate_scene_file(argc, argv, &data);
 	read_scene_file(argv[1], &data);
 	get_scene_info(data.tokens, &data);
-	define_SCENE(&data);
+	define_scene(&data);
 	render(&data);
 	exit_error("", 0, &data);
 	return (0);

@@ -6,53 +6,49 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 23:46:18 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/11/04 15:33:36 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/11/04 15:50:52 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/miniRT.h"
 
-t_color	*sum_colors(t_color *one, t_color *two)
+t_color	sum_colors(t_color *one, t_color *two)
 {
-	t_color	*new_color;
+	t_color	new_color;
 
-	new_color = ft_calloc(1, sizeof(t_color));
-	new_color->r = one->r + two->r;
-	new_color->g = one->g + two->g;
-	new_color->b = one->b + two->b;
+	new_color.r = one->r + two->r;
+	new_color.g = one->g + two->g;
+	new_color.b = one->b + two->b;
 	return (new_color);
 }
 
-t_color	*subtract_colors(t_color *one, t_color *two)
+t_color	subtract_colors(t_color *one, t_color *two)
 {
-	t_color	*new_color;
+	t_color	new_color;
 
-	new_color = ft_calloc(1, sizeof(t_color));
-	new_color->r = one->r - two->r;
-	new_color->g = one->g - two->g;
-	new_color->b = one->b - two->b;
+	new_color.r = one->r - two->r;
+	new_color.g = one->g - two->g;
+	new_color.b = one->b - two->b;
 	return (new_color);
 }
 
-t_color	*multiply_color_scalar(t_color *color, double factor)
+t_color	multiply_color_scalar(t_color *color, double factor)
 {
-	t_color	*new_color;
+	t_color	new_color;
 
-	new_color = ft_calloc(1, sizeof(t_color));
-	new_color->r = color->r * factor;
-	new_color->g = color->g * factor;
-	new_color->b = color->b * factor;
+	new_color.r = color->r * factor;
+	new_color.g = color->g * factor;
+	new_color.b = color->b * factor;
 	return (new_color);
 }
 
-t_color	*multiply_color_x_color(t_color *one, t_color *two)
+t_color	multiply_color_x_color(t_color *one, t_color *two)
 {
-	t_color	*new_color;
+	t_color	new_color;
 
-	new_color = ft_calloc(1, sizeof(t_color));
-	new_color->r = one->r * two->r;
-	new_color->g = one->g * two->g;
-	new_color->b = one->b * two->b;
+	new_color.r = one->r * two->r;
+	new_color.g = one->g * two->g;
+	new_color.b = one->b * two->b;
 	return (new_color);
 }
 

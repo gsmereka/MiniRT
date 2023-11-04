@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 15:42:37 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/11/04 15:41:20 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/11/04 17:11:21 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,13 @@ double	degrees_to_radians(double degrees)
 	return (degrees * M_PI / 180.0);
 }
 
+
+double	vector_to_radians(double input)
+{
+	return (atan(input));
+}
+
+
 t_camera	*init_camera(t_token *token, t_data *data)
 {
 	t_camera	*camera;
@@ -49,9 +56,18 @@ t_camera	*init_camera(t_token *token, t_data *data)
 	pass_tuple_values(&camera->center, &token->coordinate);
 	camera->width = data->win_width;
 	camera->height = data->win_height;
-	camera->radians_vector.x = degrees_to_radians(token->normalized_vector.x);
-	camera->radians_vector.y = degrees_to_radians(token->normalized_vector.y);
-	camera->radians_vector.z = degrees_to_radians(token->normalized_vector.z);
+	if (data->test)
+	{
+		camera->radians_vector.x = degrees_to_radians(token->normalized_vector.x);
+		camera->radians_vector.y = degrees_to_radians(token->normalized_vector.y);
+		camera->radians_vector.z = degrees_to_radians(token->normalized_vector.z);
+	}
+	else
+	{
+		camera->radians_vector.x = vector_to_radians(token->normalized_vector.x);
+		camera->radians_vector.y = vector_to_radians(token->normalized_vector.y);
+		camera->radians_vector.z = vector_to_radians(token->normalized_vector.z);
+	}
 	camera->focal_length = 0.7;
 	camera->fov = token->fov;
 	rot_x = rotation_x(data, camera->radians_vector.x);
@@ -131,6 +147,7 @@ void	trocar_lista_original_pela_versao_python(t_data *data)
 {
 	t_token			*camera_token;
 
+	data->test = 1;
 	data->win_width = 800;
 	data->win_height = 600;
 	token_clear(&data->tokens);
@@ -166,26 +183,35 @@ void	define_objects(t_scene *scene, t_data *data)
 			objects++;
 		}
 		else if (aux->type == 4)
+		{
 			data->camera = init_camera(data->tokens, data);
+		}
 		else if (aux->type == 5)
 		{
 			scene->lights[lights] = aux;
 			lights++;
 		}
+		else if (aux->type == 6)
+		{
+			scene->background = aux->color;
+			scene->ambient_light = aux->brightness;
+		}
 		aux = aux->next;
 	}
 }
 
-void	define_SCENE(t_data *data)
+void	define_scene(t_data *data)
 {
 	t_scene			*scene;
 
+	data->win_width = 1920;
+	data->win_height = 1280;
 	trocar_lista_original_pela_versao_python(data);
 	scene = create_scene(&(t_color){26, 27, 33}, 0.12);
 	if (!scene)
 		exit_error("Error at create scene\n", 4, data);
 	scene->luzes_a_definir = 1; // numero a definir;
-	scene->objetos_a_definir = 5; // numero a definir;
+	scene->objetos_a_definir = 10; // numero a definir;
 	scene->lights = (t_token **)ft_calloc(scene->luzes_a_definir + 1, sizeof(t_token *));
 	scene->objects = (t_token **)ft_calloc(scene->objetos_a_definir + 1, sizeof(t_token *));
 	define_objects(scene, data);

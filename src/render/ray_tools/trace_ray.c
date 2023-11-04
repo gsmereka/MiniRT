@@ -24,9 +24,7 @@ t_color	trace_ray(t_scene *scene, t_ray *object_ray, t_ray *light_ray)
 	if (object_hit)
 	{
 		light_intensity = trace_ilumination(scene, object_hit, light_ray);
-		ray_color.r = object_hit->object->color.r * light_intensity;
-		ray_color.g = object_hit->object->color.g * light_intensity;
-		ray_color.b = object_hit->object->color.b * light_intensity;
+		ray_color = multiply_color_scalar(&object_hit->object->color, light_intensity);
 	}
 	else
 		ray_color = scene->background;
