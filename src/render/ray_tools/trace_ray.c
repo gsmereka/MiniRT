@@ -46,8 +46,9 @@ double	trace_ilumination(t_SCENE *scene, t_hit *object_hit, t_ray *light_ray)
 	while (scene->lights[i])
 	{
 		light_ray_direction = subtract_tuples(&object_hit->position,
-				&scene->lights[i]->position);
-		normalize_ray(light_ray, &scene->lights[i]->position, &light_ray_direction);
+				&scene->lights[i]->coordinate);
+		normalize_ray(light_ray,
+			&scene->lights[i]->coordinate, &light_ray_direction);
 		light_hit = closest_hit(scene, light_ray);
 		if (light_hit && light_hit->object->id == object_hit->object->id)
 			light_intensity += LIGHT_at(scene->lights[i], object_hit);

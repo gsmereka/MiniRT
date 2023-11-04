@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 15:42:37 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/11/04 15:12:04 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/11/04 15:19:05 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,6 +122,7 @@ void	adicionar_luz(t_token **list, t_tuple *coordinate, double brightness)
 	luz->type = 5;
 	luz->brightness = brightness;
 	pass_tuple_values(&luz->coordinate, coordinate);
+	luz->coordinate.w = 1;
 	aux->next = luz;
 }
 
