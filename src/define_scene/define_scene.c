@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 15:42:37 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/11/03 21:14:42 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/11/03 21:21:21 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,7 @@ t_CAMERA	*init_CAMERA(t_token *token, t_data *data)
 		return (NULL);
 	pass_tuple_values(&camera->center, &token->coordinate);
 	camera->width = data->win_width;
-	camera->height = data->win_height;
-	// printf("%f, %f, %f\n", token->normalized_vector.x, token->normalized_vector.y, token->normalized_vector.z);
+	camera->height = data->win_height;;
 	camera->radians_vector.x = degrees_to_radians(token->normalized_vector.x);
 	camera->radians_vector.y = degrees_to_radians(token->normalized_vector.y);
 	camera->radians_vector.z = degrees_to_radians(token->normalized_vector.z);
@@ -56,13 +55,9 @@ t_CAMERA	*init_CAMERA(t_token *token, t_data *data)
 	rot_z = rotation_z(data, camera->radians_vector.z);
 	camera->direction = multiply_matrices(&rot_x, &rot_y);
     camera->direction = multiply_matrices(&rot_z, &camera->direction);
-	// print_matrix(&camera->direction);
 	camera->right  = multiply_tuple_by_matrix(&(t_tuple){1, 0, 0, 1}, &camera->direction);
 	camera->up     = multiply_tuple_by_matrix(&(t_tuple){0, 1, 0, 1}, &camera->direction);
 	camera->front  = multiply_tuple_by_matrix(&(t_tuple){0, 0, 1, 1}, &camera->direction);
-	// print_tuple(&camera->right);
-	// print_tuple(&camera->up);
-	// print_tuple(&camera->front);
 	return (camera);
 }
 
