@@ -6,7 +6,7 @@
 #    By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/20 18:26:17 by gde-mora          #+#    #+#              #
-#    Updated: 2023/11/04 14:50:03 by gsmereka         ###   ########.fr        #
+#    Updated: 2023/11/04 14:58:31 by gsmereka         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,7 +41,9 @@ SRC 	=	./src/matrix_tools/transposing_matrix.c \
 			./src/render/ray_tools/normalize_ray.c \
 			./src/render/ray_tools/closest_hit.c \
 			./src/render/ray_tools/light_at.c \
+			./src/render/ray_tools/init_hit.c \
 			./src/render/ray_tools/trace_ray.c \
+			./src/render/ray_tools/ray_position.c \
 			./src/render/ray_tools/intersect_sphere.c \
 			./src/render/minilibx_handlers.c \
 			./src/render/render.c \

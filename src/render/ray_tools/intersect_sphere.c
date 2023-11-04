@@ -6,16 +6,13 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 19:09:29 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/11/04 14:47:07 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/11/04 14:58:12 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../headers/miniRT.h"
 
 static double	calculate_distance(t_token *sphere, t_ray *ray);
-static t_tuple	ray_position(t_ray *ray, double time);
-static t_HIT	*init_HIT(t_token *object,
-					t_tuple	*normal, double distance, t_tuple *position);
 static double	calculate_discriminant(t_intersect *intersect,
 					t_token *sphere, t_ray *ray);
 
@@ -46,16 +43,16 @@ double	calculate_distance(t_token *sphere, t_ray *ray)
 	discriminant = calculate_discriminant(&intersect, sphere, ray);
 	if (discriminant <= 0)
 		return (0);
-	intersect.local_times[0]
+	intersect.solutions[0]
 		= (-intersect.b - sqrt(discriminant)) / (2 * intersect.a);
-	intersect.local_times[1]
+	intersect.solutions[1]
 		= (-intersect.b + sqrt(discriminant)) / (2 * intersect.a);
-	if (intersect.local_times[0] <= 0 && intersect.local_times[1] <= 0)
+	if (intersect.solutions[0] <= 0 && intersect.solutions[1] <= 0)
 		return (0);
-	if (intersect.local_times[0] < intersect.local_times[1])
-		distance = intersect.local_times[0];
+	if (intersect.solutions[0] < intersect.solutions[1])
+		distance = intersect.solutions[0];
 	else
-		distance = intersect.local_times[1];
+		distance = intersect.solutions[1];
 	return (distance);
 }
 
@@ -74,27 +71,4 @@ double	calculate_discriminant(t_intersect *intersect,
 			&distance_to_center) - (sphere->ratio * sphere->ratio);
 	d = (intersect->b * intersect->b) - (4 * intersect->a * intersect->c);
 	return (d);
-}
-
-t_tuple	ray_position(t_ray *ray, double time)
-{
-	t_tuple	direction;
-	t_tuple	position;
-
-	direction = multiply_tuple(&ray->direction, time);
-	position = sum_tuples(&direction, &ray->origin);
-	return (position);
-}
-
-t_HIT	*init_HIT(t_token *object,
-		t_tuple *normal, double distance, t_tuple *position)
-{
-	t_HIT	*hit;
-
-	hit = ft_calloc(1, sizeof(t_HIT));
-	pass_tuple_values(&hit->position, position);
-	pass_tuple_values(&hit->normal, normal);
-	hit->object = object;
-	hit->distance = distance;
-	return (hit);
 }
