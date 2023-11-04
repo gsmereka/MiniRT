@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 20:17:31 by gde-mora          #+#    #+#             */
-/*   Updated: 2023/11/04 14:49:21 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/11/04 15:41:19 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,6 @@ int			exit_successful(t_data *data);
 
 // TESTE COM VERSÃO DO PYTHON
 void	define_SCENE(t_data *data); // TESTE
-void	render_scene(t_SCENE *scene, t_CAMERA *camera, t_data *data);
+void	render_scene(t_scene *scene, t_camera *camera, t_data *data);
 
 #endif

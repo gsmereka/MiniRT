@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   calculate_ray_direction.c                                      :+:      :+:    :+:   */
+/*   calculate_ray_direction.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/29 23:07:15 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/11/04 11:29:30 by gsmereka         ###   ########.fr       */
+/*   Created: 2023/11/04 15:21:55 by gsmereka          #+#    #+#             */
+/*   Updated: 2023/11/04 15:22:19 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../headers/miniRT.h"
 
 void	calculate_direction(t_ray *ray,
-	t_CAMERA *camera, double j, double i)
+	t_camera *camera, double j, double i)
 {
 	t_tuple	temp;
 
@@ -37,7 +37,8 @@ void	calculate_direction(t_ray *ray,
 	ray->direction.z += temp.z;
 }
 
-void	calculate_ray_direction(t_ray *ray, t_CAMERA *camera, double j, double i)
+void	calculate_ray_direction(t_ray *ray,
+	t_camera *camera, double j, double i)
 {
 	double	pixel_center_coord[2];
 

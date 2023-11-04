@@ -6,7 +6,7 @@
 #    By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/20 18:26:17 by gde-mora          #+#    #+#              #
-#    Updated: 2023/11/04 14:58:31 by gsmereka         ###   ########.fr        #
+#    Updated: 2023/11/04 15:29:31 by gsmereka         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,6 @@ SRC 	=	./src/matrix_tools/transposing_matrix.c \
 			./src/matrix_tools/inverting_matrix.c \
 			./src/matrix_tools/str_to_matrix.c \
 			./src/matrix_tools/multiply_matrix_with_tuple.c \
-			./src/tools/colors_operations.c \
 			./src/tools/dtoi.c \
 			./src/tools/atod.c \
 			./src/tools/are_floats_equal.c \
@@ -35,6 +34,7 @@ SRC 	=	./src/matrix_tools/transposing_matrix.c \
 			./src/exit.c \
 			./src/main.c \
 			./src/define_scene/define_scene.c \
+			./src/render/colors_operations.c \
 			./src/render/paint_pixel.c \
 			./src/render/render_scene.c \
 			./src/render/ray_tools/calculate_ray_direction.c \

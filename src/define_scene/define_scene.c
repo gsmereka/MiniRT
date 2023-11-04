@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 15:42:37 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/11/04 15:19:05 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/11/04 15:41:20 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,14 +36,14 @@ double	degrees_to_radians(double degrees)
 	return (degrees * M_PI / 180.0);
 }
 
-t_CAMERA	*init_CAMERA(t_token *token, t_data *data)
+t_camera	*init_camera(t_token *token, t_data *data)
 {
-	t_CAMERA	*camera;
+	t_camera	*camera;
 	t_matrix	rot_x;
 	t_matrix	rot_y;
 	t_matrix	rot_z;
 
-	camera = ft_calloc(1, sizeof(t_CAMERA));
+	camera = ft_calloc(1, sizeof(t_camera));
 	if (!camera)
 		return (NULL);
 	pass_tuple_values(&camera->center, &token->coordinate);
@@ -65,11 +65,11 @@ t_CAMERA	*init_CAMERA(t_token *token, t_data *data)
 	return (camera);
 }
 
-t_SCENE	*create_SCENE(t_tuple *background, double ambient_light)
+t_scene	*create_scene(t_color *background, double ambient_light)
 {
-	t_SCENE	*scene;
+	t_scene	*scene;
 
-	scene = ft_calloc(1, sizeof(t_SCENE));
+	scene = ft_calloc(1, sizeof(t_scene));
 	if (!scene)
 		return (NULL);
 	scene->object_ray = ft_calloc(1, sizeof(t_ray));
@@ -81,8 +81,9 @@ t_SCENE	*create_SCENE(t_tuple *background, double ambient_light)
 		free(scene);
 		return (NULL);
 	}
-	pass_tuple_values(&scene->background, background);
-	scene->background.w = 0;
+	scene->background.r = background->r;
+	scene->background.g = background->g;
+	scene->background.b = background->b;
 	scene->ambient_light = ambient_light;
 	return (scene);
 }
@@ -148,7 +149,7 @@ void	trocar_lista_original_pela_versao_python(t_data *data)
 	adicionar_luz(&data->tokens, &(t_tuple){-1.3, 8.4, 0}, 20);
 }
 
-void	define_objects(t_SCENE *scene, t_data *data)
+void	define_objects(t_scene *scene, t_data *data)
 {
 	t_token	*aux;
 	int		objects;
@@ -165,7 +166,7 @@ void	define_objects(t_SCENE *scene, t_data *data)
 			objects++;
 		}
 		else if (aux->type == 4)
-			data->camera = init_CAMERA(data->tokens, data);
+			data->camera = init_camera(data->tokens, data);
 		else if (aux->type == 5)
 		{
 			scene->lights[lights] = aux;
@@ -177,10 +178,10 @@ void	define_objects(t_SCENE *scene, t_data *data)
 
 void	define_SCENE(t_data *data)
 {
-	t_SCENE			*scene;
+	t_scene			*scene;
 
 	trocar_lista_original_pela_versao_python(data);
-	scene = create_SCENE(&(t_tuple){26, 27, 33, 0}, 0.12);
+	scene = create_scene(&(t_color){26, 27, 33}, 0.12);
 	if (!scene)
 		exit_error("Error at create scene\n", 4, data);
 	scene->luzes_a_definir = 1; // numero a definir;

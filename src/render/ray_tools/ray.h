@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 19:07:48 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/11/04 15:11:36 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/11/04 15:41:19 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,6 @@ t_tuple			ray_position(t_ray *ray, double time);
 t_hit			*init_hit(t_token *object,
 					t_tuple *normal, double distance, t_tuple *position);
 double			LIGHT_at(t_token *light, t_hit *hit);
+t_color			trace_ray(t_scene *scene, t_ray *object_ray, t_ray *light_ray);
 
 #endif
