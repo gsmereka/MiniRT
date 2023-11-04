@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 15:42:37 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/11/03 21:21:21 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/11/03 21:26:48 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,26 @@
 
 t_tuple	multiply_tuple_by_matrix(t_tuple *tuple, t_matrix *matrix)
 {
-	t_tuple result;
+	t_tuple	result;
 
-	result.x = tuple->x * matrix->content[0][0] + tuple->y * matrix->content[1][0] + tuple->z * matrix->content[2][0] + tuple->w * matrix->content[3][0];
-	result.y = tuple->x * matrix->content[0][1] + tuple->y * matrix->content[1][1] + tuple->z * matrix->content[2][1] + tuple->w * matrix->content[3][1];
-	result.z = tuple->x * matrix->content[0][2] + tuple->y * matrix->content[1][2] + tuple->z * matrix->content[2][2] + tuple->w * matrix->content[3][2];
-	result.w = tuple->x * matrix->content[0][3] + tuple->y * matrix->content[1][3] + tuple->z * matrix->content[2][3] + tuple->w * matrix->content[3][3];
+	result.x = tuple->x * matrix->content[0][0]
+		+ tuple->y * matrix->content[1][0]
+		+ tuple->z * matrix->content[2][0] + tuple->w * matrix->content[3][0];
+	result.y = tuple->x * matrix->content[0][1]
+		+ tuple->y * matrix->content[1][1]
+		+ tuple->z * matrix->content[2][1] + tuple->w * matrix->content[3][1];
+	result.z = tuple->x * matrix->content[0][2]
+		+ tuple->y * matrix->content[1][2]
+		+ tuple->z * matrix->content[2][2] + tuple->w * matrix->content[3][2];
+	result.w = tuple->x * matrix->content[0][3]
+		+ tuple->y * matrix->content[1][3]
+		+ tuple->z * matrix->content[2][3] + tuple->w * matrix->content[3][3];
 	return (result);
 }
 
-double degrees_to_radians(double degrees)
+double	degrees_to_radians(double degrees)
 {
-    return (degrees * M_PI / 180.0);
+	return (degrees * M_PI / 180.0);
 }
 
 t_CAMERA	*init_CAMERA(t_token *token, t_data *data)
@@ -40,28 +48,24 @@ t_CAMERA	*init_CAMERA(t_token *token, t_data *data)
 		return (NULL);
 	pass_tuple_values(&camera->center, &token->coordinate);
 	camera->width = data->win_width;
-	camera->height = data->win_height;;
+	camera->height = data->win_height;
 	camera->radians_vector.x = degrees_to_radians(token->normalized_vector.x);
 	camera->radians_vector.y = degrees_to_radians(token->normalized_vector.y);
 	camera->radians_vector.z = degrees_to_radians(token->normalized_vector.z);
-	// camera->radians_vector.x = 2.0 * asin(sqrt(token->normalized_vector.x * token->normalized_vector.x + token->normalized_vector.y * token->normalized_vector.y));
-	// camera->radians_vector.y = atan2(token->normalized_vector.y, token->normalized_vector.x);
-	// camera->radians_vector.z = asin(token->normalized_vector.z);
-	// camera->focal_length = focal_length;
 	camera->focal_length = 0.7;
 	camera->fov = token->fov;
 	rot_x = rotation_x(data, camera->radians_vector.x);
 	rot_y = rotation_y(data, camera->radians_vector.y);
 	rot_z = rotation_z(data, camera->radians_vector.z);
 	camera->direction = multiply_matrices(&rot_x, &rot_y);
-    camera->direction = multiply_matrices(&rot_z, &camera->direction);
-	camera->right  = multiply_tuple_by_matrix(&(t_tuple){1, 0, 0, 1}, &camera->direction);
-	camera->up     = multiply_tuple_by_matrix(&(t_tuple){0, 1, 0, 1}, &camera->direction);
-	camera->front  = multiply_tuple_by_matrix(&(t_tuple){0, 0, 1, 1}, &camera->direction);
+	camera->direction = multiply_matrices(&rot_z, &camera->direction);
+	camera->right = multiply_tuple_by_matrix(&(t_tuple){1, 0, 0, 1}, &camera->direction);
+	camera->up = multiply_tuple_by_matrix(&(t_tuple){0, 1, 0, 1}, &camera->direction);
+	camera->front = multiply_tuple_by_matrix(&(t_tuple){0, 0, 1, 1}, &camera->direction);
 	return (camera);
 }
 
-t_POINTLIGHT *create_POINTLIGHT(t_tuple *position, double intensity)
+t_POINTLIGHT	*create_POINTLIGHT(t_tuple *position, double intensity)
 {
 	t_POINTLIGHT	*light;
 	t_tuple			point;
