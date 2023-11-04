@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   prepare_ray.c                                      :+:      :+:    :+:   */
+/*   calculate_ray_direction.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 23:07:15 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/11/03 19:27:02 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/11/04 11:29:30 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../headers/miniRT.h"
+#include "../../../headers/miniRT.h"
 
 void	calculate_direction(t_ray *ray,
 	t_CAMERA *camera, double j, double i)
@@ -37,7 +37,7 @@ void	calculate_direction(t_ray *ray,
 	ray->direction.z += temp.z;
 }
 
-void	prepare_ray(t_ray *ray, t_CAMERA *camera, double j, double i)
+void	calculate_ray_direction(t_ray *ray, t_CAMERA *camera, double j, double i)
 {
 	double	pixel_center_coord[2];
 
@@ -47,5 +47,5 @@ void	prepare_ray(t_ray *ray, t_CAMERA *camera, double j, double i)
 	pixel_center_coord[1] = camera->height - 0.5 - i;
 	calculate_direction(ray, camera,
 		pixel_center_coord[0], pixel_center_coord[1]);
-	init_ray(ray, &camera->center, &ray->direction);
+	normalize_ray(ray, &camera->center, &ray->direction);
 }

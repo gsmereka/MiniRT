@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 15:42:37 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/11/03 21:26:48 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/11/04 11:20:27 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,6 +143,8 @@ void	trocar_lista_original_pela_versao_python(t_data *data)
 {
 	t_token			*camera_token;
 
+	data->win_width = 800;
+	data->win_height = 600;
 	token_clear(&data->tokens);
 	camera_token = ft_calloc(1, sizeof(t_token));
 	if (!camera_token)

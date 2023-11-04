@@ -6,11 +6,11 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 19:09:29 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/11/03 20:54:32 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/11/04 14:47:07 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../headers/miniRT.h"
+#include "../../../headers/miniRT.h"
 
 static double	calculate_distance(t_token *sphere, t_ray *ray);
 static t_tuple	ray_position(t_ray *ray, double time);

@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_ray.c                                         :+:      :+:    :+:   */
+/*   normalize_ray.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/31 23:20:57 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/11/03 16:57:43 by gsmereka         ###   ########.fr       */
+/*   Created: 2023/11/04 14:47:26 by gsmereka          #+#    #+#             */
+/*   Updated: 2023/11/04 14:47:30 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../headers/miniRT.h"
+#include "../../../headers/miniRT.h"
 
-void	init_ray(t_ray *ray, t_tuple *origin, t_tuple *direction)
+void	normalize_ray(t_ray *ray, t_tuple *origin, t_tuple *direction)
 {
 	pass_tuple_values(&ray->direction, direction);
 	normalize_tuple(&ray->direction);
