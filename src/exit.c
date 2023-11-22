@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 16:06:05 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/11/04 15:16:46 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/11/22 19:06:27 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,14 @@
 
 static void	free_data(t_data *data)
 {
-	if (data->scene->object_ray);
+	if (data->scene)
+	{
 		free(data->scene->object_ray);
-	if (data->scene->light_ray);
 		free(data->scene->light_ray);
-	free(data->scene->objects);
-	free(data->scene->lights);
-	free(data->scene);
+		free(data->scene->objects);
+		free(data->scene->lights);
+		free(data->scene);
+	}
 	free(data->camera);
 	if (data->mlx_ptr && data->img)
 		mlx_destroy_image(data->mlx_ptr, data->img);
@@ -32,9 +33,7 @@ static void	free_data(t_data *data)
 		free(data->mlx_ptr);
 	}
 	if (data->tokens)
-	{
 		token_clear(&data->tokens);
-	}
 }
 
 int	exit_error(char *msg, int status, t_data *data)
