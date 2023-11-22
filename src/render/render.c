@@ -6,13 +6,13 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 20:20:54 by gde-mora          #+#    #+#             */
-/*   Updated: 2023/11/22 16:21:14 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/11/22 18:52:10 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/miniRT.h"
 
-int	handle_render(void *data_ptr) //Enqunto fazemos os testes // Função que verifica se o tester ja enviou o sinal SIGTERM
+int	handle_render(void *data_ptr)
 {
 	t_data	*data;
 
@@ -34,16 +34,6 @@ int	handle_render(void *data_ptr) //Enqunto fazemos os testes // Função que ve
 	return (0);
 }
 
-int	debug(void *data_ptr) //Enqunto fazemos os testes // Função que verifica se o tester ja enviou o sinal SIGTERM
-{
-	t_data	*data;
-
-	data = (t_data *)data_ptr;
-	if (data->debug_exit)
-		exit_successful(data);
-	return (0);
-}
-
 void	render(t_data *data)
 {
 	data->mlx_ptr = mlx_init();
@@ -61,11 +51,10 @@ void	render(t_data *data)
 	// melhor posição pra pintar a imagem
 	data->address_img = mlx_get_data_addr(data->img, &data->bits_per_pixel,
 		&data->size_line, &data->endian);
-	// mlx_expose_hook(data->win_ptr, &handle_render, data);
+	// mlx_expose_hook(data->win_ptr, &handle_render, data); // por enquanto fica assim msm, pra poder fechar antes de renderizar tudo
 	
 	mlx_key_hook(data->win_ptr, &handle_esc, data);
 	mlx_hook(data->win_ptr, 17, 0, &handle_x, data);
-	mlx_loop_hook(data->mlx_ptr, &handle_render, (void *)data);
-	// mlx_loop_hook(data->mlx_ptr, &debug, (void *)data); // Função que verifica se o tester ja enviou o sinal SIGTERM
+	mlx_loop_hook(data->mlx_ptr, &handle_render, (void *)data); // dessa forma dá pra fechar antes de renderizar tudo
 	mlx_loop(data->mlx_ptr);
 }

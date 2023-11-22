@@ -6,7 +6,7 @@
 #    By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/20 18:26:17 by gde-mora          #+#    #+#              #
-#    Updated: 2023/11/22 14:29:32 by gsmereka         ###   ########.fr        #
+#    Updated: 2023/11/22 18:50:16 by gsmereka         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -148,9 +148,6 @@ fclean: clean
 	$(RM) $(LIBFT_A)
 	make ascii_draw_fclean
 
-# 	Limpa o tester.
-	cd test && rm -f vgcore.* && ./test.sh clean
-
 
 re: fclean all
 
@@ -178,9 +175,5 @@ run: $(NAME)
 
 valgrind: $(NAME)
 	clear && valgrind  --leak-check=full --show-leak-kinds=all --track-origins=yes ./miniRT $(RT_FILE)
-
-# Executa o tester.
-test: $(NAME)s
-	clear && cd test && ./test.sh
 
 .PHONY: all clean fclean re create_obj_dir git ascii_draw ascii_draw_fclean valgrind test run

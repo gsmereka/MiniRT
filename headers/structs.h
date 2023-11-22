@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 13:09:51 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/11/04 16:23:27 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/11/22 18:46:48 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,6 @@ typedef struct s_data
 	int			has_camera;
 	int			has_light;
 	int			has_ambient_lighting;
-	int										debug_exit; //Enqunto fazemos os testes
 	t_camera	*camera;
 	t_scene		*scene;
 	int			test;

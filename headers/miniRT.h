@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 20:17:31 by gde-mora          #+#    #+#             */
-/*   Updated: 2023/11/22 16:02:16 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/11/22 18:41:20 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,5 @@ void		get_scene_info(t_token *tokens, t_data *data);
 // exit and utils
 int			exit_error(char *msg, int status, t_data *data);
 int			exit_successful(t_data *data);
-
-// TESTE COM VERSÃO DO PYTHON
-void	define_scene(t_data *data); // TESTE
 
 #endif
