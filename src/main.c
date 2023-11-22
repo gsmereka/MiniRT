@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 20:16:42 by gde-mora          #+#    #+#             */
-/*   Updated: 2023/11/22 18:52:58 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/11/22 19:08:33 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@ void	print_matrix(t_matrix *matrix_struct) // Retirar depois
 	int		j;
 
 	i = 0;
-	printf("linhas e colunas: %d, %d\n", matrix_struct->rows, matrix_struct->cols);
+	printf("linhas e colunas: %d, %d\n",
+		matrix_struct->rows, matrix_struct->cols);
 	while (i < matrix_struct->rows)
 	{
 		j = 0;
@@ -47,7 +48,7 @@ int	main(int argc, char **argv)
 {
 	t_data	data;
 
-  	data = (t_data){0};
+	data = (t_data){0};
 	init_idmatrices(&data);
 	ft_printf("Iniciando\n");
 	validate_scene_file(argc, argv, &data);

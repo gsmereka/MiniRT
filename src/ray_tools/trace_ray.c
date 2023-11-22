@@ -28,7 +28,7 @@ t_color	trace_ray(t_scene *scene, t_ray *object_ray, t_ray *light_ray)
 				light_intensity);
 	}
 	else
-		ray_color = scene->background;
+		ray_color = scene->background_color;
 	free(object_hit);
 	return (ray_color);
 }

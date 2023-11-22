@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 13:09:51 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/11/22 18:46:48 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/11/22 19:16:20 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,18 +32,16 @@ typedef struct s_tuple
 
 typedef struct s_token
 {
-	int				id;
-	int				size;
 	char			**args;
 	int				type;
 	struct s_tuple	coordinate;
 	struct s_tuple	normalized_vector;
 	struct s_color	color;
 	double			diameter;
+	double			ratio;
 	double			height;
 	double			brightness;
 	int				fov;
-	double			ratio;
 	struct s_token	*next;
 }	t_token;
 
@@ -73,7 +71,7 @@ typedef struct s_camera
 	t_tuple		up;
 	t_tuple		front;
 	double		fov;
-}  t_camera;
+}	t_camera;
 
 typedef struct s_hit
 {
@@ -87,12 +85,10 @@ typedef struct s_scene
 {
 	t_ray			*object_ray;
 	t_ray			*light_ray;
-	t_color			background;
+	t_color			background_color;
 	double			ambient_light;
-	int				luzes_a_definir; // numero a definir;
-	int				objetos_a_definir; // numero a definir
-	t_token			**lights; // numero a definir
-	t_token			**objects; // numero a definir		
+	t_token			**lights;
+	t_token			**objects;
 }	t_scene;
 
 typedef struct s_data
@@ -114,6 +110,8 @@ typedef struct s_data
 	int			has_camera;
 	int			has_light;
 	int			has_ambient_lighting;
+	int			lights_size;
+	int			objects_size;
 	t_camera	*camera;
 	t_scene		*scene;
 	int			test;
