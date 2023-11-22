@@ -24,7 +24,8 @@ t_color	trace_ray(t_scene *scene, t_ray *object_ray, t_ray *light_ray)
 	if (object_hit)
 	{
 		light_intensity = trace_ilumination(scene, object_hit, light_ray);
-		ray_color = multiply_color_scalar(&object_hit->object->color, light_intensity);
+		ray_color = multiply_color_scalar(&object_hit->object->color,
+				light_intensity);
 	}
 	else
 		ray_color = scene->background;
@@ -38,7 +39,11 @@ double	trace_ilumination(t_scene *scene, t_hit *object_hit, t_ray *light_ray)
 	double	light_intensity;
 	t_tuple	light_ray_direction;
 	t_hit	*light_hit;
+	static int	g;
 
+	if (!g)
+		printf("trace_ray.c - scene->ambient_light '%f'\n", scene->ambient_light);
+	g++;
 	light_intensity = scene->ambient_light;
 	i = 0;
 	while (scene->lights[i])

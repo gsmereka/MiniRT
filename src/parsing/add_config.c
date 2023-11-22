@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 12:41:28 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/08/08 18:40:15 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/11/22 18:28:24 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,9 @@ int	add_ambient_lighting(t_token *token, t_data *data)
 	token->type = AMBIENT_LIGHTING;
 	data->has_ambient_lighting = 1;
 	token->ratio = atod(token->args[1]);
+	printf("add_config.c token->args[1] '%s'\n", token->args[1]);
+	printf("problemas no atod.c\n");
+	token->brightness = atod(token->args[1]);
 	color = ft_split(token->args[2], ',');
 	if (!color)
 		exit_error("Error\nFail at split on add_ambient_lighting()\n", 2, data);

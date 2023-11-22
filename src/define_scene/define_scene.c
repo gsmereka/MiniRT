@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 15:42:37 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/11/22 12:30:59 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/11/22 18:38:42 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ void	trocar_lista_original_pela_versao_python(t_data *data)
 	adicionar_esfera(&data->tokens, &(t_tuple){-3.1, 1.4, 0.06, 0}, 1.4, &(t_color){128, 117, 255});
 	adicionar_esfera(&data->tokens, &(t_tuple){-4.2, 5.4, 4.2, 0}, 1.9, &(t_color){83, 221, 108});
 	adicionar_esfera(&data->tokens, &(t_tuple){0, -1000000, 0, 0}, 1000000, &(t_color){234, 234, 234});
-	adicionar_luz(&data->tokens, &(t_tuple){-1.3, 8.4, 0}, 20);
+	adicionar_luz(&data->tokens, &(t_tuple){-1.3, 8.4, 0}, 1);
 }
 
 void	define_objects(t_scene **scene, t_data *data)
@@ -111,29 +111,29 @@ void	define_objects(t_scene **scene, t_data *data)
 	{
 		if (aux->type == 1 || aux->type == 2 || aux->type == 3)
 		{
-			// printf("aaaaaa\n");
-			// print_tuple(&aux->coordinate);
 			(*scene)->objects[objects] = aux;
 			objects++;
 		}
 		else if (aux->type == 4)
 		{
-			// pass_tuple_values(&aux->coordinate, &(t_tuple){0.0, 5.0, -8.0, 1});
-			// pass_tuple_values(&aux->normalized_vector, &(t_tuple){-10, 5, 0, 0});
-			// data->test = 1;
+			printf("Passando coordenadas python\n");
+			pass_tuple_values(&aux->coordinate, &(t_tuple){0.0, 5.0, -8.0, 1});
+			pass_tuple_values(&aux->normalized_vector, &(t_tuple){-10, 5, 0, 0});
 			data->camera = init_camera(aux, data);
-			print_tuple(&aux->coordinate);
-			print_tuple(&aux->normalized_vector);
+			// print_tuple(&aux->coordinate);
+			// print_tuple(&aux->normalized_vector);
 		}
 		else if (aux->type == 5)
 		{
+			aux->coordinate.w = 1;
 			(*scene)->lights[lights] = aux;
 			lights++;
 		}
 		else if (aux->type == 6)
 		{
 			// (*scene)->background = aux->color;
-			(*scene)->ambient_light = aux->brightness;
+			(*scene)->ambient_light = aux->ratio;
+			printf("define_scene.c ambient_light->ratio '%f'\n", aux->ratio);
 		}
 		aux = aux->next;
 	}
@@ -145,9 +145,10 @@ void	define_scene(t_data *data)
 
 	data->win_width = 800;
 	data->win_height = 600;
-	adicionar_luz(&data->tokens, &(t_tuple){-1.3, 8.4, 0}, 20);
-	// trocar_lista_original_pela_versao_python(data);
-	scene = create_scene(&(t_color){26, 27, 33}, 0.12);
+	// adicionar_luz(&data->tokens, &(t_tuple){-1.3, 8.4, 0}, 20);
+	data->test = 1;
+	trocar_lista_original_pela_versao_python(data);
+	scene = create_scene(&(t_color){26, 27, 33}, 0.9);
 	if (!scene)
 		exit_error("Error at create scene\n", 4, data);
 	scene->luzes_a_definir = 5; // numero a definir;
@@ -156,5 +157,4 @@ void	define_scene(t_data *data)
 	scene->objects = (t_token **)ft_calloc(scene->objetos_a_definir + 1, sizeof(t_token *));
 	define_objects(&scene, data);
 	data->scene = scene;
-	printf("%d %d %d\n", scene->background.r, scene->background.g, scene->background.b);
 }

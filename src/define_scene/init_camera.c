@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 17:37:31 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/11/21 17:38:04 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/11/22 18:21:49 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,13 +58,14 @@ t_camera	*init_camera(t_token *token, t_data *data)
 	camera->height = data->win_height;
 	if (data->test)
 	{
+		printf("Caindo aqui init_camera.c - set_camera - test=1\n");
 		camera->radians_vector.x = degrees_to_radians(token->normalized_vector.x);
 		camera->radians_vector.y = degrees_to_radians(token->normalized_vector.y);
 		camera->radians_vector.z = degrees_to_radians(token->normalized_vector.z);
 	}
 	else
 	{
-		printf("Caindo aqui define_scene.c - set_camera\n");
+		printf("Caindo aqui init_camera.c - set_camera - test=0\n");
 		camera->radians_vector.x = vector_to_radians(token->normalized_vector.x);
 		camera->radians_vector.y = vector_to_radians(token->normalized_vector.y);
 		camera->radians_vector.z = vector_to_radians(token->normalized_vector.z);
