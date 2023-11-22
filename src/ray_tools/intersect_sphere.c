@@ -6,11 +6,11 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 19:09:29 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/11/04 14:59:31 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/11/22 14:28:22 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../headers/miniRT.h"
+#include "../../headers/miniRT.h"
 
 static double	calculate_distance(t_token *sphere, t_ray *ray);
 static double	calculate_discriminant(t_intersect *intersect,

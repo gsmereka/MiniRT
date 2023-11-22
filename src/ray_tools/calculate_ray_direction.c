@@ -6,11 +6,11 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 15:21:55 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/11/04 15:22:19 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/11/22 14:28:22 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../headers/miniRT.h"
+#include "../../headers/miniRT.h"
 
 void	calculate_direction(t_ray *ray,
 	t_camera *camera, double j, double i)

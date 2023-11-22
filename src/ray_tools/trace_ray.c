@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../headers/miniRT.h"
+#include "../../headers/miniRT.h"
 
 double	trace_ilumination(t_scene *scene, t_hit *object_hit, t_ray *light_ray);
 
@@ -49,7 +49,7 @@ double	trace_ilumination(t_scene *scene, t_hit *object_hit, t_ray *light_ray)
 			&scene->lights[i]->coordinate, &light_ray_direction);
 		light_hit = closest_hit(scene, light_ray);
 		if (light_hit && light_hit->object == object_hit->object)
-			light_intensity += LIGHT_at(scene->lights[i], object_hit);
+			light_intensity += light_at(scene->lights[i], object_hit);
 		i++;
 		free(light_hit);
 	}

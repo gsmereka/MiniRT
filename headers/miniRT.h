@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 20:17:31 by gde-mora          #+#    #+#             */
-/*   Updated: 2023/11/04 15:48:26 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/11/22 14:29:13 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@
 # include "./colors.h"
 # include "./structs.h"
 # include "../src/define_scene/define_scene.h"
-# include "../src/render/ray_tools/ray.h"
+# include "../src/ray_tools/ray.h"
 # include "../src/matrix_tools/matrix_tools.h"
 # include "../src/matrix_transformations/matrix_transformations.h"
 # include "../src/parsing/parsing.h"

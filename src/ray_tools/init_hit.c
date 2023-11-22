@@ -1,36 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   closest_hit.c                                      :+:      :+:    :+:   */
+/*   init_hit.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/31 23:04:48 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/11/04 16:30:41 by gsmereka         ###   ########.fr       */
+/*   Created: 2023/11/04 14:57:29 by gsmereka          #+#    #+#             */
+/*   Updated: 2023/11/22 14:28:22 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../headers/miniRT.h"
+#include "../../headers/miniRT.h"
 
-t_hit	*closest_hit(t_scene *scene, t_ray *ray)
+t_hit	*init_hit(t_token *object,
+		t_tuple *normal, double distance, t_tuple *position)
 {
 	t_hit	*hit;
-	t_hit	*closest_hit;
-	int		i;
 
-	i = 0;
-	closest_hit = NULL;
-	while (scene->objects[i])
-	{
-		hit = intersect_sphere(scene->objects[i], ray);
-		if (hit && (!closest_hit || hit->distance < closest_hit->distance))
-		{
-			free(closest_hit);
-			closest_hit = hit;
-		}
-		else if (hit)
-			free(hit);
-		i++;
-	}
-	return (closest_hit);
+	hit = ft_calloc(1, sizeof(t_hit));
+	pass_tuple_values(&hit->position, position);
+	pass_tuple_values(&hit->normal, normal);
+	hit->object = object;
+	hit->distance = distance;
+	return (hit);
 }
