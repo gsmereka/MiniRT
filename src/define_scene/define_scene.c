@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 15:42:37 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/11/22 19:52:06 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/11/23 16:42:16 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,9 +134,10 @@ void	define_objects(t_scene **scene, t_data *data)
 		}
 		else if (aux->type == 4)
 		{
-			printf("Passando coordenadas python\n");
-			pass_tuple_values(&aux->coordinate, &(t_tuple){0.0, 5.0, -8.0, 1});
-			pass_tuple_values(&aux->normalized_vector, &(t_tuple){-10, 5, 0, 0});
+			// printf("Passando coordenadas python\n");
+			// pass_tuple_values(&aux->coordinate, &(t_tuple){0.0, 5.0, -8.0, 1});
+			// pass_tuple_values(&aux->normalized_vector, &(t_tuple){-10, 5, 0, 0});
+			// data->test = 1;
 			data->camera = init_camera(aux, data);
 		}
 		else if (aux->type == 5)
@@ -159,8 +160,7 @@ void	define_scene(t_data *data)
 
 	data->win_width = 800;
 	data->win_height = 600;
-	data->test = 1;
-	trocar_lista_original_pela_versao_python(data);
+	// trocar_lista_original_pela_versao_python(data);
 	scene = create_scene(data->lights_size, data->objects_size);
 	if (!scene)
 		exit_error("Error at create scene\n", 4, data);

@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 12:41:28 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/11/22 18:28:24 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/11/23 16:46:29 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ int	add_light(t_token *token, t_data *data)
 	free_array((void **)coordinates);
 	//token->normalized_vector.x = normalize(coordinates[0]);
 	token->brightness = atod(token->args[2]);
+	data->lights_size++;
 	return (0);
 }
 
