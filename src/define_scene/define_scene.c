@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 15:42:37 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/11/22 19:47:22 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/11/22 19:52:06 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	adicionar_luz(t_token **list, t_tuple *coordinate, double brightness)
 	while (aux && aux->next)
 		aux = aux->next;
 	luz = ft_calloc(1, sizeof(t_token));
-	luz->type = 6;
+	luz->type = 5;
 	luz->brightness = brightness;
 	pass_tuple_values(&luz->coordinate, coordinate);
 	luz->coordinate.w = 1;
@@ -81,7 +81,7 @@ void	adicionar_luz_ambiente(t_token **list, t_color *color, double brightness) /
 	while (aux && aux->next)
 		aux = aux->next;
 	luz = ft_calloc(1, sizeof(t_token));
-	luz->type = 5;
+	luz->type = 6;
 	luz->brightness = brightness;
 	luz->color.r = color->r;
 	luz->color.g = color->g;
@@ -112,8 +112,8 @@ void	trocar_lista_original_pela_versao_python(t_data *data)
 	adicionar_esfera(&data->tokens, &(t_tuple){-3.1, 1.4, 0.06, 0}, 1.4, &(t_color){128, 117, 255});
 	adicionar_esfera(&data->tokens, &(t_tuple){-4.2, 5.4, 4.2, 0}, 1.9, &(t_color){83, 221, 108});
 	adicionar_esfera(&data->tokens, &(t_tuple){0, -1000000, 0, 0}, 1000000, &(t_color){234, 234, 234});
-	adicionar_luz(&data->tokens, &(t_tuple){-1.3, 8.4, 0}, 1);
-	adicionar_luz_ambiente(&data->tokens, &(t_color){26, 27, 33}, 0.9);
+	adicionar_luz(&data->tokens, &(t_tuple){-1.3, 8.4, 0}, 20);
+	adicionar_luz_ambiente(&data->tokens, &(t_color){26, 27, 33}, 0.2);
 }
 
 void	define_objects(t_scene **scene, t_data *data)
