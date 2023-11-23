@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 15:42:37 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/11/23 16:42:16 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/11/23 18:44:17 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,12 +51,12 @@ void	adicionar_esfera(t_token **list, t_tuple *center, double raio, t_color *col
 	esfera->color.r = color->r;
 	esfera->color.g = color->g;
 	esfera->color.b = color->b;
-	esfera->ratio = raio;
+	esfera->diameter = raio * 2;
 	esfera->type = SPHERE;
 	aux->next = esfera;
 }
 
-void	adicionar_luz(t_token **list, t_tuple *coordinate, double brightness)
+void	adicionar_luz(t_token **list, t_tuple *coordinate, double lighting_ratio)
 {
 	t_token *luz;
 	t_token	*aux;
@@ -66,13 +66,13 @@ void	adicionar_luz(t_token **list, t_tuple *coordinate, double brightness)
 		aux = aux->next;
 	luz = ft_calloc(1, sizeof(t_token));
 	luz->type = 5;
-	luz->brightness = brightness;
+	luz->lighting_ratio = lighting_ratio;
 	pass_tuple_values(&luz->coordinate, coordinate);
 	luz->coordinate.w = 1;
 	aux->next = luz;
 }
 
-void	adicionar_luz_ambiente(t_token **list, t_color *color, double brightness) // remover depois
+void	adicionar_luz_ambiente(t_token **list, t_color *color, double lighting_ratio) // remover depois
 {
 	t_token	*luz;
 	t_token	*aux;
@@ -82,7 +82,7 @@ void	adicionar_luz_ambiente(t_token **list, t_color *color, double brightness) /
 		aux = aux->next;
 	luz = ft_calloc(1, sizeof(t_token));
 	luz->type = 6;
-	luz->brightness = brightness;
+	luz->lighting_ratio = lighting_ratio;
 	luz->color.r = color->r;
 	luz->color.g = color->g;
 	luz->color.b = color->b;
@@ -103,7 +103,7 @@ void	trocar_lista_original_pela_versao_python(t_data *data)
 	if (!camera_token)
 		exit_error("Error at create scene\n", 4, data);
 	pass_tuple_values(&camera_token->coordinate, &(t_tuple){0.0, 5.0, -8.0, 1});
-	pass_tuple_values(&camera_token->normalized_vector, &(t_tuple){-10, 5, 0, 0});
+	pass_tuple_values(&camera_token->normalized_3d_direction, &(t_tuple){-10, 5, 0, 0});
 	camera_token->type = CAMERA;
 	data->tokens = camera_token;
 	adicionar_esfera(&data->tokens, &(t_tuple){0, 0, 20, 0}, 4, &(t_color){255, 125, 125});
@@ -136,7 +136,7 @@ void	define_objects(t_scene **scene, t_data *data)
 		{
 			// printf("Passando coordenadas python\n");
 			// pass_tuple_values(&aux->coordinate, &(t_tuple){0.0, 5.0, -8.0, 1});
-			// pass_tuple_values(&aux->normalized_vector, &(t_tuple){-10, 5, 0, 0});
+			// pass_tuple_values(&aux->normalized_3d_direction, &(t_tuple){-10, 5, 0, 0});
 			// data->test = 1;
 			data->camera = init_camera(aux, data);
 		}
@@ -148,7 +148,7 @@ void	define_objects(t_scene **scene, t_data *data)
 		else if (aux->type == 6)
 		{
 			(*scene)->background_color = aux->color;
-			(*scene)->ambient_light = aux->brightness;
+			(*scene)->ambient_light = aux->lighting_ratio;
 		}
 		aux = aux->next;
 	}
@@ -160,7 +160,7 @@ void	define_scene(t_data *data)
 
 	data->win_width = 800;
 	data->win_height = 600;
-	// trocar_lista_original_pela_versao_python(data);
+	trocar_lista_original_pela_versao_python(data);
 	scene = create_scene(data->lights_size, data->objects_size);
 	if (!scene)
 		exit_error("Error at create scene\n", 4, data);

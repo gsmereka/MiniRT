@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 11:57:21 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/11/21 15:55:55 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/11/23 18:44:17 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	is_plane(char **args, t_data *data)
 			exit_error(PLANE_ERROR, 2, data);
 		if (!is_coordinate(args[1]))
 			exit_error(PLANE_COORDINATE_ERROR, 2, data);
-		if (!is_normalized_vector(args[2]))
+		if (!is_normalized_3d_direction(args[2]))
 			exit_error(PLANE_3D_NORMALIZED_VECTOR_ERROR, 2, data);
 		if (!is_color(args[2]))
 			exit_error(PLANE_COLOR_ERROR, 2, data);
@@ -75,7 +75,7 @@ int	is_cylinder(char **args, t_data *data)
 		exit_error(CYLINDER_ERROR, 2, data);
 	if (!is_coordinate(args[1]))
 		exit_error(CYLINDER_COORDINATE_ERROR, 2, data);
-	if (!is_normalized_vector(args[2]))
+	if (!is_normalized_3d_direction(args[2]))
 		exit_error(CYLINDER_3D_NORMALIZED_VECTOR_ERROR, 2, data);
 	if (atod(args[3]) <= 0)
 		exit_error(CYLINDER_DIAMETER_ERROR, 2, data);

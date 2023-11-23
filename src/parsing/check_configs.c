@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_configs.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gde-mora <gde-mora@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 11:57:27 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/07/06 21:37:00 by gde-mora         ###   ########.fr       */
+/*   Updated: 2023/11/23 18:44:17 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	is_ambient_lighting(char **args, t_data *data)
 {
 	static int	paramenter_count;
 	int			i;
-	float		ratio;
+	float		lighting_ratio;
 
 	if (paramenter_count != 0 && ft_strcmp(args[0], "A") == 0)
 		exit_error(REPEATED, 2, data);
@@ -28,8 +28,8 @@ int	is_ambient_lighting(char **args, t_data *data)
 			i++;
 		if (i != 3)
 			exit_error(AMBIENT_ERROR, 2, data);
-		ratio = atod(args[1]);
-		if (ratio < 0 || ratio > 1)
+		lighting_ratio = atod(args[1]);
+		if (lighting_ratio < 0 || lighting_ratio > 1)
 			exit_error(AMBIENT_RATIO_ERROR, 2, data);
 		if (!is_color(args[2]))
 			exit_error(AMBIENT_COLOR_ERROR, 2, data);
@@ -56,7 +56,7 @@ int	is_camera(char **args, t_data *data)
 			exit_error(CAMERA_ERROR, 2, data);
 		if (!is_coordinate(args[1]))
 			exit_error(CAMERA_COORDINATE_ERROR, 2, data);
-		if (!is_normalized_vector(args[2]))
+		if (!is_normalized_3d_direction(args[2]))
 			exit_error(CAMERA_3D_NORMALIZED_VECTOR_ERROR, 2, data);
 		fov = atod(args[3]);
 		if (fov < 0 || fov > 180)
@@ -69,7 +69,7 @@ int	is_camera(char **args, t_data *data)
 int	is_light(char **args, t_data *data)
 {
 	int		i;
-	double	brightness;
+	double	lighting_ratio;
 
 	i = 0;
 	if (args && ft_strcmp(args[0], "L") == 0)
@@ -80,9 +80,9 @@ int	is_light(char **args, t_data *data)
 			exit_error(LIGHT_ERROR, 2, data);
 		if (!is_coordinate(args[1]))
 			exit_error(LIGHT_COORDINATE_ERROR, 2, data);
-		brightness = atod(args[2]);
-		if (brightness < 0 || brightness > 1)
-			exit_error(LIGHT_BRIGHTNESS_ERROR, 2, data);
+		lighting_ratio = atod(args[2]);
+		if (lighting_ratio < 0 || lighting_ratio > 1)
+			exit_error(LIGHT_LIGHTING_RATIO_ERROR, 2, data);
 		return (1);
 	}
 	return (0);

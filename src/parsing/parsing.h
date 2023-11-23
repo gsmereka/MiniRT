@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/23 01:23:16 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/09/23 01:33:08 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/11/23 18:44:17 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int			is_resolution(char **args, t_data *data);
 
 // check_utils
 int			is_coordinate(char *arg);
-int			is_normalized_vector(char *arg);
+int			is_normalized_3d_direction(char *arg);
 int			is_color(char *arg);
 
 // add shape

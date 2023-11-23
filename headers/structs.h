@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 13:09:51 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/11/22 19:16:20 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/11/23 18:44:17 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,11 @@ typedef struct s_token
 	char			**args;
 	int				type;
 	struct s_tuple	coordinate;
-	struct s_tuple	normalized_vector;
+	struct s_tuple	normalized_3d_direction;
 	struct s_color	color;
 	double			diameter;
-	double			ratio;
+	double			lighting_ratio;
 	double			height;
-	double			brightness;
 	int				fov;
 	struct s_token	*next;
 }	t_token;

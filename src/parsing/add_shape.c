@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 12:42:10 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/11/23 16:45:40 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/11/23 18:44:17 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	add_plane(t_token *token, t_data *data)
 {
 	token->type = PLANE;
 	set_tuple(token->args[1], &token->coordinate, data);
-	set_tuple(token->args[2], &token->normalized_vector, data);
+	set_tuple(token->args[2], &token->normalized_3d_direction, data);
 	set_color(token->args[3], &token->color, data);
 	data->objects_size++;
 	return (0);
@@ -30,7 +30,6 @@ int	add_sphere(t_token *token, t_data *data)
 	token->type = SPHERE;
 	set_tuple(token->args[1], &token->coordinate, data);
 	token->coordinate.w = 1;
-	token->ratio = atod(token->args[2]); // ratio ou diameter ?
 	token->diameter = atod(token->args[2]);
 	set_color(token->args[3], &token->color, data);
 	data->objects_size++;
@@ -41,7 +40,7 @@ int	add_cylinder(t_token *token, t_data *data)
 {
 	token->type = CYLINDER;
 	set_tuple(token->args[1], &token->coordinate, data);
-	set_tuple(token->args[2], &token->normalized_vector, data);
+	set_tuple(token->args[2], &token->normalized_3d_direction, data);
 	token->diameter = atod(token->args[3]);
 	token->height = atod(token->args[4]);
 	set_color(token->args[5], &token->color, data);

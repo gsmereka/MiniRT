@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 23:00:06 by gde-mora          #+#    #+#             */
-/*   Updated: 2023/11/22 18:29:53 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/11/23 18:05:02 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ double	aux_fractional_part(double result, const char *str, int i)
 	double	fractional;
 
 	fractional = 0.1;
-	if (str[i] == '.') // quando o primeiro numero é 0 dá ruim (0.1, 0.2 etc...)
+	if (str[i] == '.')
 	{
 		i++;
 		while (str[i] >= '0' && str[i] <= '9')

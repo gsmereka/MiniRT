@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 19:09:29 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/11/22 14:28:22 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/11/23 18:11:09 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ double	calculate_discriminant(t_intersect *intersect,
 	distance_to_center = subtract_tuples(&ray->origin, &sphere_center);
 	intersect->b = dot_product(&ray->direction, &distance_to_center) * 2.0;
 	intersect->c = dot_product(&distance_to_center,
-			&distance_to_center) - (sphere->ratio * sphere->ratio);
+			&distance_to_center) - ((sphere->diameter / 2) * (sphere->diameter / 2));
 	d = (intersect->b * intersect->b) - (4 * intersect->a * intersect->c);
 	return (d);
 }

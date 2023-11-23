@@ -6,14 +6,14 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 01:07:45 by gde-mora          #+#    #+#             */
-/*   Updated: 2023/07/06 22:04:25 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/11/23 18:44:17 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/miniRT.h"
 
 int	is_coordinate(char *arg);
-int	is_normalized_vector(char *arg);
+int	is_normalized_3d_direction(char *arg);
 int	is_color(char *arg);
 
 int	is_coordinate(char *arg)
@@ -36,7 +36,7 @@ int	is_coordinate(char *arg)
 	return (1);
 }
 
-int	is_normalized_vector(char *arg)
+int	is_normalized_3d_direction(char *arg)
 {
 	char	**vector;
 	int		index;
@@ -49,7 +49,7 @@ int	is_normalized_vector(char *arg)
 	while (vector[index])
 	{
 		value = atod(vector[index]);
-		if (value < 0 || value > 1)
+		if (value < -1 || value > 1)
 		{
 			free_array((void **)vector);
 			return (0);

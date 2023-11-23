@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 12:41:28 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/11/23 16:46:29 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/11/23 18:44:17 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,7 @@ int	add_ambient_lighting(t_token *token, t_data *data)
 
 	token->type = AMBIENT_LIGHTING;
 	data->has_ambient_lighting = 1;
-	token->ratio = atod(token->args[1]);
-	printf("add_config.c token->args[1] '%s'\n", token->args[1]);
-	printf("problemas no atod.c\n");
-	token->brightness = atod(token->args[1]);
+	token->lighting_ratio = atod(token->args[1]);
 	color = ft_split(token->args[2], ',');
 	if (!color)
 		exit_error("Error\nFail at split on add_ambient_lighting()\n", 2, data);
@@ -45,8 +42,8 @@ int	add_light(t_token *token, t_data *data)
 	token->coordinate.y = atod(coordinates[1]);
 	token->coordinate.z = atod(coordinates[2]);
 	free_array((void **)coordinates);
-	//token->normalized_vector.x = normalize(coordinates[0]);
-	token->brightness = atod(token->args[2]);
+	//token->normalized_3d_direction.x = normalize(coordinates[0]);
+	token->lighting_ratio = atod(token->args[2]);
 	data->lights_size++;
 	return (0);
 }
@@ -54,7 +51,7 @@ int	add_light(t_token *token, t_data *data)
 int	add_camera(t_token *token, t_data *data)
 {
 	char	**coordinates;
-	char	**normalized_vector;
+	char	**normalized_3d_direction;
 
 	token->type = CAMERA;
 	data->has_camera = 1;
@@ -65,13 +62,13 @@ int	add_camera(t_token *token, t_data *data)
 	token->coordinate.y = atod(coordinates[1]);
 	token->coordinate.z = atod(coordinates[2]);
 	free_array((void **)coordinates);
-	normalized_vector = ft_split(token->args[2], ',');
-	if (!normalized_vector)
+	normalized_3d_direction = ft_split(token->args[2], ',');
+	if (!normalized_3d_direction)
 		exit_error("Error\nFail at split on add_camera()\n", 2, data);
-	token->normalized_vector.x = atod(normalized_vector[0]);
-	token->normalized_vector.y = atod(normalized_vector[1]);
-	token->normalized_vector.z = atod(normalized_vector[2]);
-	free_array((void **)normalized_vector);
+	token->normalized_3d_direction.x = atod(normalized_3d_direction[0]);
+	token->normalized_3d_direction.y = atod(normalized_3d_direction[1]);
+	token->normalized_3d_direction.z = atod(normalized_3d_direction[2]);
+	free_array((void **)normalized_3d_direction);
 	return (1);
 }
 

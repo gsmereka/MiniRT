@@ -39,11 +39,7 @@ double	trace_ilumination(t_scene *scene, t_hit *object_hit, t_ray *light_ray)
 	double	light_intensity;
 	t_tuple	light_ray_direction;
 	t_hit	*light_hit;
-	static int	g;
 
-	if (!g)
-		printf("trace_ray.c - scene->ambient_light '%f'\n", scene->ambient_light);
-	g++;
 	light_intensity = scene->ambient_light;
 	i = 0;
 	while (scene->lights[i])
