@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 17:37:31 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/11/23 18:44:17 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/12/01 18:30:13 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,18 +31,6 @@ t_tuple	multiply_tuple_by_matrix(t_tuple *tuple, t_matrix *matrix)
 	return (result);
 }
 
-double	degrees_to_radians(double degrees)
-{
-	return (degrees * M_PI / 180.0);
-}
-
-
-double	vector_to_radians(double input)
-{
-	return (atan(input));
-}
-
-
 t_camera	*init_camera(t_token *token, t_data *data)
 {
 	t_camera	*camera;
@@ -56,25 +44,14 @@ t_camera	*init_camera(t_token *token, t_data *data)
 	pass_tuple_values(&camera->center, &token->coordinate);
 	camera->width = data->win_width;
 	camera->height = data->win_height;
-	if (data->test)
-	{
-		printf("Caindo aqui init_camera.c - set_camera - test=1\n");
-		camera->radians_vector.x = degrees_to_radians(token->normalized_3d_direction.x);
-		camera->radians_vector.y = degrees_to_radians(token->normalized_3d_direction.y);
-		camera->radians_vector.z = degrees_to_radians(token->normalized_3d_direction.z);
-	}
-	else
-	{
-		printf("Caindo aqui init_camera.c - set_camera - test=0\n");
-		camera->radians_vector.x = vector_to_radians(token->normalized_3d_direction.x);
-		camera->radians_vector.y = vector_to_radians(token->normalized_3d_direction.y);
-		camera->radians_vector.z = vector_to_radians(token->normalized_3d_direction.z);
-	}
-	camera->focal_length = 0.7;
+	camera->focal_length = 1;
 	// camera->fov = token->fov;
-	rot_x = rotation_x(data, camera->radians_vector.x);
-	rot_y = rotation_y(data, camera->radians_vector.y);
-	rot_z = rotation_z(data, camera->radians_vector.z);
+	token->normalized_3d_direction.x *= (M_PI / 2); // achei esse M_PI / 2 na pura tentativa e erro
+	token->normalized_3d_direction.y *= (M_PI / 2);
+	token->normalized_3d_direction.z *= (M_PI / 2);
+	rot_x = rotation_x(data, token->normalized_3d_direction.x);
+	rot_y = rotation_y(data, token->normalized_3d_direction.y);
+	rot_z = rotation_z(data, token->normalized_3d_direction.z);
 	camera->direction = multiply_matrices(&rot_x, &rot_y);
 	camera->direction = multiply_matrices(&rot_z, &camera->direction);
 	camera->right = multiply_tuple_by_matrix(&(t_tuple){1, 0, 0, 1}, &camera->direction);
