@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 23:18:50 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/11/23 18:34:06 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/12/04 19:51:42 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ double	light_at(t_token *light, t_hit *hit)
 	distance = tuple_magnitude(&direction);
 	normalize_tuple(&direction);
 	cos_light_incidence = dot_product(&direction, &hit->normal);
-	ilumination = light->lighting_ratio
+	ilumination = light->lighting_ratio * 20 // Precisamos rever esse numero ? Sera que esta certo ?
 		* (cos_light_incidence / (distance * distance));
 	return (ilumination);
 }

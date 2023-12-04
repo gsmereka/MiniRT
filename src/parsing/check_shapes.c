@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 11:57:21 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/11/23 18:44:17 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/12/04 19:57:51 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	is_sphere(char **args, t_data *data)
 			exit_error(SPHERE_ERROR, 2, data);
 		if (!is_coordinate(args[1]))
 			exit_error(SPHERE_COORDINATE_ERROR, 2, data);
-		diameter = atod(args[2]);
+		diameter = 2 * atod(args[2]);
 		if (diameter <= 0)
 		{
 			printf("diametro %f %s %s %s\n", diameter, args[1], args[2], args[3]);

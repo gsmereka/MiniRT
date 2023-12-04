@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 15:42:37 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/12/01 17:50:59 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/12/04 20:08:07 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,6 @@ void	trocar_lista_original_pela_versao_python(t_data *data)
 
 	data->lights_size = 5;
 	data->objects_size = 12;
-	data->test = 1;
 	data->win_width = 800;
 	data->win_height = 600;
 	token_clear(&data->tokens);
@@ -103,16 +102,16 @@ void	trocar_lista_original_pela_versao_python(t_data *data)
 	if (!camera_token)
 		exit_error("Error at create scene\n", 4, data);
 	pass_tuple_values(&camera_token->coordinate, &(t_tuple){0.0, 5.0, -8.0, 1});
-	pass_tuple_values(&camera_token->normalized_3d_direction, &(t_tuple){-10, 5, 0, 0});
+	pass_tuple_values(&camera_token->normalized_3d_direction, &(t_tuple){0, 0, 0, 1});
 	camera_token->type = CAMERA;
 	data->tokens = camera_token;
 	adicionar_esfera(&data->tokens, &(t_tuple){0, 0, 20, 0}, 4, &(t_color){255, 125, 125});
 	adicionar_esfera(&data->tokens, &(t_tuple){2.5, 2.8, 5.15, 0}, 2.8, &(t_color){83, 221, 108});
-	adicionar_esfera(&data->tokens, &(t_tuple){0.6, 5.6, 3.6, 0}, 1.5, &(t_color){128, 117, 255});
-	adicionar_esfera(&data->tokens, &(t_tuple){-3.1, 1.4, 0.06, 0}, 1.4, &(t_color){128, 117, 255});
-	adicionar_esfera(&data->tokens, &(t_tuple){-4.2, 5.4, 4.2, 0}, 1.9, &(t_color){83, 221, 108});
+	adicionar_esfera(&data->tokens, &(t_tuple){0.6, 5.6, 3.6, 0}, 1.2, &(t_color){128, 117, 255});
+	adicionar_esfera(&data->tokens, &(t_tuple){-3.1, 1.4, 0.06, 0}, 1.6, &(t_color){128, 117, 255});
+	adicionar_esfera(&data->tokens, &(t_tuple){-4.2, 5.4, 4.2, 0}, 1.8, &(t_color){83, 221, 108});
 	adicionar_esfera(&data->tokens, &(t_tuple){0, -1000000, 0, 0}, 1000000, &(t_color){234, 234, 234});
-	adicionar_luz(&data->tokens, &(t_tuple){-1.3, 8.4, 0}, 20);
+	adicionar_luz(&data->tokens, &(t_tuple){-1.3, 8.4, 0}, 1);
 	adicionar_luz_ambiente(&data->tokens, &(t_color){26, 27, 33}, 0.2);
 }
 
