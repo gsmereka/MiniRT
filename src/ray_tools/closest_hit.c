@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 23:04:48 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/11/22 14:28:22 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/12/04 21:28:30 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,12 @@ t_hit	*closest_hit(t_scene *scene, t_ray *ray)
 	closest_hit = NULL;
 	while (scene->objects[i])
 	{
-		hit = intersect_sphere(scene->objects[i], ray);
+		if (scene->objects[i]->type == SPHERE)
+			hit = intersect_sphere(scene->objects[i], ray);
+		else if (scene->objects[i]->type == PLANE)
+			hit = intersect_plane(scene->objects[i], ray);
+		else if (scene->objects[i]->type == CYLINDER)
+			hit = intersect_cylinder(scene->objects[i], ray);
 		if (hit && (!closest_hit || hit->distance < closest_hit->distance))
 		{
 			free(closest_hit);

@@ -6,13 +6,13 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 15:42:37 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/12/04 20:08:07 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/12/04 20:58:54 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/miniRT.h"
 
-t_scene	*create_scene(int lights_size, int objects_size)
+t_scene	*alloc_scene(int lights_size, int objects_size)
 {
 	t_scene	*scene;
 
@@ -21,8 +21,10 @@ t_scene	*create_scene(int lights_size, int objects_size)
 		return (NULL);
 	scene->object_ray = ft_calloc(1, sizeof(t_ray));
 	scene->light_ray = ft_calloc(1, sizeof(t_ray));
-	scene->lights = (t_token **)ft_calloc(lights_size + 1, sizeof(t_token *));
-	scene->objects = (t_token **)ft_calloc(objects_size + 1, sizeof(t_token *));
+	scene->lights = (t_token **)ft_calloc(lights_size
+			+ 1, sizeof(t_token *));
+	scene->objects = (t_token **)ft_calloc(objects_size
+			+ 1, sizeof(t_token *));
 	if (!scene->object_ray || !scene->object_ray
 		|| !scene->lights || !scene->objects)
 	{
@@ -132,13 +134,7 @@ void	define_objects(t_scene **scene, t_data *data)
 			objects++;
 		}
 		else if (aux->type == 4)
-		{
-			// printf("Passando coordenadas python\n");
-			// pass_tuple_values(&aux->coordinate, &(t_tuple){0.0, 5.0, -8.0, 1});
-			// pass_tuple_values(&aux->normalized_3d_direction, &(t_tuple){-10, 5, 0, 0});
-			data->test = 1;
 			data->camera = init_camera(aux, data);
-		}
 		else if (aux->type == 5)
 		{
 			(*scene)->lights[lights] = aux;
@@ -160,7 +156,7 @@ void	define_scene(t_data *data)
 	data->win_width = 800;
 	data->win_height = 600;
 	// trocar_lista_original_pela_versao_python(data);
-	scene = create_scene(data->lights_size, data->objects_size);
+	scene = alloc_scene(data->lights_size, data->objects_size);
 	if (!scene)
 		exit_error("Error at create scene\n", 4, data);
 	define_objects(&scene, data);
