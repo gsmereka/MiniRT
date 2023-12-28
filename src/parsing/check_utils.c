@@ -62,7 +62,7 @@ int	is_normalized_3d_direction(char *arg)
 	tuple.y = atod(vector[1]);
 	tuple.z = atod(vector[2]);
 	free_array((void **)vector);
-	if (1 != tuple_magnitude(&tuple))
+	if (!are_floats_equal(1, tuple_magnitude(&tuple)))
 		return(0);
 	if (index != 3)
 		return (0);

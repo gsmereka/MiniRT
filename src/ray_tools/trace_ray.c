@@ -28,12 +28,12 @@ t_color	trace_ray(t_scene *scene, t_ray *object_ray, t_ray *light_ray)
 				light_intensity);
 	}
 	else
-		ray_color = scene->background_color;
+		ray_color = multiply_color_scalar(&scene->background_color, 0);
 	free(object_hit);
 	return (ray_color);
 }
 
-double	trace_ilumination(t_scene *scene, t_hit *object_hit, t_ray *light_ray)
+double	trace_ilumination2(t_scene *scene, t_hit *object_hit, t_ray *light_ray)
 {
 	int		i;
 	double	light_intensity;
@@ -58,5 +58,30 @@ double	trace_ilumination(t_scene *scene, t_hit *object_hit, t_ray *light_ray)
 		light_intensity *= -1;
 	if (light_intensity >= 1)
 		light_intensity = 1;
+	return (light_intensity);
+}
+
+double	trace_ilumination(t_scene *scene, t_hit *object_hit, t_ray *light_ray)
+{
+	int		i;
+	double	light_intensity;
+	t_tuple	light_ray_direction;
+	t_hit	*light_hit;
+
+	light_intensity = scene->ambient_light / 5;
+	i = 0;
+	while (scene->lights[i])
+	{
+		light_ray_direction = subtract_tuples(&object_hit->position,
+				&scene->lights[i]->coordinate);
+		normalize_ray(light_ray,
+			&scene->lights[i]->coordinate, &light_ray_direction);
+		light_hit = closest_hit(scene, light_ray);
+		if (light_hit && light_hit->object == object_hit->object)
+			light_intensity += light_at(scene->lights[i], object_hit);
+		i++;
+		free(light_hit);
+	}
+	light_intensity = fmin(light_intensity, 1.0);
 	return (light_intensity);
 }
