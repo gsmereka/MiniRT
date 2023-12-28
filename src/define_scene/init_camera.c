@@ -31,6 +31,12 @@ double fov_to_focal_length(double fov)
     return focal_length;
 }
 
+double	degrees_to_radians(double degree)
+{
+	return ((degree / 180) * M_PI);
+}
+
+
 t_camera	*init_camera(t_token *token, t_data *data)
 {
 	t_camera	*camera;
@@ -45,9 +51,9 @@ t_camera	*init_camera(t_token *token, t_data *data)
 	camera->width = data->win_width;
 	camera->height = data->win_height;
 	camera->focal_length = fov_to_focal_length(token->fov);
-	token->normalized_3d_direction.x *= (M_PI / 2); // achei esse M_PI / 2 na pura tentativa e erro
-	token->normalized_3d_direction.y *= (M_PI / 2);
-	token->normalized_3d_direction.z *= (M_PI / 2);
+	token->normalized_3d_direction.x = degrees_to_radians(token->normalized_3d_direction.x);
+	token->normalized_3d_direction.y = degrees_to_radians(token->normalized_3d_direction.y);
+	token->normalized_3d_direction.z = degrees_to_radians(token->normalized_3d_direction.z);
 	rot_x = rotation_x(data, token->normalized_3d_direction.x);
 	rot_y = rotation_y(data, token->normalized_3d_direction.y);
 	rot_z = rotation_z(data, token->normalized_3d_direction.z);

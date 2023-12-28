@@ -70,12 +70,6 @@ typedef struct s_camera
 	t_tuple		up;
 	t_tuple		front;
 	double		fov;
-
-	double	half_view; // teste
-	double	aspect;
-	double	half_width;
-	double	half_height;
-	double	pixel_size;
 }	t_camera;
 
 typedef struct s_hit
@@ -119,7 +113,7 @@ typedef struct s_data
 	int			objects_size;
 	t_camera	*camera;
 	t_scene		*scene;
-	int			test;
+	int			test; // apagar depois
 }	t_data;
 
 #endif

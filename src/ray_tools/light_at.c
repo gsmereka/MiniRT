@@ -27,7 +27,7 @@ double	light_at(t_token *light, t_hit *hit)
 	distance = tuple_magnitude(&direction);
 	normalize_tuple(&direction);
 	cos_light_incidence = dot_product(&direction, &hit->normal);
-	ilumination = light->lighting_ratio * 20 // Precisamos rever esse numero ? Sera que esta certo ?
+	ilumination = light->lighting_ratio // Precisamos rever esse numero ? Sera que esta certo ?
 		* (cos_light_incidence / (distance * distance));
 	return (ilumination);
 }
