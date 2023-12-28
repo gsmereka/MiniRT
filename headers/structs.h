@@ -70,6 +70,12 @@ typedef struct s_camera
 	t_tuple		up;
 	t_tuple		front;
 	double		fov;
+
+	double	half_view; // teste
+	double	aspect;
+	double	half_width;
+	double	half_height;
+	double	pixel_size;
 }	t_camera;
 
 typedef struct s_hit
