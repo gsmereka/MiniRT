@@ -30,7 +30,7 @@ int	add_sphere(t_token *token, t_data *data)
 	token->type = SPHERE;
 	set_tuple(token->args[1], &token->coordinate, data);
 	token->coordinate.w = 1;
-	token->diameter = 2 * atod(token->args[2]);
+	token->diameter = atod(token->args[2]);
 	set_color(token->args[3], &token->color, data);
 	data->objects_size++;
 	return (0);

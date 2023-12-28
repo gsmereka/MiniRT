@@ -153,8 +153,8 @@ void	define_scene(t_data *data)
 {
 	t_scene			*scene;
 
-	data->win_width = 800;
-	data->win_height = 600;
+	data->win_width = 1000;
+	data->win_height = 700;
 	// trocar_lista_original_pela_versao_python(data);
 	scene = alloc_scene(data->lights_size, data->objects_size);
 	if (!scene)

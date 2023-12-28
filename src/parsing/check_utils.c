@@ -39,6 +39,7 @@ int	is_coordinate(char *arg)
 int	is_normalized_3d_direction(char *arg)
 {
 	char	**vector;
+	t_tuple	tuple;
 	int		index;
 	double	value;
 
@@ -56,7 +57,13 @@ int	is_normalized_3d_direction(char *arg)
 		}
 		index++;
 	}
+	tuple = (t_tuple){0};
+	tuple.x = atod(vector[0]);
+	tuple.y = atod(vector[1]);
+	tuple.z = atod(vector[2]);
 	free_array((void **)vector);
+	if (1 != tuple_magnitude(&tuple))
+		return(0);
 	if (index != 3)
 		return (0);
 	return (1);
