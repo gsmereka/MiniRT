@@ -24,8 +24,6 @@ static void	aux_render(t_data *data)
 		while (j < data->camera->width)
 		{
 			render_scene(data, i, j);
-			mlx_put_image_to_window(data->mlx_ptr,
-				data->win_ptr, data->img, 0, 0);
 			j++;
 		}
 		i++;
