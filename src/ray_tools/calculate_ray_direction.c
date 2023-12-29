@@ -16,7 +16,6 @@ void	calculate_direction(t_ray *ray,
 	t_camera *camera, double j, double i)
 {
 	t_tuple	temp;
-
 	ray->direction.x = camera->front.x * camera->focal_length;
 	ray->direction.y = camera->front.y * camera->focal_length;
 	ray->direction.z = camera->front.z * camera->focal_length;
@@ -36,16 +35,14 @@ void	calculate_direction(t_ray *ray,
 	ray->direction.y += temp.y;
 	ray->direction.z += temp.z;
 }
-
 void	calculate_ray_direction(t_ray *ray,
 	t_camera *camera, double j, double i)
 {
 	double	pixel_center_coord[2];
-
 	if (!camera)
 		return ;
 	pixel_center_coord[0] = j + 0.5;
-	pixel_center_coord[1] = camera->height - 0.5 - i; // se não a imagem fica de cabeça pra baixo
+	pixel_center_coord[1] = camera->height - 0.5 - i;
 	calculate_direction(ray, camera,
 		pixel_center_coord[0], pixel_center_coord[1]);
 	normalize_ray(ray, &camera->center, &ray->direction);

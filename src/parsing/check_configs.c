@@ -56,8 +56,8 @@ int	is_camera(char **args, t_data *data)
 			exit_error(CAMERA_ERROR, 2, data);
 		if (!is_coordinate(args[1]))
 			exit_error(CAMERA_COORDINATE_ERROR, 2, data);
-		if (!is_normalized_3d_direction(args[2]))
-			exit_error(CAMERA_3D_NORMALIZED_VECTOR_ERROR, 2, data);
+		// if (!is_normalized_3d_direction(args[2]))
+		// 	exit_error(CAMERA_3D_NORMALIZED_VECTOR_ERROR, 2, data);
 		fov = atod(args[3]);
 		if (fov < 0 || fov > 180)
 			exit_error(CAMERA_FOV_ERROR, 2, data);

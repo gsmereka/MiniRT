@@ -50,10 +50,9 @@ t_color trace_ray(t_scene *scene, t_ray *object_ray, t_ray *light_ray)
     t_hit	object_hit;
     t_color	ray_color;
     double	light_intensity;
-    t_color	ambient_color;
+    t_color ambient_color;
 
     object_hit = closest_hit(scene, object_ray);
-
     if (object_hit.hit)
     {
         light_intensity = trace_ilumination(scene, &object_hit, light_ray);
@@ -83,12 +82,12 @@ static double trace_ilumination(t_scene *scene, t_hit *object_hit, t_ray *light_
 
     while (scene->lights[i])
     {
-        light_ray_direction = subtract_tuples(&scene->lights[i]->coordinate, &object_hit->position);
+        light_ray_direction = subtract_tuples(&object_hit->position, &scene->lights[i]->coordinate);
         normalize_ray(light_ray, &scene->lights[i]->coordinate, &light_ray_direction);
 
         light_hit = closest_hit(scene, light_ray);
 
-        if (!light_hit.hit || light_hit.object != object_hit->object)
+        if (light_hit.hit && light_hit.object == object_hit->object)
         {
             light_intensity += light_at(scene->lights[i], object_hit);
         }

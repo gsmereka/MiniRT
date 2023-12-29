@@ -28,7 +28,7 @@ t_hit	closest_hit(t_scene *scene, t_ray *ray)
 			hit = intersect_plane(scene->objects[i], ray);
 		else if (scene->objects[i]->type == CYLINDER)
 			hit = intersect_cylinder(scene->objects[i], ray);
-		if (hit.hit && (!closest_hit.hit || hit.distance < closest_hit.distance))
+		if (hit.hit && (!closest_hit.hit || (hit.distance < closest_hit.distance)))
 		{
 			closest_hit = hit;
 		}
