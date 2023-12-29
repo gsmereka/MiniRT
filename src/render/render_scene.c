@@ -12,12 +12,17 @@
 
 #include "../../headers/miniRT.h"
 
+static void	print_color(t_color *color) // apagar depois
+{
+	printf("r: %f, g: %f, b: %f\n", color->r, color->g, color->b);
+}
+
 void	render_scene(t_data *data, int i, int j)
 {
 	t_color			ray_color;
 	unsigned int	pixel_color;
 
-	ray_color = (t_color){0};
+
 	calculate_ray_direction(data->scene->object_ray, data->camera, j, i);
 	ray_color = trace_ray(data->scene,
 			data->scene->object_ray, data->scene->light_ray);

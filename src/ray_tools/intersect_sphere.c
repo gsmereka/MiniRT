@@ -27,11 +27,11 @@ t_hit	intersect_sphere(t_token *sphere, t_ray *ray)
 	distance = calculate_distance(sphere, ray);
 	if (!distance)
 		return (hit);
-	hit.hit = 1;
 	hit_point = ray_position(ray, distance);
 	normal = subtract_tuples(&hit_point, &sphere->coordinate);
 	normalize_tuple(&normal);
 	hit = init_hit(sphere, &normal, distance, &hit_point);
+	hit.hit = 1;
 	return (hit);
 }
 

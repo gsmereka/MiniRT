@@ -14,11 +14,16 @@
 
 static t_color	trace_color_ilumination(t_scene *scene, t_hit *object_hit, t_ray *light_ray);
 
+static void	print_color(t_color *color) // apagar depois
+{
+	printf("r: %f, g: %f, b: %f\n", color->r, color->g, color->b);
+}
+
 t_color	trace_ray(t_scene *scene, t_ray *object_ray, t_ray *light_ray)
 {
-	t_hit			object_hit;
-	t_color			ray_color;
-	t_color			light_intensity;
+	static t_hit			object_hit;
+	static t_color			ray_color;
+	static t_color			light_intensity;
 
 	object_hit = closest_hit(scene, object_ray);
 	if (object_hit.hit)
