@@ -42,7 +42,7 @@ int	add_light(t_token *token, t_data *data)
 	token->coordinate.y = atod(coordinates[1]);
 	token->coordinate.z = atod(coordinates[2]);
 	free_array((void **)coordinates);
-	token->lighting_ratio = atod(token->args[2]) * 10;
+	token->lighting_ratio = atod(token->args[2]);
 	data->lights_size++;
 	return (0);
 }
