@@ -16,16 +16,18 @@ static double	calculate_distance(t_token *sphere, t_ray *ray);
 static double	calculate_discriminant(t_intersect *intersect,
 					t_token *sphere, t_ray *ray);
 
-t_hit	*intersect_sphere(t_token *sphere, t_ray *ray)
+t_hit	intersect_sphere(t_token *sphere, t_ray *ray)
 {
 	double		distance;
 	t_tuple		hit_point;
 	t_tuple		normal;
-	t_hit		*hit;
+	t_hit		hit;
 
+	hit = (t_hit){0};
 	distance = calculate_distance(sphere, ray);
 	if (!distance)
-		return (NULL);
+		return (hit);
+	hit.hit = 1;
 	hit_point = ray_position(ray, distance);
 	normal = subtract_tuples(&hit_point, &sphere->coordinate);
 	normalize_tuple(&normal);

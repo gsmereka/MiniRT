@@ -12,14 +12,13 @@
 
 #include "../../headers/miniRT.h"
 
-t_hit	*closest_hit(t_scene *scene, t_ray *ray)
+t_hit	closest_hit(t_scene *scene, t_ray *ray)
 {
-	t_hit	*hit;
-	t_hit	*closest_hit;
+	t_hit	hit;
+	t_hit	closest_hit;
 	int		i;
 
 	i = 0;
-	closest_hit = NULL;
 	while (scene->objects[i])
 	{
 		if (scene->objects[i]->type == SPHERE)
@@ -28,13 +27,10 @@ t_hit	*closest_hit(t_scene *scene, t_ray *ray)
 			hit = intersect_plane(scene->objects[i], ray);
 		else if (scene->objects[i]->type == CYLINDER)
 			hit = intersect_cylinder(scene->objects[i], ray);
-		if (hit && (!closest_hit || hit->distance < closest_hit->distance))
+		if (hit.hit && (!closest_hit.hit || hit.distance < closest_hit.distance))
 		{
-			free(closest_hit);
 			closest_hit = hit;
 		}
-		else if (hit)
-			free(hit);
 		i++;
 	}
 	return (closest_hit);

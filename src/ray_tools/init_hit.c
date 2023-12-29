@@ -12,15 +12,15 @@
 
 #include "../../headers/miniRT.h"
 
-t_hit	*init_hit(t_token *object,
+t_hit	init_hit(t_token *object,
 		t_tuple *normal, double distance, t_tuple *position)
 {
-	t_hit	*hit;
+	t_hit	hit;
 
-	hit = ft_calloc(1, sizeof(t_hit));
-	pass_tuple_values(&hit->position, position);
-	pass_tuple_values(&hit->normal, normal);
-	hit->object = object;
-	hit->distance = distance;
+	hit = (t_hit){0};
+	pass_tuple_values(&hit.position, position);
+	pass_tuple_values(&hit.normal, normal);
+	hit.object = object;
+	hit.distance = distance;
 	return (hit);
 }

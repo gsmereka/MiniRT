@@ -12,7 +12,10 @@
 
 #include "../../headers/miniRT.h"
 
-t_hit	*intersect_cylinder(t_token *cylinder, t_ray *ray)
+t_hit	intersect_cylinder(t_token *cylinder, t_ray *ray)
 {
-    return (NULL);
+    t_hit   hit;
+
+    hit = (t_hit){0};
+    return (hit);
 }

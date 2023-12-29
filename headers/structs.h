@@ -77,6 +77,7 @@ typedef struct s_hit
 	t_tuple		position;
 	t_token		*object;
 	t_tuple		normal;
+	int			hit;
 	double		distance;
 }	t_hit;
 
