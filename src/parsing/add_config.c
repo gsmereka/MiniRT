@@ -19,6 +19,8 @@ int	add_ambient_lighting(t_token *token, t_data *data)
 	token->type = AMBIENT_LIGHTING;
 	data->has_ambient_lighting = 1;
 	token->lighting_ratio = atod(token->args[1]);
+	if (token->lighting_ratio)
+		token->lighting_ratio /= 5;
 	color = ft_split(token->args[2], ',');
 	if (!color)
 		exit_error("Error\nFail at split on add_ambient_lighting()\n", 2, data);
@@ -42,8 +44,7 @@ int	add_light(t_token *token, t_data *data)
 	token->coordinate.y = atod(coordinates[1]);
 	token->coordinate.z = atod(coordinates[2]);
 	free_array((void **)coordinates);
-	//token->normalized_3d_direction.x = normalize(coordinates[0]);
-	token->lighting_ratio = atod(token->args[2]);
+	token->lighting_ratio = atod(token->args[2]) * 10;
 	data->lights_size++;
 	return (0);
 }

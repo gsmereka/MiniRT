@@ -142,7 +142,7 @@ void	define_objects(t_scene **scene, t_data *data)
 		}
 		else if (aux->type == 6)
 		{
-			(*scene)->background_color = aux->color;
+			(*scene)->ambient_color = aux->color;
 			(*scene)->ambient_light = aux->lighting_ratio;
 		}
 		aux = aux->next;

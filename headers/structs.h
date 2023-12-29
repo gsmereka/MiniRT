@@ -84,7 +84,7 @@ typedef struct s_scene
 {
 	t_ray			*object_ray;
 	t_ray			*light_ray;
-	t_color			background_color;
+	t_color			ambient_color;
 	double			ambient_light;
 	t_token			**lights;
 	t_token			**objects;
