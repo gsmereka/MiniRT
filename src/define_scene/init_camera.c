@@ -13,7 +13,6 @@
 #include "../../headers/miniRT.h"
 
 static t_tuple	multiply_tuple_by_matrix(t_tuple *tuple, t_matrix *matrix);
-static void update_projection_matrix(t_camera *camera);
 
 double fov_to_focal_length(double fov)
 {

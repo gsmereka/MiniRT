@@ -16,6 +16,8 @@ t_hit	intersect_cylinder(t_token *cylinder, t_ray *ray)
 {
     t_hit   hit;
 
+    (void)cylinder;
+    (void)ray;
     hit = (t_hit){0};
     return (hit);
 }

@@ -19,6 +19,8 @@ t_hit	closest_hit(t_scene *scene, t_ray *ray)
 	int		i;
 
 	i = 0;
+	hit = (t_hit){0};
+	closest_hit = (t_hit){0};
 	while (scene->objects[i])
 	{
 		if (scene->objects[i]->type == SPHERE)

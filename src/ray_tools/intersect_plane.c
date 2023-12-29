@@ -16,6 +16,8 @@ t_hit	intersect_plane(t_token *plane, t_ray *ray)
 {
     t_hit   hit;
 
+    (void)plane;
+    (void)ray;
     hit = (t_hit){0};
     return (hit);
 }

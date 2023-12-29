@@ -16,7 +16,6 @@ void	render_scene(t_data *data, int i, int j)
 {
 	t_color			ray_color;
 	unsigned int	pixel_color;
-	t_ray			*ray;
 
 	ray_color = (t_color){0};
 	calculate_ray_direction(data->scene->object_ray, data->camera, j, i);
