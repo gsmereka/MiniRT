@@ -12,12 +12,6 @@
 
 #include "../../headers/miniRT.h"
 
-// void	pass_hit_values(t_hit *a, t_hit *b)
-// {
-
-
-// }
-
 t_hit	init_hit(t_token *object,
 		t_tuple *normal, double distance, t_tuple *position)
 {

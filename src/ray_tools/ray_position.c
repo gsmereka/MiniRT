@@ -14,10 +14,9 @@
 
 t_tuple	ray_position(t_ray *ray, double time)
 {
-	t_tuple	direction;
 	t_tuple	position;
 
-	direction = multiply_tuple(&ray->direction, time);
-	position = sum_tuples(&direction, &ray->origin);
+	ray->direction = multiply_tuple(&ray->direction, time);
+	position = sum_tuples(&ray->direction, &ray->origin);
 	return (position);
 }
