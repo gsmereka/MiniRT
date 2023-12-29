@@ -142,8 +142,9 @@ void	define_objects(t_scene **scene, t_data *data)
 		}
 		else if (aux->type == 6)
 		{
-			(*scene)->ambient_color = aux->color;
+			(*scene)->ambient_color = normalize_color(&aux->color);
 			(*scene)->ambient_light = aux->lighting_ratio;
+			(*scene)->ambient_color = multiply_color_scalar(&(*scene)->ambient_color, (*scene)->ambient_light); // definindo a cor ambiente.
 		}
 		aux = aux->next;
 	}

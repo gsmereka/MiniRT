@@ -36,6 +36,7 @@ SRC 	=	./src/matrix_tools/transposing_matrix.c \
 			./src/define_scene/define_scene.c \
 			./src/define_scene/init_camera.c \
 			./src/render/colors_operations.c \
+			./src/render/colors_operations_2.c \
 			./src/render/paint_pixel.c \
 			./src/render/render_scene.c \
 			./src/ray_tools/calculate_ray_direction.c \

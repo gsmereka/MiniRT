@@ -16,22 +16,6 @@
 // and needs to be divided by the square of the distance
 // to represent the variation of the intensity of light with distance.
 
-double	light_at2(t_token *light, t_hit *hit)
-{
-	t_tuple	direction;
-	double	distance;
-	double	cos_light_incidence;
-	double	ilumination;
-
-	direction = subtract_tuples(&light->coordinate, &hit->position);
-	distance = tuple_magnitude(&direction);
-	normalize_tuple(&direction);
-	cos_light_incidence = dot_product(&direction, &hit->normal);
-	ilumination = light->lighting_ratio * 20
-		* (cos_light_incidence / (distance * distance));
-	return (ilumination);
-}
-
 double light_at(t_token *light, t_hit *hit)
 {
     t_tuple direction;

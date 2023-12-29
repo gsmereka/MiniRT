@@ -23,6 +23,8 @@ t_color		    sum_colors(t_color *one, t_color *two);
 t_color		    subtract_colors(t_color *one, t_color *two);
 t_color		    multiply_color_scalar(t_color *color, double factor);
 t_color		    multiply_color_x_color(t_color *one, t_color *two);
+t_color         sum_light_to_color(t_color *color, double factor);
+t_color         normalize_color(t_color *color);
 unsigned int	color_to_int(t_color *color);
 void	        render_scene(t_data *data, int i, int j);
 

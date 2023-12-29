@@ -19,8 +19,6 @@ int	add_ambient_lighting(t_token *token, t_data *data)
 	token->type = AMBIENT_LIGHTING;
 	data->has_ambient_lighting = 1;
 	token->lighting_ratio = atod(token->args[1]);
-	if (token->lighting_ratio)
-		token->lighting_ratio /= 5;
 	color = ft_split(token->args[2], ',');
 	if (!color)
 		exit_error("Error\nFail at split on add_ambient_lighting()\n", 2, data);
