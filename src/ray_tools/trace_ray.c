@@ -35,7 +35,6 @@
 // 	free(object_hit);
 // 	return (ray_color);
 // }
-
 // static t_color
 // trace_color_ilumination(t_scene *scene, t_hit *object_hit, t_ray *light_ray)
 // {
@@ -44,7 +43,6 @@
 // 	t_color	color_ilumination;
 // 	t_tuple	light_ray_direction;
 // 	t_hit	*light_hit;
-
 // 	light_intensity = 0;
 // 	i = 0;
 // 	while (scene->lights[i])
@@ -95,7 +93,6 @@ t_color	trace_ray(t_scene *scene, t_ray *object_ray, t_ray *light_ray)
 	return (ray_color);
 }
 
-
 static double	trace_ilumination(t_scene *scene,
 	t_hit *object_hit, t_ray *light_ray)
 {
@@ -106,7 +103,6 @@ static double	trace_ilumination(t_scene *scene,
 
 	light_intensity = 0;
 	i = 0;
-
 	while (scene->lights[i])
 	{
 		light_ray_direction = subtract_tuples(&object_hit->position,

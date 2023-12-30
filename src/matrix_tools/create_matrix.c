@@ -12,7 +12,8 @@
 
 #include "../../headers/miniRT.h"
 
-static void copy_content(double **src, double dest[MATRIX_SIZE][MATRIX_SIZE], int cols, int rows) // alterada
+static void	copy_content(double **src, double dest[MATRIX_SIZE][MATRIX_SIZE],
+	int cols, int rows)
 {
 	int		i;
 	int		j;
@@ -28,7 +29,7 @@ static void copy_content(double **src, double dest[MATRIX_SIZE][MATRIX_SIZE], in
 	}
 }
 
-t_matrix	create_matrix(double **content, int cols) // alterada
+t_matrix	create_matrix(double **content, int cols)
 {
 	int			rows;
 	t_matrix	matrix;

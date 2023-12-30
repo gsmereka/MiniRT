@@ -13,7 +13,6 @@
 #include "../../headers/miniRT.h"
 
 static t_tuple	multiply_tuple_by_matrix(t_tuple *tuple, t_matrix *matrix);
-static void		update_projection_matrix(t_camera *camera);
 
 double	fov_to_focal_length(double fov)
 {
@@ -29,7 +28,6 @@ double	degrees_to_radians(double degree)
 {
 	return ((degree / 180) * M_PI);
 }
-
 
 // t_camera	*init_camera1(t_token *token, t_data *data)
 // {
@@ -96,7 +94,6 @@ t_camera	*init_camera(t_token *token, t_data *data)
 		= multiply_tuple_by_matrix(&(t_tuple){0, 0, 1, 1}, &camera->direction);
 	return (camera);
 }
-
 
 static t_tuple	multiply_tuple_by_matrix(t_tuple *tuple, t_matrix *matrix)
 {

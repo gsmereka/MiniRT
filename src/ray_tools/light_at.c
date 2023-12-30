@@ -27,7 +27,6 @@ double	light_at(t_token *light, t_hit *hit)
 	distance = tuple_magnitude(&direction);
 	normalize_tuple(&direction);
 	cos_light_incidence = dot_product(&direction, &hit->normal);
-
 	if (distance)
 		illumination = fmax(0, light->lighting_ratio
 				* 10 * cos_light_incidence / (distance));

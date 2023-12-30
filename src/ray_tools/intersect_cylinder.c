@@ -14,5 +14,7 @@
 
 t_hit	*intersect_cylinder(t_token *cylinder, t_ray *ray)
 {
-    return (NULL);
+	(void)cylinder;
+	(void)ray;
+	return (NULL);
 }
