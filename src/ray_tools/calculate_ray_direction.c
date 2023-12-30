@@ -44,7 +44,8 @@ void	calculate_ray_direction(t_ray *ray,
 
 	if (!camera)
 		return ;
-	pixel_center_coord[0] = j + 0.5;
+	// pixel_center_coord[0] = j + 0.5;
+	pixel_center_coord[0] = camera->width - j - 0.5;	// se não a imagem fica invertida
 	pixel_center_coord[1] = camera->height - 0.5 - i; // se não a imagem fica de cabeça pra baixo
 	calculate_direction(ray, camera,
 		pixel_center_coord[0], pixel_center_coord[1]);

@@ -19,5 +19,6 @@ t_tuple	cross_product(t_tuple *one, t_tuple *two)
 	cross_product.x = (one->y * two->z) - (one->z * two->y);
 	cross_product.y = (one->z * two->x) - (one->x * two->z);
 	cross_product.z = (one->x * two->y) - (one->y * two->z);
+	cross_product.w = 0;
 	return (cross_product);
 }
