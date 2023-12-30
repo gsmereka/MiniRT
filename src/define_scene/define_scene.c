@@ -82,7 +82,7 @@ void	define_scene(t_data *data)
 	}
 	scene = alloc_scene(data->lights_size, data->objects_size);
 	if (!scene)
-		exit_error("Error at create scene\n", 4, data);
+		exit_error("Error\nAlloc scene\n", 4, data);
 	define_objects(&scene, data);
 	data->scene = scene;
 }
