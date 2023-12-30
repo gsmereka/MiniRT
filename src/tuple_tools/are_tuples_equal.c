@@ -14,18 +14,13 @@
 
 int	are_tuples_equal(t_tuple *one, t_tuple *two)
 {
-	int	result;
-
-	result = 0;
-	if (are_floats_equal(one->x, two->x))
-		result++;
-	if (are_floats_equal(one->y, two->y))
-		result++;
-	if (are_floats_equal(one->z, two->z))
-		result++;
-	if (are_floats_equal(one->w, two->w))
-		result++;
-	if (result == 3)
-		return (1);
-	return (0);
+	if (!are_floats_equal(one->x, two->x))
+		return (0);
+	if (!are_floats_equal(one->y, two->y))
+		return (0);
+	if (!are_floats_equal(one->z, two->z))
+		return (0);
+	if (!are_floats_equal(one->w, two->w))
+		return (0);
+	return (1);
 }

@@ -82,7 +82,7 @@ LIBFT_A =	./libft/libft.a
 
 HEADERS =	./headers/miniRT.h
 
-CCFLAGS =	-Wall -Wextra -Werror
+# CCFLAGS =	-Wall -Wextra -Werror
 
 MLX_FLAGS = -lmlx -lXext -lX11 -lm
 
@@ -174,7 +174,7 @@ git: fclean
 RT_FILE = ./debug.rt
 
 run: $(NAME)
-	clear && ./miniRT $(RT_FILE)
+	clear && ./miniRT $(RT_FILE) 
 
 valgrind: $(NAME)
 	clear && valgrind  --leak-check=full --show-leak-kinds=all --track-origins=yes ./miniRT $(RT_FILE)

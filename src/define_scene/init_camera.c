@@ -32,6 +32,7 @@ double	fov_to_focal_length(double fov)
 t_camera	*init_camera(t_token *token, t_data *data)
 {
 	t_camera	*camera;
+	t_tuple		arbitrary;
 
 	camera = ft_calloc(1, sizeof(t_camera));
 	if (!camera)
@@ -40,22 +41,67 @@ t_camera	*init_camera(t_token *token, t_data *data)
 	camera->width = data->win_width;
 	camera->height = data->win_height;
 	camera->focal_length = fov_to_focal_length(token->fov);
-	t_tuple	arbitrary;
-
-	arbitrary = create_vector(0, 1, 0);
 	pass_tuple_values(&camera->front, &token->normalized_3d_direction);
-	if (camera->front.y == 1)
-		camera->right = create_vector(0,0, -1);
-	else if (camera->front.y == -1)
-		camera->right = create_vector(0, 0, 1);
-	else
-		camera->right = cross_product(&camera->front, &arbitrary);
+	arbitrary = create_vector(0, 1, 0);
+	camera->right = cross_product(&camera->front, &arbitrary);
+	if (are_tuples_equal(&camera->right, &(t_tuple){0,0,0,0}))
+	{
+		if (camera->front.y <= 0)
+			camera->right = create_vector(0, 0, 1);
+		else
+			camera->right = create_vector(0, 0, -1);
+	}	
 	normalize_tuple(&camera->right);
 	camera->up = cross_product(&camera->right, &camera->front);
 	return (camera);
 }
+	// t_tuple	arbitrary;
 
-// t_camera	*init_camera1(t_token *token, t_data *data)
+	// arbitrary = create_vector(0, 1, 0);
+	// pass_tuple_values(&camera->front, &token->normalized_3d_direction);
+	// camera->right = cross_product(&camera->front, &arbitrary);
+	// if (camera->right.x == 0 && camera->right.y == 0 && camera->right.z == 0)
+	// {
+	// 	camera->right.x += 1;
+	// 	camera->right.y += 1;
+	// 	camera->right.z += 1;
+	// }
+	// normalize_tuple(&camera->right);
+	// camera->up = cross_product(&camera->right, &camera->front);
+	// print_tuple(&camera->up);
+	// if (camera->up.x == 1 || camera->up.x == -1)
+	// 	camera->up.x *= -1;
+
+
+	// t_tuple	arbitrary;
+
+	// pass_tuple_values(&camera->front, &token->normalized_3d_direction);
+	// if (camera->front.y == 1)
+	// 	arbitrary = create_vector(0,0, -1);
+	// else if (camera->front.y == -1)
+	// 	arbitrary = create_vector(0, 0, 1);
+	// else
+	// 	arbitrary = create_vector(0, 1, 0);
+	// camera->right = cross_product(&camera->front, &arbitrary);
+	// normalize_tuple(&camera->right);
+	// camera->up = cross_product(&camera->right, &camera->front);
+
+	// t_tuple	arbitrary;
+
+	// arbitrary = create_vector(0, 1, 0);
+	// pass_tuple_values(&camera->front, &token->normalized_3d_direction);
+	// if (camera->front.y == 1)
+	// 	camera->right = create_vector(0,0, -1);
+	// else if (camera->front.y == -1)
+	// 	camera->right = create_vector(0, 0, 1);
+	// else
+	// 	camera->right = cross_product(&camera->front, &arbitrary);
+	// camera->right = cross_product(&camera->front, &arbitrary);
+	// normalize_tuple(&camera->right);
+	// camera->up = cross_product(&camera->right, &camera->front);
+	// return (camera);
+
+// t_camera	*init_camera2(t_token *token, t_data *data)
 // {
 // 	t_camera	*camera;
 // 	t_matrix	rot_x;
@@ -69,28 +115,24 @@ t_camera	*init_camera(t_token *token, t_data *data)
 // 	camera->width = data->win_width;
 // 	camera->height = data->win_height;
 // 	camera->focal_length = fov_to_focal_length(token->fov);
-// 	// token->normalized_3d_direction.x
-// = degrees_to_radians(token->normalized_3d_direction.x);
-// 	// token->normalized_3d_direction.y
-// = degrees_to_radians(token->normalized_3d_direction.y);
-// 	// token->normalized_3d_direction.z
-// = degrees_to_radians(token->normalized_3d_direction.z);
-// 	token->normalized_3d_direction.x *= (M_PI / 2);
-// 	token->normalized_3d_direction.y *= (M_PI / 2);
-// 	token->normalized_3d_direction.z *= (M_PI / 2);
+// 	// prepare_vector(&token->normalized_3d_direction); // como implementar esta função ?
+// 	// arbitrary = create_vector(0, -1, 0);
 // 	rot_x = rotation_x(data, token->normalized_3d_direction.x);
 // 	rot_y = rotation_y(data, token->normalized_3d_direction.y);
 // 	rot_z = rotation_z(data, token->normalized_3d_direction.z);
 // 	camera->direction = multiply_matrices(&rot_x, &rot_y);
 // 	camera->direction = multiply_matrices(&rot_z, &camera->direction);
-// 	camera->right
-// = multiply_tuple_by_matrix(&(t_tuple){1, 0, 0, 1}, &camera->direction);
-// 	camera->up
-// = multiply_tuple_by_matrix(&(t_tuple){0, 1, 0, 1}, &camera->direction);
-// 	camera->front
-// = multiply_tuple_by_matrix(&(t_tuple){0, 0, 1, 1}, &camera->direction);
+// 	camera->right = multiply_tuple_by_matrix(&(t_tuple){1, 0, 0, 1}, &camera->direction);
+// 	camera->up = multiply_tuple_by_matrix(&(t_tuple){0, 1, 0, 1}, &camera->direction);
+// 	camera->front = multiply_tuple_by_matrix(&(t_tuple){0, 0, 1, 1}, &camera->direction);
 // 	return (camera);
 // }
+	// token->normalized_3d_direction.x = degrees_to_radians(token->normalized_3d_direction.x);
+	// token->normalized_3d_direction.y = degrees_to_radians(token->normalized_3d_direction.y);
+	// token->normalized_3d_direction.z = degrees_to_radians(token->normalized_3d_direction.z);
+	// token->normalized_3d_direction.x *= (M_PI / 2);
+	// token->normalized_3d_direction.y *= (M_PI / 2);
+	// token->normalized_3d_direction.z *= (M_PI / 2);
 
 // t_camera	*init_camera3(t_token *token, t_data *data)
 // {
