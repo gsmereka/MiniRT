@@ -18,7 +18,7 @@ static double	**extract_matrix_content(char **lines_str,
 					int lines_count, int cols_count);
 static double	*extract_line_numbers(char *str, int cols_count);
 
-t_matrix	str_to_matrix(char *str) // alterada
+t_matrix	str_to_matrix(char *str)
 {
 	t_matrix	matrix;
 	char		**lines_str;

@@ -15,7 +15,7 @@
 static	int	invert_content(double **new_content, t_matrix *matrix);
 static	int	init_new_content(double **new_content, t_matrix *matrix);
 
-t_matrix	inverting_matrix(t_matrix *matrix) // não precisa, mas da pra tirar o malloc tambem do new_content
+t_matrix	inverting_matrix(t_matrix *matrix)
 {
 	t_matrix	new_matrix;
 	double		**new_content;

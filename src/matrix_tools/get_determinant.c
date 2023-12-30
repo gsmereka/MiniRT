@@ -19,7 +19,7 @@ double	get_determinant(t_matrix *matrix)
 	double	determinant;
 	int		j;
 
-	if (!matrix) //? fazer consistencia de erros      || !matrix->content
+	if (!matrix)
 		return (0);
 	determinant = 0;
 	if (matrix->rows == 2 && matrix->cols == 2)

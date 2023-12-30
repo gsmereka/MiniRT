@@ -12,7 +12,7 @@
 
 #include "../../headers/miniRT.h"
 
-t_tuple	cross_product(t_tuple *one, t_tuple *two) // alterada
+t_tuple	cross_product(t_tuple *one, t_tuple *two)
 {
 	t_tuple	cross_product;
 

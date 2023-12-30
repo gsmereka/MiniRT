@@ -12,7 +12,7 @@
 
 #include "../../headers/miniRT.h"
 
-t_matrix	shearing(double *proportions, t_data *data) // alterada
+t_matrix	shearing(double *proportions, t_data *data)
 {
 	t_matrix	identidy;
 

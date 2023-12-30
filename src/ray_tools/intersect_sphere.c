@@ -67,8 +67,8 @@ double	calculate_discriminant(t_intersect *intersect,
 	intersect->a = dot_product(&ray->direction, &ray->direction);
 	distance_to_center = subtract_tuples(&ray->origin, &sphere_center);
 	intersect->b = dot_product(&ray->direction, &distance_to_center) * 2.0;
-	intersect->c = dot_product(&distance_to_center,
-			&distance_to_center) -  ((sphere->diameter / 2.0) * (sphere->diameter / 2.0));
+	intersect->c = dot_product(&distance_to_center, &distance_to_center)
+		- ((sphere->diameter / 2.0) * (sphere->diameter / 2.0));
 	d = (intersect->b * intersect->b) - (4 * intersect->a * intersect->c);
 	return (d);
 }

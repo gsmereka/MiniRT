@@ -12,7 +12,7 @@
 
 #include "../../headers/miniRT.h"
 
-t_matrix	rotation_x(t_data *data, double  radians) // alterada
+t_matrix	rotation_x(t_data *data, double radians)
 {
 	t_matrix	matrix;
 
@@ -25,7 +25,7 @@ t_matrix	rotation_x(t_data *data, double  radians) // alterada
 	return (matrix);
 }
 
-t_matrix	rotation_y(t_data *data, double  radians) // alterada
+t_matrix	rotation_y(t_data *data, double radians)
 {
 	t_matrix	matrix;
 
@@ -38,7 +38,7 @@ t_matrix	rotation_y(t_data *data, double  radians) // alterada
 	return (matrix);
 }
 
-t_matrix	rotation_z(t_data *data, double  radians) // alterada
+t_matrix	rotation_z(t_data *data, double radians)
 {
 	t_matrix	matrix;
 

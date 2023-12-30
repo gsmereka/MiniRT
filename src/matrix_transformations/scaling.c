@@ -12,7 +12,7 @@
 
 #include "../../headers/miniRT.h"
 
-t_matrix	scaling(t_data *data, double x, double y, double z) // alterada
+t_matrix	scaling(t_data *data, double x, double y, double z)
 {
 	t_matrix	matrix;
 

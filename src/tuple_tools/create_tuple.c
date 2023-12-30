@@ -12,7 +12,7 @@
 
 #include "../../headers/miniRT.h"
 
-t_tuple	create_point(double x, double y, double z) // alterada
+t_tuple	create_point(double x, double y, double z)
 {
 	t_tuple	new_tuple;
 
@@ -23,7 +23,7 @@ t_tuple	create_point(double x, double y, double z) // alterada
 	return (new_tuple);
 }
 
-t_tuple	create_vector(double x, double y, double z) // alterada
+t_tuple	create_vector(double x, double y, double z)
 {
 	t_tuple	new_tuple;
 

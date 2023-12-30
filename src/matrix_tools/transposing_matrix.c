@@ -43,16 +43,17 @@ static	int	init_new_content(double **new_content, t_matrix *matrix)
 	return (1);
 }
 
-static int	filling_matrix_content(double **new_content, t_matrix *matrix_struct, double old_content[MATRIX_SIZE][MATRIX_SIZE])
+static int	filling_matrix_content(double **new_content,
+	t_matrix *matrix_struct, double old_content[MATRIX_SIZE][MATRIX_SIZE])
 {
 	int		i;
 	int		j;
 
 	i = 0;
-	while (i < matrix_struct->rows) //linha
+	while (i < matrix_struct->rows)
 	{
 		j = 0;
-		while (j < matrix_struct->cols) //colunas
+		while (j < matrix_struct->cols)
 		{
 			new_content[i][j] = old_content[j][i];
 			j++;
@@ -62,7 +63,7 @@ static int	filling_matrix_content(double **new_content, t_matrix *matrix_struct,
 	return (1);
 }
 
-t_matrix	transposing_matrix(t_matrix *mat) // alterada
+t_matrix	transposing_matrix(t_matrix *mat)
 {
 	t_matrix	new_matrix;
 	double		**new_content;
@@ -71,8 +72,6 @@ t_matrix	transposing_matrix(t_matrix *mat) // alterada
 
 	if (!mat)
 		return ((t_matrix){0});
-	// else if (!mat->content)
-	// 	return ((t_matrix){0}); //mais uma verficação aqui?
 	new_rows = mat->cols;
 	new_cols = mat->rows;
 	new_content = ft_calloc(new_rows + 1, sizeof(double *));

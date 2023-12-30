@@ -34,7 +34,7 @@ void	print_matrix(t_matrix *matrix_struct) // Retirar depois
 	printf("Determinant: %lf\n\n", matrix_struct->determinant);
 }
 
-void	print_tuple(t_tuple *tuple)
+void	print_tuple(t_tuple *tuple) // retirar depois
 {
 	if (!tuple)
 	{

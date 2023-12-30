@@ -22,7 +22,8 @@ typedef struct s_intersect
 }	t_intersect;
 
 t_hit			*closest_hit(t_scene *scene, t_ray *ray);
-void			calculate_ray_direction(t_ray *ray, t_camera *camera, double j, double i);
+void			calculate_ray_direction(t_ray *ray,
+					t_camera *camera, double j, double i);
 void			normalize_ray(t_ray *ray, t_tuple *origin, t_tuple *direction);
 t_hit			*intersect_sphere(t_token *sphere, t_ray *ray);
 t_hit			*intersect_cylinder(t_token *cylinder, t_ray *ray);

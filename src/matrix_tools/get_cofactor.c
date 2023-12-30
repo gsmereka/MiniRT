@@ -12,7 +12,7 @@
 
 #include "../../headers/miniRT.h"
 
-double get_cofactor(t_matrix *matrix, int row, int col) //mudar nome pra get_get_cofactor
+double	get_cofactor(t_matrix *matrix, int row, int col)
 {
 	double		cofactor;
 	int			signal;
@@ -25,8 +25,6 @@ double get_cofactor(t_matrix *matrix, int row, int col) //mudar nome pra get_get
 	else
 		signal = 1;
 	submatrix = get_submatrix(matrix, row, col);
-	// if (!submatrix)
-	// 	return (0); //?
 	cofactor = get_determinant(&submatrix) * signal;
 	if (are_floats_equal(cofactor, -0.0))
 		cofactor = 0;

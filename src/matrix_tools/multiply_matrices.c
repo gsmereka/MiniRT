@@ -16,7 +16,7 @@ static int		filling_matrix_content(double **new_content,
 					t_matrix *a, t_matrix *b, int max_cols);
 static double	*create_row(t_matrix *a, t_matrix *b, int row, int max_cols);
 
-t_matrix	multiply_matrices(t_matrix *a, t_matrix *b) // alterada
+t_matrix	multiply_matrices(t_matrix *a, t_matrix *b)
 {
 	t_matrix	new_matrix;
 	double		**new_content;
@@ -25,8 +25,6 @@ t_matrix	multiply_matrices(t_matrix *a, t_matrix *b) // alterada
 
 	if (!a || !b)
 		return ((t_matrix){0});
-	// else if (!a->content || !b->content)
-	// 	return ((t_matrix){0});
 	else if (!a->cols || !b->cols)
 		return ((t_matrix){0});
 	else if (a->cols != b->rows)
@@ -76,7 +74,8 @@ static double	*create_row(t_matrix *a, t_matrix *b, int row, int max_cols)
 		element = 0;
 		while (element < b->rows)
 		{
-			new_row[col] += (a->content[row][element] * b->content[element][col]);
+			new_row[col] += (a->content[row][element]
+					* b->content[element][col]);
 			element++;
 		}
 		if (are_floats_equal(new_row[col], -0.0))

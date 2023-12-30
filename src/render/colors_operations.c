@@ -57,8 +57,8 @@ unsigned int	color_to_int(t_color *color)
 	unsigned int	final_color;
 
 	final_color = 0;
-	final_color |= ((unsigned int)color->r & 0xFF) << 16;  // Adiciona o valor de r ao componente vermelho.
-	final_color |= ((unsigned int)color->g & 0xFF) << 8;   // Adiciona o valor de g ao componente verde.
-	final_color |= ((unsigned int)color->b & 0xFF);        // Adiciona o valor de b ao componente azul
+	final_color |= ((unsigned int)color->r & 0xFF) << 16;
+	final_color |= ((unsigned int)color->g & 0xFF) << 8;
+	final_color |= ((unsigned int)color->b & 0xFF);
 	return (final_color);
 }

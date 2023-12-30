@@ -14,23 +14,18 @@
 
 static int	comparing_content(double **a, double **b, int max_cols);
 
-int	matrices_have_diff(t_matrix *a, t_matrix *b) // alterada
+int	matrices_have_diff(t_matrix *a, t_matrix *b)
 {
 	int	result;
 
 	if (!a || !b)
 		return (-1);
-	// else if (!a->content && !b->content)
-	// 	return (0);
-	// else if (!a->content && b->content)
-	// 	return (1);
-	// else if (a->content && !b->content)
-	// 	return (1);
 	else if (a->cols != b->cols)
 		return (1);
 	else if (a->rows != b->rows)
 		return (1);
-	result = comparing_content((double **)a->content, (double **)b->content, a->cols);
+	result = comparing_content((double **)a->content,
+			(double **)b->content, a->cols);
 	return (result);
 }
 

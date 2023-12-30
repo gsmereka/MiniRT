@@ -14,7 +14,7 @@
 
 static double	multiply_row_with_tuple(double *row, t_tuple *tuple);
 
-t_tuple	multiply_matrix_with_tuple(t_matrix *matrix, t_tuple *tuple) // alterado
+t_tuple	multiply_matrix_with_tuple(t_matrix *matrix, t_tuple *tuple)
 {
 	t_tuple	new_tuple;
 

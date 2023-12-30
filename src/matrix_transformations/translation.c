@@ -12,7 +12,7 @@
 
 #include "../../headers/miniRT.h"
 
-t_matrix	translation(double x, double y, double z, t_data *data) // alterada
+t_matrix	translation(double x, double y, double z, t_data *data)
 {
 	t_matrix	identidy;
 

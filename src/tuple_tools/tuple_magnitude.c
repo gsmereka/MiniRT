@@ -12,7 +12,7 @@
 
 #include "../../headers/miniRT.h"
 
-double	tuple_magnitude(t_tuple *tuple) // Qual é a diferença entre W e C ?
+double	tuple_magnitude(t_tuple *tuple)
 {
 	double	x;
 	double	y;

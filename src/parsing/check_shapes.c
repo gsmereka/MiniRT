@@ -51,7 +51,6 @@ int	is_sphere(char **args, t_data *data)
 		diameter = 2 * atod(args[2]);
 		if (diameter <= 0)
 		{
-			printf("diametro %f %s %s %s\n", diameter, args[1], args[2], args[3]);
 			exit_error(SPHERE_DIAMETER_ERROR, 2, data);
 		}
 		if (!is_color(args[3]))

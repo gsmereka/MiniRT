@@ -12,7 +12,7 @@
 
 #include "../../headers/miniRT.h"
 
-void	normalize_tuple(t_tuple *tuple) // Criar ou não nova tupla ?
+void	normalize_tuple(t_tuple *tuple)
 {
 	double	magnitude;
 

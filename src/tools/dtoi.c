@@ -12,9 +12,9 @@
 
 #include "../../headers/miniRT.h"
 
-int dtoi(double num)
+int	dtoi(double num)
 {
-	int 	inum;
+	int		inum;
 	double	aux;
 
 	inum = (int)num;

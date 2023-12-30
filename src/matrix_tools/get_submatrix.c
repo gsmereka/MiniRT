@@ -21,7 +21,7 @@ t_matrix	get_submatrix(t_matrix *matrix, int row_excluded, int col_excluded)
 	double		**subcontent;
 	t_matrix	submatrix;
 
-	if (!matrix) //  || !matrix->content
+	if (!matrix)
 		return ((t_matrix){0});
 	if (row_excluded < 0 || col_excluded < 0)
 		return ((t_matrix){0});
