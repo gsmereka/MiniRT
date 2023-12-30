@@ -38,36 +38,32 @@ t_scene	*alloc_scene(int lights_size, int objects_size)
 	return (scene);
 }
 
-void	define_objects(t_scene **scene, t_data *data)
+void	define_ambient_ilumination(t_scene *scene, t_token *token)
 {
-	t_token	*aux;
+	scene->ambient_color = normalize_color(&token->color);
+	scene->ambient_light = token->lighting_ratio;
+	scene->ambient_color = multiply_color_scalar(&scene->ambient_color,
+			scene->ambient_light);
+}
+
+void	define_objects(t_scene *scene, t_token *token, t_data *data)
+{
 	int		objects;
 	int		lights;
 
-	aux = data->tokens;
 	objects = 0;
 	lights = 0;
-	while (aux)
+	while (token)
 	{
-		if (aux->type == 1 || aux->type == 2 || aux->type == 3)
-		{
-			(*scene)->objects[objects] = aux;
-			objects++;
-		}
-		else if (aux->type == 4)
-			data->camera = init_camera(aux, data);
-		else if (aux->type == 5)
-		{
-			(*scene)->lights[lights] = aux;
-			lights++;
-		}
-		else if (aux->type == 6)
-		{
-			(*scene)->ambient_color = normalize_color(&aux->color);
-			(*scene)->ambient_light = aux->lighting_ratio;
-			(*scene)->ambient_color = multiply_color_scalar(&(*scene)->ambient_color, (*scene)->ambient_light); // definindo a cor ambiente.
-		}
-		aux = aux->next;
+		if (token->type == 1 || token->type == 2 || token->type == 3)
+			scene->objects[objects++] = token;
+		else if (token->type == 4)
+			data->camera = init_camera(token, data);
+		else if (token->type == 5)
+			scene->lights[lights++] = token;
+		else if (token->type == 6)
+			define_ambient_ilumination(scene, token);
+		token = token->next;
 	}
 }
 
@@ -77,12 +73,12 @@ void	define_scene(t_data *data)
 
 	if (!data->win_height || !data->win_width)
 	{
-		data->win_width = 1000;
-		data->win_height = 700;
+		data->win_width = 1280;
+		data->win_height = 900;
 	}
 	scene = alloc_scene(data->lights_size, data->objects_size);
 	if (!scene)
 		exit_error("Error\nAlloc scene\n", 4, data);
-	define_objects(&scene, data);
+	define_objects(scene, data->tokens, data);
 	data->scene = scene;
 }

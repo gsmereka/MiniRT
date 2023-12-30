@@ -38,13 +38,13 @@ t_tuple	define_right_vector(t_tuple *front)
 
 	arbitrary = create_vector(0, 1, 0);
 	right = cross_product(front, &arbitrary);
-	if (are_tuples_equal(&right, &(t_tuple){0,0,0,0}))
+	if (are_tuples_equal(&right, &(t_tuple){0, 0, 0, 0}))
 	{
 		if (front->y <= 0)
 			right = create_vector(0, 0, 1);
 		else
 			right = create_vector(0, 0, -1);
-	}	
+	}
 	normalize_tuple(&right);
 	return (right);
 }
@@ -61,7 +61,6 @@ t_tuple	define_up_vector(t_tuple *front, t_tuple *right, double aspect_ratio)
 t_camera	*init_camera(t_token *token, t_data *data)
 {
 	t_camera	*camera;
-	t_tuple		arbitrary;
 
 	camera = ft_calloc(1, sizeof(t_camera));
 	if (!camera)
@@ -73,6 +72,7 @@ t_camera	*init_camera(t_token *token, t_data *data)
 	camera->aspect_ratio = (double)camera->height / (double)camera->width;
 	camera->front = define_front_vector(&token->normalized_3d_direction);
 	camera->right = define_right_vector(&camera->front);
-	camera->up = define_up_vector(&camera->front, &camera->right, camera->aspect_ratio);
+	camera->up = define_up_vector(&camera->front, &camera->right,
+			camera->aspect_ratio);
 	return (camera);
 }
