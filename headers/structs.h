@@ -65,7 +65,7 @@ typedef struct s_camera
 	int			width;
 	int			height;
 	double		focal_length;
-	t_matrix	direction;
+	double		aspect_ratio;
 	t_tuple		right;
 	t_tuple		up;
 	t_tuple		front;
