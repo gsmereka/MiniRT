@@ -10,11 +10,11 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SHAPE_TYPES_h
-# define SHAPE_TYPES_h
+#ifndef SHAPE_TYPES_H
+# define SHAPE_TYPES_H
 
 // Shape Types
-# define KEY_ESCAPE (0xff1b)
+# define KEY_ESCAPE 0xff1b
 # define CYLINDER 1
 # define PLANE 2
 # define SPHERE 3

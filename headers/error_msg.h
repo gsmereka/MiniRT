@@ -37,7 +37,8 @@ in the following format: 'C COORDINATE 3D_NORMALIZED_VECTOR FOV'.\n"
 # define CAMERA_COORDINATE_ERROR "Error\nThe 'C' (Camera) coordinate parameter should be \
 in the following format: '0.0,0.0,0.0'.\n"
 # define CAMERA_3D_NORMALIZED_VECTOR_ERROR "Error\nThe 'C' (Camera) 3d normalized normal vector \
-parameter, should be in the following format: '0.0,0.0,0.0' in range [-1:1].\n"
+parameter, should be in the following format: \
+'0.0,0.0,0.0' in range [-1:1].\n"
 # define CAMERA_FOV_ERROR "Error\nThe 'C' (Camera) FOV parameter should be \
 in range [0:180].\n"
 
@@ -65,7 +66,8 @@ in the following format: 'pl COORDINATE 3D_NORMALIZED_VECTOR COLOR'.\n"
 # define PLANE_COORDINATE_ERROR "Error\nThe 'pl' (Plane) coordinate parameter should be \
 in the following format: '0.0,0.0,0.0'.\n"
 # define PLANE_3D_NORMALIZED_VECTOR_ERROR "Error\nThe 'pl' (Plane) 3d normalized normal vector \
-parameter, should be in the following format: '0.0,0.0,0.0' in range [-1:1].\n"
+parameter, should be in the following format: \
+ '0.0,0.0,0.0' in range [-1:1].\n"
 # define PLANE_COLOR_ERROR "Error\nThe 'pl' (Plane) color parameter should be \
 in the following format: '0,0,0' in range [0:255].\n"
 
@@ -86,7 +88,8 @@ HEIGHT COLOR'.\n"
 # define CYLINDER_COORDINATE_ERROR "Error\nThe 'cy' (Cylinder) coordinate parameter should be \
 in the following format: '0.0,0.0,0.0'.\n"
 # define CYLINDER_3D_NORMALIZED_VECTOR_ERROR "Error\nThe 'cy' (Cylinder) 3d normalized normal vector \
-parameter, should be in the following format: '0.0,0.0,0.0' in range [-1:1].\n"
+parameter, should be in the following format: \
+'0.0,0.0,0.0' in range [-1:1].\n"
 # define CYLINDER_DIAMETER_ERROR "Error\nThe 'cy' (Cylinder) diameter \
 parameter, should be positive\n"
 # define CYLINDER_HEIGHT_ERROR "Error\nThe 'cy' (Cylinder) height \

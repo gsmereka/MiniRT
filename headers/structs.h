@@ -113,7 +113,6 @@ typedef struct s_data
 	int			objects_size;
 	t_camera	*camera;
 	t_scene		*scene;
-	int			test; // apagar depois
 }	t_data;
 
 #endif
