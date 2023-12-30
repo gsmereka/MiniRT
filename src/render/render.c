@@ -39,7 +39,7 @@ int	handle_render(void *data_ptr)
 	if (!run)
 	{
 		aux_render(data);
-		// run = 1;
+		run = 1;
 	}
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img, 0, 0);
 	return (0);
