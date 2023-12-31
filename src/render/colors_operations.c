@@ -57,8 +57,8 @@ unsigned int	color_to_int(t_color *color)
 	unsigned int	final_color;
 
 	final_color = 0;
-	final_color |= ((unsigned int)color->r & 0xFF) << 16;
-	final_color |= ((unsigned int)color->g & 0xFF) << 8;
-	final_color |= ((unsigned int)color->b & 0xFF);
+	final_color |= ((unsigned int)color->b);
+	final_color |= ((unsigned int)color->g) << 8;
+	final_color |= ((unsigned int)color->r) << 16;
 	return (final_color);
 }
