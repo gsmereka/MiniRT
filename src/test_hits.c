@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   test_hits.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gde-mora <gde-mora@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 19:14:23 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/10/09 19:33:42 by gsmereka         ###   ########.fr       */
+/*   Updated: 2023/10/13 22:01:33 by gde-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,7 +123,7 @@ void	test_hits(t_data *data)
 	add_intersection(&inter_list, 2, sphere);  // i4 ← intersection(2, s)
 	xs = intersections_xs(inter_list); //return intersect struct
 
-	result = hit(&xs); // result é o i2
+	result = hit(&xs); // result é o i4
 	aux = inter_list;
 	while (aux && aux->time < 0)
 	 	aux = aux->next;
@@ -133,9 +133,9 @@ void	test_hits(t_data *data)
 	{	
 		printf("%lf %lf\n", aux->time, result->time);
 		if (aux->object->type == 3)
-			printf("i2 0 is SPHERE\n");
+			printf("i4 is SPHERE\n");
 		if (result->object->type == 3)
-			printf("result 1 is SPHERE\n");
+			printf("result is SPHERE\n");
 		free_intersection_list(result);	
 	}
 
