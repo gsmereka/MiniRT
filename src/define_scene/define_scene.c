@@ -73,8 +73,8 @@ void	define_scene(t_data *data)
 
 	if (!data->win_height || !data->win_width)
 	{
-		data->win_width = 1280;
-		data->win_height = 900;
+		data->win_width = 500;
+		data->win_height = 500;
 	}
 	scene = alloc_scene(data->lights_size, data->objects_size);
 	if (!scene)

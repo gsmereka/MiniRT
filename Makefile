@@ -82,7 +82,7 @@ LIBFT_A =	./libft/libft.a
 
 HEADERS =	./headers/miniRT.h
 
-CCFLAGS =	-Wall -Wextra -Werror
+# CCFLAGS =	-Wall -Wextra -Werror
 
 MLX_FLAGS = -lmlx -lXext -lX11 -lm
 

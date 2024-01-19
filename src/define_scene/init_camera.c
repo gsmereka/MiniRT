@@ -12,13 +12,33 @@
 
 #include "../../headers/miniRT.h"
 
-double	fov_to_focal_length(double fov)
+
+double fov_to_focal_length(double fov, double width)
 {
 	double	fov_in_radians;
 	double	focal_length;
+	double	lens_size;
 
+	// lens_size = width / 1000;
+	// lens_size = width / height
+	lens_size = 0.5;
 	fov_in_radians = fov * M_PI / 180.0;
-	focal_length = 1.0 / (2.0 * tan(fov_in_radians / 2.0));
+	focal_length = lens_size / (2.0 * tan(fov_in_radians / 2.0));
+	printf("focal length: %f\n", focal_length); // remover depois
+	return (focal_length);
+}
+
+double fov_to_focal_length2(double fov, double aspect_ratio)
+{
+	double	fov_in_radians;
+	double	focal_length;
+	double	lens_size;
+
+	lens_size = aspect_ratio / 2;
+	fov_in_radians = fov * M_PI / 180.0;
+	focal_length = lens_size / (2.0 * tan(fov_in_radians / 2.0));
+	// focal_length = 1 / (2.0 * tan(fov_in_radians / 2.0));
+	printf("focal length: %f\n", focal_length); // remover depois
 	return (focal_length);
 }
 
@@ -49,12 +69,13 @@ t_tuple	define_right_vector(t_tuple *front)
 	return (right);
 }
 
+
 t_tuple	define_up_vector(t_tuple *front, t_tuple *right, double aspect_ratio)
 {
 	t_tuple	up;
 
 	up = cross_product(right, front);
-	up = multiply_tuple(&up, aspect_ratio);
+	// up = multiply_tuple(&up, aspect_ratio);
 	return (up);
 }
 
@@ -68,8 +89,8 @@ t_camera	*init_camera(t_token *token, t_data *data)
 	pass_tuple_values(&camera->center, &token->coordinate);
 	camera->width = data->win_width;
 	camera->height = data->win_height;
-	camera->focal_length = fov_to_focal_length(token->fov);
 	camera->aspect_ratio = (double)camera->height / (double)camera->width;
+	camera->focal_length = fov_to_focal_length(token->fov, camera->width);
 	camera->front = define_front_vector(&token->normalized_3d_direction);
 	camera->right = define_right_vector(&camera->front);
 	camera->up = define_up_vector(&camera->front, &camera->right,
