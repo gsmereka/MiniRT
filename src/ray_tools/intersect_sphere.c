@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   intersect_sphere.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gde-mora <gde-mora@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 19:09:29 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/11/23 18:11:09 by gsmereka         ###   ########.fr       */
+/*   Updated: 2024/01/19 01:48:32 by gde-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ t_hit	*intersect_sphere(t_token *sphere, t_ray *ray)
 	if (!distance)
 		return (NULL);
 	hit_point = ray_position(ray, distance);
-	normal = subtract_tuples(&hit_point, &sphere->coordinate);
+	normal = subtract_tuples(&hit_point, &sphere->coordinate); //e a normal do cilindro e do plano?
 	normalize_tuple(&normal);
 	hit = init_hit(sphere, &normal, distance, &hit_point);
 	return (hit);
