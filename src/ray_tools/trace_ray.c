@@ -68,7 +68,7 @@
 static double	trace_ilumination(t_scene *scene,
 					t_hit *object_hit, t_ray *light_ray);
 
-t_color	trace_ray(t_scene *scene, t_ray *object_ray, t_ray *light_ray)
+t_color	trace_ray(t_scene *scene, t_ray *object_ray, t_ray *light_ray) //
 {
 	t_hit	*object_hit;
 	t_color	ray_color;

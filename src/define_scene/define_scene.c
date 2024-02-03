@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   define_scene.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gde-mora <gde-mora@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 15:42:37 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/12/04 20:58:54 by gsmereka         ###   ########.fr       */
+/*   Updated: 2024/01/19 00:36:32 by gde-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,8 @@ void	define_scene(t_data *data)
 
 	if (!data->win_height || !data->win_width)
 	{
-		data->win_width = 1280;
-		data->win_height = 900;
+		data->win_width = 500;
+		data->win_height = 500;
 	}
 	scene = alloc_scene(data->lights_size, data->objects_size);
 	if (!scene)

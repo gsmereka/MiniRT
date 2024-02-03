@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gde-mora <gde-mora@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 20:16:42 by gde-mora          #+#    #+#             */
-/*   Updated: 2023/11/22 19:08:33 by gsmereka         ###   ########.fr       */
+/*   Updated: 2024/01/17 07:56:08 by gde-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/miniRT.h"
 
-void	print_matrix(t_matrix *matrix_struct) // Retirar depois
+void	print_matrix(t_matrix *matrix_struct) // Retirar depois  //aviso: tem comentario em portugues no makefile
 {
 	int		i;
 	int		j;
