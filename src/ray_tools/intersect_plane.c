@@ -12,7 +12,7 @@
 
 #include "../../headers/miniRT.h"
 
-double	calculate_plane_distance(t_token *plane, t_ray *ray) //sera?
+double	calculate_plane_distance(t_token *plane, t_ray *ray)
 {
 	t_tuple	plane_to_ray;
 	double	numerator;
@@ -38,12 +38,14 @@ t_hit	*intersect_plane(t_token *plane, t_ray *ray) //esse primeiro   // e se fic
 	t_tuple	reverse_normal;
 	t_hit	*hit;
 
+	// if (fabs(ray->direction.y) < EPSILON
+	// 	|| are_floats_equal(0.0, ray->direction.y))
+	// 	return (NULL);   //-------mudou nd --apagar isso dps
+
 	distance = calculate_plane_distance(plane, ray);
 	if (!distance)
 		return (NULL);
-	hit_point = ray_position(ray, distance);
-	// normal = subtract_tuples(&hit_point, &plane->coordinate); //oq isso significa? //ou a normal seria só a coordenada normalizada do plano?
-	// normalize_tuple(&normal); //precisa? testar sem   
+	hit_point = ray_position(ray, distance);  
 	normal = plane->normalized_3d_direction;
 	if (dot_product(&normal, &ray->direction) > 0)
 	{
