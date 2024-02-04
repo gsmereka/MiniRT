@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   closest_hit.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gde-mora <gde-mora@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 23:04:48 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/12/04 21:28:30 by gsmereka         ###   ########.fr       */
+/*   Updated: 2024/02/04 03:20:21 by gde-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ t_hit	*closest_hit(t_scene *scene, t_ray *ray)
 			hit = intersect_plane(scene->objects[i], ray);
 		else if (scene->objects[i]->type == CYLINDER)
 			hit = intersect_cylinder(scene->objects[i], ray);
-		if (hit && (!closest_hit || hit->distance < closest_hit->distance))
+		if (hit && (!closest_hit || (closest_hit->distance - hit->distance >= EPSILON \
+			&& hit->distance < closest_hit->distance))) // é maior ou maior igual? acredito q maior igual
 		{
 			free(closest_hit);
 			closest_hit = hit;

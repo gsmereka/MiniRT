@@ -18,6 +18,10 @@ void	render_scene(t_data *data, int i, int j)
 	unsigned int	pixel_color;
 
 	ray_color = (t_color){0};
+	data->scene->object_ray->direction.x = 0;
+	data->scene->object_ray->direction.y = 0;
+	data->scene->object_ray->direction.z = 0;
+	data->scene->object_ray->direction.w = 0;
 	calculate_ray_direction(data->scene->object_ray, data->camera, j, i);
 	ray_color = trace_ray(data->scene,
 			data->scene->object_ray, data->scene->light_ray);
