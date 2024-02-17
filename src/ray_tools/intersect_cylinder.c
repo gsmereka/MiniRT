@@ -6,11 +6,26 @@
 /*   By: gde-mora <gde-mora@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 20:53:06 by gsmereka          #+#    #+#             */
-/*   Updated: 2024/02/17 19:35:52 by gde-mora         ###   ########.fr       */
+/*   Updated: 2024/02/17 20:02:07 by gde-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/miniRT.h"
+
+t_tuple	calculate_cylinder_normal(t_token *cylinder, t_tuple *hit_point)
+{
+	t_tuple	oc;
+	t_tuple	direction;
+	t_tuple	projection;
+	t_tuple	on_cylinder;
+
+	oc = subtract_tuples(hit_point, &cylinder->coordinate);
+	direction = cylinder->normalized_3d_direction;
+	projection = multiply_tuple(&direction, dot_product(&oc, &direction));
+	on_cylinder = subtract_tuples(&oc, &projection);
+	normalize_tuple(&on_cylinder);
+	return (on_cylinder);
+}
 
 double	calculate_discriminant(t_intersect *intersect,
 	t_token *cylinder, t_ray *ray)
@@ -61,21 +76,6 @@ double	calculate_cylinder_distance(t_token *cylinder, t_ray *ray)
 	else
 		distance = intersect.solutions[1];
 	return (distance);
-}
-
-t_tuple	calculate_cylinder_normal(t_token *cylinder, t_tuple *hit_point)
-{
-	t_tuple	oc;
-	t_tuple	direction;
-	t_tuple	projection;
-	t_tuple	on_cylinder;
-
-	oc = subtract_tuples(hit_point, &cylinder->coordinate);
-	direction = cylinder->normalized_3d_direction;
-	projection = multiply_tuple(&direction, dot_product(&oc, &direction));
-	on_cylinder = subtract_tuples(&oc, &projection);
-	normalize_tuple(&on_cylinder);
-	return (on_cylinder);
 }
 
 t_hit	*intersect_cylinder(t_token *cylinder, t_ray *ray)
