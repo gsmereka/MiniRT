@@ -6,7 +6,7 @@
 /*   By: gde-mora <gde-mora@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 19:09:29 by gsmereka          #+#    #+#             */
-/*   Updated: 2024/02/17 18:12:40 by gde-mora         ###   ########.fr       */
+/*   Updated: 2024/02/17 20:31:08 by gde-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ t_hit	*intersect_sphere(t_token *sphere, t_ray *ray)
 	if (!distance)
 		return (NULL);
 	hit_point = ray_position(ray, distance);
-	normal = subtract_tuples(&hit_point, &sphere->coordinate); //e a normal do cilindro e do plano?
+	normal = subtract_tuples(&hit_point, &sphere->coordinate);
 	normalize_tuple(&normal);
 	hit = init_hit(sphere, &normal, distance, &hit_point);
 	return (hit);

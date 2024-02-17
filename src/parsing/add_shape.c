@@ -6,7 +6,7 @@
 /*   By: gde-mora <gde-mora@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 12:42:10 by gsmereka          #+#    #+#             */
-/*   Updated: 2024/02/17 19:21:08 by gde-mora         ###   ########.fr       */
+/*   Updated: 2024/02/17 20:52:36 by gde-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	add_cylinder(t_token *token, t_data *data)
 	token->type = CYLINDER;
 	set_tuple(token->args[1], &token->coordinate, data);
 	set_tuple(token->args[2], &token->normalized_3d_direction, data);
-	token->diameter = 2 * atod(token->args[3]);
+	token->diameter = atod(token->args[3]); //tinha um 2* aqui, coloco de volta?  --no pdf diz q oq vem ja é o diametro... ent acredito q sem é mais correto?
 	token->height = atod(token->args[4]);
 	set_color(token->args[5], &token->color, data);
 	data->objects_size++;

@@ -6,13 +6,13 @@
 /*   By: gde-mora <gde-mora@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 20:53:06 by gsmereka          #+#    #+#             */
-/*   Updated: 2024/02/17 20:02:07 by gde-mora         ###   ########.fr       */
+/*   Updated: 2024/02/17 21:11:10 by gde-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/miniRT.h"
 
-t_tuple	calculate_cylinder_normal(t_token *cylinder, t_tuple *hit_point)
+t_tuple	calculate_cylinder_normal(t_token *cylinder, t_tuple *hit_point) //revisar linha por linha dessas funções
 {
 	t_tuple	oc;
 	t_tuple	direction;
