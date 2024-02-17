@@ -6,7 +6,7 @@
 /*   By: gde-mora <gde-mora@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 20:53:06 by gsmereka          #+#    #+#             */
-/*   Updated: 2024/02/03 23:08:16 by gde-mora         ###   ########.fr       */
+/*   Updated: 2024/02/04 03:45:48 by gde-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,13 +41,11 @@ t_hit	*intersect_plane(t_token *plane, t_ray *ray) //esse primeiro   // e se fic
 	distance = calculate_plane_distance(plane, ray);
 	if (!distance)
 		return (NULL);
-	hit_point = ray_position(ray, distance);
-	// normal = subtract_tuples(&hit_point, &plane->coordinate); //oq isso significa? //ou a normal seria só a coordenada normalizada do plano?
-	// normalize_tuple(&normal); //precisa? testar sem   
+	hit_point = ray_position(ray, distance);  
 	normal = plane->normalized_3d_direction;
 	if (dot_product(&normal, &ray->direction) > 0)
 	{
-		reverse_normal = reverse_tuple(&normal); //n precisa normalizar dnv né?
+		reverse_normal = reverse_tuple(&normal);
 		hit = init_hit(plane, &reverse_normal, distance, &hit_point);
 	}
 	else

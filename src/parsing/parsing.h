@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gde-mora <gde-mora@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/23 01:23:16 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/11/23 18:44:17 by gsmereka         ###   ########.fr       */
+/*   Updated: 2024/02/17 18:59:39 by gde-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ int			is_color(char *arg);
 int			add_plane(t_token *token, t_data *data);
 int			add_sphere(t_token *token, t_data *data);
 int			add_cylinder(t_token *token, t_data *data);
+void		set_endpoints_cylinder(t_token *cylinder);
 
 // add config
 int			add_ambient_lighting(t_token *token, t_data *data);
