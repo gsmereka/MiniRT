@@ -6,7 +6,7 @@
 /*   By: gde-mora <gde-mora@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 12:42:10 by gsmereka          #+#    #+#             */
-/*   Updated: 2024/02/17 18:58:20 by gde-mora         ###   ########.fr       */
+/*   Updated: 2024/02/17 19:21:08 by gde-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ int	add_cylinder(t_token *token, t_data *data)
 	set_tuple(token->args[2], &token->normalized_3d_direction, data);
 	token->diameter = 2 * atod(token->args[3]);
 	token->height = atod(token->args[4]);
-	set_endpoints_cylinder(&token); //tem & ou n?
 	set_color(token->args[5], &token->color, data);
 	data->objects_size++;
 	return (0);

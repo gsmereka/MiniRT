@@ -6,7 +6,7 @@
 /*   By: gde-mora <gde-mora@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 13:09:51 by gsmereka          #+#    #+#             */
-/*   Updated: 2024/02/17 18:40:27 by gde-mora         ###   ########.fr       */
+/*   Updated: 2024/02/17 19:20:03 by gde-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,6 @@ typedef struct s_token
 	double			lighting_ratio;
 	double			height;
 	int				fov;
-	struct s_tuple	endpoint1;
-	struct s_tuple	endpoint2;
 	struct s_token	*next;
 }	t_token;
 
