@@ -38,24 +38,14 @@ int	add_sphere(t_token *token, t_data *data)
 
 int	add_cylinder(t_token *token, t_data *data)
 {
-	// token->type = CYLINDER;
-	// set_tuple(token->args[1], &token->coordinate, data);
-	// set_tuple(token->args[2], &token->normalized_3d_direction, data);
-	// token->diameter = atod(token->args[3]); //tinha um 2* aqui, coloco de volta?  --no pdf diz q oq vem ja é o diametro... ent acredito q sem é mais correto?
-	// token->height = atod(token->args[4]);
-	// token->max = INFINITY;
-	// token->min = -INFINITY;
-	// token->radius = token->diameter/2;
-	// set_color(token->args[5], &token->color, data);
-	// data->objects_size++;
-	// return (0);
-
 	token->type = CYLINDER;
 	set_tuple(token->args[1], &token->coordinate, data);
 	set_tuple(token->args[2], &token->normalized_3d_direction, data);
-	token->diameter = 2 * atod(token->args[3]);
+	token->diameter = atod(token->args[3]); //tirei o 2 *
 	token->height = atod(token->args[4]);
 	token->radius = token->diameter/2;
+	token->max = INFINITY;
+	token->min = -INFINITY;
 	set_color(token->args[5], &token->color, data);
 	data->objects_size++;
 	return (0);

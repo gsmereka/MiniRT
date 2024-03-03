@@ -18,7 +18,7 @@ static double	calculate_discriminant(t_intersect *intersect,
 static	t_tuple	normalize_cylinder(t_token *cylinder, t_ray *ray, 
 					t_tuple *hit_point);
 static double	distance_two_points(t_tuple *hit_point, t_tuple *ray_origin); //passar esse pra tuple tools
-static t_tuple	calculate_cap_cylinder(t_token *cylinder);
+static t_tuple	get_init_cap(t_token *cylinder);
 
 t_hit	*intersect_cylinder(t_token *cylinder, t_ray *ray)
 {
@@ -27,6 +27,7 @@ t_hit	*intersect_cylinder(t_token *cylinder, t_ray *ray)
 	t_tuple		normal;
 	t_hit		*hit;
 
+	// intersect_caps();
 	distance = calculate_distance(cylinder, ray);
 	if (!distance)
 		return (NULL);
@@ -44,18 +45,19 @@ static double	calculate_distance(t_token *cylinder, t_ray *ray)
 
 	intersect = (t_intersect){0};
 	discriminant = calculate_discriminant(&intersect, cylinder, ray);
-	if (discriminant <= 0)
+	if (discriminant <= EPSILON)
 		return (0);
-	intersect.solutions[0]
-		= (-intersect.b - sqrt(discriminant)) / (2 * intersect.a);
-	intersect.solutions[1]
-		= (-intersect.b + sqrt(discriminant)) / (2 * intersect.a);
-	if (intersect.solutions[0] <= 0 && intersect.solutions[1] <= 0)
+	intersect.solutions[0] = (-intersect.b - sqrt(discriminant)) / (2 * intersect.a);
+	intersect.solutions[1] = (-intersect.b + sqrt(discriminant)) / (2 * intersect.a);
+	if (intersect.solutions[0] <= EPSILON && intersect.solutions[1] <= EPSILON) //ou só < ?
 		return (0);
-	if (intersect.solutions[0] < intersect.solutions[1]) //colocar teste de infinity
+	// onde eu adiciono verificação com lista de caps iniciais e finais? não pode estar além do cap 
+	if (intersect.solutions[0] < intersect.solutions[1] && intersect.solutions[0] < INFINITY && intersect.solutions[0] > -INFINITY) //colocar teste de infinity //assim n mudou nd
 		distance = intersect.solutions[0];
-	else
+	else if (intersect.solutions[1] < INFINITY && intersect.solutions[1] > -INFINITY) //assim n muda nd
 		distance = intersect.solutions[1];
+	else
+		distance = 0.0;
 	return (distance);
 }
 
@@ -106,8 +108,8 @@ static	t_tuple	normalize_cylinder(t_token *cylinder, t_ray *ray, t_tuple *hit_po
 	// problema de norma abaixo nas criações de variavel
 	
 	//N = nrm( P-C-V*m )
-	t_tuple	cylinder_cap = calculate_cap_cylinder(cylinder);
-	t_tuple	p_diff_c = subtract_tuples(&ray->origin, &cylinder_cap); //P é ray->origin msm?
+	t_tuple	cylinder_cap = get_init_cap(cylinder);
+	t_tuple	p_diff_c = subtract_tuples(hit_point, &cylinder_cap); //P é ray->origin msm? --n, é o centro + raio?? --hit point?
 	t_tuple v_multiply_by_m = multiply_tuple(&cylinder->normalized_3d_direction, m);
 	normal = subtract_tuples(&p_diff_c, &v_multiply_by_m);
 	normalize_tuple(&normal);
@@ -138,7 +140,16 @@ static double	distance_two_points(t_tuple *hit_point, t_tuple *ray_origin)
 	return (distance);
 }
 
-static t_tuple	calculate_cap_cylinder(t_token *cylinder)
+static t_tuple	get_init_cap(t_token *cylinder)
 {
-	return (cylinder->coordinate);
+	t_tuple	cap;
+	double	x;
+	double	y;
+	double	z;
+
+	x = cylinder->normalized_3d_direction.x + cylinder->height/2 + cylinder->coordinate.x;
+	y = cylinder->normalized_3d_direction.y + cylinder->height/2 + cylinder->coordinate.y;
+	z = cylinder->normalized_3d_direction.z + cylinder->height/2 + cylinder->coordinate.z;
+	cap = create_point(x, y, z);
+	return (cap);
 }
