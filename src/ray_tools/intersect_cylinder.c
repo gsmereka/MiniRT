@@ -6,7 +6,7 @@
 /*   By: gde-mora <gde-mora@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 20:53:06 by gsmereka          #+#    #+#             */
-/*   Updated: 2024/03/03 03:02:02 by gde-mora         ###   ########.fr       */
+/*   Updated: 2024/03/03 03:49:23 by gde-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,7 @@ t_hit	*intersect_cylinder(t_token *cylinder, t_ray *ray)
 	t_tuple		normal;
 	t_hit		*hit;
 
-	printf("teste\n");
 	distance = calculate_distance(cylinder, ray);
-	printf("teste\n");
 	if (!distance)
 		return (NULL);
 	hit_point = ray_position(ray, distance);
@@ -80,7 +78,7 @@ static double	calculate_discriminant(t_intersect *intersect,
 	//c   = X|X - (X|V)^2 - r*r
 	intersect->c = dot_product(&distance_to_center, &distance_to_center) - \
 		pow(dot_product(&distance_to_center, &cylinder->normalized_3d_direction), 2) - \
-		cylinder->diameter;
+		cylinder->radius * cylinder->radius;
 	
 	d = (intersect->b * intersect->b) - (4 * intersect->a * intersect->c);
 	return (d);

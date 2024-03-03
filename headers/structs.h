@@ -6,7 +6,7 @@
 /*   By: gde-mora <gde-mora@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 13:09:51 by gsmereka          #+#    #+#             */
-/*   Updated: 2024/03/03 00:58:01 by gde-mora         ###   ########.fr       */
+/*   Updated: 2024/03/03 03:48:10 by gde-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ typedef struct s_token
 	struct s_tuple	normalized_3d_direction;
 	struct s_color	color;
 	double			diameter;
+	double			radius;
 	double			max;
 	double			min;
 	double			lighting_ratio;
