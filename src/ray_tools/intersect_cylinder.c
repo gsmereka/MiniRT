@@ -6,7 +6,7 @@
 /*   By: gde-mora <gde-mora@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 20:53:06 by gsmereka          #+#    #+#             */
-/*   Updated: 2024/03/03 03:49:23 by gde-mora         ###   ########.fr       */
+/*   Updated: 2024/03/26 18:44:57 by gde-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,15 @@ t_hit	*intersect_cylinder(t_token *cylinder, t_ray *ray)
 	if (!distance)
 		return (NULL);
 	hit_point = ray_position(ray, distance);
+
+	if (distance_two_points(&hit_point, &cylinder->coordinate) > cylinder->height/2)
+		return (NULL);
+	
 	normal = normalize_cylinder(cylinder, ray, &hit_point);
 	hit = init_hit(cylinder, &normal, distance, &hit_point);
+
+	
+	
 	return (hit);
 }
 
@@ -45,10 +52,15 @@ static double	calculate_distance(t_token *cylinder, t_ray *ray)
 
 	intersect = (t_intersect){0};
 	discriminant = calculate_discriminant(&intersect, cylinder, ray);
-	if (discriminant <= EPSILON)
+	if (discriminant <= EPSILON || intersect.a < EPSILON) //verifica divisão por 0 // < ou <= ?
 		return (0);
 	intersect.solutions[0] = (-intersect.b - sqrt(discriminant)) / (2 * intersect.a);
 	intersect.solutions[1] = (-intersect.b + sqrt(discriminant)) / (2 * intersect.a);
+	
+	
+	
+	
+	
 	if (intersect.solutions[0] <= EPSILON && intersect.solutions[1] <= EPSILON) //ou só < ?
 		return (0);
 	// onde eu adiciono verificação com lista de caps iniciais e finais? não pode estar além do cap 
