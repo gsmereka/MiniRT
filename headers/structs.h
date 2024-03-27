@@ -95,9 +95,6 @@ typedef struct s_scene
 
 typedef struct s_data
 {
-	t_matrix	idmatrix_2x2;
-	t_matrix	idmatrix_3x3;
-	t_matrix	idmatrix_4x4;
 	t_token		*tokens;
 	int			scene_fd;
 	void		*mlx_ptr;

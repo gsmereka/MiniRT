@@ -12,22 +12,7 @@
 
 NAME 	=	miniRT
 
-# comando pra encontrar arquivos .c
-#  find . -type f -name "*.c"
-
-SRC 	=	./src/matrix_tools/transposing_matrix.c \
-			./src/matrix_tools/get_determinant.c \
-			./src/matrix_tools/matrices_have_diff.c \
-			./src/matrix_tools/multiply_matrices.c \
-			./src/matrix_tools/copy_matrix.c \
-			./src/matrix_tools/get_submatrix.c \
-			./src/matrix_tools/init_idmatrices.c \
-			./src/matrix_tools/create_matrix.c \
-			./src/matrix_tools/get_cofactor.c \
-			./src/matrix_tools/inverting_matrix.c \
-			./src/matrix_tools/str_to_matrix.c \
-			./src/matrix_tools/multiply_matrix_with_tuple.c \
-			./src/tools/dtoi.c \
+SRC 	=	./src/tools/dtoi.c \
 			./src/tools/atod.c \
 			./src/tools/are_floats_equal.c \
 			./src/tools/free_array.c \
@@ -61,10 +46,6 @@ SRC 	=	./src/matrix_tools/transposing_matrix.c \
 			./src/tuple_tools/normalize_tuple.c \
 			./src/tuple_tools/create_tuple.c \
 			./src/tuple_tools/pass_tuple_values.c \
-			./src/matrix_transformations/shearing.c \
-			./src/matrix_transformations/rotation.c \
-			./src/matrix_transformations/translation.c \
-			./src/matrix_transformations/scaling.c \
 			./src/parsing/validate_scene_file.c \
 			./src/parsing/get_scene_info.c \
 			./src/parsing/check_shapes.c \

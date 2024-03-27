@@ -39,8 +39,6 @@
 # include "./structs.h"
 # include "../src/define_scene/define_scene.h"
 # include "../src/ray_tools/ray.h"
-# include "../src/matrix_tools/matrix_tools.h"
-# include "../src/matrix_transformations/matrix_transformations.h"
 # include "../src/parsing/parsing.h"
 # include "../src/render/render.h"
 # include "../src/tools/tools.h"
