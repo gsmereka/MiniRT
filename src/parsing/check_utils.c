@@ -54,8 +54,8 @@ int	is_normalized_3d_direction(char *arg)
 	if ((tuple.x < -1 || tuple.x > 1)
 		|| (tuple.y < -1 || tuple.y > 1) || (tuple.z < -1 || tuple.z > 1))
 		return (0);
-	if (!are_floats_equal(1, tuple_magnitude(&tuple)))
-		return (0);
+	// if (!are_floats_equal(1, tuple_magnitude(&tuple)))
+	// 	return (0);
 	return (1);
 }
 

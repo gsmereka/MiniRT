@@ -20,6 +20,7 @@ int	add_plane(t_token *token, t_data *data)
 	token->type = PLANE;
 	set_tuple(token->args[1], &token->coordinate, data);
 	set_tuple(token->args[2], &token->normalized_3d_direction, data);
+	normalize_tuple(&token->normalized_3d_direction);
 	set_color(token->args[3], &token->color, data);
 	data->objects_size++;
 	return (0);
@@ -41,6 +42,7 @@ int	add_cylinder(t_token *token, t_data *data)
 	token->type = CYLINDER;
 	set_tuple(token->args[1], &token->coordinate, data);
 	set_tuple(token->args[2], &token->normalized_3d_direction, data);
+	normalize_tuple(&token->normalized_3d_direction);
 	token->diameter = atod(token->args[3]); //tirei o 2 *
 	token->height = atod(token->args[4]);
 	token->radius = token->diameter/2;

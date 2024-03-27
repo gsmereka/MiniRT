@@ -67,6 +67,7 @@ int	add_camera(t_token *token, t_data *data)
 	token->normalized_3d_direction.x = atod(normalized_3d_direction[0]);
 	token->normalized_3d_direction.y = atod(normalized_3d_direction[1]);
 	token->normalized_3d_direction.z = atod(normalized_3d_direction[2]);
+	normalize_tuple(&token->normalized_3d_direction);
 	free_array((void **)normalized_3d_direction);
 	token->fov = atod(token->args[3]);
 	return (1);
