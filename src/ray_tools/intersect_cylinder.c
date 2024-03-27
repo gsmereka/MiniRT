@@ -18,7 +18,6 @@ static double	calculate_discriminant(t_intersect *intersect,
 static	t_tuple	normalize_cylinder(t_token *cylinder, t_ray *ray, 
 					t_tuple *hit_point);
 static double	distance_two_points(t_tuple *hit_point, t_tuple *ray_origin); //passar esse pra tuple tools
-static t_tuple	get_init_cap(t_token *cylinder);
 static t_tuple	get_cap_1(t_token *cylinder);
 static t_tuple	get_cap_2(t_token *cylinder);
 
@@ -73,7 +72,6 @@ float	cylinder_hipotenuse(t_token *cylinder)
 t_hit	*intersect_cylinder(t_token *cylinder, t_ray *ray)
 {
 	double		distance;
-	double		distance2;
 	t_tuple		hit_point;
 	t_tuple		normal;
 	t_hit		*hit;
@@ -207,19 +205,6 @@ static double	distance_two_points(t_tuple *hit_point, t_tuple *ray_origin)
 	return (distance);
 }
 
-static t_tuple	get_init_cap(t_token *cylinder)
-{
-	t_tuple	cap;
-	double	x;
-	double	y;
-	double	z;
-
-	x = cylinder->normalized_3d_direction.x + cylinder->height/2 + cylinder->coordinate.x;
-	y = cylinder->normalized_3d_direction.y + cylinder->height/2 + cylinder->coordinate.y;
-	z = cylinder->normalized_3d_direction.z + cylinder->height/2 + cylinder->coordinate.z;
-	cap = create_point(x, y, z);
-	return (cap);
-}
 
 static t_tuple	get_cap_1(t_token *cylinder)
 {
