@@ -27,7 +27,7 @@ int	is_plane(char **args, t_data *data)
 			exit_error(PLANE_COORDINATE_ERROR, 2, data);
 		if (!is_normalized_3d_direction(args[2]))
 			exit_error(PLANE_3D_NORMALIZED_VECTOR_ERROR, 2, data);
-		if (!is_color(args[2]))
+		if (!is_color(args[3]))
 			exit_error(PLANE_COLOR_ERROR, 2, data);
 		return (1);
 	}

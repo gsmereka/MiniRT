@@ -29,7 +29,7 @@ double	light_at(t_token *light, t_hit *hit)
 	cos_light_incidence = dot_product(&direction, &hit->normal);
 	if (distance)
 		illumination = fmax(0, light->lighting_ratio
-				* 100 * cos_light_incidence / (distance * distance));
+				* 5 * cos_light_incidence / (distance));
 	else
 		illumination = 0;
 	return (illumination);
