@@ -36,19 +36,16 @@ t_hit	*intersect_cap(t_token *cylinder, t_ray *ray)
 	distance = distance_two_points(&cap, &ray->origin);
 	distance2 = distance_two_points(&cap2, &ray->origin);
 	cap_final = (t_token){0};
-	if (distance < distance2)
+	if (distance <= distance2)
 		pass_tuple_values(&cap_final.coordinate, &cap);
 	else
 		pass_tuple_values(&cap_final.coordinate, &cap2);
 	pass_tuple_values(&cap_final.normalized_3d_direction, &cylinder->normalized_3d_direction);
-	cap_final.color.r = cylinder->color.r;
-	cap_final.color.g = cylinder->color.g;
-	cap_final.color.b = cylinder->color.b;
 	hit = intersect_plane(&cap_final, ray);
 	if (hit)
 	{
 		distance = distance_two_points(&hit->position, &cap_final.coordinate);
-		if (distance > cylinder->radius)
+		if ((distance - cylinder->radius) > EPSILON)
 		{
 			free(hit);
 		}
@@ -83,10 +80,16 @@ t_hit	*intersect_cylinder(t_token *cylinder, t_ray *ray)
 
 	distance = calculate_distance(cylinder, ray);
 	if (!distance)
-		return (NULL);
+	{
+		hit = intersect_cap(cylinder, ray);
+		if (!hit)
+			return (NULL);
+		hit->object = cylinder;
+		return (hit);
+	}
 	hit_point = ray_position(ray, distance);
 
-	if (distance_two_points(&hit_point, &cylinder->coordinate) > cylinder_hipotenuse(cylinder))
+	if ((distance_two_points(&hit_point, &cylinder->coordinate) - cylinder_hipotenuse(cylinder)) >= EPSILON)
 	{
 		hit = intersect_cap(cylinder, ray);
 		if (!hit)
@@ -116,15 +119,13 @@ static double	calculate_distance(t_token *cylinder, t_ray *ray)
 	
 	
 	
-	if (intersect.solutions[0] <= EPSILON && intersect.solutions[1] <= EPSILON) //ou só < ?
+	if (intersect.solutions[0] < EPSILON && intersect.solutions[1] < EPSILON) //ou só < ?
 		return (0);
 	// onde eu adiciono verificação com lista de caps iniciais e finais? não pode estar além do cap 
-	if (intersect.solutions[0] < intersect.solutions[1] && intersect.solutions[0] < INFINITY && intersect.solutions[0] > -INFINITY) //colocar teste de infinity //assim n mudou nd
+	if (intersect.solutions[0] < intersect.solutions[1]) //colocar teste de infinity //assim n mudou nd
 		distance = intersect.solutions[0];
-	else if (intersect.solutions[1] < INFINITY && intersect.solutions[1] > -INFINITY) //assim n muda nd
-		distance = intersect.solutions[1];
 	else
-		distance = 0.0;
+		distance = intersect.solutions[1];
 	return (distance);
 }
 
@@ -175,9 +176,7 @@ static	t_tuple	normalize_cylinder(t_token *cylinder, t_ray *ray, t_tuple *hit_po
 	// problema de norma abaixo nas criações de variavel
 	
 	//N = nrm( P-C-V*m )
-	t_tuple	cylinder_cap = get_init_cap(cylinder);
-	// t_tuple	cylinder_cap = get_cap_2(cylinder);
-	t_tuple	p_diff_c = subtract_tuples(hit_point, &cylinder_cap); //P é ray->origin msm? --n, é o centro + raio?? --hit point?
+	t_tuple	p_diff_c = subtract_tuples(hit_point, &cylinder->coordinate);
 	t_tuple v_multiply_by_m = multiply_tuple(&cylinder->normalized_3d_direction, m);
 	normal = subtract_tuples(&p_diff_c, &v_multiply_by_m);
 	normalize_tuple(&normal);
