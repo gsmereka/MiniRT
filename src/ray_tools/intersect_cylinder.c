@@ -19,28 +19,83 @@ static	t_tuple	normalize_cylinder(t_token *cylinder, t_ray *ray,
 					t_tuple *hit_point);
 static double	distance_two_points(t_tuple *hit_point, t_tuple *ray_origin); //passar esse pra tuple tools
 static t_tuple	get_init_cap(t_token *cylinder);
+static t_tuple	get_cap_1(t_token *cylinder);
+static t_tuple	get_cap_2(t_token *cylinder);
+
+t_hit	*intersect_cap(t_token *cylinder, t_ray *ray)
+{
+	double		distance;
+	double		distance2;
+	t_tuple     cap;
+	t_tuple		cap2;
+	t_token		cap_final;
+	t_hit		*hit;
+
+	cap = get_cap_1(cylinder);
+	cap2 = get_cap_2(cylinder);
+	distance = distance_two_points(&cap, &ray->origin);
+	distance2 = distance_two_points(&cap2, &ray->origin);
+	cap_final = (t_token){0};
+	if (distance < distance2)
+		pass_tuple_values(&cap_final.coordinate, &cap);
+	else
+		pass_tuple_values(&cap_final.coordinate, &cap2);
+	pass_tuple_values(&cap_final.normalized_3d_direction, &cylinder->normalized_3d_direction);
+	cap_final.color.r = cylinder->color.r;
+	cap_final.color.g = cylinder->color.g;
+	cap_final.color.b = cylinder->color.b;
+	hit = intersect_plane(&cap_final, ray);
+	if (hit)
+	{
+		distance = distance_two_points(&hit->position, &cap_final.coordinate);
+		if (distance > cylinder->radius)
+		{
+			free(hit);
+		}
+		else
+		{
+			return (hit);
+		}
+	}
+	return (NULL);
+}
+
+float	cylinder_hipotenuse(t_token *cylinder)
+{
+	float 	c1;
+	float	c2;
+	float	result;
+
+	c1 = (cylinder->height/2) * (cylinder->height/2);
+	c2 = (cylinder->radius * cylinder->radius);
+	result = sqrt(c1 + c2);
+
+	return result;
+}
 
 t_hit	*intersect_cylinder(t_token *cylinder, t_ray *ray)
 {
 	double		distance;
+	double		distance2;
 	t_tuple		hit_point;
 	t_tuple		normal;
 	t_hit		*hit;
 
-	// intersect_caps();
 	distance = calculate_distance(cylinder, ray);
 	if (!distance)
 		return (NULL);
 	hit_point = ray_position(ray, distance);
 
-	if (distance_two_points(&hit_point, &cylinder->coordinate) > cylinder->height/2)
-		return (NULL);
-	
+	if (distance_two_points(&hit_point, &cylinder->coordinate) > cylinder_hipotenuse(cylinder))
+	{
+		hit = intersect_cap(cylinder, ray);
+		if (!hit)
+			return (NULL);
+		hit->object = cylinder;
+		return (hit);
+	}
 	normal = normalize_cylinder(cylinder, ray, &hit_point);
 	hit = init_hit(cylinder, &normal, distance, &hit_point);
-
-	
-	
 	return (hit);
 }
 
@@ -121,6 +176,7 @@ static	t_tuple	normalize_cylinder(t_token *cylinder, t_ray *ray, t_tuple *hit_po
 	
 	//N = nrm( P-C-V*m )
 	t_tuple	cylinder_cap = get_init_cap(cylinder);
+	// t_tuple	cylinder_cap = get_cap_2(cylinder);
 	t_tuple	p_diff_c = subtract_tuples(hit_point, &cylinder_cap); //P é ray->origin msm? --n, é o centro + raio?? --hit point?
 	t_tuple v_multiply_by_m = multiply_tuple(&cylinder->normalized_3d_direction, m);
 	normal = subtract_tuples(&p_diff_c, &v_multiply_by_m);
@@ -162,6 +218,33 @@ static t_tuple	get_init_cap(t_token *cylinder)
 	x = cylinder->normalized_3d_direction.x + cylinder->height/2 + cylinder->coordinate.x;
 	y = cylinder->normalized_3d_direction.y + cylinder->height/2 + cylinder->coordinate.y;
 	z = cylinder->normalized_3d_direction.z + cylinder->height/2 + cylinder->coordinate.z;
+	cap = create_point(x, y, z);
+	return (cap);
+}
+
+static t_tuple	get_cap_1(t_token *cylinder)
+{
+	t_tuple	cap;
+	double	x;
+	double	y;
+	double	z;
+
+	x = (cylinder->normalized_3d_direction.x * cylinder->height/2) + cylinder->coordinate.x;
+	y = (cylinder->normalized_3d_direction.y * cylinder->height/2) + cylinder->coordinate.y;
+	z = (cylinder->normalized_3d_direction.z * cylinder->height/2) + cylinder->coordinate.z;
+	cap = create_point(x, y, z);
+	return (cap);
+}
+static t_tuple	get_cap_2(t_token *cylinder)
+{
+	t_tuple	cap;
+	double	x;
+	double	y;
+	double	z;
+
+	x = (cylinder->normalized_3d_direction.x * -cylinder->height/2) + cylinder->coordinate.x;
+	y = (cylinder->normalized_3d_direction.y * -cylinder->height/2) + cylinder->coordinate.y;
+	z = (cylinder->normalized_3d_direction.z * -cylinder->height/2) + cylinder->coordinate.z;
 	cap = create_point(x, y, z);
 	return (cap);
 }
