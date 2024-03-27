@@ -43,9 +43,9 @@ int	add_cylinder(t_token *token, t_data *data)
 	set_tuple(token->args[1], &token->coordinate, data);
 	set_tuple(token->args[2], &token->normalized_3d_direction, data);
 	normalize_tuple(&token->normalized_3d_direction);
-	token->diameter = atod(token->args[3]); //tirei o 2 *
+	token->diameter = atod(token->args[3]);
 	token->height = atod(token->args[4]);
-	token->radius = token->diameter/2;
+	token->radius = token->diameter / 2;
 	token->max = INFINITY;
 	token->min = -INFINITY;
 	set_color(token->args[5], &token->color, data);

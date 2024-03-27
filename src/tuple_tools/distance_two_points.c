@@ -1,32 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   normalize_tuple.c                                  :+:      :+:    :+:   */
+/*   cross_product.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gde-mora <gde-mora@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 23:46:18 by gsmereka          #+#    #+#             */
-/*   Updated: 2024/02/28 04:12:15 by gde-mora         ###   ########.fr       */
+/*   Updated: 2023/08/13 17:46:35 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/miniRT.h"
 
-void	normalize_tuple(t_tuple *tuple)
+double	distance_two_points(t_tuple *hit_point, t_tuple *ray_origin)
 {
-	double	magnitude;
+	double	distance;
+	double	x_diff;
+	double	y_diff;
+	double	z_diff;
 
-	magnitude = tuple_magnitude(tuple);
-	if (magnitude == 0.0)
-	{
-		tuple->x = 0;
-		tuple->y = 0;
-		tuple->z = 0;
-		tuple->w = 0;
-		return ;
-	}
-	tuple->x = tuple->x / magnitude;
-	tuple->y = tuple->y / magnitude;
-	tuple->z = tuple->z / magnitude;
-	tuple->w = tuple->w / magnitude;
+	x_diff = ray_origin->x - hit_point->x;
+	y_diff = ray_origin->y - hit_point->y;
+	z_diff = ray_origin->z - hit_point->z;
+	distance = sqrt(pow(x_diff, 2) + pow(y_diff, 2) + pow(z_diff, 2));
+	return (distance);
 }

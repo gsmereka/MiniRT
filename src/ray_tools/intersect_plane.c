@@ -22,15 +22,15 @@ double	calculate_plane_distance(t_token *plane, t_ray *ray) //sera?
 	plane_to_ray = subtract_tuples(&ray->origin, &plane->coordinate);
 	numerator = dot_product(&plane_to_ray, &plane->normalized_3d_direction);
 	denominator = dot_product(&ray->direction, &plane->normalized_3d_direction);
-	if (fabs(denominator) < EPSILON) //aq ja checa o 0
+	if (fabs(denominator) < EPSILON)
 		return (0);
-	distance = -(numerator/denominator);
+	distance = -(numerator / denominator);
 	if (distance < 0)
 		return (0);
 	return (distance);
 }
 
-t_hit	*intersect_plane(t_token *plane, t_ray *ray) //esse primeiro   // e se ficar fininho de lado???? aparece oq //e plano infinito? tem?
+t_hit	*intersect_plane(t_token *plane, t_ray *ray)
 {
 	double	distance;
 	t_tuple	hit_point;
@@ -41,7 +41,7 @@ t_hit	*intersect_plane(t_token *plane, t_ray *ray) //esse primeiro   // e se fic
 	distance = calculate_plane_distance(plane, ray);
 	if (!distance)
 		return (NULL);
-	hit_point = ray_position(ray, distance);  
+	hit_point = ray_position(ray, distance);
 	normal = plane->normalized_3d_direction;
 	if (dot_product(&normal, &ray->direction) > 0)
 	{

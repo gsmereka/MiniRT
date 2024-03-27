@@ -76,8 +76,7 @@ int	is_light(char **args, t_data *data)
 	{
 		while (args[i])
 			i++;
-		// if (i != 3)
-		if (i > 4)
+		if (i != 3)
 			exit_error(LIGHT_ERROR, 2, data);
 		if (!is_coordinate(args[1]))
 			exit_error(LIGHT_COORDINATE_ERROR, 2, data);

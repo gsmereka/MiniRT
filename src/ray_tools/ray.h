@@ -28,6 +28,7 @@ void			normalize_ray(t_ray *ray, t_tuple *origin, t_tuple *direction);
 t_hit			*intersect_sphere(t_token *sphere, t_ray *ray);
 t_hit			*intersect_cylinder(t_token *cylinder, t_ray *ray);
 t_hit			*intersect_plane(t_token *plane, t_ray *ray);
+t_hit			*intersect_cap(t_token *cylinder, t_ray *ray);
 t_tuple			ray_position(t_ray *ray, double time);
 t_hit			*init_hit(t_token *object,
 					t_tuple *normal, double distance, t_tuple *position);

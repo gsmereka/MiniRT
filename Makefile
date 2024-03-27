@@ -48,10 +48,12 @@ SRC 	=	./src/matrix_tools/transposing_matrix.c \
 			./src/ray_tools/ray_position.c \
 			./src/ray_tools/intersect_sphere.c \
 			./src/ray_tools/intersect_cylinder.c \
+			./src/ray_tools/intersect_cylinder_cap.c \
 			./src/ray_tools/intersect_plane.c \
 			./src/render/minilibx_handlers.c \
 			./src/render/render.c \
 			./src/tuple_tools/tuples_operations.c \
+			./src/tuple_tools/distance_two_points.c \
 			./src/tuple_tools/tuple_magnitude.c \
 			./src/tuple_tools/dot_product.c \
 			./src/tuple_tools/cross_product.c \

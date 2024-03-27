@@ -26,5 +26,5 @@ double	tuple_magnitude(t_tuple *tuple);
 double	dot_product(t_tuple *one, t_tuple *two);
 t_tuple	cross_product(t_tuple *one, t_tuple *two);
 void	pass_tuple_values(t_tuple *dest, t_tuple *src);
-
+double	distance_two_points(t_tuple *hit_point, t_tuple *ray_origin);
 #endif
