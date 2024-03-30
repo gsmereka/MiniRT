@@ -6,7 +6,7 @@
 /*   By: gde-mora <gde-mora@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 23:04:48 by gsmereka          #+#    #+#             */
-/*   Updated: 2024/02/04 03:20:21 by gde-mora         ###   ########.fr       */
+/*   Updated: 2024/03/30 01:29:46 by gde-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ t_hit	*closest_hit(t_scene *scene, t_ray *ray)
 	int		i;
 
 	i = 0;
+	hit = NULL;
 	closest_hit = NULL;
 	while (scene->objects[i])
 	{
@@ -43,6 +44,7 @@ static t_hit	*intersect_object(t_scene *scene, t_ray *ray, int i)
 {
 	t_hit	*hit;
 
+	hit = NULL;
 	if (scene->objects[i]->type == SPHERE)
 		hit = intersect_sphere(scene->objects[i], ray);
 	else if (scene->objects[i]->type == PLANE)
