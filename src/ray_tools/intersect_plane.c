@@ -6,13 +6,13 @@
 /*   By: gde-mora <gde-mora@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 20:53:06 by gsmereka          #+#    #+#             */
-/*   Updated: 2024/02/04 03:45:48 by gde-mora         ###   ########.fr       */
+/*   Updated: 2024/03/30 01:34:55 by gde-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/miniRT.h"
 
-double	calculate_plane_distance(t_token *plane, t_ray *ray) //sera?
+double	calculate_plane_distance(t_token *plane, t_ray *ray)
 {
 	t_tuple	plane_to_ray;
 	double	numerator;

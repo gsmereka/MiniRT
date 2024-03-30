@@ -6,7 +6,7 @@
 #    By: gde-mora <gde-mora@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/20 18:26:17 by gde-mora          #+#    #+#              #
-#    Updated: 2024/02/17 19:20:47 by gde-mora         ###   ########.fr        #
+#    Updated: 2024/03/30 02:06:05 by gde-mora         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -147,8 +147,6 @@ create_obj_dir:
 	@mkdir -p $(OBJ_DIR)/src/ray_tools
 	@mkdir -p $(OBJ_DIR)/src/tools
 	@mkdir -p $(OBJ_DIR)/src/tuple_tools
-	@mkdir -p $(OBJ_DIR)/src/matrix_tools
-	@mkdir -p $(OBJ_DIR)/src/matrix_transformations
 
 ## FULL CLEAN ALL OBJECTS
 git: fclean
@@ -162,4 +160,4 @@ run: $(NAME)
 valgrind: $(NAME)
 	clear && valgrind  --leak-check=full --show-leak-kinds=all --track-origins=yes ./miniRT $(RT_FILE)
 
-.PHONY: all clean fclean re create_obj_dir git ascii_draw ascii_draw_fclean valgrind test run
+.PHONY: all clean fclean re create_obj_dir git ascii_draw ascii_draw_fclean valgrind run

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gde-mora <gde-mora@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/23 01:23:16 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/11/22 16:01:51 by gsmereka         ###   ########.fr       */
+/*   Updated: 2024/03/30 01:54:26 by gde-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define RENDER_H
 
 // render
-int				test_render(t_data	*data); // SO PRA TESTES
 void			render(t_data *data);
 void			paint_pixel(int x, int y, unsigned int color, t_data *data);
 int				handle_esc(int key, t_data *data);

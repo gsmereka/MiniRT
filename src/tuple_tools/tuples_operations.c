@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tuples_operations.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gde-mora <gde-mora@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 18:24:49 by gsmereka          #+#    #+#             */
-/*   Updated: 2023/11/23 18:25:36 by gsmereka         ###   ########.fr       */
+/*   Updated: 2024/03/30 02:02:39 by gde-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,14 @@ t_tuple	divide_tuple(t_tuple *tuple, double factor)
 {
 	t_tuple	new_tuple;
 
+	if (factor == 0)
+	{
+		new_tuple.x = 0;
+		new_tuple.y = 0;
+		new_tuple.z = 0;
+		new_tuple.w = 0;
+		return (new_tuple);
+	}
 	new_tuple.x = tuple->x / factor;
 	new_tuple.y = tuple->y / factor;
 	new_tuple.z = tuple->z / factor;
