@@ -6,7 +6,7 @@
 #    By: gde-mora <gde-mora@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/20 18:26:17 by gde-mora          #+#    #+#              #
-#    Updated: 2024/03/30 02:06:05 by gde-mora         ###   ########.fr        #
+#    Updated: 2024/03/30 02:22:28 by gde-mora         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -152,7 +152,7 @@ create_obj_dir:
 git: fclean
 	git add . && clear && git status
 
-RT_FILE = ./debug.rt
+RT_FILE = ./scene_files/cylinder2.rt
 
 run: $(NAME)
 	clear && ./miniRT $(RT_FILE) 
