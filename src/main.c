@@ -22,6 +22,5 @@ int	main(int argc, char **argv)
 	get_scene_info(data.tokens, &data);
 	define_scene(&data);
 	render(&data);
-	exit_error("", 0, &data);
 	return (0);
 }
